@@ -8,6 +8,9 @@
 
 #repair sequence is some sequence of all broken links and bus
 #use heuristic to find out the optimum solution
+
+
+#this is a test comment
 from power_util import delete_buses
 from power_util import get_functional_nodes
 from road_util import capacity_adjustment
