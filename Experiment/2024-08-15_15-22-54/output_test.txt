@@ -1,0 +1,2 @@
+This is optimal considering interdependence
+[32, 17, 11, 28, 15, (11, 14), (9, 10)]
