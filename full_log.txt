@@ -14,11 +14,8 @@ Read matrix 0
 Creating batch 0
 Created batch 0
 Initialization done in 0.000 s.
-Iteration 1: gap 0.087704410182946, obj 4492859.38829122, time 0.006, 48 shifts
-Iteration 2: gap 0.018160721407520, obj 4329367.574964, time 0.010, 70 shifts
-Iteration 3: gap 0.004274284449136, obj 4289369.85972946, time 0.017, 109 shifts
-Iteration 4: gap 0.000884391663565, obj 4281769.88503985, time 0.025, 164 shifts
-Iteration 5: gap 0.000284238922336, obj 4280688.85367986, time 0.034, 250 shifts
-Iteration 6: gap 0.000049376912426, obj 4280547.93338202, time 0.042, 314 shifts
-Class 1 TSTT: 7674975.256380
-Aggregate TSTT: 7674975.256380
+Iteration 1: gap 0.101894768911931, obj 4955458.2896233, time 0.006, 48 shifts
+Iteration 2: gap 0.017398477652908, obj 4783127.11588771, time 0.011, 69 shifts
+Iteration 3: gap 0.003848242591901, obj 4748511.66299516, time 0.018, 102 shifts
+Iteration 4: gap 0.000591503491555, obj 4735975.50684703, time 0.025, 146 shifts
+Iteration 5: gap 0.000610137505069, obj 4734933.56021898, time 0.033, 197 shifts
