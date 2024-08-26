@@ -37,7 +37,7 @@ def capacity_adjustment(input_file, output_file,links,adj_factor):
 def eval_tot_OD_travel_time():
     import csv
     
-    f = "flows.txt"
+    f = "s.txt"
 
     tstt = 0.0
     with open(f, 'r') as file:

@@ -37,8 +37,8 @@ def load_disrupted_scenatio(broken_buses,broken_links):
     #backup_filepath=backup_dir+timestamp
     #shutil.copy2(Network2, backup_filepath)
     #files.append(timestamp)
-    if os.path.exists('flows.txt'):
-        os.remove('flows.txt')
+    if os.path.exists('s.txt'):
+        os.remove('s.txt')
     run_tapb(Network2,'tap-b/net/SiouxFalls_trips.txt') # 1. fix newest folder issue, #2 this is ugly now, change to parameters input later
     #shutil.copy2('flows.txt', backup_filepath+'flows.txt')
     if os.path.exists(Network2):
@@ -83,7 +83,7 @@ def resilience_evaluation(repair_seq):
         #take power output and give number
         resilience_power.append(eval_power_resilience(broken_buses))
         #repair and continue
-        current_node,current_move_time=repair_path_time('flows.txt',repair_seq[0],previous_node)
+        current_node,current_move_time=repair_path_time('s.txt',repair_seq[0],previous_node)
         time.append(current_move_time) 
         broken_buses=[bus for bus in broken_buses if bus!=repair_seq[0]]
         broken_links=[link for link in broken_links if link!=repair_seq[0]]

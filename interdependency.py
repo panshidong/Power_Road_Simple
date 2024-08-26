@@ -84,13 +84,13 @@ def repair_path_time(f, repaired,O):
     if isinstance(repaired,int):
         if bus_loc(repaired)>0:
             D=bus_loc(repaired)
-            return D,calculate_shortest_path_cost('flows.txt',O,D)
+            return D,calculate_shortest_path_cost('s.txt',O,D)
         else:
             return 0
     else:
         D=repaired
-        front_node_cost=calculate_shortest_path_cost('flows.txt',O,D[0])
-        rear_node_cost=calculate_shortest_path_cost('flows.txt',O,D[1])
+        front_node_cost=calculate_shortest_path_cost('s.txt',O,D[0])
+        rear_node_cost=calculate_shortest_path_cost('s.txt',O,D[1])
         if front_node_cost<rear_node_cost:
             return D[0],front_node_cost
         else:
