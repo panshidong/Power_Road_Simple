@@ -19,7 +19,7 @@ def bus_lookup(bus):
         14: (),
         15: (1,3),
         16: (),
-        17: (20,22),
+        17: (16,8),
         18: (),
         19: (),
         20: (),
@@ -103,11 +103,11 @@ def repair_path_time(f, repaired,O):
     """
     return None
 
-def power_to_road(unfunctional_nodes, input_file, output_file):
+def power_to_road(unfunctional_nodes, input_file, output_file,factor):
     adj_links=[]
     for bus in unfunctional_nodes:                                 # not an empty tuple
         if bus_lookup(bus):
             adj_links.append(bus_lookup(bus))
-    capacity_adjustment(input_file, output_file, adj_links,0.5)    # traffic light reduce capacity by 50%
+    capacity_adjustment(input_file, output_file, adj_links,factor)    # traffic light reduce capacity by 50%
     return 0
 

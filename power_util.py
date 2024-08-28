@@ -1,6 +1,6 @@
 import random
 def get_functional_nodes(broken_nodes):
-    # Define the topology of the IEEE 33-bus system
+    # Define the topology of the IEEE 33-bus system   this function is broken, use the below one
     connections = {
         1: [2],
         2: [3, 19],

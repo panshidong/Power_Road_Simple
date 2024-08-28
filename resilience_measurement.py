@@ -27,10 +27,14 @@ from datetime import datetime
 import shutil
 import time
 
+power_road_factor=0.5
+broken_link_factor=0
+
+
 def load_disrupted_scenatio(broken_buses,broken_links):
     unfunctional_nodes = delete_buses(broken_buses)
-    capacity_adjustment(Org_network,Network1,broken_links,0) #delete link equal to change capacity into 0
-    power_to_road(unfunctional_nodes,Network1,Network2)   #This will edit the capacity of roadway link due to traffic light
+    capacity_adjustment(Org_network,Network1,broken_links,broken_link_factor) #delete link equal to change capacity into 0
+    power_to_road(unfunctional_nodes,Network1,Network2,power_road_factor)   #This will edit the capacity of roadway link due to traffic light
     files=[]
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S-%f")[:23]
     os.makedirs(backup_dir, exist_ok=True)
@@ -52,10 +56,11 @@ def eval_road_resilience(broken_buses,broken_links):
 
 def eval_power_resilience(broken_buses):
     # This represents "unsatisfied demand" 
-    return len(get_functional_nodes(broken_buses))/33
+    return 1-len(delete_buses(broken_buses))/33
 
 def resilience_triangle(functionality,time):
     #求解若干个梯形面积之和
+    #implement financial measures for different weights
     complement=0
     functionality_for_triangle=functionality+[1]
     for i in range(len(functionality)):
@@ -225,7 +230,7 @@ def heuristic_find_solution(initial_sequence,consider_interdependence):
         single_run_time_0=datetime.now()
         fitness = resilience_evaluation(individual)[0]
         single_run_time=datetime.now()-single_run_time_0
-        print(f"Individual: {individual}, Fitness: {fitness}, Duration: {single_run_time}")  # 调试输出
+        #print(f"Individual: {individual}, Fitness: {fitness}, Duration: {single_run_time}")  # 调试输出
         return (fitness,)
 
     toolbox.register("evaluate", eval_one_max)
@@ -300,41 +305,71 @@ with open(result_folder+'output_test.txt', 'w') as f:
 exit()
 """
 
-myind=heuristic_find_solution(sequence,True)
-#myind=sequence #this is used for debug
+def run_model(sequence,bool_stream,result_folder,message,Scenario):
+    run_start_time=datetime.now()
+    myind=heuristic_find_solution(sequence,bool_stream)
+    #myind=sequence #this is used for debug
 
-run_end_time=datetime.now()
-duration=run_end_time - run_start_time
-#seperate final back up nets with others
+    run_end_time=datetime.now()
+    duration=run_end_time - run_start_time
+    #seperate final back up nets with others
 
-result_opt, road_opt, power_opt, time_opt,net_files=resilience_evaluation(myind)
-#for the best solution, draw the resilience triangle
-plot_triangles_seperate(road_opt,power_opt,time_opt,result_folder+'opt')
-plot_triangle_tot(road_opt,power_opt,time_opt,result_folder+'opt')
-with open(result_folder+'output.txt', 'w') as f:
-    print("This is optimal considering interdependence", file=f)
-    print(myind, file=f)
-    print("run duration: " + str(duration), file=f)
-    print("total complement resilience(not average): ", result_opt, file=f)
-    print("road resilience: ", road_opt, file=f)
-    print("power resilience: ", power_opt, file=f)
-    print("time steps: ", time_opt, file=f)
-    print()
+    result_opt, road_opt, power_opt, time_opt,net_files=resilience_evaluation(myind)
+    #for the best solution, draw the resilience triangle
+    plot_triangles_seperate(road_opt,power_opt,time_opt,result_folder+Scenario)
+    plot_triangle_tot(road_opt,power_opt,time_opt,result_folder+Scenario)
+    with open(result_folder+'output.txt', 'a') as f:
+        print(message, file=f)
+        print(myind, file=f)
+        print("run duration: " + str(duration), file=f)
+        print("total complement resilience(not average): ", result_opt, file=f)
+        print("road resilience: ", road_opt, file=f)
+        print("power resilience: ", power_opt, file=f)
+        print("time steps: ", time_opt, file=f)
+        print()
+
+run_model(sequence,True,result_folder,"This is optimal considering interdependence",'opt')
+run_model(sequence,False,result_folder,"This is optimal NOT considering interdependence",'')
 
 
-run_start_time=datetime.now()
-myind=heuristic_find_solution(sequence,False)
-run_end_time=datetime.now()
-result_opt, road_opt, power_opt, time_opt,net_files=resilience_evaluation(myind)
-#for the best solution, draw the resilience triangle
-plot_triangles_seperate(road_opt,power_opt,time_opt,result_folder)
-plot_triangle_tot(road_opt,power_opt,time_opt,result_folder)
-with open(result_folder+'output.txt', 'a') as f:
-    print("This is optimal NOT considering interdependence", file=f)
-    print(myind, file=f)
-    print("run duration: " + str(duration), file=f)
-    print("total complement resilience(not average): ", result_opt, file=f)
-    print("road resilience: ", road_opt, file=f)
-    print("power resilience: ", power_opt, file=f)
-    print("time steps: ", time_opt, file=f)
+
+'''
+Sensitivity design
+Sensitivity #1: 
+increase the number of broken links/nets
+'''
+SENS1_sequence=[11,17,15,(9,10),28,32,(11,14),(15,22),(2,6),6,24]
+run_model(SENS1_sequence,True,result_folder,"This is SENSITIVITY #1",'SENS1')
+
+'''
+Sensitivity#2:
+move the connection points around
+
+'''
+#here we need to change the dictionary of reference
+
+
+'''
+Sensitivity #3
+different harm level for broken net or power fail (interdependency level)
+
+'''
+power_road_factor=0.7
+run_model(sequence,True,result_folder,"This is SENSITIVITY #3",'SENS3')
+power_road_factor=0.5
+
+'''
+Sensitivity #4
+Interdependency Pattern like where the interdependenct location is
+
+'''
+#change the other dictionary here
+
+
+'''
+Sensitivity #5
+Demand pattern, like 50% demand in at time 0 and gradual recover? hard to design
+
+
+'''
 
