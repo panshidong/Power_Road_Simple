@@ -306,6 +306,16 @@ exit()
 """
 
 def run_model(sequence,bool_stream,result_folder,message,Scenario):
+    if os.path.exists('bus_location.json'):
+        os.remove('bus_location.json')
+    if os.path.exists('bus_to_link.json'):
+        os.remove('bus_to_link.json')   
+    if Scenario=='SENS4':
+        shutil.copy2('SENS4_bus_location.json', 'bus_location.json')
+        shutil.copy2('SENS4_bus_to_link.json', 'bus_to_link.json')
+    else:
+        shutil.copy2('original_bus_location.json', 'bus_location.json')
+        shutil.copy2('original_bus_to_link.json', 'bus_to_link.json')
     run_start_time=datetime.now()
     myind=heuristic_find_solution(sequence,bool_stream)
     #myind=sequence #this is used for debug
@@ -326,7 +336,9 @@ def run_model(sequence,bool_stream,result_folder,message,Scenario):
         print("road resilience: ", road_opt, file=f)
         print("power resilience: ", power_opt, file=f)
         print("time steps: ", time_opt, file=f)
+        print("-------------------------------------------------------------------------")
         print()
+
 
 run_model(sequence,True,result_folder,"This is optimal considering interdependence",'opt')
 run_model(sequence,False,result_folder,"This is optimal NOT considering interdependence",'')
@@ -363,7 +375,7 @@ Sensitivity #4
 Interdependency Pattern like where the interdependenct location is
 
 '''
-#change the other dictionary here
+run_model(sequence,True,result_folder,"This is SENSITIVITY #4",'SENS4')
 
 
 '''

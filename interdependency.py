@@ -1,7 +1,11 @@
 from road_util import capacity_adjustment,calculate_shortest_path_cost
 import os
+import json
 def bus_lookup(bus):
     # this gives the location of each bus
+    with open('original_bus_to_link.json','r') as file:
+        references=json.load(file)
+    '''
     references = {
         1: (),
         2: (),
@@ -37,10 +41,14 @@ def bus_lookup(bus):
         32: (22,20),
         33: ()
     }
-    return references[bus]
+    '''
+    return references[str(bus)]
 
 def bus_loc(bus):
     # this gives the location of each bus
+    with open('original_bus_location.json','r') as file:
+        references=json.load(file)  
+    '''  
     references = {
         1: 1,
         2: 2,
@@ -76,7 +84,8 @@ def bus_loc(bus):
         32: 20,
         33: 27
     }
-    return references[bus]
+    '''
+    return references[str(bus)]
 
 def repair_path_time(f, repaired,O):
     #this assumes each repair requires dispatch rather than routing
@@ -110,4 +119,3 @@ def power_to_road(unfunctional_nodes, input_file, output_file,factor):
             adj_links.append(bus_lookup(bus))
     capacity_adjustment(input_file, output_file, adj_links,factor)    # traffic light reduce capacity by 50%
     return 0
-
