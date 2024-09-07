@@ -242,7 +242,7 @@ def heuristic_find_solution(initial_sequence,consider_interdependence):
     else:
         toolbox.register("mate", cxOrderedGrouped)
         toolbox.register("mutate", mutShuffleIndexesGrouped, indpb=0.2)
-    toolbox.register("select", tools.selTournament, tournsize=3)
+    toolbox.register("select", tools.selTournament, tournsize=5)
 
     # 初始化种群
     population = toolbox.population(n=50)
@@ -251,7 +251,7 @@ def heuristic_find_solution(initial_sequence,consider_interdependence):
         print(ind)
     
     # 定义遗传算法的参数
-    NGEN = 20  # 迭代次数
+    NGEN = 30  # 迭代次数
     CXPB = 0.5  # 交叉概率
     MUTPB = 0.2  # 突变概率
     
@@ -285,6 +285,7 @@ os.makedirs(result_folder, exist_ok=True)
 #broken_bus_init=[11,17]
 #broken_links_init=[(8,9),(9,8),(24,21),(21,24)]
 sequence=[11,17,15,(9,10),28,32,(11,14)]
+sequence_rand=[[11,17,15,(9,10),28,32,(11,14)]]
 #print(resilience_evaluation([9,8,6,1,6,3,3]))
 
 """
@@ -311,11 +312,13 @@ def run_model(sequence,bool_stream,result_folder,message,Scenario):
     if os.path.exists('bus_to_link.json'):
         os.remove('bus_to_link.json')   
     if Scenario=='SENS4':
-        shutil.copy2('SENS4_bus_location.json', 'bus_location.json')
         shutil.copy2('SENS4_bus_to_link.json', 'bus_to_link.json')
     else:
-        shutil.copy2('original_bus_location.json', 'bus_location.json')
         shutil.copy2('original_bus_to_link.json', 'bus_to_link.json')
+    if Scenario=='SENS2':
+        shutil.copy2('SENS4_bus_location.json', 'bus_location.json')
+    else:
+        shutil.copy2('original_bus_location.json', 'bus_location.json')
     run_start_time=datetime.now()
     myind=heuristic_find_solution(sequence,bool_stream)
     #myind=sequence #this is used for debug
@@ -323,6 +326,21 @@ def run_model(sequence,bool_stream,result_folder,message,Scenario):
     run_end_time=datetime.now()
     duration=run_end_time - run_start_time
     #seperate final back up nets with others
+
+    result_rand, road_rand, power_rand, time_rand,net_files=resilience_evaluation(sequence_rand[0])
+    #for the random sequence, draw the triangle
+    plot_triangles_seperate(road_rand,power_rand,time_rand,result_folder+'rand'+Scenario)
+    plot_triangle_tot(road_rand,power_rand,time_rand,result_folder+'rand'+Scenario)
+    with open(result_folder+'output.txt', 'a') as f:
+        print(message, file=f)
+        print(sequence_rand, file=f)
+        print("total complement resilience(not average): ", result_rand, file=f)
+        print("road resilience: ", road_rand, file=f)
+        print("power resilience: ", power_rand, file=f)
+        print("time steps: ", time_rand, file=f)
+        print("-------------------------------------------------------------------------",file=f)
+        print()
+
 
     result_opt, road_opt, power_opt, time_opt,net_files=resilience_evaluation(myind)
     #for the best solution, draw the resilience triangle
@@ -336,7 +354,7 @@ def run_model(sequence,bool_stream,result_folder,message,Scenario):
         print("road resilience: ", road_opt, file=f)
         print("power resilience: ", power_opt, file=f)
         print("time steps: ", time_opt, file=f)
-        print("-------------------------------------------------------------------------")
+        print("-------------------------------------------------------------------------",file=f)
         print()
 
 
@@ -351,6 +369,7 @@ Sensitivity #1:
 increase the number of broken links/nets
 '''
 SENS1_sequence=[11,17,15,(9,10),28,32,(11,14),(15,22),(2,6),6,24]
+SENS1_sequence_rand=[11,17,15,(9,10),28,32,(11,14),(15,22),(2,6),6,24]
 run_model(SENS1_sequence,True,result_folder,"This is SENSITIVITY #1",'SENS1')
 
 '''
@@ -358,7 +377,7 @@ Sensitivity#2:
 move the connection points around
 
 '''
-#here we need to change the dictionary of reference
+run_model(sequence,True,result_folder,"This is SENSITIVITY #3",'SENS2')
 
 
 '''
@@ -366,7 +385,7 @@ Sensitivity #3
 different harm level for broken net or power fail (interdependency level)
 
 '''
-power_road_factor=0.7
+power_road_factor=0.3 #the lower of this the more severe the damage is
 run_model(sequence,True,result_folder,"This is SENSITIVITY #3",'SENS3')
 power_road_factor=0.5
 
