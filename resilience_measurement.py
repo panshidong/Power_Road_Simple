@@ -285,7 +285,6 @@ os.makedirs(result_folder, exist_ok=True)
 #broken_bus_init=[11,17]
 #broken_links_init=[(8,9),(9,8),(24,21),(21,24)]
 sequence=[11,17,15,(9,10),28,32,(11,14)]
-sequence_rand=[[11,17,15,(9,10),28,32,(11,14)]]
 #print(resilience_evaluation([9,8,6,1,6,3,3]))
 
 """
@@ -320,27 +319,15 @@ def run_model(sequence,bool_stream,result_folder,message,Scenario):
     else:
         shutil.copy2('original_bus_location.json', 'bus_location.json')
     run_start_time=datetime.now()
-    myind=heuristic_find_solution(sequence,bool_stream)
+    if Scenario[:4]=='eval':
+        myind=sequence
+    else:
+        myind=heuristic_find_solution(sequence,bool_stream)
     #myind=sequence #this is used for debug
 
     run_end_time=datetime.now()
     duration=run_end_time - run_start_time
     #seperate final back up nets with others
-
-    result_rand, road_rand, power_rand, time_rand,net_files=resilience_evaluation(sequence_rand[0])
-    #for the random sequence, draw the triangle
-    plot_triangles_seperate(road_rand,power_rand,time_rand,result_folder+'rand'+Scenario)
-    plot_triangle_tot(road_rand,power_rand,time_rand,result_folder+'rand'+Scenario)
-    with open(result_folder+'output.txt', 'a') as f:
-        print(message, file=f)
-        print(sequence_rand, file=f)
-        print("total complement resilience(not average): ", result_rand, file=f)
-        print("road resilience: ", road_rand, file=f)
-        print("power resilience: ", power_rand, file=f)
-        print("time steps: ", time_rand, file=f)
-        print("-------------------------------------------------------------------------",file=f)
-        print()
-
 
     result_opt, road_opt, power_opt, time_opt,net_files=resilience_evaluation(myind)
     #for the best solution, draw the resilience triangle
@@ -357,8 +344,20 @@ def run_model(sequence,bool_stream,result_folder,message,Scenario):
         print("-------------------------------------------------------------------------",file=f)
         print()
 
+    return myind
 
+
+#sequence=[11,17,15,(9,10),28,32,(11,14)]
+run_model(sequence,True,result_folder,"This is random",'evalrand')   #consider default sequence as random
 run_model(sequence,True,result_folder,"This is optimal considering interdependence",'opt')
+
+powers_only=[11,17,15,28,32]
+roads_only=[(9,10),(11,14)]
+power_ans=run_model(powers_only,True,result_folder,"This is optimal Power only",'optPower')
+roads_ans=run_model(roads_only,True,result_folder,"This is optimal Road only",'optRoad')
+roads_ans=run_model(roads_ans+power_ans,True,result_folder,"This is Road priority",'evalRoadPriority')
+roads_ans=run_model(power_ans+roads_ans,True,result_folder,"This is Power priority",'evalPowerPriority')
+
 run_model(sequence,False,result_folder,"This is optimal NOT considering interdependence",'')
 
 
@@ -369,8 +368,15 @@ Sensitivity #1:
 increase the number of broken links/nets
 '''
 SENS1_sequence=[11,17,15,(9,10),28,32,(11,14),(15,22),(2,6),6,24]
-SENS1_sequence_rand=[11,17,15,(9,10),28,32,(11,14),(15,22),(2,6),6,24]
+run_model(SENS1_sequence,True,result_folder,"This is random of SENSITIVITY #1",'evalrandSENS1')
 run_model(SENS1_sequence,True,result_folder,"This is SENSITIVITY #1",'SENS1')
+
+powers_only=[11,17,15,28,32,6,24]
+roads_only=[(9,10),(11,14),(15,22),(2,6)]
+power_ans=run_model(powers_only,True,result_folder,"This is optimal Power only SENS1",'optPowerSENS1')
+roads_ans=run_model(roads_only,True,result_folder,"This is optimal Road only SENS1",'optRoadSENS1')
+roads_ans=run_model(roads_ans+power_ans,True,result_folder,"This is Road priority SENS1",'evalRoadPrioritySENS1')
+roads_ans=run_model(power_ans+roads_ans,True,result_folder,"This is Power priority SENS1",'evalPowerPrioritySENS1')
 
 '''
 Sensitivity#2:
@@ -378,7 +384,12 @@ move the connection points around
 
 '''
 run_model(sequence,True,result_folder,"This is SENSITIVITY #3",'SENS2')
-
+powers_only=[11,17,15,28,32]
+roads_only=[(9,10),(11,14)]
+power_ans=run_model(powers_only,True,result_folder,"This is optimal Power only SENS2",'optPowerSENS2')
+roads_ans=run_model(roads_only,True,result_folder,"This is optimal Road only SENS2",'optRoadSENS2')
+roads_ans=run_model(roads_ans+power_ans,True,result_folder,"This is Road priority SENS2",'evalRoadPrioritySENS2')
+roads_ans=run_model(power_ans+roads_ans,True,result_folder,"This is Power priority SENS2",'evalPowerPrioritySENS2')
 
 '''
 Sensitivity #3
@@ -387,6 +398,12 @@ different harm level for broken net or power fail (interdependency level)
 '''
 power_road_factor=0.3 #the lower of this the more severe the damage is
 run_model(sequence,True,result_folder,"This is SENSITIVITY #3",'SENS3')
+powers_only=[11,17,15,28,32]
+roads_only=[(9,10),(11,14)]
+power_ans=run_model(powers_only,True,result_folder,"This is optimal Power only SENS3",'optPowerSENS3')
+roads_ans=run_model(roads_only,True,result_folder,"This is optimal Road only SENS3",'optRoadSENS3')
+roads_ans=run_model(roads_ans+power_ans,True,result_folder,"This is Road priority SENS3",'evalRoadPrioritySENS3')
+roads_ans=run_model(power_ans+roads_ans,True,result_folder,"This is Power priority SENS3",'evalPowerPrioritySENS3')
 power_road_factor=0.5
 
 '''
@@ -395,10 +412,32 @@ Interdependency Pattern like where the interdependenct location is
 
 '''
 run_model(sequence,True,result_folder,"This is SENSITIVITY #4",'SENS4')
+powers_only=[11,17,15,28,32]
+roads_only=[(9,10),(11,14)]
+power_ans=run_model(powers_only,True,result_folder,"This is optimal Power only SENS4",'optPowerSENS4')
+roads_ans=run_model(roads_only,True,result_folder,"This is optimal Road only SENS4",'optRoadSENS4')
+roads_ans=run_model(roads_ans+power_ans,True,result_folder,"This is Road priority SENS4",'evalRoadPrioritySENS4')
+roads_ans=run_model(power_ans+roads_ans,True,result_folder,"This is Power priority SENS4",'evalPowerPrioritySENS4')
 
 
 '''
 Sensitivity #5
+One directional interdependency
+
+'''
+power_road_factor=1.0
+run_model(sequence,True,result_folder,"This is SENSITIVITY #5",'SENS4')
+powers_only=[11,17,15,28,32]
+roads_only=[(9,10),(11,14)]
+power_ans=run_model(powers_only,True,result_folder,"This is optimal Power only SENS5",'optPowerSENS5')
+roads_ans=run_model(roads_only,True,result_folder,"This is optimal Road only SENS5",'optRoadSENS5')
+roads_ans=run_model(roads_ans+power_ans,True,result_folder,"This is Road priority SENS5",'evalRoadPrioritySENS5')
+roads_ans=run_model(power_ans+roads_ans,True,result_folder,"This is Power priority SENS5",'evalPowerPrioritySENS5')
+power_road_factor=0.5
+
+
+'''
+Sensitivity #X not used
 Demand pattern, like 50% demand in at time 0 and gradual recover? hard to design
 
 
