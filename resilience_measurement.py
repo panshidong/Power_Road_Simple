@@ -206,6 +206,7 @@ def mutShuffleIndexes(individual, indpb):
     return creator.Individual(individual),
 
 def heuristic_find_solution(initial_sequence,consider_interdependence):
+    start_time=time.time()
     if len(initial_sequence) <= 1:
         raise ValueError("Initial sequence must contain more than one element.")
 
@@ -260,7 +261,7 @@ def heuristic_find_solution(initial_sequence,consider_interdependence):
     stats.register("avg", lambda x: sum([a[0] for a in x])/len(x))
     stats.register("min", min)
     stats.register("max", max)
-
+    print("definitions:"+str(time.time()-start_time))
     # 运行遗传算法
     algorithms.eaSimple(population, toolbox, cxpb=CXPB, mutpb=MUTPB, ngen=NGEN, 
                         stats=stats, verbose=True)
@@ -305,7 +306,7 @@ with open(result_folder+'output_test.txt', 'w') as f:
 exit()
 """
 
-def run_model(sequence,bool_stream,result_folder,message,Scenario):
+def run_model(sequence,bool_stream,result_folder,message,Scenario,plot_control):
     if os.path.exists('bus_location.json'):
         os.remove('bus_location.json')
     if os.path.exists('bus_to_link.json'):
@@ -331,8 +332,10 @@ def run_model(sequence,bool_stream,result_folder,message,Scenario):
 
     result_opt, road_opt, power_opt, time_opt,net_files=resilience_evaluation(myind)
     #for the best solution, draw the resilience triangle
-    plot_triangles_seperate(road_opt,power_opt,time_opt,result_folder+Scenario)
-    plot_triangle_tot(road_opt,power_opt,time_opt,result_folder+Scenario)
+    if plot_control==True:
+        #for the best solution, draw the resilience triangle
+        plot_triangles_seperate(road_opt,power_opt,time_opt,result_folder+Scenario)
+        plot_triangle_tot(road_opt,power_opt,time_opt,result_folder+Scenario)
     with open(result_folder+'output.txt', 'a') as f:
         print(message, file=f)
         print(myind, file=f)
@@ -348,15 +351,15 @@ def run_model(sequence,bool_stream,result_folder,message,Scenario):
 
 
 #sequence=[11,17,15,(9,10),28,32,(11,14)]
-run_model(sequence,True,result_folder,"This is random",'evalrand')   #consider default sequence as random
-run_model(sequence,True,result_folder,"This is optimal considering interdependence",'opt')
+run_model(sequence,True,result_folder,"This is random",'evalrand',True)   #consider default sequence as random
+run_model(sequence,True,result_folder,"This is optimal considering interdependence",'opt',True)
 
 powers_only=[11,17,15,28,32]
 roads_only=[(9,10),(11,14)]
-power_ans=run_model(powers_only,True,result_folder,"This is optimal Power only",'optPower')
-roads_ans=run_model(roads_only,True,result_folder,"This is optimal Road only",'optRoad')
-roads_ans=run_model(roads_ans+power_ans,True,result_folder,"This is Road priority",'evalRoadPriority')
-roads_ans=run_model(power_ans+roads_ans,True,result_folder,"This is Power priority",'evalPowerPriority')
+power_ans=run_model(powers_only,True,result_folder,"This is optimal Power only",'optPower',False)
+roads_ans=run_model(roads_only,True,result_folder,"This is optimal Road only",'optRoad',False)
+roads_ans=run_model(roads_ans+power_ans,True,result_folder,"This is Road priority",'evalRoadPriority',True)
+roads_ans=run_model(power_ans+roads_ans,True,result_folder,"This is Power priority",'evalPowerPriority',True)
 
 run_model(sequence,False,result_folder,"This is optimal NOT considering interdependence",'')
 
@@ -368,28 +371,28 @@ Sensitivity #1:
 increase the number of broken links/nets
 '''
 SENS1_sequence=[11,17,15,(9,10),28,32,(11,14),(15,22),(2,6),6,24]
-run_model(SENS1_sequence,True,result_folder,"This is random of SENSITIVITY #1",'evalrandSENS1')
-run_model(SENS1_sequence,True,result_folder,"This is SENSITIVITY #1",'SENS1')
+run_model(SENS1_sequence,True,result_folder,"This is random of SENSITIVITY #1",'evalrandSENS1',True)
+run_model(SENS1_sequence,True,result_folder,"This is SENSITIVITY #1",'SENS1',True)
 
 powers_only=[11,17,15,28,32,6,24]
 roads_only=[(9,10),(11,14),(15,22),(2,6)]
-power_ans=run_model(powers_only,True,result_folder,"This is optimal Power only SENS1",'optPowerSENS1')
-roads_ans=run_model(roads_only,True,result_folder,"This is optimal Road only SENS1",'optRoadSENS1')
-roads_ans=run_model(roads_ans+power_ans,True,result_folder,"This is Road priority SENS1",'evalRoadPrioritySENS1')
-roads_ans=run_model(power_ans+roads_ans,True,result_folder,"This is Power priority SENS1",'evalPowerPrioritySENS1')
+power_ans=run_model(powers_only,True,result_folder,"This is optimal Power only SENS1",'optPowerSENS1',False)
+roads_ans=run_model(roads_only,True,result_folder,"This is optimal Road only SENS1",'optRoadSENS1',False)
+roads_ans=run_model(roads_ans+power_ans,True,result_folder,"This is Road priority SENS1",'evalRoadPrioritySENS1',True)
+roads_ans=run_model(power_ans+roads_ans,True,result_folder,"This is Power priority SENS1",'evalPowerPrioritySENS1',True)
 
 '''
 Sensitivity#2:
 move the connection points around
 
 '''
-run_model(sequence,True,result_folder,"This is SENSITIVITY #3",'SENS2')
+run_model(sequence,True,result_folder,"This is SENSITIVITY #3",'SENS2',True)
 powers_only=[11,17,15,28,32]
 roads_only=[(9,10),(11,14)]
-power_ans=run_model(powers_only,True,result_folder,"This is optimal Power only SENS2",'optPowerSENS2')
-roads_ans=run_model(roads_only,True,result_folder,"This is optimal Road only SENS2",'optRoadSENS2')
-roads_ans=run_model(roads_ans+power_ans,True,result_folder,"This is Road priority SENS2",'evalRoadPrioritySENS2')
-roads_ans=run_model(power_ans+roads_ans,True,result_folder,"This is Power priority SENS2",'evalPowerPrioritySENS2')
+power_ans=run_model(powers_only,True,result_folder,"This is optimal Power only SENS2",'optPowerSENS2',False)
+roads_ans=run_model(roads_only,True,result_folder,"This is optimal Road only SENS2",'optRoadSENS2',False)
+roads_ans=run_model(roads_ans+power_ans,True,result_folder,"This is Road priority SENS2",'evalRoadPrioritySENS2',True)
+roads_ans=run_model(power_ans+roads_ans,True,result_folder,"This is Power priority SENS2",'evalPowerPrioritySENS2',True)
 
 '''
 Sensitivity #3
@@ -397,13 +400,13 @@ different harm level for broken net or power fail (interdependency level)
 
 '''
 power_road_factor=0.3 #the lower of this the more severe the damage is
-run_model(sequence,True,result_folder,"This is SENSITIVITY #3",'SENS3')
+run_model(sequence,True,result_folder,"This is SENSITIVITY #3",'SENS3',True)
 powers_only=[11,17,15,28,32]
 roads_only=[(9,10),(11,14)]
-power_ans=run_model(powers_only,True,result_folder,"This is optimal Power only SENS3",'optPowerSENS3')
-roads_ans=run_model(roads_only,True,result_folder,"This is optimal Road only SENS3",'optRoadSENS3')
-roads_ans=run_model(roads_ans+power_ans,True,result_folder,"This is Road priority SENS3",'evalRoadPrioritySENS3')
-roads_ans=run_model(power_ans+roads_ans,True,result_folder,"This is Power priority SENS3",'evalPowerPrioritySENS3')
+power_ans=run_model(powers_only,True,result_folder,"This is optimal Power only SENS3",'optPowerSENS3',False)
+roads_ans=run_model(roads_only,True,result_folder,"This is optimal Road only SENS3",'optRoadSENS3',False)
+roads_ans=run_model(roads_ans+power_ans,True,result_folder,"This is Road priority SENS3",'evalRoadPrioritySENS3',True)
+roads_ans=run_model(power_ans+roads_ans,True,result_folder,"This is Power priority SENS3",'evalPowerPrioritySENS3',True)
 power_road_factor=0.5
 
 '''
@@ -411,13 +414,13 @@ Sensitivity #4
 Interdependency Pattern like where the interdependenct location is
 
 '''
-run_model(sequence,True,result_folder,"This is SENSITIVITY #4",'SENS4')
+run_model(sequence,True,result_folder,"This is SENSITIVITY #4",'SENS4',True)
 powers_only=[11,17,15,28,32]
 roads_only=[(9,10),(11,14)]
-power_ans=run_model(powers_only,True,result_folder,"This is optimal Power only SENS4",'optPowerSENS4')
-roads_ans=run_model(roads_only,True,result_folder,"This is optimal Road only SENS4",'optRoadSENS4')
-roads_ans=run_model(roads_ans+power_ans,True,result_folder,"This is Road priority SENS4",'evalRoadPrioritySENS4')
-roads_ans=run_model(power_ans+roads_ans,True,result_folder,"This is Power priority SENS4",'evalPowerPrioritySENS4')
+power_ans=run_model(powers_only,True,result_folder,"This is optimal Power only SENS4",'optPowerSENS4',False)
+roads_ans=run_model(roads_only,True,result_folder,"This is optimal Road only SENS4",'optRoadSENS4',False)
+roads_ans=run_model(roads_ans+power_ans,True,result_folder,"This is Road priority SENS4",'evalRoadPrioritySENS4',True)
+roads_ans=run_model(power_ans+roads_ans,True,result_folder,"This is Power priority SENS4",'evalPowerPrioritySENS4',True)
 
 
 '''
@@ -426,13 +429,13 @@ One directional interdependency
 
 '''
 power_road_factor=1.0
-run_model(sequence,True,result_folder,"This is SENSITIVITY #5",'SENS4')
+run_model(sequence,True,result_folder,"This is SENSITIVITY #5",'SENS4',True)
 powers_only=[11,17,15,28,32]
 roads_only=[(9,10),(11,14)]
-power_ans=run_model(powers_only,True,result_folder,"This is optimal Power only SENS5",'optPowerSENS5')
-roads_ans=run_model(roads_only,True,result_folder,"This is optimal Road only SENS5",'optRoadSENS5')
-roads_ans=run_model(roads_ans+power_ans,True,result_folder,"This is Road priority SENS5",'evalRoadPrioritySENS5')
-roads_ans=run_model(power_ans+roads_ans,True,result_folder,"This is Power priority SENS5",'evalPowerPrioritySENS5')
+power_ans=run_model(powers_only,True,result_folder,"This is optimal Power only SENS5",'optPowerSENS5',False)
+roads_ans=run_model(roads_only,True,result_folder,"This is optimal Road only SENS5",'optRoadSENS5',False)
+roads_ans=run_model(roads_ans+power_ans,True,result_folder,"This is Road priority SENS5",'evalRoadPrioritySENS5',True)
+roads_ans=run_model(power_ans+roads_ans,True,result_folder,"This is Power priority SENS5",'evalPowerPrioritySENS5',True)
 power_road_factor=0.5
 
 

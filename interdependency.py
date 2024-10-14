@@ -3,7 +3,7 @@ import os
 import json
 def bus_lookup(bus):
     # this gives the location of each bus
-    with open('original_bus_to_link.json','r') as file:
+    with open('bus_to_link.json','r') as file:
         references=json.load(file)
     '''
     references = {
@@ -46,7 +46,7 @@ def bus_lookup(bus):
 
 def bus_loc(bus):
     # this gives the location of each bus
-    with open('original_bus_location.json','r') as file:
+    with open('bus_location.json','r') as file:
         references=json.load(file)  
     '''  
     references = {
