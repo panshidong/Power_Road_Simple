@@ -1,16 +1,17 @@
-#input is a strategy, like a repair sequence
-#loop
-#spend time, repair a node, assume repair is instant
-#accumulate and compute resilience triangle
-#re-check the functioning bus nodes if the repaired node is a bus node
-#change the network parameters and re-run the model
-#until sequence end
-
-#repair sequence is some sequence of all broken links and bus
-#use heuristic to find out the optimum solution
-
-
-#this is a test comment
+'''
+input is a strategy, like a repair sequence
+loop
+spend time, repair a node, assume **a constant repair time**
+accumulate and compute resilience triangle
+re-check the functioning bus nodes if the repaired node is a bus node
+change the network parameters and re-run the model
+until sequence end
+repair sequence is some sequence of all broken links and bus
+use heuristic to find out the optimum solution ***for***:
+***resilience only
+***equity only
+***both
+'''
 from power_util import delete_buses
 from power_util import get_functional_nodes
 from road_util import capacity_adjustment
@@ -26,10 +27,11 @@ import os
 from datetime import datetime
 import shutil
 import time
+import numpy as np
 
 power_road_factor=0.5
 broken_link_factor=0
-
+cached_values={} #this will explode if number of broken items too big, may want to use some kind of rolling techniques
 
 def load_disrupted_scenatio(broken_buses,broken_links):
     unfunctional_nodes = delete_buses(broken_buses)
@@ -66,6 +68,39 @@ def resilience_triangle(functionality,time):
     for i in range(len(functionality)):
         complement+=(1-functionality_for_triangle[i]+1-functionality_for_triangle[i+1])*time[i]/2
     return complement
+def evalequity(seq,times):
+    '''
+    equity of power and road are given same weight
+    '''
+    #change time to accumulative numbers 
+    time=list(itertools.accumulate(times))
+    #save the output into this format better for equity evaluation
+    broken_buses=[]
+    broken_links=[]
+    bus_downtime=[]
+    link_downtime=[]
+    for item,finish_time in zip(seq,time):
+        if isinstance(item,int):
+            broken_buses.append(item)
+            bus_downtime.append(finish_time)
+        else:
+            broken_links.append(item)
+            link_downtime.append(finish_time)
+    #using variance as equity measurement is pretty bad, need to change
+    def compute_power_equity(times):        
+        return np.var(times)
+    def compute_road_equity(times):
+        return np.var(times)
+    if len(broken_buses)>0:
+        equity_power=compute_power_equity(bus_downtime)
+    else:
+        equity_power=0
+    if len(broken_links)>0:
+        equity_road=compute_road_equity(link_downtime)
+    else:
+        equity_road=0
+    return (equity_power+equity_road)/2
+
 
 def resilience_evaluation(repair_seq):
     #This gives resilience "triangle"
@@ -74,22 +109,38 @@ def resilience_evaluation(repair_seq):
     resilience_power=[]
     time=[]
     net_file_names=[]
-    previous_node=13
+    previous_node=13             #this is the assumed initial depot
+    repair_time=0     
     while len(repair_seq)>0:
         broken_buses=[]
         broken_links=[]
         for item in repair_seq:
             if isinstance(item,int):
                 broken_buses.append(item)
+                repair_time=20            #assumed bus bar repair time
             else:
                 broken_links.append(item)
-        #take road output and read travel time, give number
-        resilience_road.append(eval_road_resilience(broken_buses,broken_links))
-        #take power output and give number
-        resilience_power.append(eval_power_resilience(broken_buses))
-        #repair and continue
-        current_node,current_move_time=repair_path_time('s.txt',repair_seq[0],previous_node)
-        time.append(current_move_time) 
+                repair_time=10           # assumed link clearance time
+        #cache process
+        brokens=tuple(repair_seq)
+        if brokens in cached_values:
+            (current_resilience_road,
+            current_resilience_power,
+            total_time,
+            current_node) = cached_values[brokens]
+        else:
+            #take road output and read travel time, give number
+            current_resilience_road=eval_road_resilience(broken_buses,broken_links)
+            #take power output and give number
+            current_resilience_power=eval_power_resilience(broken_buses)
+            #repair and continue
+            current_node,current_move_time=repair_path_time('s.txt',repair_seq[0],previous_node)
+            total_time = current_move_time + repair_time
+            #store in to cached
+            cached_values[brokens] = (current_resilience_road, current_resilience_power,total_time, current_node)
+        resilience_road.append(current_resilience_road)
+        resilience_power.append(current_resilience_power)
+        time.append(total_time)         
         broken_buses=[bus for bus in broken_buses if bus!=repair_seq[0]]
         broken_links=[link for link in broken_links if link!=repair_seq[0]]
         #set up for next loop
@@ -97,7 +148,8 @@ def resilience_evaluation(repair_seq):
         repair_seq.pop(0)
         #net_file_names.append(load_disrupted_scenatio(broken_buses,broken_links))
     full_resilience = resilience_triangle(resilience_road,time)+resilience_triangle(resilience_power,time)
-    return full_resilience, resilience_road,resilience_power,time,net_file_names
+    equity=evalequity(repair_seq,time)
+    return full_resilience, resilience_road,resilience_power,time,net_file_names,equity
 
 ###########################################################################################
 #This is for the comparison between optimal considering interdependency and repair by type
@@ -205,6 +257,18 @@ def mutShuffleIndexes(individual, indpb):
             individual[i], individual[swap_indx] = individual[swap_indx], individual[i]
     return creator.Individual(individual),
 
+def find_solution_all(initial_sequence):
+    result_opt=-1
+    print(resilience_evaluation([17, (9, 10), (11, 14), 15, 11, 32, 28]))
+    for seq in itertools.permutations(initial_sequence):
+        seq=list(seq)
+        resilience_result=resilience_evaluation(seq)[0]
+        if result_opt > resilience_result or result_opt<0:
+            result_opt=resilience_result
+            best_seq=seq
+    return best_seq
+
+
 def heuristic_find_solution(initial_sequence,consider_interdependence):
     start_time=time.time()
     if len(initial_sequence) <= 1:
@@ -229,6 +293,7 @@ def heuristic_find_solution(initial_sequence,consider_interdependence):
     # 定义适应度函数
     def eval_one_max(individual):
         single_run_time_0=datetime.now()
+        #this is now for resilience only
         fitness = resilience_evaluation(individual)[0]
         single_run_time=datetime.now()-single_run_time_0
         #print(f"Individual: {individual}, Fitness: {fitness}, Duration: {single_run_time}")  # 调试输出
@@ -246,13 +311,13 @@ def heuristic_find_solution(initial_sequence,consider_interdependence):
     toolbox.register("select", tools.selTournament, tournsize=5)
 
     # 初始化种群
-    population = toolbox.population(n=50)
+    population = toolbox.population(n=100)
     print("Initial population:")  # 调试输出
     for ind in population[:5]:  # 只打印前5个个体
         print(ind)
     
     # 定义遗传算法的参数
-    NGEN = 30  # 迭代次数
+    NGEN = 50  # 迭代次数
     CXPB = 0.5  # 交叉概率
     MUTPB = 0.2  # 突变概率
     
@@ -323,14 +388,15 @@ def run_model(sequence,bool_stream,result_folder,message,Scenario,plot_control):
     if Scenario[:4]=='eval':
         myind=sequence
     else:
-        myind=heuristic_find_solution(sequence,bool_stream)
+        #myind=heuristic_find_solution(sequence,bool_stream)
+        myind=find_solution_all(sequence)
     #myind=sequence #this is used for debug
 
     run_end_time=datetime.now()
     duration=run_end_time - run_start_time
     #seperate final back up nets with others
 
-    result_opt, road_opt, power_opt, time_opt,net_files=resilience_evaluation(myind)
+    result_opt, road_opt, power_opt, time_opt,net_files,equity_results=resilience_evaluation(myind)
     #for the best solution, draw the resilience triangle
     if plot_control==True:
         #for the best solution, draw the resilience triangle
@@ -345,6 +411,7 @@ def run_model(sequence,bool_stream,result_folder,message,Scenario,plot_control):
         print("power resilience: ", power_opt, file=f)
         print("time steps: ", time_opt, file=f)
         print("-------------------------------------------------------------------------",file=f)
+        print("Equity:Variance ", evalequity(sequence,time_opt))
         print()
 
     return myind
@@ -445,5 +512,3 @@ Demand pattern, like 50% demand in at time 0 and gradual recover? hard to design
 
 
 '''
-
-# look at me, I am the marker of the new branch!!
