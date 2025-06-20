@@ -3,23 +3,3 @@ Number of available cores: 16
 Number of threads: 16
 Nodes, arcs, zones, thrunode: 24 76 24 0
 Distance factor, toll factor: 0.000000 0.000000
-24 nodes, 76 arcs, and 24 zones
-File read and memory allocated.
-Forward and reverse star lists generated.
-Starting Algorithm B...
-Creating Initial bushes
-Initializing Algorithm B
-Initialized flows
-Read matrix 0
-Creating batch 0
-Created batch 0
-Initialization done in 0.000 s.
-Iteration 1: gap 0.041181540034999, obj 6667161.3202528, time 0.001, 48 shifts
-Iteration 2: gap 0.010274031809557, obj 6499051.36275561, time 0.001, 72 shifts
-Iteration 3: gap 0.002435578128842, obj 6440252.47617928, time 0.002, 125 shifts
-Iteration 4: gap 0.000493253784507, obj 6426602.29595335, time 0.002, 207 shifts
-Iteration 5: gap 0.000615815862726, obj 6425075.66005855, time 0.003, 273 shifts
-Iteration 6: gap 0.000145095352415, obj 6424976.47220642, time 0.003, 307 shifts
-Iteration 7: gap 0.000019722507144, obj 6424884.57289922, time 0.004, 365 shifts
-Class 1 TSTT: 16778379.793974
-Aggregate TSTT: 16778379.793974

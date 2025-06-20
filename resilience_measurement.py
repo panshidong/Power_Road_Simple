@@ -68,38 +68,62 @@ def resilience_triangle(functionality,time):
     for i in range(len(functionality)):
         complement+=(1-functionality_for_triangle[i]+1-functionality_for_triangle[i+1])*time[i]/2
     return complement
-def evalequity(seq,times):
+def evalequity(seq,times,criteria):
     '''
-    equity of power and road are given same weight
+    #ASSUMPTION----------equity of power and road are given same weight
     '''
-    #change time to accumulative numbers 
-    time=list(itertools.accumulate(times))
-    #save the output into this format better for equity evaluation
-    broken_buses=[]
-    broken_links=[]
-    bus_downtime=[]
-    link_downtime=[]
-    for item,finish_time in zip(seq,time):
-        if isinstance(item,int):
-            broken_buses.append(item)
-            bus_downtime.append(finish_time)
+    #REVIEW HERE
+    def gini_coefficient(x):
+        """
+        计算数组 x 的 Gini 系数。
+        实现参考：StackOverflow 上的向量化实现
+        :contentReference[oaicite:0]{index=0}
+        """
+        x = np.sort(np.array(x, dtype=float))
+        n = x.size
+        if n == 0:
+            return 0.0
+        index = np.arange(1, n+1)
+        return (np.sum((2*index - n - 1) * x)) / (n * np.sum(x))
+
+    # 1. 累计时间
+    accum_time = list(itertools.accumulate(times))  # :contentReference[oaicite:1]{index=1}
+
+    # 2. 按类型分组收集停运时间
+    bus_times = []
+    road_times = []
+    for item, t in zip(seq, accum_time):             # :contentReference[oaicite:2]{index=2}
+        if isinstance(item, int):                    # :contentReference[oaicite:3]{index=3}
+            bus_times.append(t)
         else:
-            broken_links.append(item)
-            link_downtime.append(finish_time)
-    #using variance as equity measurement is pretty bad, need to change
-    def compute_power_equity(times):        
-        return np.var(times)
-    def compute_road_equity(times):
-        return np.var(times)
-    if len(broken_buses)>0:
-        equity_power=compute_power_equity(bus_downtime)
-    else:
-        equity_power=0
-    if len(broken_links)>0:
-        equity_road=compute_road_equity(link_downtime)
-    else:
-        equity_road=0
-    return (equity_power+equity_road)/2
+            road_times.append(t)
+    #3. 根据 criteria 选择不同的衡量函数
+    if criteria == 'var':
+        # 方差：数据离散程度的经典度量 :contentReference[oaicite:4]{index=4}
+        power_eq = np.var(bus_times) if bus_times else 0
+        road_eq  = np.var(road_times) if road_times else 0
+
+    elif criteria == 'mad':
+        # 平均绝对偏差（Mean Absolute Deviation）:contentReference[oaicite:5]{index=5}
+        def mad(x):
+            x = np.array(x, dtype=float)
+            return np.mean(np.abs(x - np.mean(x))) if x.size>0 else 0
+        power_eq = mad(bus_times)
+        road_eq  = mad(road_times)
+
+    elif criteria == 'cv':
+        # 变异系数（Coeff. of Variation）= std/mean :contentReference[oaicite:6]{index=6}
+        def cv(x):
+            x = np.array(x, dtype=float)
+            return (np.std(x) / np.mean(x)) if x.size>0 and np.mean(x)!=0 else 0
+        power_eq = cv(bus_times)
+        road_eq  = cv(road_times)
+
+    elif criteria == 'gini':
+        # Gini 系数 :contentReference[oaicite:7]{index=7}
+        power_eq = gini_coefficient(bus_times)
+        road_eq  = gini_coefficient(road_times)
+    return (power_eq+road_eq)/2
 
 
 def resilience_evaluation(repair_seq):
@@ -148,7 +172,8 @@ def resilience_evaluation(repair_seq):
         repair_seq.pop(0)
         #net_file_names.append(load_disrupted_scenatio(broken_buses,broken_links))
     full_resilience = resilience_triangle(resilience_road,time)+resilience_triangle(resilience_power,time)
-    equity=evalequity(repair_seq,time)
+    criteria_list = ['var', 'mad', 'cv', 'gini'] 
+    equity = {c: evalequity(repair_seq, time, c) for c in criteria_list}
     return full_resilience, resilience_road,resilience_power,time,net_file_names,equity
 
 ###########################################################################################
@@ -257,12 +282,16 @@ def mutShuffleIndexes(individual, indpb):
             individual[i], individual[swap_indx] = individual[swap_indx], individual[i]
     return creator.Individual(individual),
 
-def find_solution_all(initial_sequence):
+def find_solution_all(initial_sequence,focus):
     result_opt=-1
     print(resilience_evaluation([17, (9, 10), (11, 14), 15, 11, 32, 28]))
     for seq in itertools.permutations(initial_sequence):
         seq=list(seq)
-        resilience_result=resilience_evaluation(seq)[0]
+        #REVIEW change the criteria here
+        if focus=='Resilience':
+            result=resilience_evaluation(seq)[0]
+        else:
+            result=resilience_evaluation(seq)[5][focus]
         if result_opt > resilience_result or result_opt<0:
             result_opt=resilience_result
             best_seq=seq
@@ -293,8 +322,10 @@ def heuristic_find_solution(initial_sequence,consider_interdependence):
     # 定义适应度函数
     def eval_one_max(individual):
         single_run_time_0=datetime.now()
-        #this is now for resilience only
+        #FIXME------------------------------------------
+        #if use quity then [0] change to [5]
         fitness = resilience_evaluation(individual)[0]
+        #fitness = resilience_evaluation(individual)[5]['gini']
         single_run_time=datetime.now()-single_run_time_0
         #print(f"Individual: {individual}, Fitness: {fitness}, Duration: {single_run_time}")  # 调试输出
         return (fitness,)
@@ -350,6 +381,7 @@ os.makedirs(result_folder, exist_ok=True)
 #To be replaced by random generated ones
 #broken_bus_init=[11,17]
 #broken_links_init=[(8,9),(9,8),(24,21),(21,24)]
+#REVIEW change the initial sequence to avoid comparison
 sequence=[11,17,15,(9,10),28,32,(11,14)]
 #print(resilience_evaluation([9,8,6,1,6,3,3]))
 
@@ -371,7 +403,7 @@ with open(result_folder+'output_test.txt', 'w') as f:
 exit()
 """
 
-def run_model(sequence,bool_stream,result_folder,message,Scenario,plot_control):
+def run_model(sequence,bool_stream,result_folder,message,Scenario,plot_control,focus):
     if os.path.exists('bus_location.json'):
         os.remove('bus_location.json')
     if os.path.exists('bus_to_link.json'):
@@ -388,8 +420,9 @@ def run_model(sequence,bool_stream,result_folder,message,Scenario,plot_control):
     if Scenario[:4]=='eval':
         myind=sequence
     else:
+        #REVIEW----------------this is the solution method
         #myind=heuristic_find_solution(sequence,bool_stream)
-        myind=find_solution_all(sequence)
+        myind=find_solution_all(sequence,focus)
     #myind=sequence #this is used for debug
 
     run_end_time=datetime.now()
@@ -411,27 +444,46 @@ def run_model(sequence,bool_stream,result_folder,message,Scenario,plot_control):
         print("power resilience: ", power_opt, file=f)
         print("time steps: ", time_opt, file=f)
         print("-------------------------------------------------------------------------",file=f)
-        print("Equity:Variance ", evalequity(sequence,time_opt))
+        if focus=="Resilience":
+            print("Equity:Variance ", evalequity(sequence,time_opt,'var'),file=f)
+            print("Equity:mad ", evalequity(sequence,time_opt,'mad'),file=f)
+            print("Equity:cv ", evalequity(sequence,time_opt,'cv'),file=f)
+            print("Equity:gini ", evalequity(sequence,time_opt,'gini'),file=f)
+        else:
+            print("Equity ", evalequity(sequence,time_opt,focus),file=f)
         print()
 
     return myind
 
-
+#IDEA the following senario are tested, default is randon sequence, then there is the resilience maximum without interdependency,
+#IDEA  then there is resilience maximum with interdependencies,showing interdependency is important but
+#IDEA then there is maximum equity with different criteria, with interdependency, comparing with resilience maximum showing equity is also important
+#IDEA then there is maximum equity with no interdependency showing interdependencies are also important when it comes to equity considerations
+# IDEA  then there are also some less important sensitivities that i dont intend to do, listed as is like the previous study 
 #sequence=[11,17,15,(9,10),28,32,(11,14)]
-run_model(sequence,True,result_folder,"This is random",'evalrand',True)   #consider default sequence as random
-run_model(sequence,True,result_folder,"This is optimal considering interdependence",'opt',True)
+s_resilience="Resilience"
+run_model(sequence,True,result_folder,"This is random",'evalrand',True,s_resilience)   #consider default sequence as random
+run_model(sequence,True,result_folder,"This is optimal considering interdependence",'opt',True,s_resilience) #optimal resilience considering interdependency
+run_model(sequence,True,result_folder,"This is optimal considering interdependence",'opt',True,'var') #optimal resilience considering interdependency
+run_model(sequence,True,result_folder,"This is optimal considering interdependence",'opt',True,'mad') #optimal resilience considering interdependency
+run_model(sequence,True,result_folder,"This is optimal considering interdependence",'opt',True,'cv') #optimal resilience considering interdependency
+run_model(sequence,True,result_folder,"This is optimal considering interdependence",'opt',True,'gini') #optimal resilience considering interdependency
+
 
 powers_only=[11,17,15,28,32]
 roads_only=[(9,10),(11,14)]
-power_ans=run_model(powers_only,True,result_folder,"This is optimal Power only",'optPower',False)
-roads_ans=run_model(roads_only,True,result_folder,"This is optimal Road only",'optRoad',False)
-roads_ans=run_model(roads_ans+power_ans,True,result_folder,"This is Road priority",'evalRoadPriority',True)
-roads_ans=run_model(power_ans+roads_ans,True,result_folder,"This is Power priority",'evalPowerPriority',True)
+equity_measures=['var','mad','cv','gini']
+for r in equity_measures:
+    run_model(sequence,True,result_folder,"This is optimal considering interdependence",'opt',True,r) #optimal resilience considering interdependency
+    power_ans=run_model(powers_only,True,result_folder,"This is optimal Power only",'optPower',False,r)
+    roads_ans=run_model(roads_only,True,result_folder,"This is optimal Road only",'optRoad',False,r)
+    roads_ans=run_model(roads_ans+power_ans,True,result_folder,"This is Road priority",'evalRoadPriority',True,r)
+    roads_ans=run_model(power_ans+roads_ans,True,result_folder,"This is Power priority",'evalPowerPriority',True,r)
 
-run_model(sequence,False,result_folder,"This is optimal NOT considering interdependence",'')
+run_model(sequence,False,result_folder,"This is optimal NOT considering interdependence",'',False)
 
 
-
+"""
 '''
 Sensitivity design
 Sensitivity #1: 
@@ -512,3 +564,4 @@ Demand pattern, like 50% demand in at time 0 and gradual recover? hard to design
 
 
 '''
+"""
