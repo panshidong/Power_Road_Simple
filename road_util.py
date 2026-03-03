@@ -1,109 +1,135 @@
-import random
+from __future__ import annotations
+
 import heapq
-def capacity_adjustment(input_file, output_file,links,adj_factor):
-    with open(input_file, 'r') as file:
-        lines = file.readlines()
-    
-    # Initialize output lines with the metadata
-    output_lines = lines[:8]  # Assuming metadata ends at line 8
-    links_start = 8  # The line where links data start
+import os
+from typing import Dict, Iterable, List, Tuple
+
+Link = Tuple[int, int]
+
+
+def capacity_adjustment(input_file: str, output_file: str, links: Iterable[Link], adj_factor: float) -> None:
+    """
+    Edit a TAP-B network file by derating (or effectively disabling) specified links.
+
+    - adj_factor < 0.1: set a very large cost-like field (index 4) to approximate removal
+    - else: scale capacity field (index 2) by adj_factor
+
+    This is intentionally file-IO based.
+    """
+    if not os.path.exists(input_file):
+        raise FileNotFoundError(f"input_file not found: {input_file!r}")
+
+    links_set = {(int(u), int(v)) for (u, v) in links}
+
+    with open(input_file, "r", encoding="utf-8") as f:
+        lines = f.readlines()
+
+    # keep metadata (assumed first 8 lines; same convention as your earlier code)
+    output_lines = lines[:8]
+    links_start = 8
 
     for line in lines[links_start:]:
-        if line.strip().startswith('~') or line.strip().startswith(';'):
-            continue  # Skip headers and comments
-
-        parts = line.strip().split()
+        s = line.strip()
+        if not s or s.startswith("~") or s.startswith(";"):
+            continue
+        parts = s.split()
         if len(parts) < 10:
-            continue  # Skip invalid lines
+            continue
 
-        init_node = int(parts[0])
-        term_node = int(parts[1])
-        capacity = float(parts[2])    # read link data from each line
+        u = int(parts[0])
+        v = int(parts[1])
+        key = (u, v)
+        key_rev = (v, u)
 
-        #if this line need to be modified, modify it
-        for link in links:
-            if adj_factor<0.1:
-                if ((init_node == link[0] and term_node == link[1]) or (init_node == link[1] and term_node == link[0])):
-                    parts[4]=f"{9999}"
-            elif ((init_node == link[0] and term_node == link[1]) or (init_node == link[1] and term_node == link[0])):
-                capacity = capacity*adj_factor
+        if key in links_set or key_rev in links_set:
+            if adj_factor < 0.1:
+                parts[4] = "9999"
+            else:
+                cap = float(parts[2]) * float(adj_factor)
+                parts[2] = f"{cap:.8f}"
 
-        parts[2] = f"{capacity:.8f}"
-        output_lines.append('\t'.join(parts) + ' \n')
+        output_lines.append("\t".join(parts) + " \n")
 
-    with open(output_file, 'w') as file:
-        file.writelines(output_lines)
+    os.makedirs(os.path.dirname(output_file) or ".", exist_ok=True)
+    with open(output_file, "w", encoding="utf-8") as f:
+        f.writelines(output_lines)
 
-def eval_tot_OD_travel_time():
-    import csv
-    
-    f = "s.txt"
+
+def eval_tot_OD_travel_time(s_txt_path: str = "s.txt") -> float:
+    """
+    Read s.txt and compute total system travel time: sum(flow * cost)
+    Expected line format:
+      (i,j)  flow  cost
+    """
+    if not os.path.exists(s_txt_path):
+        raise FileNotFoundError(f"s.txt not found: {s_txt_path!r}")
 
     tstt = 0.0
-    with open(f, 'r') as file:
-        for line in file:
-            # 去掉行首尾的空白字符，并检查是否为空行
+    with open(s_txt_path, "r", encoding="utf-8") as f:
+        for line in f:
             line = line.strip()
             if not line:
-                continue  # 跳过空行
-            
-            # 检查是否是 (o,d) 行
-            if line.startswith('('):
-                # 将行拆分为三个部分
-                parts = line.split()
-                if len(parts) != 3:
-                    continue  # 跳过不符合格式的行
-                
-                # 提取 tstt 值
-                tstt += float(parts[1])*float(parts[2])
-                
-
-    return tstt
-
-def calculate_shortest_path_cost(file_path, start, end):
-    # 读取流量和花费数据
-    def read_flows_and_costs(file_path):
-        flows_and_costs = {}
-        with open(file_path, 'r') as file:
-            lines = file.readlines()
-            for line in lines:
-                if line.strip():
-                    parts = line.split()
-                    if len(parts) == 3:
-                        node1, node2 = map(int, parts[0][1:-1].split(','))
-                        flow = float(parts[1])
-                        cost = float(parts[2])
-                        flows_and_costs[(node1, node2)] = cost
-        return flows_and_costs
-
-    # Dijkstra算法计算最短路径
-    def dijkstra(graph, start, end):
-        pq = [(0, start)]  # 优先队列存储（当前总花费，当前节点）
-        visited = set()  # 已访问节点集合
-        min_cost = {start: 0}  # 起始节点到各节点的最小花费
-
-        while pq:
-            current_cost, current_node = heapq.heappop(pq)
-
-            if current_node in visited:
                 continue
+            if not line.startswith("("):
+                continue
+            parts = line.split()
+            if len(parts) != 3:
+                continue
+            tstt += float(parts[1]) * float(parts[2])
 
-            visited.add(current_node)
+    return float(tstt)
 
-            if current_node == end:
-                return current_cost
 
-            for (u, v), cost in graph.items():
-                if u == current_node and v not in visited:
-                    next_cost = current_cost + cost
-                    if v not in min_cost or next_cost < min_cost[v]:
-                        min_cost[v] = next_cost
-                        heapq.heappush(pq, (next_cost, v))
+def _read_cost_graph_from_s_txt(file_path: str) -> Dict[Tuple[int, int], float]:
+    graph: Dict[Tuple[int, int], float] = {}
+    with open(file_path, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            parts = line.split()
+            if len(parts) != 3:
+                continue
+            if not parts[0].startswith("("):
+                continue
+            a, b = map(int, parts[0][1:-1].split(","))
+            cost = float(parts[2])
+            graph[(a, b)] = cost
+    return graph
 
-        return float('inf')  # 如果无路径，返回无穷大
 
-    # 读取文件并计算最短路径花费
-    flows_and_costs = read_flows_and_costs(file_path)
-    shortest_path_cost = dijkstra(flows_and_costs, start, end)
-    return shortest_path_cost
+def calculate_shortest_path_cost(file_path: str, start: int, end: int) -> float:
+    """
+    Dijkstra on directed graph extracted from s.txt.
+    Edge weight = cost column.
+    """
+    if start == end:
+        return 0.0
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"file not found: {file_path!r}")
 
+    graph = _read_cost_graph_from_s_txt(file_path)
+
+    pq: List[Tuple[float, int]] = [(0.0, int(start))]
+    visited = set()
+    dist: Dict[int, float] = {int(start): 0.0}
+
+    while pq:
+        d, u = heapq.heappop(pq)
+        if u in visited:
+            continue
+        visited.add(u)
+        if u == int(end):
+            return float(d)
+
+        for (a, b), w in graph.items():
+            if a != u:
+                continue
+            if b in visited:
+                continue
+            nd = d + float(w)
+            if b not in dist or nd < dist[b]:
+                dist[b] = nd
+                heapq.heappush(pq, (nd, b))
+
+    return float("inf")

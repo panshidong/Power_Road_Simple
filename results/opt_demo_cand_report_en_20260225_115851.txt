@@ -1,0 +1,50 @@
+Run report (Power–Road interdependency)
+Timestamp: 20260225_115851
+
+Summary
+- Scenario: opt_demo_cand
+- Objective: triangle
+- Objective value: 9.845
+- Triangle area (road+power complement integral): 9.845
+
+Inputs
+- strict: True
+- crew_mode: multifunction
+- power_crews: 1
+- road_crews: 1
+- multifunction_crews: 1
+- depot_node: 1
+- crew_speed: 1.0
+- service_time_power: 20.0
+- service_time_road: 10.0
+- broken_link_factor: 0.0
+- power_road_factor: 0.5
+- baseline_tstt: 7475338.0
+- base_net: tap-b/net/SiouxFalls_net.txt
+- trips: tap-b/net/SiouxFalls_trips.txt
+- net1: work/SiouxFalls_net1.txt
+- net2: work/SiouxFalls_net2.txt
+
+Sequence
+[(1, 3), 11, 15]
+
+Crew completion timeline (finish_time, asset)
+- t=10  asset=(1, 3)
+- t=30  asset=11
+- t=50  asset=15
+
+Equity metrics (on asset completion times)
+- gini: 0.2963
+- theil_T: 0.1617
+- atkinson_e0.5: 0.08584
+- jain: 0.7714
+- p90_p10_gap: 32
+- svi_weighted_mean: NA
+
+Resilience series
+- time points: 4
+  (time, road, power)
+  0	0.7676	0.8788
+  10	0.8987	0.8788
+  30	0.9677	0.9394
+  50	0.9998	1

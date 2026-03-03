@@ -1,16 +1,39 @@
-from resilience_measurement import run_model_multi
+from resilience_measurement import run_model_multi, optimize_sequence
 
-seq = [5, (2, 5), (10, 14), 12, (7, 8)]   # buses are ints; road links are (u, v)
+def main():
+    seq = [11, (1, 3), 15]
 
-_ = run_model_multi(
-    sequence=seq,
-    result_folder="Experiment/2025-11-11_13-00-00",
-    message="Multi-crew demo",
-    Scenario="SENS1",          # uses your file-copy logic
-    plot_control=True,
-    focus=False,
-    power_crews=2,             # strictly power
-    road_crews=3,              # strictly road
-    service_time_power=20.0,   # matches your original bus repair time
-    service_time_road=10.0     # matches your original link repair time
-)
+    # 1) 只评估（带中文/英文解释报告 + triangle 图 + debug log）
+    out = run_model_multi(
+        sequence=seq,
+        result_folder="results",
+        message="test multifunction crew strict",
+        Scenario="eval_multifunc",
+        plot_control=False,
+        focus=False,
+        crew_mode="multifunction",
+        multifunction_crews=1,
+        strict=True,
+        debug=True,
+        objective="triangle",   # 或 "equity:gini"
+    )
+    print("Done evaluation:", out["paths"], out["triangle_png"])
+
+    # 2) 小规模优化（3 个资产建议用 bruteforce）
+    best = optimize_sequence(
+        base_sequence=seq,
+        result_folder="results",
+        message="optimize demo",
+        Scenario="opt_demo",
+        objective="triangle",   # 或 "equity:gini"
+        method="bruteforce",
+        strict=True,
+        crew_mode="multifunction",
+        multifunction_crews=1,
+    )
+    print("Best seq:", best["best_sequence"])
+    print("Best objective:", best["best_objective_value"])
+    print("Best reports:", best["paths"], best["triangle_png"])
+
+if __name__ == "__main__":
+    main()
