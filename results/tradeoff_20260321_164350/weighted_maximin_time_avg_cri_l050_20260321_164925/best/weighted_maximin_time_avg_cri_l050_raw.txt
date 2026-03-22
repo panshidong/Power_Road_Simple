@@ -1,0 +1,14 @@
+timestamp: 20260321_164946
+Weighted sum: triangle + 0.5 * equity:maximin_time_avg_cri_loss | BEST
+sequence: [11, (9, 10), 15, 32, 28, 17, (11, 14)]
+timeline: [(20.0, 11), (56.488562, (9, 10)), (98.820323, 15), (230.402748, 32), (250.402748, 28), (301.016708, 17), (379.315465, (11, 14))]
+triangle_area: 185.46190379775152
+equity_summary: {'var_restore': 14880.618644271635, 'gini_restore': 0.2952890605362519, 'p90_restore': 301.016708, 'p95_restore': 301.016708, 'min_time_avg_cri': 0.46039075423915804, 'maximin_time_avg_cri_loss': 0.5396092457608419, 'min_final_cri': 1.0, 'maximin_final_cri_loss': 0.0, 'var_final_cri': 0.0, 'gini_final_cri': 0.0, 'p10_final_cri': 1.0, 'p90_final_cri': 1.0}
+critical_access_summary: {'var_access_restore': 22777.505980805614, 'gini_access_restore': 0.39945233135282354, 'p90_access_restore': 379.315465, 'p95_access_restore': 379.315465, 'share_access_initial': 0.2916666666666667, 'mean_access_final': 1.0, 'share_access_final': 1.0, 'time_avg_share_access': 0.46831910610341193}
+metric_catalog: {'triangle': 185.46190379775152, 'equity:var_restore': 14880.618644271635, 'equity:gini_restore': 0.2952890605362519, 'equity:p90_restore': 301.016708, 'equity:p95_restore': 301.016708, 'equity:min_time_avg_cri': 0.46039075423915804, 'equity:maximin_time_avg_cri_loss': 0.5396092457608419, 'equity:min_final_cri': 1.0, 'equity:maximin_final_cri_loss': 0.0, 'equity:var_final_cri': 0.0, 'equity:gini_final_cri': 0.0, 'equity:p10_final_cri': 1.0, 'equity:p90_final_cri': 1.0, 'critical_access:var_access_restore': 22777.505980805614, 'critical_access:gini_access_restore': 0.39945233135282354, 'critical_access:p90_access_restore': 379.315465, 'critical_access:p95_access_restore': 379.315465, 'critical_access:share_access_initial': 0.2916666666666667, 'critical_access:mean_access_final': 1.0, 'critical_access:share_access_final': 1.0, 'critical_access:time_avg_share_access': 0.46831910610341193}
+objective: weighted_sum
+objective_detail: {'mode': 'weighted_sum', 'weights': {'triangle': 1.0, 'equity:maximin_time_avg_cri_loss': 0.5}, 'references': {'triangle': 310.8298714981072, 'equity:maximin_time_avg_cri_loss': 0.47523125244354414}, 'parts': {'triangle': 0.5966669255560301, 'equity:maximin_time_avg_cri_loss': 0.5677333329681907}}
+objective_value: 1.1644002585242208
+bus_dispatch_mode: link_only
+bus_location_source: original_bus_location.json
+bus_to_link_source: new_bus_to_link.json

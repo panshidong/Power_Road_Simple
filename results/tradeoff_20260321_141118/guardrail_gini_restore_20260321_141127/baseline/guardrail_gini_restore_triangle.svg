@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+  <rect width="100%" height="100%" fill="white"/>
+  <text x="450" y="28" text-anchor="middle" font-family="Arial" font-size="18">guardrail_gini_restore | obj=guardrail=3.06e+04 | area=220.7 | 20260321_141127</text>
+  <line x1="70" y1="460" x2="870" y2="460" stroke="#222" stroke-width="2"/>
+  <line x1="70" y1="50" x2="70" y2="460" stroke="#222" stroke-width="2"/>
+  <text x="450" y="502" text-anchor="middle" font-family="Arial" font-size="14">Time</text>
+  <text x="20" y="260" text-anchor="middle" font-family="Arial" font-size="14" transform="rotate(-90 20,260)">Functionality</text>
+  <polygon points="70.00,281.73 113.24,176.75 288.69,176.75 383.30,156.73 547.90,156.73 710.41,145.24 797.09,137.94 870.00,69.60 870.00,69.52 797.09,69.52 710.41,69.52 547.90,69.52 383.30,69.52 288.69,69.52 113.24,69.52 70.00,69.52" fill="#1f77b4" opacity="0.18"/>
+  <polygon points="70.00,187.85 113.24,187.85 288.69,164.18 383.30,140.52 547.90,116.85 710.41,93.19 797.09,69.52 870.00,69.52 870.00,69.52 797.09,69.52 710.41,69.52 547.90,69.52 383.30,69.52 288.69,69.52 113.24,69.52 70.00,69.52" fill="#ff7f0e" opacity="0.18"/>
+  <polyline points="70.00,281.73 113.24,176.75 288.69,176.75 383.30,156.73 547.90,156.73 710.41,145.24 797.09,137.94 870.00,69.60" fill="none" stroke="#1f77b4" stroke-width="3"/>
+  <polyline points="70.00,187.85 113.24,187.85 288.69,164.18 383.30,140.52 547.90,116.85 710.41,93.19 797.09,69.52 870.00,69.52" fill="none" stroke="#ff7f0e" stroke-width="3"/>
+  <rect x="670" y="70" width="170" height="56" fill="white" stroke="#ccc"/>
+  <line x1="685" y1="90" x2="715" y2="90" stroke="#1f77b4" stroke-width="3"/>
+  <text x="725" y="95" font-family="Arial" font-size="13">Road functionality</text>
+  <line x1="685" y1="112" x2="715" y2="112" stroke="#ff7f0e" stroke-width="3"/>
+  <text x="725" y="117" font-family="Arial" font-size="13">Power functionality</text>
+</svg>

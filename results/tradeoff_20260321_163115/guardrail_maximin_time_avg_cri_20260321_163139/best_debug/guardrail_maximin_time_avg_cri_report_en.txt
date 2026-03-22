@@ -1,0 +1,34 @@
+Task B run report (CRI + equity)
+Timestamp: 20260321_163141
+Scenario: guardrail_maximin_time_avg_cri
+Objective: guardrail  value=2.407e+04
+CRI weights: w_e=0.5  w_a=0.5
+CRI threshold: 0.9
+Critical access threshold: 0.9
+Bus dispatch mode: link_only
+Bus-to-link source: new_bus_to_link.json
+Triangle area: 310.8
+
+Equity summary (CRI-based):
+- var_restore: 3.952e+04
+- gini_restore: 0.351
+- p90_restore: 522
+- p95_restore: 560.7
+- min_time_avg_cri: 0.5248
+- maximin_time_avg_cri_loss: 0.4752
+- min_final_cri: 1
+- maximin_final_cri_loss: 0
+- var_final_cri: 0
+- gini_final_cri: 0
+- p10_final_cri: 1
+- p90_final_cri: 1
+
+Critical-access summary (A_z-based):
+- var_access_restore: 5.287e+04
+- gini_access_restore: 0.3838
+- p90_access_restore: 629.8
+- p95_access_restore: 629.8
+- share_access_initial: 0.2917
+- mean_access_final: 1
+- share_access_final: 1
+- time_avg_share_access: 0.481

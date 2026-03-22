@@ -1,0 +1,14 @@
+timestamp: 20260321_165031
+Guardrail on equity:maximin_time_avg_cri_loss | BEST_DEBUG
+sequence: [11, 28, 15, 17, (9, 10), 32, (11, 14)]
+timeline: [(20.0, 11), (149.252409, 28), (279.904067, 15), (356.20695, 17), (404.988623, (9, 10)), (516.036188, 32), (585.155508, (11, 14))]
+triangle_area: 347.32768337018047
+equity_summary: {'var_restore': 30481.428465267458, 'gini_restore': 0.31296152756819806, 'p90_restore': 482.72191849999996, 'p95_restore': 516.036188, 'min_time_avg_cri': 0.5434815926931882, 'maximin_time_avg_cri_loss': 0.4565184073068118, 'min_final_cri': 1.0, 'maximin_final_cri_loss': 0.0, 'var_final_cri': 0.0, 'gini_final_cri': 0.0, 'p10_final_cri': 1.0, 'p90_final_cri': 1.0}
+critical_access_summary: {'var_access_restore': 42681.74875677145, 'gini_access_restore': 0.39817017359767415, 'p90_access_restore': 531.1054425, 'p95_access_restore': 585.155508, 'share_access_initial': 0.2916666666666667, 'mean_access_final': 1.0, 'share_access_final': 1.0, 'time_avg_share_access': 0.5072438451979275}
+metric_catalog: {'triangle': 347.32768337018047, 'equity:var_restore': 30481.428465267458, 'equity:gini_restore': 0.31296152756819806, 'equity:p90_restore': 482.72191849999996, 'equity:p95_restore': 516.036188, 'equity:min_time_avg_cri': 0.5434815926931882, 'equity:maximin_time_avg_cri_loss': 0.4565184073068118, 'equity:min_final_cri': 1.0, 'equity:maximin_final_cri_loss': 0.0, 'equity:var_final_cri': 0.0, 'equity:gini_final_cri': 0.0, 'equity:p10_final_cri': 1.0, 'equity:p90_final_cri': 1.0, 'critical_access:var_access_restore': 42681.74875677145, 'critical_access:gini_access_restore': 0.39817017359767415, 'critical_access:p90_access_restore': 531.1054425, 'critical_access:p95_access_restore': 585.155508, 'critical_access:share_access_initial': 0.2916666666666667, 'critical_access:mean_access_final': 1.0, 'critical_access:share_access_final': 1.0, 'critical_access:time_avg_share_access': 0.5072438451979275}
+objective: guardrail
+objective_detail: {'mode': 'guardrail', 'primary_metric': 'triangle', 'guardrail_metric': 'equity:maximin_time_avg_cri_loss', 'guardrail_limit': 0.4514696898213669, 'guardrail_penalty': 1000000.0, 'guardrail_value': 0.4565184073068118, 'guardrail_violation': 0.005048717485444887}
+objective_value: 5396.045168815067
+bus_dispatch_mode: link_only
+bus_location_source: original_bus_location.json
+bus_to_link_source: new_bus_to_link.json

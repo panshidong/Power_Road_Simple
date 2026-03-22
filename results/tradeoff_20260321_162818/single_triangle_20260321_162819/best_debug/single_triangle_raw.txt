@@ -1,0 +1,14 @@
+timestamp: 20260321_162821
+Single objective: triangle | BEST_DEBUG
+sequence: [(9, 10), 28, 11, (11, 14), 15, 32, 17]
+timeline: [(36.488562, (9, 10)), (147.53612700000002, 28), (278.187785, 11), (353.77204800000004, (11, 14)), (435.61068600000004, 15), (567.193111, 32), (617.8070710000001, 17)]
+triangle_area: 305.77872521178585
+equity_summary: {'var_restore': 59294.88258326664, 'gini_restore': 0.3809061313212536, 'p90_restore': 617.8070710000001, 'p95_restore': 617.8070710000001, 'min_final_cri': 1.0, 'maximin_final_cri_loss': 0.0, 'var_final_cri': 0.0, 'gini_final_cri': 0.0, 'p10_final_cri': 1.0, 'p90_final_cri': 1.0}
+critical_access_summary: {'var_access_restore': 69900.73330174245, 'gini_access_restore': 0.39091223187118995, 'p90_access_restore': 617.8070710000001, 'p95_access_restore': 617.8070710000001, 'share_access_initial': 0.2916666666666667, 'mean_access_final': 1.0, 'share_access_final': 1.0, 'time_avg_share_access': 0.40479413138129433}
+metric_catalog: {'triangle': 305.77872521178585, 'equity:var_restore': 59294.88258326664, 'equity:gini_restore': 0.3809061313212536, 'equity:p90_restore': 617.8070710000001, 'equity:p95_restore': 617.8070710000001, 'equity:min_final_cri': 1.0, 'equity:maximin_final_cri_loss': 0.0, 'equity:var_final_cri': 0.0, 'equity:gini_final_cri': 0.0, 'equity:p10_final_cri': 1.0, 'equity:p90_final_cri': 1.0, 'critical_access:var_access_restore': 69900.73330174245, 'critical_access:gini_access_restore': 0.39091223187118995, 'critical_access:p90_access_restore': 617.8070710000001, 'critical_access:p95_access_restore': 617.8070710000001, 'critical_access:share_access_initial': 0.2916666666666667, 'critical_access:mean_access_final': 1.0, 'critical_access:share_access_final': 1.0, 'critical_access:time_avg_share_access': 0.40479413138129433}
+objective: triangle
+objective_detail: {'mode': 'single', 'metric': 'triangle'}
+objective_value: 305.77872521178585
+bus_dispatch_mode: link_only
+bus_location_source: original_bus_location.json
+bus_to_link_source: new_bus_to_link.json

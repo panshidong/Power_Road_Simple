@@ -1,0 +1,8 @@
+timestamp: 20260308_162228
+SA optimize objective=triangle | BEST
+sequence: [(9, 10), 11, 15, (11, 14), 28, 32, 17]
+timeline: [(27.711270999999996, (9, 10)), (61.31586299999999, 11), (81.315863, 15), (128.031738, (11, 14)), (223.245495, 28), (243.245495, 32), (291.443827, 17)]
+triangle_area: 101.76130801605325
+equity_summary: {'var_restore': 13845.856180990437, 'gini_restore': 0.5965238560573407, 'p90_restore': 291.443827, 'p95_restore': 291.443827, 'var_final_cri': 0.01909722222222222, 'gini_final_cri': 0.03985507246376807, 'p10_final_cri': 1.0, 'p90_final_cri': 1.0}
+objective: triangle
+objective_value: 101.76130801605325

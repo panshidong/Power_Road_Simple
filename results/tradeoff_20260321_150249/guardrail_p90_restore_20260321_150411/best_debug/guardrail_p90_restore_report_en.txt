@@ -1,0 +1,26 @@
+Task B run report (CRI + equity)
+Timestamp: 20260321_150417
+Scenario: guardrail_p90_restore
+Objective: guardrail  value=140.6
+CRI weights: w_e=0.5  w_a=0.5
+CRI threshold: 0.9
+Critical access threshold: 0.9
+Triangle area: 140.6
+
+Equity summary (CRI-based):
+- var_restore: 2.056e+04
+- gini_restore: 0.6094
+- p90_restore: 365.7
+- p95_restore: 398.6
+- var_final_cri: 0.0191
+- gini_final_cri: 0.03986
+- p10_final_cri: 1
+- p90_final_cri: 1
+
+Critical-access summary (A_z-based):
+- var_access_restore: 1.45e+04
+- gini_access_restore: 0.6416
+- p90_access_restore: 264.2
+- p95_access_restore: 382.2
+- mean_access_final: 0.9167
+- share_access_final: 0.9167

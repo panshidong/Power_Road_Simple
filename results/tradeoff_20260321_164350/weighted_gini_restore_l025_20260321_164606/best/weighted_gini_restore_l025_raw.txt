@@ -1,0 +1,14 @@
+timestamp: 20260321_164628
+Weighted sum: triangle + 0.25 * equity:gini_restore | BEST
+sequence: [(9, 10), 11, 15, 28, 17, 32, (11, 14)]
+timeline: [(36.488562, (9, 10)), (78.820323, 11), (98.820323, 15), (230.402748, 28), (281.016708, 17), (310.206056, 32), (379.325376, (11, 14))]
+triangle_area: 187.33095241933765
+equity_summary: {'var_restore': 13792.438319596635, 'gini_restore': 0.30992447310480076, 'p90_restore': 301.44925159999997, 'p95_restore': 310.206056, 'min_time_avg_cri': 0.48498387808386617, 'maximin_time_avg_cri_loss': 0.5150161219161338, 'min_final_cri': 1.0, 'maximin_final_cri_loss': 0.0, 'var_final_cri': 0.0, 'gini_final_cri': 0.0, 'p10_final_cri': 1.0, 'p90_final_cri': 1.0}
+critical_access_summary: {'var_access_restore': 20756.7035151369, 'gini_access_restore': 0.40145335938188587, 'p90_access_restore': 379.325376, 'p95_access_restore': 379.325376, 'share_access_initial': 0.2916666666666667, 'mean_access_final': 1.0, 'share_access_final': 1.0, 'time_avg_share_access': 0.48758832641346944}
+metric_catalog: {'triangle': 187.33095241933765, 'equity:var_restore': 13792.438319596635, 'equity:gini_restore': 0.30992447310480076, 'equity:p90_restore': 301.44925159999997, 'equity:p95_restore': 310.206056, 'equity:min_time_avg_cri': 0.48498387808386617, 'equity:maximin_time_avg_cri_loss': 0.5150161219161338, 'equity:min_final_cri': 1.0, 'equity:maximin_final_cri_loss': 0.0, 'equity:var_final_cri': 0.0, 'equity:gini_final_cri': 0.0, 'equity:p10_final_cri': 1.0, 'equity:p90_final_cri': 1.0, 'critical_access:var_access_restore': 20756.7035151369, 'critical_access:gini_access_restore': 0.40145335938188587, 'critical_access:p90_access_restore': 379.325376, 'critical_access:p95_access_restore': 379.325376, 'critical_access:share_access_initial': 0.2916666666666667, 'critical_access:mean_access_final': 1.0, 'critical_access:share_access_final': 1.0, 'critical_access:time_avg_share_access': 0.48758832641346944}
+objective: weighted_sum
+objective_detail: {'mode': 'weighted_sum', 'weights': {'triangle': 1.0, 'equity:gini_restore': 0.25}, 'references': {'triangle': 310.8298714981072, 'equity:gini_restore': 0.3510473908196947}, 'parts': {'triangle': 0.6026800175815097, 'equity:gini_restore': 0.22071412664621146}}
+objective_value: 0.8233941442277212
+bus_dispatch_mode: link_only
+bus_location_source: original_bus_location.json
+bus_to_link_source: new_bus_to_link.json

@@ -1,0 +1,26 @@
+Task B run report (CRI + equity)
+Timestamp: 20260321_150316
+Scenario: single_p90_restore
+Objective: equity:p90_restore  value=364.7
+CRI weights: w_e=0.5  w_a=0.5
+CRI threshold: 0.9
+Critical access threshold: 0.9
+Triangle area: 147.2
+
+Equity summary (CRI-based):
+- var_restore: 2.262e+04
+- gini_restore: 0.5717
+- p90_restore: 364.7
+- p95_restore: 397.6
+- var_final_cri: 0.0191
+- gini_final_cri: 0.03986
+- p10_final_cri: 1
+- p90_final_cri: 1
+
+Critical-access summary (A_z-based):
+- var_access_restore: 2.021e+04
+- gini_access_restore: 0.5928
+- p90_access_restore: 287.9
+- p95_access_restore: 381.1
+- mean_access_final: 0.9167
+- share_access_final: 0.9167

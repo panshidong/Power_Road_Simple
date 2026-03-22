@@ -1,0 +1,26 @@
+Task B 运行报告（CRI + 公平性）
+时间戳：20260321_150336
+场景：weighted_gini_restore_l050
+目标函数：weighted_sum  值=1.241
+CRI 权重：w_e=0.5  w_a=0.5
+CRI 阈值：0.9
+关键可达性阈值：0.9
+Triangle 补面积：192.8
+
+公平性汇总指标（基于 CRI_z 的分布）:
+- var_restore：1.347e+04
+- gini_restore：0.4463
+- p90_restore：267
+- p95_restore：300.1
+- var_final_cri：0.0191
+- gini_final_cri：0.03986
+- p10_final_cri：1
+- p90_final_cri：1
+
+关键可达性汇总指标（基于 A_z 的分布）:
+- var_access_restore：1.52e+04
+- gini_access_restore：0.4029
+- p90_access_restore：305.9
+- p95_access_restore：305.9
+- mean_access_final：0.9167
+- share_access_final：0.9167

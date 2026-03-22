@@ -1,0 +1,14 @@
+timestamp: 20260321_164434
+Single objective: var_restore | BEST
+sequence: [15, 11, (9, 10), 17, 28, 32, (11, 14)]
+timeline: [(20.0, 15), (40.0, 11), (76.488562, (9, 10)), (134.586601, 17), (207.536127, 28), (227.536127, 32), (296.655447, (11, 14))]
+triangle_area: 137.87616194704572
+equity_summary: {'var_restore': 5914.172321686167, 'gini_restore': 0.35623755278792957, 'p90_restore': 221.53612699999996, 'p95_restore': 227.536127, 'min_time_avg_cri': 0.4296142714377349, 'maximin_time_avg_cri_loss': 0.5703857285622651, 'min_final_cri': 1.0, 'maximin_final_cri_loss': 0.0, 'var_final_cri': 0.0, 'gini_final_cri': 0.0, 'p10_final_cri': 1.0, 'p90_final_cri': 1.0}
+critical_access_summary: {'var_access_restore': 10543.870773291894, 'gini_access_restore': 0.4491196409930951, 'p90_access_restore': 296.655447, 'p95_access_restore': 296.655447, 'share_access_initial': 0.2916666666666667, 'mean_access_final': 1.0, 'share_access_final': 1.0, 'time_avg_share_access': 0.5731720458122359}
+metric_catalog: {'triangle': 137.87616194704572, 'equity:var_restore': 5914.172321686167, 'equity:gini_restore': 0.35623755278792957, 'equity:p90_restore': 221.53612699999996, 'equity:p95_restore': 227.536127, 'equity:min_time_avg_cri': 0.4296142714377349, 'equity:maximin_time_avg_cri_loss': 0.5703857285622651, 'equity:min_final_cri': 1.0, 'equity:maximin_final_cri_loss': 0.0, 'equity:var_final_cri': 0.0, 'equity:gini_final_cri': 0.0, 'equity:p10_final_cri': 1.0, 'equity:p90_final_cri': 1.0, 'critical_access:var_access_restore': 10543.870773291894, 'critical_access:gini_access_restore': 0.4491196409930951, 'critical_access:p90_access_restore': 296.655447, 'critical_access:p95_access_restore': 296.655447, 'critical_access:share_access_initial': 0.2916666666666667, 'critical_access:mean_access_final': 1.0, 'critical_access:share_access_final': 1.0, 'critical_access:time_avg_share_access': 0.5731720458122359}
+objective: equity:var_restore
+objective_detail: {'mode': 'single', 'metric': 'equity:var_restore'}
+objective_value: 5914.172321686167
+bus_dispatch_mode: link_only
+bus_location_source: original_bus_location.json
+bus_to_link_source: new_bus_to_link.json

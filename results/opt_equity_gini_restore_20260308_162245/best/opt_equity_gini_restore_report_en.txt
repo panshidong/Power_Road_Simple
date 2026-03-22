@@ -1,0 +1,15 @@
+Task B run report (CRI + equity)
+Timestamp: 20260308_162258
+Scenario: opt_equity_gini_restore
+Objective: equity:gini_restore  value=0.4744
+Triangle area: 241.6
+
+Equity summary (CRI-based):
+- var_restore: 3.092e+04
+- gini_restore: 0.4744
+- p90_restore: 423.1
+- p95_restore: 423.1
+- var_final_cri: 0.0191
+- gini_final_cri: 0.03986
+- p10_final_cri: 1
+- p90_final_cri: 1

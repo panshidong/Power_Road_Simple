@@ -1,0 +1,11 @@
+timestamp: 20260321_150343
+Weighted sum: triangle + 1.0 * equity:gini_restore | BEST
+sequence: [17, (11, 14), 15, 11, 32, (9, 10), 28]
+timeline: [(28.234465, 17), (70.790216, (11, 14)), (142.378645, 15), (195.918614, 11), (222.820912, 32), (268.308764, (9, 10)), (325.675621, 28)]
+triangle_area: 177.68327799528683
+equity_summary: {'var_restore': 18295.911829670717, 'gini_restore': 0.39091191525352476, 'p90_restore': 308.46556389999995, 'p95_restore': 325.675621, 'var_final_cri': 0.01909722222222222, 'gini_final_cri': 0.03985507246376807, 'p10_final_cri': 1.0, 'p90_final_cri': 1.0}
+critical_access_summary: {'var_access_restore': 18678.248558876592, 'gini_access_restore': 0.36203905098383804, 'p90_access_restore': 325.675621, 'p95_access_restore': 325.675621, 'mean_access_final': 0.9166666666666666, 'share_access_final': 0.9166666666666666}
+metric_catalog: {'triangle': 177.68327799528683, 'equity:var_restore': 18295.911829670717, 'equity:gini_restore': 0.39091191525352476, 'equity:p90_restore': 308.46556389999995, 'equity:p95_restore': 325.675621, 'equity:var_final_cri': 0.01909722222222222, 'equity:gini_final_cri': 0.03985507246376807, 'equity:p10_final_cri': 1.0, 'equity:p90_final_cri': 1.0, 'critical_access:var_access_restore': 18678.248558876592, 'critical_access:gini_access_restore': 0.36203905098383804, 'critical_access:p90_access_restore': 325.675621, 'critical_access:p95_access_restore': 325.675621, 'critical_access:mean_access_final': 0.9166666666666666, 'critical_access:share_access_final': 0.9166666666666666}
+objective: weighted_sum
+objective_detail: {'mode': 'weighted_sum', 'weights': {'triangle': 1.0, 'equity:gini_restore': 1.0}, 'references': {'triangle': 220.68646431437358, 'equity:gini_restore': 0.6075993909547031}, 'parts': {'triangle': 0.8051389945790803, 'equity:gini_restore': 0.64337114400213}}
+objective_value: 1.4485101385812102

@@ -1,0 +1,8 @@
+timestamp: 20260308_162245
+SA optimize objective=equity:gini_restore | baseline
+sequence: [(9, 10), 28, 11, 17, 15, 32, (11, 14)]
+timeline: [(27.711270999999996, (9, 10)), (121.226827, 28), (225.406601, 11), (287.179922, 17), (349.48740399999997, 15), (452.56665, 32), (499.285578, (11, 14))]
+triangle_area: 212.25759365702748
+equity_summary: {'var_restore': 39586.51188763073, 'gini_restore': 0.6025472084063204, 'p90_restore': 485.2698995999999, 'p95_restore': 499.285578, 'var_final_cri': 0.01909722222222222, 'gini_final_cri': 0.03985507246376807, 'p10_final_cri': 1.0, 'p90_final_cri': 1.0}
+objective: equity:gini_restore
+objective_value: 0.6025472084063204
