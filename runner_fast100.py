@@ -33,7 +33,7 @@ def build_fast100_config() -> BatchTradeoffConfig:
         save_baseline=False,
         save_best_artifacts=False,
         save_best_debug=False,
-        sa=SAConfig(seed=0, max_iter=12, T0=1.4, alpha=0.97, neighbor="swap"),
+        sa=SAConfig(seed=0, max_iter=80, T0=1.4, alpha=0.97, neighbor="swap"),
     )
     return BatchTradeoffConfig(
         n_scenarios=100,

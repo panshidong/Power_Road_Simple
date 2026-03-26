@@ -1,0 +1,6337 @@
+{
+  "n_scenarios": 100,
+  "seed0": 20260325,
+  "bus_count_range": [
+    8,
+    15
+  ],
+  "link_count_range": [
+    3,
+    13
+  ],
+  "link_drop_range": [
+    0.5,
+    1.0
+  ],
+  "scenarios": [
+    {
+      "scenario_id": "scenario_001",
+      "seed": 20260325,
+      "broken_buses": [
+        8,
+        7,
+        6,
+        17,
+        20,
+        32,
+        29,
+        30,
+        1,
+        3,
+        25,
+        18,
+        26,
+        21
+      ],
+      "broken_links": [
+        {
+          "u": 14,
+          "v": 15,
+          "remaining_capacity_factor": 0.29813606239438795,
+          "capacity_drop_fraction": 0.701863937605612
+        },
+        {
+          "u": 7,
+          "v": 18,
+          "remaining_capacity_factor": 0.19671940204534732,
+          "capacity_drop_fraction": 0.8032805979546527
+        },
+        {
+          "u": 10,
+          "v": 11,
+          "remaining_capacity_factor": 0.15566410846869805,
+          "capacity_drop_fraction": 0.844335891531302
+        },
+        {
+          "u": 17,
+          "v": 10,
+          "remaining_capacity_factor": 0.0810681705335663,
+          "capacity_drop_fraction": 0.9189318294664337
+        },
+        {
+          "u": 18,
+          "v": 20,
+          "remaining_capacity_factor": 0.29589068678543073,
+          "capacity_drop_fraction": 0.7041093132145693
+        },
+        {
+          "u": 21,
+          "v": 24,
+          "remaining_capacity_factor": 0.11653565711951752,
+          "capacity_drop_fraction": 0.8834643428804825
+        },
+        {
+          "u": 18,
+          "v": 16,
+          "remaining_capacity_factor": 0.4050455041829768,
+          "capacity_drop_fraction": 0.5949544958170232
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_002",
+      "seed": 20260326,
+      "broken_buses": [
+        23,
+        13,
+        16,
+        32,
+        7,
+        26,
+        5,
+        20,
+        8,
+        15,
+        33
+      ],
+      "broken_links": [
+        {
+          "u": 1,
+          "v": 2,
+          "remaining_capacity_factor": 0.04227602070037517,
+          "capacity_drop_fraction": 0.9577239792996248
+        },
+        {
+          "u": 18,
+          "v": 16,
+          "remaining_capacity_factor": 0.3120281977389757,
+          "capacity_drop_fraction": 0.6879718022610243
+        },
+        {
+          "u": 9,
+          "v": 8,
+          "remaining_capacity_factor": 0.03819472726236972,
+          "capacity_drop_fraction": 0.9618052727376303
+        },
+        {
+          "u": 20,
+          "v": 18,
+          "remaining_capacity_factor": 0.4774307123320778,
+          "capacity_drop_fraction": 0.5225692876679222
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_003",
+      "seed": 20260327,
+      "broken_buses": [
+        7,
+        4,
+        11,
+        23,
+        30,
+        17,
+        22,
+        27,
+        5
+      ],
+      "broken_links": [
+        {
+          "u": 20,
+          "v": 18,
+          "remaining_capacity_factor": 0.24411670937297203,
+          "capacity_drop_fraction": 0.755883290627028
+        },
+        {
+          "u": 12,
+          "v": 3,
+          "remaining_capacity_factor": 0.05441945475973653,
+          "capacity_drop_fraction": 0.9455805452402635
+        },
+        {
+          "u": 12,
+          "v": 11,
+          "remaining_capacity_factor": 0.2068124880342619,
+          "capacity_drop_fraction": 0.7931875119657381
+        },
+        {
+          "u": 12,
+          "v": 13,
+          "remaining_capacity_factor": 0.04953987839456597,
+          "capacity_drop_fraction": 0.950460121605434
+        },
+        {
+          "u": 14,
+          "v": 15,
+          "remaining_capacity_factor": 0.1437987459254202,
+          "capacity_drop_fraction": 0.8562012540745798
+        },
+        {
+          "u": 10,
+          "v": 11,
+          "remaining_capacity_factor": 0.412185993542701,
+          "capacity_drop_fraction": 0.587814006457299
+        },
+        {
+          "u": 9,
+          "v": 10,
+          "remaining_capacity_factor": 0.2128399961156362,
+          "capacity_drop_fraction": 0.7871600038843638
+        },
+        {
+          "u": 22,
+          "v": 21,
+          "remaining_capacity_factor": 0.058190383486702024,
+          "capacity_drop_fraction": 0.941809616513298
+        },
+        {
+          "u": 21,
+          "v": 20,
+          "remaining_capacity_factor": 0.06922686951701784,
+          "capacity_drop_fraction": 0.9307731304829822
+        },
+        {
+          "u": 1,
+          "v": 3,
+          "remaining_capacity_factor": 0.4224957219798662,
+          "capacity_drop_fraction": 0.5775042780201338
+        },
+        {
+          "u": 10,
+          "v": 16,
+          "remaining_capacity_factor": 0.008921391520708255,
+          "capacity_drop_fraction": 0.9910786084792917
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_004",
+      "seed": 20260328,
+      "broken_buses": [
+        23,
+        29,
+        16,
+        25,
+        5,
+        24,
+        31,
+        3
+      ],
+      "broken_links": [
+        {
+          "u": 4,
+          "v": 11,
+          "remaining_capacity_factor": 0.36954156448638464,
+          "capacity_drop_fraction": 0.6304584355136154
+        },
+        {
+          "u": 6,
+          "v": 8,
+          "remaining_capacity_factor": 0.0737175027555923,
+          "capacity_drop_fraction": 0.9262824972444077
+        },
+        {
+          "u": 2,
+          "v": 6,
+          "remaining_capacity_factor": 0.05075796450925485,
+          "capacity_drop_fraction": 0.9492420354907452
+        },
+        {
+          "u": 16,
+          "v": 17,
+          "remaining_capacity_factor": 0.23993700333542023,
+          "capacity_drop_fraction": 0.7600629966645798
+        },
+        {
+          "u": 22,
+          "v": 21,
+          "remaining_capacity_factor": 0.3308741683790619,
+          "capacity_drop_fraction": 0.6691258316209381
+        },
+        {
+          "u": 9,
+          "v": 8,
+          "remaining_capacity_factor": 0.38986490405215124,
+          "capacity_drop_fraction": 0.6101350959478488
+        },
+        {
+          "u": 15,
+          "v": 14,
+          "remaining_capacity_factor": 0.15959738773748455,
+          "capacity_drop_fraction": 0.8404026122625154
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_005",
+      "seed": 20260329,
+      "broken_buses": [
+        18,
+        28,
+        23,
+        26,
+        14,
+        8,
+        31,
+        9,
+        30,
+        29,
+        1,
+        16,
+        11,
+        25,
+        15
+      ],
+      "broken_links": [
+        {
+          "u": 22,
+          "v": 20,
+          "remaining_capacity_factor": 0.4545497376700216,
+          "capacity_drop_fraction": 0.5454502623299784
+        },
+        {
+          "u": 15,
+          "v": 10,
+          "remaining_capacity_factor": 0.22705265007740094,
+          "capacity_drop_fraction": 0.7729473499225991
+        },
+        {
+          "u": 18,
+          "v": 16,
+          "remaining_capacity_factor": 0.37160853190667653,
+          "capacity_drop_fraction": 0.6283914680933235
+        },
+        {
+          "u": 23,
+          "v": 14,
+          "remaining_capacity_factor": 0.30557210733315543,
+          "capacity_drop_fraction": 0.6944278926668446
+        },
+        {
+          "u": 10,
+          "v": 16,
+          "remaining_capacity_factor": 0.210980154750549,
+          "capacity_drop_fraction": 0.789019845249451
+        },
+        {
+          "u": 13,
+          "v": 12,
+          "remaining_capacity_factor": 0.33020826755416144,
+          "capacity_drop_fraction": 0.6697917324458386
+        },
+        {
+          "u": 3,
+          "v": 12,
+          "remaining_capacity_factor": 0.0658287613992381,
+          "capacity_drop_fraction": 0.9341712386007619
+        },
+        {
+          "u": 19,
+          "v": 17,
+          "remaining_capacity_factor": 0.013807782884459496,
+          "capacity_drop_fraction": 0.9861922171155405
+        },
+        {
+          "u": 14,
+          "v": 11,
+          "remaining_capacity_factor": 0.29439802217439626,
+          "capacity_drop_fraction": 0.7056019778256037
+        },
+        {
+          "u": 24,
+          "v": 23,
+          "remaining_capacity_factor": 0.34960290268275185,
+          "capacity_drop_fraction": 0.6503970973172482
+        },
+        {
+          "u": 10,
+          "v": 17,
+          "remaining_capacity_factor": 0.47737819083416255,
+          "capacity_drop_fraction": 0.5226218091658374
+        },
+        {
+          "u": 24,
+          "v": 13,
+          "remaining_capacity_factor": 0.11928934266907931,
+          "capacity_drop_fraction": 0.8807106573309207
+        },
+        {
+          "u": 1,
+          "v": 2,
+          "remaining_capacity_factor": 0.36276359305337524,
+          "capacity_drop_fraction": 0.6372364069466248
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_006",
+      "seed": 20260330,
+      "broken_buses": [
+        14,
+        26,
+        12,
+        25,
+        17,
+        8,
+        30,
+        32,
+        33,
+        2
+      ],
+      "broken_links": [
+        {
+          "u": 6,
+          "v": 5,
+          "remaining_capacity_factor": 0.49151197324836926,
+          "capacity_drop_fraction": 0.5084880267516307
+        },
+        {
+          "u": 16,
+          "v": 18,
+          "remaining_capacity_factor": 0.3939644784357932,
+          "capacity_drop_fraction": 0.6060355215642068
+        },
+        {
+          "u": 15,
+          "v": 10,
+          "remaining_capacity_factor": 0.03904197679137489,
+          "capacity_drop_fraction": 0.9609580232086251
+        },
+        {
+          "u": 18,
+          "v": 20,
+          "remaining_capacity_factor": 0.1468584294838231,
+          "capacity_drop_fraction": 0.8531415705161769
+        },
+        {
+          "u": 15,
+          "v": 22,
+          "remaining_capacity_factor": 0.32196534663217957,
+          "capacity_drop_fraction": 0.6780346533678204
+        },
+        {
+          "u": 6,
+          "v": 2,
+          "remaining_capacity_factor": 0.128274947923102,
+          "capacity_drop_fraction": 0.871725052076898
+        },
+        {
+          "u": 10,
+          "v": 15,
+          "remaining_capacity_factor": 0.2104157328876617,
+          "capacity_drop_fraction": 0.7895842671123383
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_007",
+      "seed": 20260331,
+      "broken_buses": [
+        15,
+        17,
+        5,
+        12,
+        14,
+        29,
+        1,
+        30,
+        33,
+        22,
+        20,
+        28,
+        18,
+        3,
+        31
+      ],
+      "broken_links": [
+        {
+          "u": 22,
+          "v": 21,
+          "remaining_capacity_factor": 0.1322865433747773,
+          "capacity_drop_fraction": 0.8677134566252227
+        },
+        {
+          "u": 5,
+          "v": 6,
+          "remaining_capacity_factor": 0.4141050142423115,
+          "capacity_drop_fraction": 0.5858949857576885
+        },
+        {
+          "u": 11,
+          "v": 10,
+          "remaining_capacity_factor": 0.12872099626794375,
+          "capacity_drop_fraction": 0.8712790037320562
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_008",
+      "seed": 20260332,
+      "broken_buses": [
+        24,
+        13,
+        15,
+        12,
+        23,
+        26,
+        28,
+        31,
+        18,
+        10,
+        25,
+        22
+      ],
+      "broken_links": [
+        {
+          "u": 8,
+          "v": 7,
+          "remaining_capacity_factor": 0.25020769084678207,
+          "capacity_drop_fraction": 0.7497923091532179
+        },
+        {
+          "u": 16,
+          "v": 8,
+          "remaining_capacity_factor": 0.14763061292045498,
+          "capacity_drop_fraction": 0.852369387079545
+        },
+        {
+          "u": 10,
+          "v": 11,
+          "remaining_capacity_factor": 0.048752806552312844,
+          "capacity_drop_fraction": 0.9512471934476872
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_009",
+      "seed": 20260333,
+      "broken_buses": [
+        32,
+        10,
+        13,
+        22,
+        28,
+        17,
+        5,
+        26
+      ],
+      "broken_links": [
+        {
+          "u": 19,
+          "v": 15,
+          "remaining_capacity_factor": 0.15061764559436153,
+          "capacity_drop_fraction": 0.8493823544056385
+        },
+        {
+          "u": 22,
+          "v": 20,
+          "remaining_capacity_factor": 0.24682373080646858,
+          "capacity_drop_fraction": 0.7531762691935314
+        },
+        {
+          "u": 14,
+          "v": 15,
+          "remaining_capacity_factor": 0.3099443313874761,
+          "capacity_drop_fraction": 0.6900556686125239
+        },
+        {
+          "u": 4,
+          "v": 3,
+          "remaining_capacity_factor": 0.0019134691950384308,
+          "capacity_drop_fraction": 0.9980865308049616
+        },
+        {
+          "u": 21,
+          "v": 24,
+          "remaining_capacity_factor": 0.1907958345357308,
+          "capacity_drop_fraction": 0.8092041654642692
+        },
+        {
+          "u": 3,
+          "v": 12,
+          "remaining_capacity_factor": 0.06360190820901268,
+          "capacity_drop_fraction": 0.9363980917909873
+        },
+        {
+          "u": 6,
+          "v": 8,
+          "remaining_capacity_factor": 0.31758358842861534,
+          "capacity_drop_fraction": 0.6824164115713847
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_010",
+      "seed": 20260334,
+      "broken_buses": [
+        1,
+        5,
+        27,
+        6,
+        16,
+        8,
+        26,
+        7,
+        11,
+        14,
+        25,
+        10,
+        4
+      ],
+      "broken_links": [
+        {
+          "u": 5,
+          "v": 4,
+          "remaining_capacity_factor": 0.49237145734459653,
+          "capacity_drop_fraction": 0.5076285426554035
+        },
+        {
+          "u": 3,
+          "v": 12,
+          "remaining_capacity_factor": 0.2397062405941648,
+          "capacity_drop_fraction": 0.7602937594058352
+        },
+        {
+          "u": 15,
+          "v": 14,
+          "remaining_capacity_factor": 0.487831632452314,
+          "capacity_drop_fraction": 0.512168367547686
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_011",
+      "seed": 20260335,
+      "broken_buses": [
+        10,
+        31,
+        23,
+        6,
+        33,
+        24,
+        30,
+        15
+      ],
+      "broken_links": [
+        {
+          "u": 11,
+          "v": 10,
+          "remaining_capacity_factor": 0.3913049719335042,
+          "capacity_drop_fraction": 0.6086950280664958
+        },
+        {
+          "u": 20,
+          "v": 18,
+          "remaining_capacity_factor": 0.07597223998069125,
+          "capacity_drop_fraction": 0.9240277600193088
+        },
+        {
+          "u": 12,
+          "v": 13,
+          "remaining_capacity_factor": 0.28982233443777516,
+          "capacity_drop_fraction": 0.7101776655622248
+        },
+        {
+          "u": 14,
+          "v": 23,
+          "remaining_capacity_factor": 0.18735912915728237,
+          "capacity_drop_fraction": 0.8126408708427176
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_012",
+      "seed": 20260336,
+      "broken_buses": [
+        16,
+        28,
+        12,
+        4,
+        6,
+        19,
+        1,
+        29
+      ],
+      "broken_links": [
+        {
+          "u": 2,
+          "v": 1,
+          "remaining_capacity_factor": 0.4783737345363007,
+          "capacity_drop_fraction": 0.5216262654636993
+        },
+        {
+          "u": 16,
+          "v": 8,
+          "remaining_capacity_factor": 0.23285148580759318,
+          "capacity_drop_fraction": 0.7671485141924068
+        },
+        {
+          "u": 21,
+          "v": 22,
+          "remaining_capacity_factor": 0.276977470196039,
+          "capacity_drop_fraction": 0.723022529803961
+        },
+        {
+          "u": 24,
+          "v": 13,
+          "remaining_capacity_factor": 0.028984654063498594,
+          "capacity_drop_fraction": 0.9710153459365014
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_013",
+      "seed": 20260337,
+      "broken_buses": [
+        11,
+        27,
+        21,
+        14,
+        4,
+        6,
+        29,
+        26,
+        7
+      ],
+      "broken_links": [
+        {
+          "u": 24,
+          "v": 21,
+          "remaining_capacity_factor": 0.21932029908394124,
+          "capacity_drop_fraction": 0.7806797009160588
+        },
+        {
+          "u": 10,
+          "v": 15,
+          "remaining_capacity_factor": 0.3430583496657478,
+          "capacity_drop_fraction": 0.6569416503342522
+        },
+        {
+          "u": 20,
+          "v": 21,
+          "remaining_capacity_factor": 0.015555824950028052,
+          "capacity_drop_fraction": 0.984444175049972
+        },
+        {
+          "u": 14,
+          "v": 15,
+          "remaining_capacity_factor": 0.14156209816786025,
+          "capacity_drop_fraction": 0.8584379018321397
+        },
+        {
+          "u": 23,
+          "v": 24,
+          "remaining_capacity_factor": 0.22423996907360577,
+          "capacity_drop_fraction": 0.7757600309263942
+        },
+        {
+          "u": 7,
+          "v": 8,
+          "remaining_capacity_factor": 0.2022605344966002,
+          "capacity_drop_fraction": 0.7977394655033998
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_014",
+      "seed": 20260338,
+      "broken_buses": [
+        23,
+        3,
+        8,
+        19,
+        20,
+        6,
+        1,
+        7,
+        25
+      ],
+      "broken_links": [
+        {
+          "u": 6,
+          "v": 5,
+          "remaining_capacity_factor": 0.16713443315634946,
+          "capacity_drop_fraction": 0.8328655668436505
+        },
+        {
+          "u": 4,
+          "v": 5,
+          "remaining_capacity_factor": 0.3236396862867996,
+          "capacity_drop_fraction": 0.6763603137132004
+        },
+        {
+          "u": 16,
+          "v": 18,
+          "remaining_capacity_factor": 0.1367824658914949,
+          "capacity_drop_fraction": 0.8632175341085051
+        },
+        {
+          "u": 7,
+          "v": 8,
+          "remaining_capacity_factor": 0.03682101858872211,
+          "capacity_drop_fraction": 0.9631789814112779
+        },
+        {
+          "u": 23,
+          "v": 24,
+          "remaining_capacity_factor": 0.3873863842860862,
+          "capacity_drop_fraction": 0.6126136157139138
+        },
+        {
+          "u": 22,
+          "v": 23,
+          "remaining_capacity_factor": 0.15367953980271643,
+          "capacity_drop_fraction": 0.8463204601972836
+        },
+        {
+          "u": 2,
+          "v": 1,
+          "remaining_capacity_factor": 0.26210254838463976,
+          "capacity_drop_fraction": 0.7378974516153602
+        },
+        {
+          "u": 19,
+          "v": 17,
+          "remaining_capacity_factor": 0.12890238694819955,
+          "capacity_drop_fraction": 0.8710976130518004
+        },
+        {
+          "u": 13,
+          "v": 12,
+          "remaining_capacity_factor": 0.11290502188114449,
+          "capacity_drop_fraction": 0.8870949781188555
+        },
+        {
+          "u": 11,
+          "v": 10,
+          "remaining_capacity_factor": 0.255123015505339,
+          "capacity_drop_fraction": 0.744876984494661
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_015",
+      "seed": 20260339,
+      "broken_buses": [
+        18,
+        30,
+        29,
+        12,
+        4,
+        19,
+        9,
+        2,
+        25,
+        17,
+        15,
+        16,
+        27,
+        22,
+        33
+      ],
+      "broken_links": [
+        {
+          "u": 4,
+          "v": 11,
+          "remaining_capacity_factor": 0.17849809512744508,
+          "capacity_drop_fraction": 0.8215019048725549
+        },
+        {
+          "u": 22,
+          "v": 21,
+          "remaining_capacity_factor": 0.3923392671369479,
+          "capacity_drop_fraction": 0.6076607328630521
+        },
+        {
+          "u": 1,
+          "v": 3,
+          "remaining_capacity_factor": 0.03629867648040419,
+          "capacity_drop_fraction": 0.9637013235195958
+        },
+        {
+          "u": 3,
+          "v": 12,
+          "remaining_capacity_factor": 0.37120296439554723,
+          "capacity_drop_fraction": 0.6287970356044528
+        },
+        {
+          "u": 6,
+          "v": 2,
+          "remaining_capacity_factor": 0.3523488420631533,
+          "capacity_drop_fraction": 0.6476511579368467
+        },
+        {
+          "u": 10,
+          "v": 9,
+          "remaining_capacity_factor": 0.4298618087851257,
+          "capacity_drop_fraction": 0.5701381912148743
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_016",
+      "seed": 20260340,
+      "broken_buses": [
+        9,
+        28,
+        13,
+        4,
+        17,
+        16,
+        10,
+        29,
+        33,
+        7,
+        19,
+        5,
+        2,
+        8
+      ],
+      "broken_links": [
+        {
+          "u": 9,
+          "v": 8,
+          "remaining_capacity_factor": 0.26831277707309087,
+          "capacity_drop_fraction": 0.7316872229269091
+        },
+        {
+          "u": 19,
+          "v": 20,
+          "remaining_capacity_factor": 0.03856032314505842,
+          "capacity_drop_fraction": 0.9614396768549416
+        },
+        {
+          "u": 10,
+          "v": 16,
+          "remaining_capacity_factor": 0.026576340457988956,
+          "capacity_drop_fraction": 0.973423659542011
+        },
+        {
+          "u": 24,
+          "v": 13,
+          "remaining_capacity_factor": 0.3719441912007958,
+          "capacity_drop_fraction": 0.6280558087992042
+        },
+        {
+          "u": 1,
+          "v": 2,
+          "remaining_capacity_factor": 0.06535130316708038,
+          "capacity_drop_fraction": 0.9346486968329196
+        },
+        {
+          "u": 16,
+          "v": 8,
+          "remaining_capacity_factor": 0.3172707087274427,
+          "capacity_drop_fraction": 0.6827292912725573
+        },
+        {
+          "u": 21,
+          "v": 20,
+          "remaining_capacity_factor": 0.4887665993812462,
+          "capacity_drop_fraction": 0.5112334006187538
+        },
+        {
+          "u": 15,
+          "v": 10,
+          "remaining_capacity_factor": 0.2962002234185348,
+          "capacity_drop_fraction": 0.7037997765814652
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_017",
+      "seed": 20260341,
+      "broken_buses": [
+        6,
+        30,
+        1,
+        4,
+        14,
+        33,
+        29,
+        22,
+        8,
+        20,
+        17,
+        11,
+        27
+      ],
+      "broken_links": [
+        {
+          "u": 23,
+          "v": 22,
+          "remaining_capacity_factor": 0.2116086583929826,
+          "capacity_drop_fraction": 0.7883913416070174
+        },
+        {
+          "u": 10,
+          "v": 17,
+          "remaining_capacity_factor": 0.21917778687053913,
+          "capacity_drop_fraction": 0.7808222131294609
+        },
+        {
+          "u": 22,
+          "v": 21,
+          "remaining_capacity_factor": 0.14855247609032385,
+          "capacity_drop_fraction": 0.8514475239096762
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_018",
+      "seed": 20260342,
+      "broken_buses": [
+        23,
+        14,
+        4,
+        10,
+        32,
+        11,
+        2,
+        31,
+        22,
+        18,
+        26
+      ],
+      "broken_links": [
+        {
+          "u": 16,
+          "v": 10,
+          "remaining_capacity_factor": 0.40209417313798546,
+          "capacity_drop_fraction": 0.5979058268620145
+        },
+        {
+          "u": 10,
+          "v": 17,
+          "remaining_capacity_factor": 0.2776378867632292,
+          "capacity_drop_fraction": 0.7223621132367708
+        },
+        {
+          "u": 10,
+          "v": 16,
+          "remaining_capacity_factor": 0.3009015404549169,
+          "capacity_drop_fraction": 0.6990984595450831
+        },
+        {
+          "u": 21,
+          "v": 22,
+          "remaining_capacity_factor": 0.08168055629071136,
+          "capacity_drop_fraction": 0.9183194437092886
+        },
+        {
+          "u": 20,
+          "v": 22,
+          "remaining_capacity_factor": 0.4881585351045876,
+          "capacity_drop_fraction": 0.5118414648954124
+        },
+        {
+          "u": 3,
+          "v": 4,
+          "remaining_capacity_factor": 0.27790968548376427,
+          "capacity_drop_fraction": 0.7220903145162357
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_019",
+      "seed": 20260343,
+      "broken_buses": [
+        26,
+        15,
+        1,
+        7,
+        33,
+        16,
+        5,
+        17,
+        4,
+        24
+      ],
+      "broken_links": [
+        {
+          "u": 13,
+          "v": 24,
+          "remaining_capacity_factor": 0.15334794835252186,
+          "capacity_drop_fraction": 0.8466520516474781
+        },
+        {
+          "u": 4,
+          "v": 5,
+          "remaining_capacity_factor": 0.3330272367433711,
+          "capacity_drop_fraction": 0.6669727632566289
+        },
+        {
+          "u": 5,
+          "v": 9,
+          "remaining_capacity_factor": 0.24489252581015575,
+          "capacity_drop_fraction": 0.7551074741898443
+        },
+        {
+          "u": 16,
+          "v": 8,
+          "remaining_capacity_factor": 0.08992636987892477,
+          "capacity_drop_fraction": 0.9100736301210752
+        },
+        {
+          "u": 8,
+          "v": 9,
+          "remaining_capacity_factor": 0.3536390323313473,
+          "capacity_drop_fraction": 0.6463609676686527
+        },
+        {
+          "u": 10,
+          "v": 15,
+          "remaining_capacity_factor": 0.46770459197801395,
+          "capacity_drop_fraction": 0.532295408021986
+        },
+        {
+          "u": 15,
+          "v": 19,
+          "remaining_capacity_factor": 0.3263334481109972,
+          "capacity_drop_fraction": 0.6736665518890028
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_020",
+      "seed": 20260344,
+      "broken_buses": [
+        7,
+        24,
+        32,
+        18,
+        12,
+        28,
+        1,
+        17,
+        8,
+        10,
+        14,
+        5,
+        15,
+        6,
+        16
+      ],
+      "broken_links": [
+        {
+          "u": 14,
+          "v": 15,
+          "remaining_capacity_factor": 0.1737993527460726,
+          "capacity_drop_fraction": 0.8262006472539274
+        },
+        {
+          "u": 17,
+          "v": 19,
+          "remaining_capacity_factor": 0.4885618046237459,
+          "capacity_drop_fraction": 0.5114381953762541
+        },
+        {
+          "u": 9,
+          "v": 5,
+          "remaining_capacity_factor": 0.3697143972544885,
+          "capacity_drop_fraction": 0.6302856027455115
+        },
+        {
+          "u": 16,
+          "v": 18,
+          "remaining_capacity_factor": 0.03384205496098447,
+          "capacity_drop_fraction": 0.9661579450390155
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_021",
+      "seed": 20260345,
+      "broken_buses": [
+        9,
+        3,
+        32,
+        19,
+        1,
+        22,
+        17,
+        20,
+        7
+      ],
+      "broken_links": [
+        {
+          "u": 12,
+          "v": 3,
+          "remaining_capacity_factor": 0.04467569889274392,
+          "capacity_drop_fraction": 0.9553243011072561
+        },
+        {
+          "u": 7,
+          "v": 8,
+          "remaining_capacity_factor": 0.14679826217842706,
+          "capacity_drop_fraction": 0.8532017378215729
+        },
+        {
+          "u": 9,
+          "v": 5,
+          "remaining_capacity_factor": 0.23223454408577415,
+          "capacity_drop_fraction": 0.7677654559142258
+        },
+        {
+          "u": 13,
+          "v": 24,
+          "remaining_capacity_factor": 0.48780728231372694,
+          "capacity_drop_fraction": 0.5121927176862731
+        },
+        {
+          "u": 21,
+          "v": 20,
+          "remaining_capacity_factor": 0.4131115345096352,
+          "capacity_drop_fraction": 0.5868884654903648
+        },
+        {
+          "u": 2,
+          "v": 6,
+          "remaining_capacity_factor": 0.2668229312109687,
+          "capacity_drop_fraction": 0.7331770687890313
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_022",
+      "seed": 20260346,
+      "broken_buses": [
+        8,
+        19,
+        26,
+        11,
+        24,
+        10,
+        21,
+        31,
+        13,
+        5
+      ],
+      "broken_links": [
+        {
+          "u": 18,
+          "v": 16,
+          "remaining_capacity_factor": 0.4678616531096247,
+          "capacity_drop_fraction": 0.5321383468903753
+        },
+        {
+          "u": 11,
+          "v": 10,
+          "remaining_capacity_factor": 0.28942225980324543,
+          "capacity_drop_fraction": 0.7105777401967546
+        },
+        {
+          "u": 13,
+          "v": 24,
+          "remaining_capacity_factor": 0.49215424362818894,
+          "capacity_drop_fraction": 0.5078457563718111
+        },
+        {
+          "u": 12,
+          "v": 13,
+          "remaining_capacity_factor": 0.37435493926811647,
+          "capacity_drop_fraction": 0.6256450607318835
+        },
+        {
+          "u": 1,
+          "v": 3,
+          "remaining_capacity_factor": 0.27649524095130573,
+          "capacity_drop_fraction": 0.7235047590486943
+        },
+        {
+          "u": 14,
+          "v": 11,
+          "remaining_capacity_factor": 0.2397684302600851,
+          "capacity_drop_fraction": 0.7602315697399149
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_023",
+      "seed": 20260347,
+      "broken_buses": [
+        17,
+        25,
+        6,
+        21,
+        12,
+        27,
+        5,
+        22,
+        28,
+        31,
+        32,
+        19
+      ],
+      "broken_links": [
+        {
+          "u": 22,
+          "v": 23,
+          "remaining_capacity_factor": 0.3737898756052511,
+          "capacity_drop_fraction": 0.6262101243947489
+        },
+        {
+          "u": 20,
+          "v": 19,
+          "remaining_capacity_factor": 0.13364149104369216,
+          "capacity_drop_fraction": 0.8663585089563078
+        },
+        {
+          "u": 8,
+          "v": 16,
+          "remaining_capacity_factor": 0.3773486291799115,
+          "capacity_drop_fraction": 0.6226513708200885
+        },
+        {
+          "u": 24,
+          "v": 23,
+          "remaining_capacity_factor": 0.08099905137650665,
+          "capacity_drop_fraction": 0.9190009486234934
+        },
+        {
+          "u": 20,
+          "v": 21,
+          "remaining_capacity_factor": 0.17718528881451157,
+          "capacity_drop_fraction": 0.8228147111854884
+        },
+        {
+          "u": 14,
+          "v": 11,
+          "remaining_capacity_factor": 0.27034424861916206,
+          "capacity_drop_fraction": 0.7296557513808379
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_024",
+      "seed": 20260348,
+      "broken_buses": [
+        28,
+        23,
+        32,
+        27,
+        4,
+        31,
+        22,
+        13,
+        33,
+        26,
+        2,
+        11
+      ],
+      "broken_links": [
+        {
+          "u": 9,
+          "v": 8,
+          "remaining_capacity_factor": 0.2181143814321539,
+          "capacity_drop_fraction": 0.7818856185678461
+        },
+        {
+          "u": 6,
+          "v": 8,
+          "remaining_capacity_factor": 0.43190400790622707,
+          "capacity_drop_fraction": 0.5680959920937729
+        },
+        {
+          "u": 15,
+          "v": 19,
+          "remaining_capacity_factor": 0.43933472024252684,
+          "capacity_drop_fraction": 0.5606652797574732
+        },
+        {
+          "u": 10,
+          "v": 9,
+          "remaining_capacity_factor": 0.2463347444515206,
+          "capacity_drop_fraction": 0.7536652555484794
+        },
+        {
+          "u": 10,
+          "v": 16,
+          "remaining_capacity_factor": 0.010088103295736062,
+          "capacity_drop_fraction": 0.9899118967042639
+        },
+        {
+          "u": 10,
+          "v": 15,
+          "remaining_capacity_factor": 0.30841032389749445,
+          "capacity_drop_fraction": 0.6915896761025055
+        },
+        {
+          "u": 16,
+          "v": 10,
+          "remaining_capacity_factor": 0.2833040176092234,
+          "capacity_drop_fraction": 0.7166959823907766
+        },
+        {
+          "u": 1,
+          "v": 2,
+          "remaining_capacity_factor": 0.3380845657930396,
+          "capacity_drop_fraction": 0.6619154342069604
+        },
+        {
+          "u": 4,
+          "v": 11,
+          "remaining_capacity_factor": 0.06449519138912818,
+          "capacity_drop_fraction": 0.9355048086108718
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_025",
+      "seed": 20260349,
+      "broken_buses": [
+        32,
+        29,
+        21,
+        5,
+        16,
+        10,
+        31,
+        23,
+        22,
+        27,
+        28,
+        4,
+        9
+      ],
+      "broken_links": [
+        {
+          "u": 10,
+          "v": 11,
+          "remaining_capacity_factor": 0.31147890836618597,
+          "capacity_drop_fraction": 0.688521091633814
+        },
+        {
+          "u": 12,
+          "v": 11,
+          "remaining_capacity_factor": 0.05568965777892865,
+          "capacity_drop_fraction": 0.9443103422210714
+        },
+        {
+          "u": 6,
+          "v": 8,
+          "remaining_capacity_factor": 0.07321989223046088,
+          "capacity_drop_fraction": 0.9267801077695391
+        },
+        {
+          "u": 6,
+          "v": 5,
+          "remaining_capacity_factor": 0.11092232641930189,
+          "capacity_drop_fraction": 0.8890776735806981
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_026",
+      "seed": 20260350,
+      "broken_buses": [
+        6,
+        25,
+        30,
+        14,
+        20,
+        32,
+        3,
+        17,
+        7,
+        26,
+        19
+      ],
+      "broken_links": [
+        {
+          "u": 15,
+          "v": 19,
+          "remaining_capacity_factor": 0.014092325496875002,
+          "capacity_drop_fraction": 0.985907674503125
+        },
+        {
+          "u": 23,
+          "v": 24,
+          "remaining_capacity_factor": 0.11520186665205356,
+          "capacity_drop_fraction": 0.8847981333479464
+        },
+        {
+          "u": 10,
+          "v": 9,
+          "remaining_capacity_factor": 0.16623493780186038,
+          "capacity_drop_fraction": 0.8337650621981396
+        },
+        {
+          "u": 3,
+          "v": 4,
+          "remaining_capacity_factor": 0.13351834896504733,
+          "capacity_drop_fraction": 0.8664816510349527
+        },
+        {
+          "u": 5,
+          "v": 6,
+          "remaining_capacity_factor": 0.4123109067817945,
+          "capacity_drop_fraction": 0.5876890932182055
+        },
+        {
+          "u": 19,
+          "v": 15,
+          "remaining_capacity_factor": 0.1013647131241906,
+          "capacity_drop_fraction": 0.8986352868758094
+        },
+        {
+          "u": 3,
+          "v": 12,
+          "remaining_capacity_factor": 0.4980989483885553,
+          "capacity_drop_fraction": 0.5019010516114447
+        },
+        {
+          "u": 11,
+          "v": 12,
+          "remaining_capacity_factor": 0.01625366712259857,
+          "capacity_drop_fraction": 0.9837463328774014
+        },
+        {
+          "u": 15,
+          "v": 14,
+          "remaining_capacity_factor": 0.41541758702305154,
+          "capacity_drop_fraction": 0.5845824129769485
+        },
+        {
+          "u": 1,
+          "v": 2,
+          "remaining_capacity_factor": 0.13310588668623802,
+          "capacity_drop_fraction": 0.866894113313762
+        },
+        {
+          "u": 20,
+          "v": 19,
+          "remaining_capacity_factor": 0.3379252646770097,
+          "capacity_drop_fraction": 0.6620747353229903
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_027",
+      "seed": 20260351,
+      "broken_buses": [
+        6,
+        24,
+        15,
+        28,
+        4,
+        10,
+        22,
+        5,
+        1,
+        3
+      ],
+      "broken_links": [
+        {
+          "u": 2,
+          "v": 1,
+          "remaining_capacity_factor": 0.47527604915028254,
+          "capacity_drop_fraction": 0.5247239508497175
+        },
+        {
+          "u": 24,
+          "v": 13,
+          "remaining_capacity_factor": 0.27571041977121213,
+          "capacity_drop_fraction": 0.7242895802287879
+        },
+        {
+          "u": 8,
+          "v": 16,
+          "remaining_capacity_factor": 0.4990352427157816,
+          "capacity_drop_fraction": 0.5009647572842184
+        },
+        {
+          "u": 8,
+          "v": 9,
+          "remaining_capacity_factor": 0.04211088376293526,
+          "capacity_drop_fraction": 0.9578891162370647
+        },
+        {
+          "u": 16,
+          "v": 8,
+          "remaining_capacity_factor": 0.14502801918101582,
+          "capacity_drop_fraction": 0.8549719808189842
+        },
+        {
+          "u": 22,
+          "v": 15,
+          "remaining_capacity_factor": 0.1506888090303784,
+          "capacity_drop_fraction": 0.8493111909696216
+        },
+        {
+          "u": 17,
+          "v": 19,
+          "remaining_capacity_factor": 0.25817051378141376,
+          "capacity_drop_fraction": 0.7418294862185862
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_028",
+      "seed": 20260352,
+      "broken_buses": [
+        7,
+        29,
+        25,
+        19,
+        17,
+        18,
+        3,
+        14,
+        33
+      ],
+      "broken_links": [
+        {
+          "u": 12,
+          "v": 13,
+          "remaining_capacity_factor": 0.38200396298549943,
+          "capacity_drop_fraction": 0.6179960370145006
+        },
+        {
+          "u": 11,
+          "v": 12,
+          "remaining_capacity_factor": 0.2066546596491341,
+          "capacity_drop_fraction": 0.7933453403508659
+        },
+        {
+          "u": 11,
+          "v": 4,
+          "remaining_capacity_factor": 0.49315220819755734,
+          "capacity_drop_fraction": 0.5068477918024427
+        },
+        {
+          "u": 19,
+          "v": 15,
+          "remaining_capacity_factor": 0.4443806286907318,
+          "capacity_drop_fraction": 0.5556193713092682
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_029",
+      "seed": 20260353,
+      "broken_buses": [
+        3,
+        27,
+        14,
+        23,
+        6,
+        7,
+        24,
+        12,
+        18,
+        30,
+        13,
+        19,
+        29
+      ],
+      "broken_links": [
+        {
+          "u": 19,
+          "v": 17,
+          "remaining_capacity_factor": 0.20040335841017476,
+          "capacity_drop_fraction": 0.7995966415898252
+        },
+        {
+          "u": 17,
+          "v": 10,
+          "remaining_capacity_factor": 0.10312001578974894,
+          "capacity_drop_fraction": 0.8968799842102511
+        },
+        {
+          "u": 1,
+          "v": 3,
+          "remaining_capacity_factor": 0.13772638746905874,
+          "capacity_drop_fraction": 0.8622736125309413
+        },
+        {
+          "u": 9,
+          "v": 10,
+          "remaining_capacity_factor": 0.2829682260683739,
+          "capacity_drop_fraction": 0.7170317739316261
+        },
+        {
+          "u": 8,
+          "v": 9,
+          "remaining_capacity_factor": 0.17228228394809786,
+          "capacity_drop_fraction": 0.8277177160519021
+        },
+        {
+          "u": 19,
+          "v": 15,
+          "remaining_capacity_factor": 0.4966333073357634,
+          "capacity_drop_fraction": 0.5033666926642366
+        },
+        {
+          "u": 14,
+          "v": 23,
+          "remaining_capacity_factor": 0.2616936319164995,
+          "capacity_drop_fraction": 0.7383063680835005
+        },
+        {
+          "u": 1,
+          "v": 2,
+          "remaining_capacity_factor": 0.32795178207182485,
+          "capacity_drop_fraction": 0.6720482179281752
+        },
+        {
+          "u": 8,
+          "v": 7,
+          "remaining_capacity_factor": 0.1876535102108985,
+          "capacity_drop_fraction": 0.8123464897891015
+        },
+        {
+          "u": 4,
+          "v": 5,
+          "remaining_capacity_factor": 0.08580853827054102,
+          "capacity_drop_fraction": 0.914191461729459
+        },
+        {
+          "u": 2,
+          "v": 6,
+          "remaining_capacity_factor": 0.320401005174344,
+          "capacity_drop_fraction": 0.679598994825656
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_030",
+      "seed": 20260354,
+      "broken_buses": [
+        27,
+        11,
+        14,
+        32,
+        19,
+        17,
+        6,
+        5,
+        33,
+        16,
+        22
+      ],
+      "broken_links": [
+        {
+          "u": 21,
+          "v": 24,
+          "remaining_capacity_factor": 0.42942181726046935,
+          "capacity_drop_fraction": 0.5705781827395306
+        },
+        {
+          "u": 12,
+          "v": 3,
+          "remaining_capacity_factor": 0.2494109995264855,
+          "capacity_drop_fraction": 0.7505890004735145
+        },
+        {
+          "u": 23,
+          "v": 22,
+          "remaining_capacity_factor": 0.3343755391714549,
+          "capacity_drop_fraction": 0.6656244608285451
+        },
+        {
+          "u": 4,
+          "v": 11,
+          "remaining_capacity_factor": 0.4329174949328749,
+          "capacity_drop_fraction": 0.5670825050671251
+        },
+        {
+          "u": 3,
+          "v": 1,
+          "remaining_capacity_factor": 0.31936772779736966,
+          "capacity_drop_fraction": 0.6806322722026303
+        },
+        {
+          "u": 8,
+          "v": 16,
+          "remaining_capacity_factor": 0.1412175810386851,
+          "capacity_drop_fraction": 0.8587824189613149
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_031",
+      "seed": 20260355,
+      "broken_buses": [
+        10,
+        25,
+        29,
+        7,
+        11,
+        18,
+        19,
+        8,
+        13,
+        3,
+        21
+      ],
+      "broken_links": [
+        {
+          "u": 16,
+          "v": 8,
+          "remaining_capacity_factor": 0.0895563728754305,
+          "capacity_drop_fraction": 0.9104436271245695
+        },
+        {
+          "u": 14,
+          "v": 11,
+          "remaining_capacity_factor": 0.36810347397418774,
+          "capacity_drop_fraction": 0.6318965260258123
+        },
+        {
+          "u": 7,
+          "v": 8,
+          "remaining_capacity_factor": 0.43871337701015567,
+          "capacity_drop_fraction": 0.5612866229898443
+        },
+        {
+          "u": 9,
+          "v": 5,
+          "remaining_capacity_factor": 0.3144638482973381,
+          "capacity_drop_fraction": 0.6855361517026619
+        },
+        {
+          "u": 23,
+          "v": 22,
+          "remaining_capacity_factor": 0.027137153339609643,
+          "capacity_drop_fraction": 0.9728628466603904
+        },
+        {
+          "u": 12,
+          "v": 13,
+          "remaining_capacity_factor": 0.12344512994471546,
+          "capacity_drop_fraction": 0.8765548700552845
+        },
+        {
+          "u": 20,
+          "v": 18,
+          "remaining_capacity_factor": 0.15426231268759572,
+          "capacity_drop_fraction": 0.8457376873124043
+        },
+        {
+          "u": 5,
+          "v": 9,
+          "remaining_capacity_factor": 0.44454104594492283,
+          "capacity_drop_fraction": 0.5554589540550772
+        },
+        {
+          "u": 6,
+          "v": 2,
+          "remaining_capacity_factor": 0.3065884006274253,
+          "capacity_drop_fraction": 0.6934115993725747
+        },
+        {
+          "u": 23,
+          "v": 24,
+          "remaining_capacity_factor": 0.02465134352776366,
+          "capacity_drop_fraction": 0.9753486564722363
+        },
+        {
+          "u": 20,
+          "v": 21,
+          "remaining_capacity_factor": 0.3888406705336509,
+          "capacity_drop_fraction": 0.6111593294663491
+        },
+        {
+          "u": 2,
+          "v": 6,
+          "remaining_capacity_factor": 0.4262447856056426,
+          "capacity_drop_fraction": 0.5737552143943574
+        },
+        {
+          "u": 15,
+          "v": 22,
+          "remaining_capacity_factor": 0.43033963614382,
+          "capacity_drop_fraction": 0.56966036385618
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_032",
+      "seed": 20260356,
+      "broken_buses": [
+        6,
+        2,
+        24,
+        7,
+        22,
+        15,
+        13,
+        12,
+        30,
+        4,
+        23,
+        25,
+        27,
+        18,
+        3
+      ],
+      "broken_links": [
+        {
+          "u": 24,
+          "v": 23,
+          "remaining_capacity_factor": 0.3145719722737782,
+          "capacity_drop_fraction": 0.6854280277262218
+        },
+        {
+          "u": 24,
+          "v": 21,
+          "remaining_capacity_factor": 0.10455275950593879,
+          "capacity_drop_fraction": 0.8954472404940612
+        },
+        {
+          "u": 22,
+          "v": 20,
+          "remaining_capacity_factor": 0.3672822561792275,
+          "capacity_drop_fraction": 0.6327177438207725
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_033",
+      "seed": 20260357,
+      "broken_buses": [
+        17,
+        16,
+        23,
+        20,
+        24,
+        22,
+        8,
+        9,
+        29,
+        31,
+        21,
+        11
+      ],
+      "broken_links": [
+        {
+          "u": 18,
+          "v": 16,
+          "remaining_capacity_factor": 0.13158346054262626,
+          "capacity_drop_fraction": 0.8684165394573737
+        },
+        {
+          "u": 3,
+          "v": 1,
+          "remaining_capacity_factor": 0.4730826450878811,
+          "capacity_drop_fraction": 0.5269173549121189
+        },
+        {
+          "u": 5,
+          "v": 4,
+          "remaining_capacity_factor": 0.004804907776358003,
+          "capacity_drop_fraction": 0.995195092223642
+        },
+        {
+          "u": 3,
+          "v": 12,
+          "remaining_capacity_factor": 0.4854237351945082,
+          "capacity_drop_fraction": 0.5145762648054918
+        },
+        {
+          "u": 16,
+          "v": 10,
+          "remaining_capacity_factor": 0.2986537975339436,
+          "capacity_drop_fraction": 0.7013462024660564
+        },
+        {
+          "u": 8,
+          "v": 16,
+          "remaining_capacity_factor": 0.32677354361460065,
+          "capacity_drop_fraction": 0.6732264563853994
+        },
+        {
+          "u": 17,
+          "v": 10,
+          "remaining_capacity_factor": 0.06949834694747148,
+          "capacity_drop_fraction": 0.9305016530525285
+        },
+        {
+          "u": 2,
+          "v": 6,
+          "remaining_capacity_factor": 0.0545507085051965,
+          "capacity_drop_fraction": 0.9454492914948035
+        },
+        {
+          "u": 20,
+          "v": 18,
+          "remaining_capacity_factor": 0.4428836747760989,
+          "capacity_drop_fraction": 0.5571163252239011
+        },
+        {
+          "u": 22,
+          "v": 15,
+          "remaining_capacity_factor": 0.38858113902506297,
+          "capacity_drop_fraction": 0.611418860974937
+        },
+        {
+          "u": 4,
+          "v": 5,
+          "remaining_capacity_factor": 0.21290097103704664,
+          "capacity_drop_fraction": 0.7870990289629534
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_034",
+      "seed": 20260358,
+      "broken_buses": [
+        16,
+        11,
+        23,
+        28,
+        9,
+        20,
+        26,
+        3,
+        10,
+        17,
+        4
+      ],
+      "broken_links": [
+        {
+          "u": 13,
+          "v": 12,
+          "remaining_capacity_factor": 0.29328364324910805,
+          "capacity_drop_fraction": 0.706716356750892
+        },
+        {
+          "u": 4,
+          "v": 11,
+          "remaining_capacity_factor": 0.1284705111068063,
+          "capacity_drop_fraction": 0.8715294888931937
+        },
+        {
+          "u": 24,
+          "v": 21,
+          "remaining_capacity_factor": 0.12662875502536863,
+          "capacity_drop_fraction": 0.8733712449746314
+        },
+        {
+          "u": 17,
+          "v": 10,
+          "remaining_capacity_factor": 0.27529932857526684,
+          "capacity_drop_fraction": 0.7247006714247332
+        },
+        {
+          "u": 8,
+          "v": 16,
+          "remaining_capacity_factor": 0.4888797475469697,
+          "capacity_drop_fraction": 0.5111202524530303
+        },
+        {
+          "u": 3,
+          "v": 12,
+          "remaining_capacity_factor": 0.1291654457931416,
+          "capacity_drop_fraction": 0.8708345542068584
+        },
+        {
+          "u": 10,
+          "v": 15,
+          "remaining_capacity_factor": 0.4325892238635538,
+          "capacity_drop_fraction": 0.5674107761364462
+        },
+        {
+          "u": 14,
+          "v": 23,
+          "remaining_capacity_factor": 0.2935003486701038,
+          "capacity_drop_fraction": 0.7064996513298962
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_035",
+      "seed": 20260359,
+      "broken_buses": [
+        6,
+        33,
+        16,
+        30,
+        5,
+        1,
+        21,
+        26
+      ],
+      "broken_links": [
+        {
+          "u": 10,
+          "v": 11,
+          "remaining_capacity_factor": 0.4752038701812962,
+          "capacity_drop_fraction": 0.5247961298187038
+        },
+        {
+          "u": 16,
+          "v": 8,
+          "remaining_capacity_factor": 0.09336956839204569,
+          "capacity_drop_fraction": 0.9066304316079543
+        },
+        {
+          "u": 16,
+          "v": 17,
+          "remaining_capacity_factor": 0.45254394358553396,
+          "capacity_drop_fraction": 0.547456056414466
+        },
+        {
+          "u": 14,
+          "v": 15,
+          "remaining_capacity_factor": 0.40428281678768574,
+          "capacity_drop_fraction": 0.5957171832123143
+        },
+        {
+          "u": 1,
+          "v": 2,
+          "remaining_capacity_factor": 0.03572944557920987,
+          "capacity_drop_fraction": 0.9642705544207901
+        },
+        {
+          "u": 17,
+          "v": 16,
+          "remaining_capacity_factor": 0.17964397360301265,
+          "capacity_drop_fraction": 0.8203560263969873
+        },
+        {
+          "u": 24,
+          "v": 23,
+          "remaining_capacity_factor": 0.36935872038147,
+          "capacity_drop_fraction": 0.63064127961853
+        },
+        {
+          "u": 9,
+          "v": 8,
+          "remaining_capacity_factor": 0.231391290947476,
+          "capacity_drop_fraction": 0.768608709052524
+        },
+        {
+          "u": 10,
+          "v": 16,
+          "remaining_capacity_factor": 0.15793055723502736,
+          "capacity_drop_fraction": 0.8420694427649726
+        },
+        {
+          "u": 16,
+          "v": 18,
+          "remaining_capacity_factor": 0.07849500113825436,
+          "capacity_drop_fraction": 0.9215049988617456
+        },
+        {
+          "u": 9,
+          "v": 5,
+          "remaining_capacity_factor": 0.30229299126758225,
+          "capacity_drop_fraction": 0.6977070087324178
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_036",
+      "seed": 20260360,
+      "broken_buses": [
+        32,
+        8,
+        20,
+        5,
+        31,
+        7,
+        13,
+        1
+      ],
+      "broken_links": [
+        {
+          "u": 18,
+          "v": 16,
+          "remaining_capacity_factor": 0.03033577034806767,
+          "capacity_drop_fraction": 0.9696642296519323
+        },
+        {
+          "u": 12,
+          "v": 3,
+          "remaining_capacity_factor": 0.26827345418274073,
+          "capacity_drop_fraction": 0.7317265458172593
+        },
+        {
+          "u": 11,
+          "v": 14,
+          "remaining_capacity_factor": 0.3094181368842339,
+          "capacity_drop_fraction": 0.6905818631157661
+        },
+        {
+          "u": 13,
+          "v": 24,
+          "remaining_capacity_factor": 0.10667498284147858,
+          "capacity_drop_fraction": 0.8933250171585214
+        },
+        {
+          "u": 12,
+          "v": 11,
+          "remaining_capacity_factor": 0.12319956719560465,
+          "capacity_drop_fraction": 0.8768004328043953
+        },
+        {
+          "u": 3,
+          "v": 12,
+          "remaining_capacity_factor": 0.029762301532623603,
+          "capacity_drop_fraction": 0.9702376984673764
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_037",
+      "seed": 20260361,
+      "broken_buses": [
+        2,
+        16,
+        31,
+        27,
+        17,
+        10,
+        19,
+        15,
+        8,
+        7,
+        1,
+        26,
+        9
+      ],
+      "broken_links": [
+        {
+          "u": 15,
+          "v": 10,
+          "remaining_capacity_factor": 0.12879621372400374,
+          "capacity_drop_fraction": 0.8712037862759963
+        },
+        {
+          "u": 12,
+          "v": 3,
+          "remaining_capacity_factor": 0.2168225521895244,
+          "capacity_drop_fraction": 0.7831774478104756
+        },
+        {
+          "u": 20,
+          "v": 18,
+          "remaining_capacity_factor": 0.3085343141966468,
+          "capacity_drop_fraction": 0.6914656858033532
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_038",
+      "seed": 20260362,
+      "broken_buses": [
+        6,
+        5,
+        14,
+        26,
+        24,
+        15,
+        27,
+        20,
+        10
+      ],
+      "broken_links": [
+        {
+          "u": 24,
+          "v": 13,
+          "remaining_capacity_factor": 0.47101843460247605,
+          "capacity_drop_fraction": 0.528981565397524
+        },
+        {
+          "u": 4,
+          "v": 11,
+          "remaining_capacity_factor": 0.29225898665419126,
+          "capacity_drop_fraction": 0.7077410133458087
+        },
+        {
+          "u": 14,
+          "v": 11,
+          "remaining_capacity_factor": 0.16085299687413834,
+          "capacity_drop_fraction": 0.8391470031258617
+        },
+        {
+          "u": 7,
+          "v": 8,
+          "remaining_capacity_factor": 0.008765480112121526,
+          "capacity_drop_fraction": 0.9912345198878785
+        },
+        {
+          "u": 3,
+          "v": 1,
+          "remaining_capacity_factor": 0.22476119033898811,
+          "capacity_drop_fraction": 0.7752388096610119
+        },
+        {
+          "u": 23,
+          "v": 14,
+          "remaining_capacity_factor": 0.09845769630624446,
+          "capacity_drop_fraction": 0.9015423036937555
+        },
+        {
+          "u": 15,
+          "v": 19,
+          "remaining_capacity_factor": 0.06479360656504662,
+          "capacity_drop_fraction": 0.9352063934349534
+        },
+        {
+          "u": 22,
+          "v": 23,
+          "remaining_capacity_factor": 0.4575401195986064,
+          "capacity_drop_fraction": 0.5424598804013936
+        },
+        {
+          "u": 15,
+          "v": 10,
+          "remaining_capacity_factor": 0.10060457220371921,
+          "capacity_drop_fraction": 0.8993954277962808
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_039",
+      "seed": 20260363,
+      "broken_buses": [
+        26,
+        32,
+        28,
+        24,
+        21,
+        2,
+        17,
+        3,
+        5,
+        27
+      ],
+      "broken_links": [
+        {
+          "u": 21,
+          "v": 22,
+          "remaining_capacity_factor": 0.24350924780983862,
+          "capacity_drop_fraction": 0.7564907521901614
+        },
+        {
+          "u": 10,
+          "v": 9,
+          "remaining_capacity_factor": 0.4636533645372638,
+          "capacity_drop_fraction": 0.5363466354627362
+        },
+        {
+          "u": 4,
+          "v": 3,
+          "remaining_capacity_factor": 0.26114194076172437,
+          "capacity_drop_fraction": 0.7388580592382756
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_040",
+      "seed": 20260364,
+      "broken_buses": [
+        10,
+        7,
+        8,
+        24,
+        27,
+        9,
+        3,
+        1,
+        29,
+        21,
+        30,
+        11,
+        5,
+        17
+      ],
+      "broken_links": [
+        {
+          "u": 6,
+          "v": 5,
+          "remaining_capacity_factor": 0.45614784555651866,
+          "capacity_drop_fraction": 0.5438521544434813
+        },
+        {
+          "u": 5,
+          "v": 4,
+          "remaining_capacity_factor": 0.2036172705196544,
+          "capacity_drop_fraction": 0.7963827294803456
+        },
+        {
+          "u": 16,
+          "v": 10,
+          "remaining_capacity_factor": 0.28717598649964304,
+          "capacity_drop_fraction": 0.712824013500357
+        },
+        {
+          "u": 14,
+          "v": 23,
+          "remaining_capacity_factor": 0.2129107487978934,
+          "capacity_drop_fraction": 0.7870892512021066
+        },
+        {
+          "u": 14,
+          "v": 11,
+          "remaining_capacity_factor": 0.06728007380907108,
+          "capacity_drop_fraction": 0.9327199261909289
+        },
+        {
+          "u": 12,
+          "v": 3,
+          "remaining_capacity_factor": 0.08749443363547993,
+          "capacity_drop_fraction": 0.9125055663645201
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_041",
+      "seed": 20260365,
+      "broken_buses": [
+        21,
+        27,
+        22,
+        16,
+        10,
+        23,
+        12,
+        15,
+        14,
+        26,
+        3
+      ],
+      "broken_links": [
+        {
+          "u": 1,
+          "v": 3,
+          "remaining_capacity_factor": 0.35888659168581283,
+          "capacity_drop_fraction": 0.6411134083141872
+        },
+        {
+          "u": 11,
+          "v": 4,
+          "remaining_capacity_factor": 0.45327097714674214,
+          "capacity_drop_fraction": 0.5467290228532579
+        },
+        {
+          "u": 22,
+          "v": 23,
+          "remaining_capacity_factor": 0.09749033866662249,
+          "capacity_drop_fraction": 0.9025096613333775
+        },
+        {
+          "u": 18,
+          "v": 20,
+          "remaining_capacity_factor": 0.1998191542275526,
+          "capacity_drop_fraction": 0.8001808457724474
+        },
+        {
+          "u": 16,
+          "v": 18,
+          "remaining_capacity_factor": 0.2860835980541262,
+          "capacity_drop_fraction": 0.7139164019458738
+        },
+        {
+          "u": 19,
+          "v": 15,
+          "remaining_capacity_factor": 0.2848089153376623,
+          "capacity_drop_fraction": 0.7151910846623377
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_042",
+      "seed": 20260366,
+      "broken_buses": [
+        16,
+        4,
+        3,
+        20,
+        31,
+        15,
+        28,
+        11,
+        32,
+        10,
+        19,
+        6,
+        2,
+        29
+      ],
+      "broken_links": [
+        {
+          "u": 8,
+          "v": 9,
+          "remaining_capacity_factor": 0.3623080774767353,
+          "capacity_drop_fraction": 0.6376919225232647
+        },
+        {
+          "u": 16,
+          "v": 18,
+          "remaining_capacity_factor": 0.42712752518012587,
+          "capacity_drop_fraction": 0.5728724748198741
+        },
+        {
+          "u": 14,
+          "v": 15,
+          "remaining_capacity_factor": 0.3715288156826775,
+          "capacity_drop_fraction": 0.6284711843173225
+        },
+        {
+          "u": 10,
+          "v": 17,
+          "remaining_capacity_factor": 0.006508279277308349,
+          "capacity_drop_fraction": 0.9934917207226917
+        },
+        {
+          "u": 23,
+          "v": 14,
+          "remaining_capacity_factor": 0.14609451347580893,
+          "capacity_drop_fraction": 0.8539054865241911
+        },
+        {
+          "u": 15,
+          "v": 19,
+          "remaining_capacity_factor": 0.3408138276730548,
+          "capacity_drop_fraction": 0.6591861723269452
+        },
+        {
+          "u": 16,
+          "v": 17,
+          "remaining_capacity_factor": 0.4499770126766328,
+          "capacity_drop_fraction": 0.5500229873233672
+        },
+        {
+          "u": 20,
+          "v": 19,
+          "remaining_capacity_factor": 0.34899684961235744,
+          "capacity_drop_fraction": 0.6510031503876426
+        },
+        {
+          "u": 15,
+          "v": 14,
+          "remaining_capacity_factor": 0.37191193835119774,
+          "capacity_drop_fraction": 0.6280880616488023
+        },
+        {
+          "u": 6,
+          "v": 5,
+          "remaining_capacity_factor": 0.46798335673496794,
+          "capacity_drop_fraction": 0.5320166432650321
+        },
+        {
+          "u": 18,
+          "v": 20,
+          "remaining_capacity_factor": 0.22379648431828914,
+          "capacity_drop_fraction": 0.7762035156817109
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_043",
+      "seed": 20260367,
+      "broken_buses": [
+        14,
+        13,
+        15,
+        24,
+        18,
+        3,
+        23,
+        1,
+        10,
+        28,
+        19,
+        16,
+        27,
+        32
+      ],
+      "broken_links": [
+        {
+          "u": 12,
+          "v": 11,
+          "remaining_capacity_factor": 0.007100880947772947,
+          "capacity_drop_fraction": 0.992899119052227
+        },
+        {
+          "u": 9,
+          "v": 5,
+          "remaining_capacity_factor": 0.28431535872050695,
+          "capacity_drop_fraction": 0.715684641279493
+        },
+        {
+          "u": 23,
+          "v": 24,
+          "remaining_capacity_factor": 0.3964877843146477,
+          "capacity_drop_fraction": 0.6035122156853523
+        },
+        {
+          "u": 15,
+          "v": 14,
+          "remaining_capacity_factor": 0.3858386012088457,
+          "capacity_drop_fraction": 0.6141613987911543
+        },
+        {
+          "u": 10,
+          "v": 17,
+          "remaining_capacity_factor": 0.39847622187627474,
+          "capacity_drop_fraction": 0.6015237781237253
+        },
+        {
+          "u": 7,
+          "v": 18,
+          "remaining_capacity_factor": 0.4459883196071739,
+          "capacity_drop_fraction": 0.5540116803928261
+        },
+        {
+          "u": 14,
+          "v": 15,
+          "remaining_capacity_factor": 0.4262075827098838,
+          "capacity_drop_fraction": 0.5737924172901162
+        },
+        {
+          "u": 16,
+          "v": 10,
+          "remaining_capacity_factor": 0.17681997959222662,
+          "capacity_drop_fraction": 0.8231800204077734
+        },
+        {
+          "u": 4,
+          "v": 3,
+          "remaining_capacity_factor": 0.054331131678418965,
+          "capacity_drop_fraction": 0.945668868321581
+        },
+        {
+          "u": 5,
+          "v": 9,
+          "remaining_capacity_factor": 0.4865833238842854,
+          "capacity_drop_fraction": 0.5134166761157146
+        },
+        {
+          "u": 18,
+          "v": 20,
+          "remaining_capacity_factor": 0.06698956066945772,
+          "capacity_drop_fraction": 0.9330104393305423
+        },
+        {
+          "u": 24,
+          "v": 13,
+          "remaining_capacity_factor": 0.17547700437692582,
+          "capacity_drop_fraction": 0.8245229956230742
+        },
+        {
+          "u": 22,
+          "v": 20,
+          "remaining_capacity_factor": 0.20876239424344667,
+          "capacity_drop_fraction": 0.7912376057565533
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_044",
+      "seed": 20260368,
+      "broken_buses": [
+        23,
+        33,
+        5,
+        26,
+        31,
+        27,
+        2,
+        21,
+        10,
+        25,
+        6,
+        12,
+        16
+      ],
+      "broken_links": [
+        {
+          "u": 6,
+          "v": 5,
+          "remaining_capacity_factor": 0.3211900828956642,
+          "capacity_drop_fraction": 0.6788099171043358
+        },
+        {
+          "u": 19,
+          "v": 17,
+          "remaining_capacity_factor": 0.4625455919873578,
+          "capacity_drop_fraction": 0.5374544080126422
+        },
+        {
+          "u": 9,
+          "v": 5,
+          "remaining_capacity_factor": 0.16983807891182567,
+          "capacity_drop_fraction": 0.8301619210881743
+        },
+        {
+          "u": 16,
+          "v": 8,
+          "remaining_capacity_factor": 0.14204219740767776,
+          "capacity_drop_fraction": 0.8579578025923222
+        },
+        {
+          "u": 19,
+          "v": 20,
+          "remaining_capacity_factor": 0.49700564606923925,
+          "capacity_drop_fraction": 0.5029943539307608
+        },
+        {
+          "u": 11,
+          "v": 12,
+          "remaining_capacity_factor": 0.1134379325822501,
+          "capacity_drop_fraction": 0.8865620674177499
+        },
+        {
+          "u": 22,
+          "v": 21,
+          "remaining_capacity_factor": 0.1039776144354082,
+          "capacity_drop_fraction": 0.8960223855645918
+        },
+        {
+          "u": 12,
+          "v": 11,
+          "remaining_capacity_factor": 0.14332110916446816,
+          "capacity_drop_fraction": 0.8566788908355318
+        },
+        {
+          "u": 12,
+          "v": 13,
+          "remaining_capacity_factor": 0.48566099599089463,
+          "capacity_drop_fraction": 0.5143390040091054
+        },
+        {
+          "u": 11,
+          "v": 10,
+          "remaining_capacity_factor": 0.2582547686099269,
+          "capacity_drop_fraction": 0.7417452313900731
+        },
+        {
+          "u": 23,
+          "v": 22,
+          "remaining_capacity_factor": 0.3706351934878692,
+          "capacity_drop_fraction": 0.6293648065121308
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_045",
+      "seed": 20260369,
+      "broken_buses": [
+        6,
+        16,
+        17,
+        29,
+        30,
+        11,
+        1,
+        28,
+        32,
+        19,
+        21,
+        5
+      ],
+      "broken_links": [
+        {
+          "u": 9,
+          "v": 5,
+          "remaining_capacity_factor": 0.4369797837360505,
+          "capacity_drop_fraction": 0.5630202162639495
+        },
+        {
+          "u": 15,
+          "v": 14,
+          "remaining_capacity_factor": 0.07794505324375967,
+          "capacity_drop_fraction": 0.9220549467562403
+        },
+        {
+          "u": 10,
+          "v": 16,
+          "remaining_capacity_factor": 0.009519472022940567,
+          "capacity_drop_fraction": 0.9904805279770594
+        },
+        {
+          "u": 23,
+          "v": 24,
+          "remaining_capacity_factor": 0.12954108339461223,
+          "capacity_drop_fraction": 0.8704589166053878
+        },
+        {
+          "u": 19,
+          "v": 15,
+          "remaining_capacity_factor": 0.4601676283525242,
+          "capacity_drop_fraction": 0.5398323716474758
+        },
+        {
+          "u": 12,
+          "v": 13,
+          "remaining_capacity_factor": 0.222743405311719,
+          "capacity_drop_fraction": 0.777256594688281
+        },
+        {
+          "u": 3,
+          "v": 12,
+          "remaining_capacity_factor": 0.11928781744216388,
+          "capacity_drop_fraction": 0.8807121825578361
+        },
+        {
+          "u": 17,
+          "v": 19,
+          "remaining_capacity_factor": 0.3100746011678235,
+          "capacity_drop_fraction": 0.6899253988321765
+        },
+        {
+          "u": 13,
+          "v": 12,
+          "remaining_capacity_factor": 0.3874940005624996,
+          "capacity_drop_fraction": 0.6125059994375004
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_046",
+      "seed": 20260370,
+      "broken_buses": [
+        10,
+        33,
+        4,
+        13,
+        25,
+        30,
+        20,
+        18,
+        5,
+        31
+      ],
+      "broken_links": [
+        {
+          "u": 10,
+          "v": 11,
+          "remaining_capacity_factor": 0.012758843427198463,
+          "capacity_drop_fraction": 0.9872411565728015
+        },
+        {
+          "u": 15,
+          "v": 10,
+          "remaining_capacity_factor": 0.01949734364459199,
+          "capacity_drop_fraction": 0.980502656355408
+        },
+        {
+          "u": 8,
+          "v": 16,
+          "remaining_capacity_factor": 0.003588139552674008,
+          "capacity_drop_fraction": 0.996411860447326
+        },
+        {
+          "u": 17,
+          "v": 19,
+          "remaining_capacity_factor": 0.24418985988503905,
+          "capacity_drop_fraction": 0.755810140114961
+        },
+        {
+          "u": 2,
+          "v": 6,
+          "remaining_capacity_factor": 0.0702611687174346,
+          "capacity_drop_fraction": 0.9297388312825654
+        },
+        {
+          "u": 1,
+          "v": 2,
+          "remaining_capacity_factor": 0.1996877299104436,
+          "capacity_drop_fraction": 0.8003122700895564
+        },
+        {
+          "u": 23,
+          "v": 14,
+          "remaining_capacity_factor": 0.049007766120139795,
+          "capacity_drop_fraction": 0.9509922338798602
+        },
+        {
+          "u": 9,
+          "v": 10,
+          "remaining_capacity_factor": 0.05115224542894514,
+          "capacity_drop_fraction": 0.9488477545710549
+        },
+        {
+          "u": 11,
+          "v": 14,
+          "remaining_capacity_factor": 0.43382837751911507,
+          "capacity_drop_fraction": 0.5661716224808849
+        },
+        {
+          "u": 9,
+          "v": 8,
+          "remaining_capacity_factor": 0.49679266223659757,
+          "capacity_drop_fraction": 0.5032073377634024
+        },
+        {
+          "u": 13,
+          "v": 12,
+          "remaining_capacity_factor": 0.499089738103206,
+          "capacity_drop_fraction": 0.500910261896794
+        },
+        {
+          "u": 16,
+          "v": 18,
+          "remaining_capacity_factor": 0.18488027384073047,
+          "capacity_drop_fraction": 0.8151197261592695
+        },
+        {
+          "u": 1,
+          "v": 3,
+          "remaining_capacity_factor": 0.43529035465719734,
+          "capacity_drop_fraction": 0.5647096453428027
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_047",
+      "seed": 20260371,
+      "broken_buses": [
+        19,
+        8,
+        12,
+        23,
+        20,
+        7,
+        25,
+        10,
+        22,
+        2,
+        26,
+        9,
+        1
+      ],
+      "broken_links": [
+        {
+          "u": 17,
+          "v": 16,
+          "remaining_capacity_factor": 0.18620946358492607,
+          "capacity_drop_fraction": 0.8137905364150739
+        },
+        {
+          "u": 23,
+          "v": 24,
+          "remaining_capacity_factor": 0.10621071936296156,
+          "capacity_drop_fraction": 0.8937892806370384
+        },
+        {
+          "u": 24,
+          "v": 13,
+          "remaining_capacity_factor": 0.2540710043497414,
+          "capacity_drop_fraction": 0.7459289956502586
+        },
+        {
+          "u": 9,
+          "v": 5,
+          "remaining_capacity_factor": 0.4819575031764549,
+          "capacity_drop_fraction": 0.5180424968235451
+        },
+        {
+          "u": 16,
+          "v": 18,
+          "remaining_capacity_factor": 0.36392331122550126,
+          "capacity_drop_fraction": 0.6360766887744987
+        },
+        {
+          "u": 15,
+          "v": 19,
+          "remaining_capacity_factor": 0.06155434307832586,
+          "capacity_drop_fraction": 0.9384456569216741
+        },
+        {
+          "u": 11,
+          "v": 12,
+          "remaining_capacity_factor": 0.46461624681006897,
+          "capacity_drop_fraction": 0.535383753189931
+        },
+        {
+          "u": 8,
+          "v": 7,
+          "remaining_capacity_factor": 0.08020757646560073,
+          "capacity_drop_fraction": 0.9197924235343993
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_048",
+      "seed": 20260372,
+      "broken_buses": [
+        17,
+        33,
+        1,
+        27,
+        4,
+        30,
+        26,
+        16,
+        3,
+        32,
+        8,
+        31
+      ],
+      "broken_links": [
+        {
+          "u": 6,
+          "v": 5,
+          "remaining_capacity_factor": 0.04869304186329204,
+          "capacity_drop_fraction": 0.951306958136708
+        },
+        {
+          "u": 11,
+          "v": 12,
+          "remaining_capacity_factor": 0.08633713752972472,
+          "capacity_drop_fraction": 0.9136628624702753
+        },
+        {
+          "u": 2,
+          "v": 1,
+          "remaining_capacity_factor": 0.1937275196953656,
+          "capacity_drop_fraction": 0.8062724803046344
+        },
+        {
+          "u": 12,
+          "v": 11,
+          "remaining_capacity_factor": 0.25777296343472766,
+          "capacity_drop_fraction": 0.7422270365652723
+        },
+        {
+          "u": 4,
+          "v": 11,
+          "remaining_capacity_factor": 0.15063443839615553,
+          "capacity_drop_fraction": 0.8493655616038445
+        },
+        {
+          "u": 4,
+          "v": 5,
+          "remaining_capacity_factor": 0.10546748971895803,
+          "capacity_drop_fraction": 0.894532510281042
+        },
+        {
+          "u": 13,
+          "v": 12,
+          "remaining_capacity_factor": 0.0457823921697581,
+          "capacity_drop_fraction": 0.9542176078302419
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_049",
+      "seed": 20260373,
+      "broken_buses": [
+        17,
+        25,
+        10,
+        11,
+        22,
+        15,
+        5,
+        31
+      ],
+      "broken_links": [
+        {
+          "u": 12,
+          "v": 3,
+          "remaining_capacity_factor": 0.4104950963403192,
+          "capacity_drop_fraction": 0.5895049036596808
+        },
+        {
+          "u": 10,
+          "v": 9,
+          "remaining_capacity_factor": 0.3876688698380122,
+          "capacity_drop_fraction": 0.6123311301619878
+        },
+        {
+          "u": 13,
+          "v": 12,
+          "remaining_capacity_factor": 0.0806423618018306,
+          "capacity_drop_fraction": 0.9193576381981694
+        },
+        {
+          "u": 8,
+          "v": 6,
+          "remaining_capacity_factor": 0.4903759078582218,
+          "capacity_drop_fraction": 0.5096240921417782
+        },
+        {
+          "u": 15,
+          "v": 19,
+          "remaining_capacity_factor": 0.022574001953172163,
+          "capacity_drop_fraction": 0.9774259980468278
+        },
+        {
+          "u": 23,
+          "v": 22,
+          "remaining_capacity_factor": 0.048027397866585275,
+          "capacity_drop_fraction": 0.9519726021334147
+        },
+        {
+          "u": 3,
+          "v": 4,
+          "remaining_capacity_factor": 0.022165122956350203,
+          "capacity_drop_fraction": 0.9778348770436498
+        },
+        {
+          "u": 5,
+          "v": 9,
+          "remaining_capacity_factor": 0.39928939399178276,
+          "capacity_drop_fraction": 0.6007106060082172
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_050",
+      "seed": 20260374,
+      "broken_buses": [
+        23,
+        11,
+        6,
+        4,
+        32,
+        24,
+        18,
+        21,
+        27,
+        13,
+        12,
+        15,
+        5
+      ],
+      "broken_links": [
+        {
+          "u": 9,
+          "v": 8,
+          "remaining_capacity_factor": 0.4846320676539775,
+          "capacity_drop_fraction": 0.5153679323460225
+        },
+        {
+          "u": 20,
+          "v": 18,
+          "remaining_capacity_factor": 0.26719591546838517,
+          "capacity_drop_fraction": 0.7328040845316148
+        },
+        {
+          "u": 19,
+          "v": 15,
+          "remaining_capacity_factor": 0.42200072794945376,
+          "capacity_drop_fraction": 0.5779992720505462
+        },
+        {
+          "u": 23,
+          "v": 14,
+          "remaining_capacity_factor": 0.41076241477730835,
+          "capacity_drop_fraction": 0.5892375852226917
+        },
+        {
+          "u": 5,
+          "v": 4,
+          "remaining_capacity_factor": 0.4073003539925286,
+          "capacity_drop_fraction": 0.5926996460074714
+        },
+        {
+          "u": 4,
+          "v": 3,
+          "remaining_capacity_factor": 0.3100636142501141,
+          "capacity_drop_fraction": 0.6899363857498859
+        },
+        {
+          "u": 22,
+          "v": 20,
+          "remaining_capacity_factor": 0.474759850812968,
+          "capacity_drop_fraction": 0.525240149187032
+        },
+        {
+          "u": 11,
+          "v": 10,
+          "remaining_capacity_factor": 0.35177850774841213,
+          "capacity_drop_fraction": 0.6482214922515879
+        },
+        {
+          "u": 16,
+          "v": 17,
+          "remaining_capacity_factor": 0.01457273927083802,
+          "capacity_drop_fraction": 0.985427260729162
+        },
+        {
+          "u": 18,
+          "v": 7,
+          "remaining_capacity_factor": 0.37378849399745906,
+          "capacity_drop_fraction": 0.6262115060025409
+        },
+        {
+          "u": 17,
+          "v": 10,
+          "remaining_capacity_factor": 0.11471109730894902,
+          "capacity_drop_fraction": 0.885288902691051
+        },
+        {
+          "u": 22,
+          "v": 21,
+          "remaining_capacity_factor": 0.07713359773964279,
+          "capacity_drop_fraction": 0.9228664022603572
+        },
+        {
+          "u": 20,
+          "v": 22,
+          "remaining_capacity_factor": 0.2633974132785679,
+          "capacity_drop_fraction": 0.7366025867214321
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_051",
+      "seed": 20260375,
+      "broken_buses": [
+        30,
+        28,
+        16,
+        23,
+        10,
+        2,
+        18,
+        11,
+        26,
+        4,
+        27,
+        9,
+        6,
+        5,
+        33
+      ],
+      "broken_links": [
+        {
+          "u": 8,
+          "v": 9,
+          "remaining_capacity_factor": 0.2612160688036391,
+          "capacity_drop_fraction": 0.7387839311963609
+        },
+        {
+          "u": 21,
+          "v": 22,
+          "remaining_capacity_factor": 0.4234304541534306,
+          "capacity_drop_fraction": 0.5765695458465694
+        },
+        {
+          "u": 11,
+          "v": 12,
+          "remaining_capacity_factor": 0.09364343244525153,
+          "capacity_drop_fraction": 0.9063565675547485
+        },
+        {
+          "u": 19,
+          "v": 17,
+          "remaining_capacity_factor": 0.3819287117023834,
+          "capacity_drop_fraction": 0.6180712882976166
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_052",
+      "seed": 20260376,
+      "broken_buses": [
+        9,
+        26,
+        32,
+        18,
+        7,
+        10,
+        5,
+        13,
+        15
+      ],
+      "broken_links": [
+        {
+          "u": 4,
+          "v": 3,
+          "remaining_capacity_factor": 0.4481456872340531,
+          "capacity_drop_fraction": 0.5518543127659469
+        },
+        {
+          "u": 10,
+          "v": 9,
+          "remaining_capacity_factor": 0.3174726066586322,
+          "capacity_drop_fraction": 0.6825273933413678
+        },
+        {
+          "u": 4,
+          "v": 11,
+          "remaining_capacity_factor": 0.1382582513899271,
+          "capacity_drop_fraction": 0.8617417486100729
+        },
+        {
+          "u": 14,
+          "v": 23,
+          "remaining_capacity_factor": 0.2953723103001056,
+          "capacity_drop_fraction": 0.7046276896998944
+        },
+        {
+          "u": 16,
+          "v": 17,
+          "remaining_capacity_factor": 0.25829056286132523,
+          "capacity_drop_fraction": 0.7417094371386748
+        },
+        {
+          "u": 17,
+          "v": 16,
+          "remaining_capacity_factor": 0.43457384533844856,
+          "capacity_drop_fraction": 0.5654261546615514
+        },
+        {
+          "u": 20,
+          "v": 21,
+          "remaining_capacity_factor": 0.033330682996844496,
+          "capacity_drop_fraction": 0.9666693170031555
+        },
+        {
+          "u": 13,
+          "v": 12,
+          "remaining_capacity_factor": 0.01953588976217313,
+          "capacity_drop_fraction": 0.9804641102378269
+        },
+        {
+          "u": 13,
+          "v": 24,
+          "remaining_capacity_factor": 0.464624276149046,
+          "capacity_drop_fraction": 0.535375723850954
+        },
+        {
+          "u": 3,
+          "v": 4,
+          "remaining_capacity_factor": 0.12858570402441716,
+          "capacity_drop_fraction": 0.8714142959755828
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_053",
+      "seed": 20260377,
+      "broken_buses": [
+        27,
+        25,
+        8,
+        10,
+        15,
+        29,
+        26,
+        5,
+        33,
+        9
+      ],
+      "broken_links": [
+        {
+          "u": 15,
+          "v": 10,
+          "remaining_capacity_factor": 0.04862864100851083,
+          "capacity_drop_fraction": 0.9513713589914892
+        },
+        {
+          "u": 22,
+          "v": 21,
+          "remaining_capacity_factor": 0.22926131072966127,
+          "capacity_drop_fraction": 0.7707386892703387
+        },
+        {
+          "u": 9,
+          "v": 10,
+          "remaining_capacity_factor": 0.26234449813949023,
+          "capacity_drop_fraction": 0.7376555018605098
+        },
+        {
+          "u": 20,
+          "v": 22,
+          "remaining_capacity_factor": 0.11841787273302984,
+          "capacity_drop_fraction": 0.8815821272669702
+        },
+        {
+          "u": 11,
+          "v": 12,
+          "remaining_capacity_factor": 0.22763948329425232,
+          "capacity_drop_fraction": 0.7723605167057477
+        },
+        {
+          "u": 23,
+          "v": 24,
+          "remaining_capacity_factor": 0.32118858265996697,
+          "capacity_drop_fraction": 0.678811417340033
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_054",
+      "seed": 20260378,
+      "broken_buses": [
+        30,
+        33,
+        12,
+        15,
+        26,
+        16,
+        24,
+        5,
+        27,
+        32,
+        17
+      ],
+      "broken_links": [
+        {
+          "u": 1,
+          "v": 3,
+          "remaining_capacity_factor": 0.12166805221694355,
+          "capacity_drop_fraction": 0.8783319477830565
+        },
+        {
+          "u": 2,
+          "v": 6,
+          "remaining_capacity_factor": 0.09389953611520174,
+          "capacity_drop_fraction": 0.9061004638847983
+        },
+        {
+          "u": 21,
+          "v": 22,
+          "remaining_capacity_factor": 0.05070598739868548,
+          "capacity_drop_fraction": 0.9492940126013145
+        },
+        {
+          "u": 18,
+          "v": 16,
+          "remaining_capacity_factor": 0.16030545460096657,
+          "capacity_drop_fraction": 0.8396945453990334
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_055",
+      "seed": 20260379,
+      "broken_buses": [
+        3,
+        29,
+        19,
+        26,
+        15,
+        21,
+        27,
+        2,
+        11,
+        32,
+        5,
+        4,
+        24,
+        28
+      ],
+      "broken_links": [
+        {
+          "u": 3,
+          "v": 1,
+          "remaining_capacity_factor": 0.45452850129379674,
+          "capacity_drop_fraction": 0.5454714987062033
+        },
+        {
+          "u": 7,
+          "v": 8,
+          "remaining_capacity_factor": 0.34655644373561634,
+          "capacity_drop_fraction": 0.6534435562643837
+        },
+        {
+          "u": 15,
+          "v": 10,
+          "remaining_capacity_factor": 0.3215692070152958,
+          "capacity_drop_fraction": 0.6784307929847042
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_056",
+      "seed": 20260380,
+      "broken_buses": [
+        18,
+        17,
+        27,
+        7,
+        30,
+        21,
+        13,
+        3,
+        1,
+        12,
+        20,
+        15
+      ],
+      "broken_links": [
+        {
+          "u": 16,
+          "v": 18,
+          "remaining_capacity_factor": 0.46170108262526655,
+          "capacity_drop_fraction": 0.5382989173747335
+        },
+        {
+          "u": 15,
+          "v": 14,
+          "remaining_capacity_factor": 0.03932588713413909,
+          "capacity_drop_fraction": 0.9606741128658609
+        },
+        {
+          "u": 19,
+          "v": 17,
+          "remaining_capacity_factor": 0.30695874248929655,
+          "capacity_drop_fraction": 0.6930412575107034
+        },
+        {
+          "u": 10,
+          "v": 15,
+          "remaining_capacity_factor": 0.08669249702411763,
+          "capacity_drop_fraction": 0.9133075029758824
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_057",
+      "seed": 20260381,
+      "broken_buses": [
+        9,
+        20,
+        11,
+        2,
+        19,
+        22,
+        7,
+        4
+      ],
+      "broken_links": [
+        {
+          "u": 3,
+          "v": 1,
+          "remaining_capacity_factor": 0.28084242154942607,
+          "capacity_drop_fraction": 0.7191575784505739
+        },
+        {
+          "u": 17,
+          "v": 10,
+          "remaining_capacity_factor": 0.07130094442964596,
+          "capacity_drop_fraction": 0.928699055570354
+        },
+        {
+          "u": 18,
+          "v": 20,
+          "remaining_capacity_factor": 0.050215026175587374,
+          "capacity_drop_fraction": 0.9497849738244126
+        },
+        {
+          "u": 15,
+          "v": 22,
+          "remaining_capacity_factor": 0.26489949851146644,
+          "capacity_drop_fraction": 0.7351005014885336
+        },
+        {
+          "u": 24,
+          "v": 13,
+          "remaining_capacity_factor": 0.11163593248120818,
+          "capacity_drop_fraction": 0.8883640675187918
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_058",
+      "seed": 20260382,
+      "broken_buses": [
+        25,
+        29,
+        6,
+        23,
+        5,
+        10,
+        19,
+        18,
+        32,
+        21
+      ],
+      "broken_links": [
+        {
+          "u": 22,
+          "v": 21,
+          "remaining_capacity_factor": 0.4276166113784967,
+          "capacity_drop_fraction": 0.5723833886215033
+        },
+        {
+          "u": 20,
+          "v": 22,
+          "remaining_capacity_factor": 0.04477003393781687,
+          "capacity_drop_fraction": 0.9552299660621831
+        },
+        {
+          "u": 20,
+          "v": 18,
+          "remaining_capacity_factor": 0.38349276355724626,
+          "capacity_drop_fraction": 0.6165072364427537
+        },
+        {
+          "u": 10,
+          "v": 15,
+          "remaining_capacity_factor": 0.0358801163447805,
+          "capacity_drop_fraction": 0.9641198836552195
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_059",
+      "seed": 20260383,
+      "broken_buses": [
+        10,
+        1,
+        5,
+        14,
+        7,
+        23,
+        27,
+        4,
+        9,
+        32,
+        31,
+        24,
+        11,
+        20
+      ],
+      "broken_links": [
+        {
+          "u": 8,
+          "v": 6,
+          "remaining_capacity_factor": 0.2543667047119591,
+          "capacity_drop_fraction": 0.7456332952880409
+        },
+        {
+          "u": 16,
+          "v": 17,
+          "remaining_capacity_factor": 0.42228722802619467,
+          "capacity_drop_fraction": 0.5777127719738053
+        },
+        {
+          "u": 21,
+          "v": 24,
+          "remaining_capacity_factor": 0.2125584924879803,
+          "capacity_drop_fraction": 0.7874415075120197
+        },
+        {
+          "u": 10,
+          "v": 9,
+          "remaining_capacity_factor": 0.3061517414879328,
+          "capacity_drop_fraction": 0.6938482585120672
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_060",
+      "seed": 20260384,
+      "broken_buses": [
+        16,
+        12,
+        18,
+        20,
+        13,
+        10,
+        29,
+        22,
+        15,
+        1,
+        2,
+        3
+      ],
+      "broken_links": [
+        {
+          "u": 17,
+          "v": 16,
+          "remaining_capacity_factor": 0.1857206938319501,
+          "capacity_drop_fraction": 0.8142793061680499
+        },
+        {
+          "u": 6,
+          "v": 2,
+          "remaining_capacity_factor": 0.16708721295251716,
+          "capacity_drop_fraction": 0.8329127870474828
+        },
+        {
+          "u": 24,
+          "v": 13,
+          "remaining_capacity_factor": 0.32137840592225486,
+          "capacity_drop_fraction": 0.6786215940777451
+        },
+        {
+          "u": 16,
+          "v": 10,
+          "remaining_capacity_factor": 0.28333770484504506,
+          "capacity_drop_fraction": 0.7166622951549549
+        },
+        {
+          "u": 22,
+          "v": 23,
+          "remaining_capacity_factor": 0.48595732878983977,
+          "capacity_drop_fraction": 0.5140426712101602
+        },
+        {
+          "u": 1,
+          "v": 3,
+          "remaining_capacity_factor": 0.1505572608182958,
+          "capacity_drop_fraction": 0.8494427391817042
+        },
+        {
+          "u": 3,
+          "v": 1,
+          "remaining_capacity_factor": 0.38439166306561856,
+          "capacity_drop_fraction": 0.6156083369343814
+        },
+        {
+          "u": 7,
+          "v": 8,
+          "remaining_capacity_factor": 0.26630061395348537,
+          "capacity_drop_fraction": 0.7336993860465146
+        },
+        {
+          "u": 21,
+          "v": 20,
+          "remaining_capacity_factor": 0.06694204045330765,
+          "capacity_drop_fraction": 0.9330579595466924
+        },
+        {
+          "u": 11,
+          "v": 12,
+          "remaining_capacity_factor": 0.07039624820690782,
+          "capacity_drop_fraction": 0.9296037517930922
+        },
+        {
+          "u": 8,
+          "v": 6,
+          "remaining_capacity_factor": 0.33077016968622175,
+          "capacity_drop_fraction": 0.6692298303137783
+        },
+        {
+          "u": 5,
+          "v": 4,
+          "remaining_capacity_factor": 0.41785906810837725,
+          "capacity_drop_fraction": 0.5821409318916227
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_061",
+      "seed": 20260385,
+      "broken_buses": [
+        17,
+        19,
+        5,
+        7,
+        4,
+        9,
+        13,
+        30,
+        27,
+        16,
+        3,
+        12,
+        8,
+        26
+      ],
+      "broken_links": [
+        {
+          "u": 16,
+          "v": 8,
+          "remaining_capacity_factor": 0.22266604794948086,
+          "capacity_drop_fraction": 0.7773339520505191
+        },
+        {
+          "u": 16,
+          "v": 10,
+          "remaining_capacity_factor": 0.41114907833499215,
+          "capacity_drop_fraction": 0.5888509216650079
+        },
+        {
+          "u": 18,
+          "v": 20,
+          "remaining_capacity_factor": 0.4791973336073774,
+          "capacity_drop_fraction": 0.5208026663926226
+        },
+        {
+          "u": 2,
+          "v": 6,
+          "remaining_capacity_factor": 0.33657156259071563,
+          "capacity_drop_fraction": 0.6634284374092844
+        },
+        {
+          "u": 11,
+          "v": 12,
+          "remaining_capacity_factor": 0.34419997711040584,
+          "capacity_drop_fraction": 0.6558000228895942
+        },
+        {
+          "u": 22,
+          "v": 15,
+          "remaining_capacity_factor": 0.20930813292210315,
+          "capacity_drop_fraction": 0.7906918670778968
+        },
+        {
+          "u": 13,
+          "v": 24,
+          "remaining_capacity_factor": 0.3897870097282742,
+          "capacity_drop_fraction": 0.6102129902717258
+        },
+        {
+          "u": 22,
+          "v": 23,
+          "remaining_capacity_factor": 0.10425091965173683,
+          "capacity_drop_fraction": 0.8957490803482632
+        },
+        {
+          "u": 6,
+          "v": 8,
+          "remaining_capacity_factor": 0.4315952605141047,
+          "capacity_drop_fraction": 0.5684047394858953
+        },
+        {
+          "u": 8,
+          "v": 16,
+          "remaining_capacity_factor": 0.4044004625813655,
+          "capacity_drop_fraction": 0.5955995374186345
+        },
+        {
+          "u": 19,
+          "v": 20,
+          "remaining_capacity_factor": 0.2926519858388854,
+          "capacity_drop_fraction": 0.7073480141611146
+        },
+        {
+          "u": 20,
+          "v": 21,
+          "remaining_capacity_factor": 0.1300751438751936,
+          "capacity_drop_fraction": 0.8699248561248064
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_062",
+      "seed": 20260386,
+      "broken_buses": [
+        2,
+        33,
+        13,
+        25,
+        31,
+        8,
+        20,
+        15,
+        32,
+        23,
+        6,
+        22,
+        26
+      ],
+      "broken_links": [
+        {
+          "u": 23,
+          "v": 22,
+          "remaining_capacity_factor": 0.023282384127326416,
+          "capacity_drop_fraction": 0.9767176158726736
+        },
+        {
+          "u": 3,
+          "v": 1,
+          "remaining_capacity_factor": 0.3644086770451731,
+          "capacity_drop_fraction": 0.6355913229548269
+        },
+        {
+          "u": 8,
+          "v": 16,
+          "remaining_capacity_factor": 0.327448949368087,
+          "capacity_drop_fraction": 0.672551050631913
+        },
+        {
+          "u": 10,
+          "v": 9,
+          "remaining_capacity_factor": 0.2839579242895466,
+          "capacity_drop_fraction": 0.7160420757104534
+        },
+        {
+          "u": 14,
+          "v": 23,
+          "remaining_capacity_factor": 0.40875618758047283,
+          "capacity_drop_fraction": 0.5912438124195272
+        },
+        {
+          "u": 1,
+          "v": 2,
+          "remaining_capacity_factor": 0.0817134253874856,
+          "capacity_drop_fraction": 0.9182865746125144
+        },
+        {
+          "u": 18,
+          "v": 16,
+          "remaining_capacity_factor": 0.430130863244358,
+          "capacity_drop_fraction": 0.569869136755642
+        },
+        {
+          "u": 24,
+          "v": 23,
+          "remaining_capacity_factor": 0.023388561704005384,
+          "capacity_drop_fraction": 0.9766114382959946
+        },
+        {
+          "u": 4,
+          "v": 3,
+          "remaining_capacity_factor": 0.017760562562337046,
+          "capacity_drop_fraction": 0.982239437437663
+        },
+        {
+          "u": 14,
+          "v": 15,
+          "remaining_capacity_factor": 0.45153605903950766,
+          "capacity_drop_fraction": 0.5484639409604923
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_063",
+      "seed": 20260387,
+      "broken_buses": [
+        33,
+        31,
+        15,
+        26,
+        16,
+        14,
+        23,
+        4,
+        3,
+        12,
+        11,
+        5
+      ],
+      "broken_links": [
+        {
+          "u": 9,
+          "v": 8,
+          "remaining_capacity_factor": 0.23282072966495826,
+          "capacity_drop_fraction": 0.7671792703350417
+        },
+        {
+          "u": 22,
+          "v": 23,
+          "remaining_capacity_factor": 0.34312315393671255,
+          "capacity_drop_fraction": 0.6568768460632874
+        },
+        {
+          "u": 10,
+          "v": 9,
+          "remaining_capacity_factor": 0.2757020954667022,
+          "capacity_drop_fraction": 0.7242979045332978
+        },
+        {
+          "u": 17,
+          "v": 19,
+          "remaining_capacity_factor": 0.4242361916532482,
+          "capacity_drop_fraction": 0.5757638083467518
+        },
+        {
+          "u": 2,
+          "v": 6,
+          "remaining_capacity_factor": 0.3781120109366465,
+          "capacity_drop_fraction": 0.6218879890633535
+        },
+        {
+          "u": 1,
+          "v": 2,
+          "remaining_capacity_factor": 0.3741813323356069,
+          "capacity_drop_fraction": 0.6258186676643931
+        },
+        {
+          "u": 16,
+          "v": 18,
+          "remaining_capacity_factor": 0.2105494744498151,
+          "capacity_drop_fraction": 0.7894505255501849
+        },
+        {
+          "u": 5,
+          "v": 4,
+          "remaining_capacity_factor": 0.474683165465993,
+          "capacity_drop_fraction": 0.525316834534007
+        },
+        {
+          "u": 11,
+          "v": 12,
+          "remaining_capacity_factor": 0.15167238958192386,
+          "capacity_drop_fraction": 0.8483276104180761
+        },
+        {
+          "u": 14,
+          "v": 15,
+          "remaining_capacity_factor": 0.42722917936560667,
+          "capacity_drop_fraction": 0.5727708206343933
+        },
+        {
+          "u": 20,
+          "v": 18,
+          "remaining_capacity_factor": 0.4053423431638412,
+          "capacity_drop_fraction": 0.5946576568361588
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_064",
+      "seed": 20260388,
+      "broken_buses": [
+        15,
+        25,
+        17,
+        16,
+        33,
+        18,
+        26,
+        10,
+        32,
+        5
+      ],
+      "broken_links": [
+        {
+          "u": 6,
+          "v": 2,
+          "remaining_capacity_factor": 0.4004974992184893,
+          "capacity_drop_fraction": 0.5995025007815107
+        },
+        {
+          "u": 8,
+          "v": 7,
+          "remaining_capacity_factor": 0.15421175884401417,
+          "capacity_drop_fraction": 0.8457882411559858
+        },
+        {
+          "u": 6,
+          "v": 8,
+          "remaining_capacity_factor": 0.36126624581905586,
+          "capacity_drop_fraction": 0.6387337541809441
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_065",
+      "seed": 20260389,
+      "broken_buses": [
+        11,
+        21,
+        25,
+        30,
+        6,
+        32,
+        10,
+        3,
+        29,
+        12,
+        19
+      ],
+      "broken_links": [
+        {
+          "u": 4,
+          "v": 11,
+          "remaining_capacity_factor": 0.04044408419063572,
+          "capacity_drop_fraction": 0.9595559158093643
+        },
+        {
+          "u": 5,
+          "v": 4,
+          "remaining_capacity_factor": 0.18317551947593658,
+          "capacity_drop_fraction": 0.8168244805240634
+        },
+        {
+          "u": 3,
+          "v": 4,
+          "remaining_capacity_factor": 0.1682415506810604,
+          "capacity_drop_fraction": 0.8317584493189396
+        },
+        {
+          "u": 24,
+          "v": 23,
+          "remaining_capacity_factor": 0.18458906795716512,
+          "capacity_drop_fraction": 0.8154109320428349
+        },
+        {
+          "u": 20,
+          "v": 19,
+          "remaining_capacity_factor": 0.11398701175388293,
+          "capacity_drop_fraction": 0.8860129882461171
+        },
+        {
+          "u": 22,
+          "v": 15,
+          "remaining_capacity_factor": 0.14886363048573004,
+          "capacity_drop_fraction": 0.85113636951427
+        },
+        {
+          "u": 17,
+          "v": 16,
+          "remaining_capacity_factor": 0.41618273214180324,
+          "capacity_drop_fraction": 0.5838172678581968
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_066",
+      "seed": 20260390,
+      "broken_buses": [
+        32,
+        31,
+        33,
+        21,
+        13,
+        19,
+        11,
+        1,
+        28,
+        25,
+        24,
+        10,
+        4,
+        18,
+        9
+      ],
+      "broken_links": [
+        {
+          "u": 4,
+          "v": 5,
+          "remaining_capacity_factor": 0.16946231341061302,
+          "capacity_drop_fraction": 0.830537686589387
+        },
+        {
+          "u": 7,
+          "v": 8,
+          "remaining_capacity_factor": 0.38145849383711616,
+          "capacity_drop_fraction": 0.6185415061628838
+        },
+        {
+          "u": 4,
+          "v": 3,
+          "remaining_capacity_factor": 0.39287403268632426,
+          "capacity_drop_fraction": 0.6071259673136757
+        },
+        {
+          "u": 10,
+          "v": 15,
+          "remaining_capacity_factor": 0.4235779582517749,
+          "capacity_drop_fraction": 0.5764220417482251
+        },
+        {
+          "u": 8,
+          "v": 9,
+          "remaining_capacity_factor": 0.06262112875460246,
+          "capacity_drop_fraction": 0.9373788712453975
+        },
+        {
+          "u": 15,
+          "v": 19,
+          "remaining_capacity_factor": 0.17173111362691484,
+          "capacity_drop_fraction": 0.8282688863730852
+        },
+        {
+          "u": 8,
+          "v": 7,
+          "remaining_capacity_factor": 0.4242431441814545,
+          "capacity_drop_fraction": 0.5757568558185455
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_067",
+      "seed": 20260391,
+      "broken_buses": [
+        2,
+        19,
+        8,
+        31,
+        28,
+        13,
+        16,
+        4,
+        10
+      ],
+      "broken_links": [
+        {
+          "u": 3,
+          "v": 4,
+          "remaining_capacity_factor": 0.4909265111435781,
+          "capacity_drop_fraction": 0.5090734888564219
+        },
+        {
+          "u": 5,
+          "v": 9,
+          "remaining_capacity_factor": 0.4043020433354656,
+          "capacity_drop_fraction": 0.5956979566645344
+        },
+        {
+          "u": 23,
+          "v": 24,
+          "remaining_capacity_factor": 0.03844734333375133,
+          "capacity_drop_fraction": 0.9615526566662487
+        },
+        {
+          "u": 9,
+          "v": 10,
+          "remaining_capacity_factor": 0.134152328992583,
+          "capacity_drop_fraction": 0.865847671007417
+        },
+        {
+          "u": 9,
+          "v": 8,
+          "remaining_capacity_factor": 0.36040732452663904,
+          "capacity_drop_fraction": 0.639592675473361
+        },
+        {
+          "u": 8,
+          "v": 6,
+          "remaining_capacity_factor": 0.3349857125801474,
+          "capacity_drop_fraction": 0.6650142874198526
+        },
+        {
+          "u": 14,
+          "v": 23,
+          "remaining_capacity_factor": 0.4852807215416357,
+          "capacity_drop_fraction": 0.5147192784583643
+        },
+        {
+          "u": 2,
+          "v": 1,
+          "remaining_capacity_factor": 0.1236237139543177,
+          "capacity_drop_fraction": 0.8763762860456823
+        },
+        {
+          "u": 15,
+          "v": 19,
+          "remaining_capacity_factor": 0.2689844630113707,
+          "capacity_drop_fraction": 0.7310155369886293
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_068",
+      "seed": 20260392,
+      "broken_buses": [
+        33,
+        1,
+        25,
+        7,
+        20,
+        24,
+        14,
+        18,
+        31,
+        3
+      ],
+      "broken_links": [
+        {
+          "u": 8,
+          "v": 7,
+          "remaining_capacity_factor": 0.33089351801853895,
+          "capacity_drop_fraction": 0.669106481981461
+        },
+        {
+          "u": 15,
+          "v": 14,
+          "remaining_capacity_factor": 0.49834757615187886,
+          "capacity_drop_fraction": 0.5016524238481211
+        },
+        {
+          "u": 22,
+          "v": 23,
+          "remaining_capacity_factor": 0.41589635373124345,
+          "capacity_drop_fraction": 0.5841036462687565
+        },
+        {
+          "u": 17,
+          "v": 19,
+          "remaining_capacity_factor": 0.15741647673795112,
+          "capacity_drop_fraction": 0.8425835232620489
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_069",
+      "seed": 20260393,
+      "broken_buses": [
+        1,
+        5,
+        6,
+        3,
+        15,
+        8,
+        18,
+        23,
+        2,
+        30,
+        29,
+        22,
+        13,
+        12
+      ],
+      "broken_links": [
+        {
+          "u": 5,
+          "v": 9,
+          "remaining_capacity_factor": 0.06727672322247291,
+          "capacity_drop_fraction": 0.9327232767775271
+        },
+        {
+          "u": 12,
+          "v": 11,
+          "remaining_capacity_factor": 0.4234086017147429,
+          "capacity_drop_fraction": 0.5765913982852571
+        },
+        {
+          "u": 14,
+          "v": 23,
+          "remaining_capacity_factor": 0.09037278533455217,
+          "capacity_drop_fraction": 0.9096272146654478
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_070",
+      "seed": 20260394,
+      "broken_buses": [
+        26,
+        19,
+        5,
+        24,
+        17,
+        20,
+        25,
+        23,
+        6,
+        32,
+        21
+      ],
+      "broken_links": [
+        {
+          "u": 15,
+          "v": 19,
+          "remaining_capacity_factor": 0.33108182016543486,
+          "capacity_drop_fraction": 0.6689181798345651
+        },
+        {
+          "u": 18,
+          "v": 20,
+          "remaining_capacity_factor": 0.16851077361941624,
+          "capacity_drop_fraction": 0.8314892263805838
+        },
+        {
+          "u": 10,
+          "v": 15,
+          "remaining_capacity_factor": 0.4374776809712505,
+          "capacity_drop_fraction": 0.5625223190287495
+        },
+        {
+          "u": 24,
+          "v": 23,
+          "remaining_capacity_factor": 0.2619645513646758,
+          "capacity_drop_fraction": 0.7380354486353242
+        },
+        {
+          "u": 6,
+          "v": 5,
+          "remaining_capacity_factor": 0.104511792536646,
+          "capacity_drop_fraction": 0.895488207463354
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_071",
+      "seed": 20260395,
+      "broken_buses": [
+        13,
+        30,
+        28,
+        11,
+        14,
+        27,
+        25,
+        4,
+        20,
+        7,
+        21,
+        18,
+        22
+      ],
+      "broken_links": [
+        {
+          "u": 18,
+          "v": 7,
+          "remaining_capacity_factor": 0.18959434970406241,
+          "capacity_drop_fraction": 0.8104056502959376
+        },
+        {
+          "u": 24,
+          "v": 13,
+          "remaining_capacity_factor": 0.3862083117596995,
+          "capacity_drop_fraction": 0.6137916882403005
+        },
+        {
+          "u": 7,
+          "v": 18,
+          "remaining_capacity_factor": 0.18049891065873314,
+          "capacity_drop_fraction": 0.8195010893412669
+        },
+        {
+          "u": 23,
+          "v": 14,
+          "remaining_capacity_factor": 0.4096134164642842,
+          "capacity_drop_fraction": 0.5903865835357158
+        },
+        {
+          "u": 5,
+          "v": 9,
+          "remaining_capacity_factor": 0.048759106495060545,
+          "capacity_drop_fraction": 0.9512408935049395
+        },
+        {
+          "u": 9,
+          "v": 10,
+          "remaining_capacity_factor": 0.08583530893775504,
+          "capacity_drop_fraction": 0.914164691062245
+        },
+        {
+          "u": 22,
+          "v": 15,
+          "remaining_capacity_factor": 0.017444114854144877,
+          "capacity_drop_fraction": 0.9825558851458551
+        },
+        {
+          "u": 15,
+          "v": 22,
+          "remaining_capacity_factor": 0.14101816531824674,
+          "capacity_drop_fraction": 0.8589818346817533
+        },
+        {
+          "u": 18,
+          "v": 16,
+          "remaining_capacity_factor": 0.41113338118104636,
+          "capacity_drop_fraction": 0.5888666188189536
+        },
+        {
+          "u": 16,
+          "v": 18,
+          "remaining_capacity_factor": 0.47437290054771797,
+          "capacity_drop_fraction": 0.525627099452282
+        },
+        {
+          "u": 11,
+          "v": 4,
+          "remaining_capacity_factor": 0.3235773462409661,
+          "capacity_drop_fraction": 0.6764226537590339
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_072",
+      "seed": 20260396,
+      "broken_buses": [
+        12,
+        32,
+        10,
+        33,
+        19,
+        7,
+        21,
+        26,
+        9,
+        22
+      ],
+      "broken_links": [
+        {
+          "u": 2,
+          "v": 1,
+          "remaining_capacity_factor": 0.30097323143062993,
+          "capacity_drop_fraction": 0.6990267685693701
+        },
+        {
+          "u": 9,
+          "v": 5,
+          "remaining_capacity_factor": 0.16630969796073136,
+          "capacity_drop_fraction": 0.8336903020392686
+        },
+        {
+          "u": 17,
+          "v": 16,
+          "remaining_capacity_factor": 0.12874233227293996,
+          "capacity_drop_fraction": 0.87125766772706
+        },
+        {
+          "u": 16,
+          "v": 17,
+          "remaining_capacity_factor": 0.4248871605991271,
+          "capacity_drop_fraction": 0.5751128394008729
+        },
+        {
+          "u": 13,
+          "v": 24,
+          "remaining_capacity_factor": 0.33817803312501304,
+          "capacity_drop_fraction": 0.661821966874987
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_073",
+      "seed": 20260397,
+      "broken_buses": [
+        27,
+        12,
+        1,
+        25,
+        15,
+        20,
+        7,
+        32,
+        16,
+        33,
+        9,
+        26,
+        21
+      ],
+      "broken_links": [
+        {
+          "u": 10,
+          "v": 16,
+          "remaining_capacity_factor": 0.03508714512758715,
+          "capacity_drop_fraction": 0.9649128548724129
+        },
+        {
+          "u": 22,
+          "v": 15,
+          "remaining_capacity_factor": 0.16790581720447428,
+          "capacity_drop_fraction": 0.8320941827955257
+        },
+        {
+          "u": 2,
+          "v": 6,
+          "remaining_capacity_factor": 0.08483723245258767,
+          "capacity_drop_fraction": 0.9151627675474123
+        },
+        {
+          "u": 4,
+          "v": 11,
+          "remaining_capacity_factor": 0.05487521898534142,
+          "capacity_drop_fraction": 0.9451247810146586
+        },
+        {
+          "u": 10,
+          "v": 11,
+          "remaining_capacity_factor": 0.15711120744582097,
+          "capacity_drop_fraction": 0.842888792554179
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_074",
+      "seed": 20260398,
+      "broken_buses": [
+        12,
+        1,
+        19,
+        2,
+        6,
+        32,
+        25,
+        9,
+        31,
+        24,
+        21
+      ],
+      "broken_links": [
+        {
+          "u": 6,
+          "v": 8,
+          "remaining_capacity_factor": 0.17033088913886485,
+          "capacity_drop_fraction": 0.8296691108611352
+        },
+        {
+          "u": 1,
+          "v": 3,
+          "remaining_capacity_factor": 0.0809068802459908,
+          "capacity_drop_fraction": 0.9190931197540092
+        },
+        {
+          "u": 8,
+          "v": 9,
+          "remaining_capacity_factor": 0.030492801768301714,
+          "capacity_drop_fraction": 0.9695071982316983
+        },
+        {
+          "u": 19,
+          "v": 17,
+          "remaining_capacity_factor": 0.3198249597108018,
+          "capacity_drop_fraction": 0.6801750402891982
+        },
+        {
+          "u": 14,
+          "v": 23,
+          "remaining_capacity_factor": 0.42564888299079984,
+          "capacity_drop_fraction": 0.5743511170092002
+        },
+        {
+          "u": 7,
+          "v": 8,
+          "remaining_capacity_factor": 0.49812137474887064,
+          "capacity_drop_fraction": 0.5018786252511294
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_075",
+      "seed": 20260399,
+      "broken_buses": [
+        22,
+        11,
+        9,
+        27,
+        20,
+        10,
+        23,
+        14,
+        5,
+        32
+      ],
+      "broken_links": [
+        {
+          "u": 3,
+          "v": 4,
+          "remaining_capacity_factor": 0.15191618064771473,
+          "capacity_drop_fraction": 0.8480838193522853
+        },
+        {
+          "u": 18,
+          "v": 7,
+          "remaining_capacity_factor": 0.04434017250923805,
+          "capacity_drop_fraction": 0.955659827490762
+        },
+        {
+          "u": 12,
+          "v": 3,
+          "remaining_capacity_factor": 0.011997254035196137,
+          "capacity_drop_fraction": 0.9880027459648039
+        },
+        {
+          "u": 11,
+          "v": 10,
+          "remaining_capacity_factor": 0.48197274421373626,
+          "capacity_drop_fraction": 0.5180272557862637
+        },
+        {
+          "u": 20,
+          "v": 18,
+          "remaining_capacity_factor": 0.48783631225814084,
+          "capacity_drop_fraction": 0.5121636877418592
+        },
+        {
+          "u": 6,
+          "v": 5,
+          "remaining_capacity_factor": 0.3941260417880512,
+          "capacity_drop_fraction": 0.6058739582119488
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_076",
+      "seed": 20260400,
+      "broken_buses": [
+        5,
+        6,
+        18,
+        16,
+        29,
+        9,
+        19,
+        11
+      ],
+      "broken_links": [
+        {
+          "u": 10,
+          "v": 15,
+          "remaining_capacity_factor": 0.20494120276399674,
+          "capacity_drop_fraction": 0.7950587972360033
+        },
+        {
+          "u": 14,
+          "v": 11,
+          "remaining_capacity_factor": 0.3485117645011532,
+          "capacity_drop_fraction": 0.6514882354988468
+        },
+        {
+          "u": 19,
+          "v": 15,
+          "remaining_capacity_factor": 0.12062810647770927,
+          "capacity_drop_fraction": 0.8793718935222907
+        },
+        {
+          "u": 22,
+          "v": 23,
+          "remaining_capacity_factor": 0.06212425425309909,
+          "capacity_drop_fraction": 0.9378757457469009
+        },
+        {
+          "u": 13,
+          "v": 24,
+          "remaining_capacity_factor": 0.4211721752088884,
+          "capacity_drop_fraction": 0.5788278247911116
+        },
+        {
+          "u": 6,
+          "v": 2,
+          "remaining_capacity_factor": 0.06204988100079345,
+          "capacity_drop_fraction": 0.9379501189992066
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_077",
+      "seed": 20260401,
+      "broken_buses": [
+        16,
+        32,
+        2,
+        8,
+        26,
+        5,
+        20,
+        14
+      ],
+      "broken_links": [
+        {
+          "u": 16,
+          "v": 18,
+          "remaining_capacity_factor": 0.2382811995518268,
+          "capacity_drop_fraction": 0.7617188004481732
+        },
+        {
+          "u": 14,
+          "v": 11,
+          "remaining_capacity_factor": 0.020300919027136377,
+          "capacity_drop_fraction": 0.9796990809728636
+        },
+        {
+          "u": 10,
+          "v": 15,
+          "remaining_capacity_factor": 0.38246459517613696,
+          "capacity_drop_fraction": 0.617535404823863
+        },
+        {
+          "u": 22,
+          "v": 20,
+          "remaining_capacity_factor": 0.3088686811184489,
+          "capacity_drop_fraction": 0.6911313188815511
+        },
+        {
+          "u": 18,
+          "v": 7,
+          "remaining_capacity_factor": 0.4733506413814226,
+          "capacity_drop_fraction": 0.5266493586185774
+        },
+        {
+          "u": 19,
+          "v": 15,
+          "remaining_capacity_factor": 0.42055317922514934,
+          "capacity_drop_fraction": 0.5794468207748507
+        },
+        {
+          "u": 17,
+          "v": 10,
+          "remaining_capacity_factor": 0.42601239435185834,
+          "capacity_drop_fraction": 0.5739876056481417
+        },
+        {
+          "u": 17,
+          "v": 19,
+          "remaining_capacity_factor": 0.016104556161177452,
+          "capacity_drop_fraction": 0.9838954438388225
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_078",
+      "seed": 20260402,
+      "broken_buses": [
+        15,
+        17,
+        8,
+        33,
+        22,
+        2,
+        13,
+        10,
+        21,
+        18,
+        11,
+        7,
+        30
+      ],
+      "broken_links": [
+        {
+          "u": 21,
+          "v": 22,
+          "remaining_capacity_factor": 0.2866066907276934,
+          "capacity_drop_fraction": 0.7133933092723066
+        },
+        {
+          "u": 18,
+          "v": 16,
+          "remaining_capacity_factor": 0.05904620325799126,
+          "capacity_drop_fraction": 0.9409537967420087
+        },
+        {
+          "u": 12,
+          "v": 11,
+          "remaining_capacity_factor": 0.45916151991815135,
+          "capacity_drop_fraction": 0.5408384800818486
+        },
+        {
+          "u": 20,
+          "v": 22,
+          "remaining_capacity_factor": 0.3018825744788738,
+          "capacity_drop_fraction": 0.6981174255211262
+        },
+        {
+          "u": 24,
+          "v": 21,
+          "remaining_capacity_factor": 0.3827394889649969,
+          "capacity_drop_fraction": 0.6172605110350031
+        },
+        {
+          "u": 23,
+          "v": 22,
+          "remaining_capacity_factor": 0.015749105897252536,
+          "capacity_drop_fraction": 0.9842508941027475
+        },
+        {
+          "u": 3,
+          "v": 4,
+          "remaining_capacity_factor": 0.36364562183445237,
+          "capacity_drop_fraction": 0.6363543781655476
+        },
+        {
+          "u": 17,
+          "v": 10,
+          "remaining_capacity_factor": 0.4078319131854906,
+          "capacity_drop_fraction": 0.5921680868145094
+        },
+        {
+          "u": 11,
+          "v": 10,
+          "remaining_capacity_factor": 0.04006232244497587,
+          "capacity_drop_fraction": 0.9599376775550241
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_079",
+      "seed": 20260403,
+      "broken_buses": [
+        27,
+        3,
+        14,
+        1,
+        2,
+        15,
+        22,
+        19,
+        32
+      ],
+      "broken_links": [
+        {
+          "u": 3,
+          "v": 12,
+          "remaining_capacity_factor": 0.18431183561285136,
+          "capacity_drop_fraction": 0.8156881643871486
+        },
+        {
+          "u": 10,
+          "v": 9,
+          "remaining_capacity_factor": 0.4099880396239972,
+          "capacity_drop_fraction": 0.5900119603760028
+        },
+        {
+          "u": 16,
+          "v": 17,
+          "remaining_capacity_factor": 0.3442282414870389,
+          "capacity_drop_fraction": 0.6557717585129611
+        },
+        {
+          "u": 24,
+          "v": 13,
+          "remaining_capacity_factor": 0.20116747034187732,
+          "capacity_drop_fraction": 0.7988325296581227
+        },
+        {
+          "u": 19,
+          "v": 17,
+          "remaining_capacity_factor": 0.056838743811998826,
+          "capacity_drop_fraction": 0.9431612561880012
+        },
+        {
+          "u": 18,
+          "v": 16,
+          "remaining_capacity_factor": 0.2717076885708475,
+          "capacity_drop_fraction": 0.7282923114291525
+        },
+        {
+          "u": 20,
+          "v": 21,
+          "remaining_capacity_factor": 0.2976954978510191,
+          "capacity_drop_fraction": 0.7023045021489809
+        },
+        {
+          "u": 13,
+          "v": 12,
+          "remaining_capacity_factor": 0.2518978480445956,
+          "capacity_drop_fraction": 0.7481021519554044
+        },
+        {
+          "u": 4,
+          "v": 3,
+          "remaining_capacity_factor": 0.03992849192633818,
+          "capacity_drop_fraction": 0.9600715080736618
+        },
+        {
+          "u": 22,
+          "v": 21,
+          "remaining_capacity_factor": 0.46523701201223755,
+          "capacity_drop_fraction": 0.5347629879877625
+        },
+        {
+          "u": 7,
+          "v": 18,
+          "remaining_capacity_factor": 0.2527007563932848,
+          "capacity_drop_fraction": 0.7472992436067152
+        },
+        {
+          "u": 17,
+          "v": 16,
+          "remaining_capacity_factor": 0.4710310872997,
+          "capacity_drop_fraction": 0.5289689127003
+        },
+        {
+          "u": 5,
+          "v": 6,
+          "remaining_capacity_factor": 0.004176256494400565,
+          "capacity_drop_fraction": 0.9958237435055994
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_080",
+      "seed": 20260404,
+      "broken_buses": [
+        14,
+        25,
+        5,
+        15,
+        23,
+        16,
+        4,
+        20,
+        9,
+        12,
+        31,
+        30,
+        33,
+        8,
+        32
+      ],
+      "broken_links": [
+        {
+          "u": 13,
+          "v": 12,
+          "remaining_capacity_factor": 0.3641675320838913,
+          "capacity_drop_fraction": 0.6358324679161087
+        },
+        {
+          "u": 19,
+          "v": 20,
+          "remaining_capacity_factor": 0.4553742930508905,
+          "capacity_drop_fraction": 0.5446257069491095
+        },
+        {
+          "u": 19,
+          "v": 15,
+          "remaining_capacity_factor": 0.1356908814068829,
+          "capacity_drop_fraction": 0.8643091185931171
+        },
+        {
+          "u": 15,
+          "v": 10,
+          "remaining_capacity_factor": 0.08108624922644503,
+          "capacity_drop_fraction": 0.918913750773555
+        },
+        {
+          "u": 12,
+          "v": 13,
+          "remaining_capacity_factor": 0.022314047474504717,
+          "capacity_drop_fraction": 0.9776859525254953
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_081",
+      "seed": 20260405,
+      "broken_buses": [
+        30,
+        27,
+        2,
+        1,
+        22,
+        23,
+        17,
+        33,
+        29,
+        4,
+        5,
+        7,
+        9
+      ],
+      "broken_links": [
+        {
+          "u": 20,
+          "v": 22,
+          "remaining_capacity_factor": 0.2589107204052874,
+          "capacity_drop_fraction": 0.7410892795947126
+        },
+        {
+          "u": 24,
+          "v": 23,
+          "remaining_capacity_factor": 0.23206856331009384,
+          "capacity_drop_fraction": 0.7679314366899062
+        },
+        {
+          "u": 19,
+          "v": 15,
+          "remaining_capacity_factor": 0.007508773388884005,
+          "capacity_drop_fraction": 0.992491226611116
+        },
+        {
+          "u": 4,
+          "v": 5,
+          "remaining_capacity_factor": 0.23324984307596786,
+          "capacity_drop_fraction": 0.7667501569240321
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_082",
+      "seed": 20260406,
+      "broken_buses": [
+        15,
+        24,
+        16,
+        26,
+        20,
+        5,
+        30,
+        1,
+        32,
+        3,
+        23,
+        18,
+        8
+      ],
+      "broken_links": [
+        {
+          "u": 15,
+          "v": 14,
+          "remaining_capacity_factor": 0.36302796732907905,
+          "capacity_drop_fraction": 0.636972032670921
+        },
+        {
+          "u": 18,
+          "v": 7,
+          "remaining_capacity_factor": 0.34315832070279084,
+          "capacity_drop_fraction": 0.6568416792972092
+        },
+        {
+          "u": 21,
+          "v": 20,
+          "remaining_capacity_factor": 0.25078149347111167,
+          "capacity_drop_fraction": 0.7492185065288883
+        },
+        {
+          "u": 8,
+          "v": 16,
+          "remaining_capacity_factor": 0.21126081177221123,
+          "capacity_drop_fraction": 0.7887391882277888
+        },
+        {
+          "u": 9,
+          "v": 10,
+          "remaining_capacity_factor": 0.16514339252715526,
+          "capacity_drop_fraction": 0.8348566074728447
+        },
+        {
+          "u": 15,
+          "v": 19,
+          "remaining_capacity_factor": 0.2833729930014226,
+          "capacity_drop_fraction": 0.7166270069985774
+        },
+        {
+          "u": 19,
+          "v": 15,
+          "remaining_capacity_factor": 0.44237512717403094,
+          "capacity_drop_fraction": 0.5576248728259691
+        },
+        {
+          "u": 20,
+          "v": 18,
+          "remaining_capacity_factor": 0.45085529721006223,
+          "capacity_drop_fraction": 0.5491447027899378
+        },
+        {
+          "u": 10,
+          "v": 11,
+          "remaining_capacity_factor": 0.28319049842037813,
+          "capacity_drop_fraction": 0.7168095015796219
+        },
+        {
+          "u": 11,
+          "v": 4,
+          "remaining_capacity_factor": 0.15577752398818456,
+          "capacity_drop_fraction": 0.8442224760118154
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_083",
+      "seed": 20260407,
+      "broken_buses": [
+        20,
+        30,
+        21,
+        29,
+        33,
+        8,
+        28,
+        19,
+        7,
+        11,
+        31,
+        16,
+        3
+      ],
+      "broken_links": [
+        {
+          "u": 5,
+          "v": 9,
+          "remaining_capacity_factor": 0.2703829960833011,
+          "capacity_drop_fraction": 0.7296170039166989
+        },
+        {
+          "u": 11,
+          "v": 12,
+          "remaining_capacity_factor": 0.09250433579082684,
+          "capacity_drop_fraction": 0.9074956642091732
+        },
+        {
+          "u": 16,
+          "v": 10,
+          "remaining_capacity_factor": 0.08055388173579348,
+          "capacity_drop_fraction": 0.9194461182642065
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_084",
+      "seed": 20260408,
+      "broken_buses": [
+        24,
+        22,
+        4,
+        12,
+        16,
+        21,
+        28,
+        18,
+        14
+      ],
+      "broken_links": [
+        {
+          "u": 16,
+          "v": 18,
+          "remaining_capacity_factor": 0.07933550110925336,
+          "capacity_drop_fraction": 0.9206644988907466
+        },
+        {
+          "u": 3,
+          "v": 12,
+          "remaining_capacity_factor": 0.3239466778227058,
+          "capacity_drop_fraction": 0.6760533221772942
+        },
+        {
+          "u": 6,
+          "v": 8,
+          "remaining_capacity_factor": 0.19248866550146793,
+          "capacity_drop_fraction": 0.8075113344985321
+        },
+        {
+          "u": 9,
+          "v": 10,
+          "remaining_capacity_factor": 0.12239802817711865,
+          "capacity_drop_fraction": 0.8776019718228814
+        },
+        {
+          "u": 24,
+          "v": 21,
+          "remaining_capacity_factor": 0.19060543336376146,
+          "capacity_drop_fraction": 0.8093945666362385
+        },
+        {
+          "u": 4,
+          "v": 5,
+          "remaining_capacity_factor": 0.39298680423140087,
+          "capacity_drop_fraction": 0.6070131957685991
+        },
+        {
+          "u": 24,
+          "v": 13,
+          "remaining_capacity_factor": 0.19387449765426434,
+          "capacity_drop_fraction": 0.8061255023457357
+        },
+        {
+          "u": 23,
+          "v": 22,
+          "remaining_capacity_factor": 0.30083132798046064,
+          "capacity_drop_fraction": 0.6991686720195394
+        },
+        {
+          "u": 21,
+          "v": 24,
+          "remaining_capacity_factor": 0.14291818095249464,
+          "capacity_drop_fraction": 0.8570818190475054
+        },
+        {
+          "u": 14,
+          "v": 23,
+          "remaining_capacity_factor": 0.39474136353424283,
+          "capacity_drop_fraction": 0.6052586364657572
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_085",
+      "seed": 20260409,
+      "broken_buses": [
+        26,
+        7,
+        20,
+        12,
+        2,
+        11,
+        10,
+        21,
+        13,
+        31,
+        19,
+        22,
+        17,
+        14
+      ],
+      "broken_links": [
+        {
+          "u": 6,
+          "v": 5,
+          "remaining_capacity_factor": 0.4438145942247964,
+          "capacity_drop_fraction": 0.5561854057752036
+        },
+        {
+          "u": 8,
+          "v": 6,
+          "remaining_capacity_factor": 0.10665810406731835,
+          "capacity_drop_fraction": 0.8933418959326817
+        },
+        {
+          "u": 11,
+          "v": 14,
+          "remaining_capacity_factor": 0.0016526071182645374,
+          "capacity_drop_fraction": 0.9983473928817355
+        },
+        {
+          "u": 20,
+          "v": 22,
+          "remaining_capacity_factor": 0.249982004797339,
+          "capacity_drop_fraction": 0.750017995202661
+        },
+        {
+          "u": 15,
+          "v": 10,
+          "remaining_capacity_factor": 0.31568812003719393,
+          "capacity_drop_fraction": 0.6843118799628061
+        },
+        {
+          "u": 18,
+          "v": 7,
+          "remaining_capacity_factor": 0.46340964315859,
+          "capacity_drop_fraction": 0.53659035684141
+        },
+        {
+          "u": 15,
+          "v": 22,
+          "remaining_capacity_factor": 0.1780565002186223,
+          "capacity_drop_fraction": 0.8219434997813777
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_086",
+      "seed": 20260410,
+      "broken_buses": [
+        33,
+        12,
+        19,
+        3,
+        9,
+        22,
+        10,
+        2,
+        25,
+        20
+      ],
+      "broken_links": [
+        {
+          "u": 8,
+          "v": 9,
+          "remaining_capacity_factor": 0.3529495299706634,
+          "capacity_drop_fraction": 0.6470504700293366
+        },
+        {
+          "u": 17,
+          "v": 10,
+          "remaining_capacity_factor": 0.05508948740543229,
+          "capacity_drop_fraction": 0.9449105125945677
+        },
+        {
+          "u": 24,
+          "v": 13,
+          "remaining_capacity_factor": 0.008621232533261525,
+          "capacity_drop_fraction": 0.9913787674667385
+        },
+        {
+          "u": 3,
+          "v": 1,
+          "remaining_capacity_factor": 0.04508267875555505,
+          "capacity_drop_fraction": 0.954917321244445
+        },
+        {
+          "u": 16,
+          "v": 18,
+          "remaining_capacity_factor": 0.3178667010041384,
+          "capacity_drop_fraction": 0.6821332989958616
+        },
+        {
+          "u": 2,
+          "v": 6,
+          "remaining_capacity_factor": 0.09812744204205892,
+          "capacity_drop_fraction": 0.9018725579579411
+        },
+        {
+          "u": 8,
+          "v": 16,
+          "remaining_capacity_factor": 0.2714720885314239,
+          "capacity_drop_fraction": 0.7285279114685761
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_087",
+      "seed": 20260411,
+      "broken_buses": [
+        24,
+        4,
+        5,
+        8,
+        13,
+        28,
+        6,
+        11,
+        19
+      ],
+      "broken_links": [
+        {
+          "u": 8,
+          "v": 6,
+          "remaining_capacity_factor": 0.4540451830751404,
+          "capacity_drop_fraction": 0.5459548169248596
+        },
+        {
+          "u": 23,
+          "v": 14,
+          "remaining_capacity_factor": 0.3606467613217841,
+          "capacity_drop_fraction": 0.6393532386782159
+        },
+        {
+          "u": 11,
+          "v": 14,
+          "remaining_capacity_factor": 0.09849107934769541,
+          "capacity_drop_fraction": 0.9015089206523046
+        },
+        {
+          "u": 10,
+          "v": 16,
+          "remaining_capacity_factor": 0.18365959568017243,
+          "capacity_drop_fraction": 0.8163404043198276
+        },
+        {
+          "u": 22,
+          "v": 23,
+          "remaining_capacity_factor": 0.3029699248575801,
+          "capacity_drop_fraction": 0.6970300751424199
+        },
+        {
+          "u": 11,
+          "v": 10,
+          "remaining_capacity_factor": 0.26100317542933704,
+          "capacity_drop_fraction": 0.738996824570663
+        },
+        {
+          "u": 10,
+          "v": 11,
+          "remaining_capacity_factor": 0.07831346667465389,
+          "capacity_drop_fraction": 0.9216865333253461
+        },
+        {
+          "u": 17,
+          "v": 16,
+          "remaining_capacity_factor": 0.1335251441104479,
+          "capacity_drop_fraction": 0.8664748558895521
+        },
+        {
+          "u": 10,
+          "v": 15,
+          "remaining_capacity_factor": 0.3876294168628569,
+          "capacity_drop_fraction": 0.6123705831371431
+        },
+        {
+          "u": 8,
+          "v": 9,
+          "remaining_capacity_factor": 0.0744827941931061,
+          "capacity_drop_fraction": 0.9255172058068939
+        },
+        {
+          "u": 8,
+          "v": 7,
+          "remaining_capacity_factor": 0.02167474104274425,
+          "capacity_drop_fraction": 0.9783252589572558
+        },
+        {
+          "u": 12,
+          "v": 13,
+          "remaining_capacity_factor": 0.2385778038813362,
+          "capacity_drop_fraction": 0.7614221961186638
+        },
+        {
+          "u": 1,
+          "v": 2,
+          "remaining_capacity_factor": 0.2375345444156508,
+          "capacity_drop_fraction": 0.7624654555843492
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_088",
+      "seed": 20260412,
+      "broken_buses": [
+        26,
+        9,
+        21,
+        11,
+        3,
+        8,
+        4,
+        19,
+        23,
+        10
+      ],
+      "broken_links": [
+        {
+          "u": 18,
+          "v": 16,
+          "remaining_capacity_factor": 0.2877773238738979,
+          "capacity_drop_fraction": 0.7122226761261021
+        },
+        {
+          "u": 11,
+          "v": 12,
+          "remaining_capacity_factor": 0.26954401338554046,
+          "capacity_drop_fraction": 0.7304559866144595
+        },
+        {
+          "u": 1,
+          "v": 2,
+          "remaining_capacity_factor": 0.37661382099900287,
+          "capacity_drop_fraction": 0.6233861790009971
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_089",
+      "seed": 20260413,
+      "broken_buses": [
+        29,
+        26,
+        10,
+        18,
+        6,
+        25,
+        28,
+        17,
+        31,
+        21,
+        27,
+        4
+      ],
+      "broken_links": [
+        {
+          "u": 17,
+          "v": 10,
+          "remaining_capacity_factor": 0.06647037412598134,
+          "capacity_drop_fraction": 0.9335296258740187
+        },
+        {
+          "u": 5,
+          "v": 4,
+          "remaining_capacity_factor": 0.243563454543686,
+          "capacity_drop_fraction": 0.756436545456314
+        },
+        {
+          "u": 20,
+          "v": 18,
+          "remaining_capacity_factor": 0.02881220804618101,
+          "capacity_drop_fraction": 0.971187791953819
+        },
+        {
+          "u": 16,
+          "v": 17,
+          "remaining_capacity_factor": 0.38789451554542387,
+          "capacity_drop_fraction": 0.6121054844545761
+        },
+        {
+          "u": 13,
+          "v": 24,
+          "remaining_capacity_factor": 0.4764464429775106,
+          "capacity_drop_fraction": 0.5235535570224894
+        },
+        {
+          "u": 3,
+          "v": 1,
+          "remaining_capacity_factor": 0.04986137119484102,
+          "capacity_drop_fraction": 0.950138628805159
+        },
+        {
+          "u": 10,
+          "v": 17,
+          "remaining_capacity_factor": 0.3831571990845575,
+          "capacity_drop_fraction": 0.6168428009154425
+        },
+        {
+          "u": 17,
+          "v": 19,
+          "remaining_capacity_factor": 0.15684011248236074,
+          "capacity_drop_fraction": 0.8431598875176393
+        },
+        {
+          "u": 20,
+          "v": 21,
+          "remaining_capacity_factor": 0.2357175507933632,
+          "capacity_drop_fraction": 0.7642824492066368
+        },
+        {
+          "u": 21,
+          "v": 22,
+          "remaining_capacity_factor": 0.4172991735595847,
+          "capacity_drop_fraction": 0.5827008264404153
+        },
+        {
+          "u": 15,
+          "v": 22,
+          "remaining_capacity_factor": 0.434146621993742,
+          "capacity_drop_fraction": 0.565853378006258
+        },
+        {
+          "u": 10,
+          "v": 15,
+          "remaining_capacity_factor": 0.296467216930382,
+          "capacity_drop_fraction": 0.703532783069618
+        },
+        {
+          "u": 22,
+          "v": 20,
+          "remaining_capacity_factor": 0.24412454721223442,
+          "capacity_drop_fraction": 0.7558754527877656
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_090",
+      "seed": 20260414,
+      "broken_buses": [
+        32,
+        31,
+        22,
+        15,
+        2,
+        25,
+        17,
+        16,
+        24,
+        10,
+        30,
+        19,
+        3,
+        26
+      ],
+      "broken_links": [
+        {
+          "u": 17,
+          "v": 16,
+          "remaining_capacity_factor": 0.4830160441187905,
+          "capacity_drop_fraction": 0.5169839558812095
+        },
+        {
+          "u": 24,
+          "v": 23,
+          "remaining_capacity_factor": 0.32069187416766565,
+          "capacity_drop_fraction": 0.6793081258323344
+        },
+        {
+          "u": 9,
+          "v": 8,
+          "remaining_capacity_factor": 0.21026281393847412,
+          "capacity_drop_fraction": 0.7897371860615259
+        },
+        {
+          "u": 5,
+          "v": 9,
+          "remaining_capacity_factor": 0.23732249265043526,
+          "capacity_drop_fraction": 0.7626775073495647
+        },
+        {
+          "u": 11,
+          "v": 14,
+          "remaining_capacity_factor": 0.10204569411549103,
+          "capacity_drop_fraction": 0.897954305884509
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_091",
+      "seed": 20260415,
+      "broken_buses": [
+        30,
+        10,
+        22,
+        2,
+        27,
+        12,
+        26,
+        16,
+        19,
+        32,
+        7,
+        20,
+        17
+      ],
+      "broken_links": [
+        {
+          "u": 3,
+          "v": 4,
+          "remaining_capacity_factor": 0.1391848886311705,
+          "capacity_drop_fraction": 0.8608151113688295
+        },
+        {
+          "u": 2,
+          "v": 1,
+          "remaining_capacity_factor": 0.1411543710571994,
+          "capacity_drop_fraction": 0.8588456289428006
+        },
+        {
+          "u": 12,
+          "v": 13,
+          "remaining_capacity_factor": 0.261504297882192,
+          "capacity_drop_fraction": 0.738495702117808
+        },
+        {
+          "u": 8,
+          "v": 7,
+          "remaining_capacity_factor": 0.45431327356289886,
+          "capacity_drop_fraction": 0.5456867264371011
+        },
+        {
+          "u": 8,
+          "v": 16,
+          "remaining_capacity_factor": 0.3596150865620973,
+          "capacity_drop_fraction": 0.6403849134379027
+        },
+        {
+          "u": 21,
+          "v": 20,
+          "remaining_capacity_factor": 0.0863921607010838,
+          "capacity_drop_fraction": 0.9136078392989162
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_092",
+      "seed": 20260416,
+      "broken_buses": [
+        23,
+        13,
+        20,
+        11,
+        17,
+        18,
+        32,
+        7,
+        22,
+        5,
+        9,
+        28
+      ],
+      "broken_links": [
+        {
+          "u": 2,
+          "v": 6,
+          "remaining_capacity_factor": 0.3668343147725408,
+          "capacity_drop_fraction": 0.6331656852274592
+        },
+        {
+          "u": 14,
+          "v": 23,
+          "remaining_capacity_factor": 0.146221562122535,
+          "capacity_drop_fraction": 0.853778437877465
+        },
+        {
+          "u": 14,
+          "v": 15,
+          "remaining_capacity_factor": 0.1969107596009616,
+          "capacity_drop_fraction": 0.8030892403990384
+        },
+        {
+          "u": 22,
+          "v": 23,
+          "remaining_capacity_factor": 0.13918035671347972,
+          "capacity_drop_fraction": 0.8608196432865203
+        },
+        {
+          "u": 9,
+          "v": 8,
+          "remaining_capacity_factor": 0.07049211875536598,
+          "capacity_drop_fraction": 0.929507881244634
+        },
+        {
+          "u": 4,
+          "v": 5,
+          "remaining_capacity_factor": 0.25421110828859805,
+          "capacity_drop_fraction": 0.745788891711402
+        },
+        {
+          "u": 16,
+          "v": 18,
+          "remaining_capacity_factor": 0.10158280601232672,
+          "capacity_drop_fraction": 0.8984171939876733
+        },
+        {
+          "u": 3,
+          "v": 4,
+          "remaining_capacity_factor": 0.32474798408329186,
+          "capacity_drop_fraction": 0.6752520159167081
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_093",
+      "seed": 20260417,
+      "broken_buses": [
+        21,
+        1,
+        31,
+        4,
+        2,
+        23,
+        10,
+        24
+      ],
+      "broken_links": [
+        {
+          "u": 3,
+          "v": 12,
+          "remaining_capacity_factor": 0.2726788390296221,
+          "capacity_drop_fraction": 0.7273211609703779
+        },
+        {
+          "u": 20,
+          "v": 22,
+          "remaining_capacity_factor": 0.04711364684167241,
+          "capacity_drop_fraction": 0.9528863531583276
+        },
+        {
+          "u": 8,
+          "v": 6,
+          "remaining_capacity_factor": 0.35314414557312124,
+          "capacity_drop_fraction": 0.6468558544268788
+        },
+        {
+          "u": 22,
+          "v": 23,
+          "remaining_capacity_factor": 0.11741793083931085,
+          "capacity_drop_fraction": 0.8825820691606892
+        },
+        {
+          "u": 9,
+          "v": 8,
+          "remaining_capacity_factor": 0.21724178539840122,
+          "capacity_drop_fraction": 0.7827582146015988
+        },
+        {
+          "u": 2,
+          "v": 6,
+          "remaining_capacity_factor": 0.32685355353884393,
+          "capacity_drop_fraction": 0.6731464464611561
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_094",
+      "seed": 20260418,
+      "broken_buses": [
+        13,
+        3,
+        24,
+        2,
+        1,
+        33,
+        25,
+        5,
+        31,
+        20,
+        32,
+        10,
+        28,
+        27
+      ],
+      "broken_links": [
+        {
+          "u": 19,
+          "v": 17,
+          "remaining_capacity_factor": 0.4369288576006196,
+          "capacity_drop_fraction": 0.5630711423993804
+        },
+        {
+          "u": 9,
+          "v": 5,
+          "remaining_capacity_factor": 0.3184905133757022,
+          "capacity_drop_fraction": 0.6815094866242978
+        },
+        {
+          "u": 12,
+          "v": 13,
+          "remaining_capacity_factor": 0.441253765486908,
+          "capacity_drop_fraction": 0.558746234513092
+        },
+        {
+          "u": 12,
+          "v": 3,
+          "remaining_capacity_factor": 0.01486609497013891,
+          "capacity_drop_fraction": 0.9851339050298611
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_095",
+      "seed": 20260419,
+      "broken_buses": [
+        25,
+        7,
+        33,
+        4,
+        19,
+        15,
+        5,
+        32,
+        10,
+        31,
+        14,
+        24,
+        22,
+        17,
+        13
+      ],
+      "broken_links": [
+        {
+          "u": 12,
+          "v": 13,
+          "remaining_capacity_factor": 0.32719477459082635,
+          "capacity_drop_fraction": 0.6728052254091736
+        },
+        {
+          "u": 10,
+          "v": 17,
+          "remaining_capacity_factor": 0.2698549928817382,
+          "capacity_drop_fraction": 0.7301450071182618
+        },
+        {
+          "u": 4,
+          "v": 5,
+          "remaining_capacity_factor": 0.24464496979611483,
+          "capacity_drop_fraction": 0.7553550302038852
+        },
+        {
+          "u": 8,
+          "v": 7,
+          "remaining_capacity_factor": 0.23332633599419828,
+          "capacity_drop_fraction": 0.7666736640058017
+        },
+        {
+          "u": 7,
+          "v": 18,
+          "remaining_capacity_factor": 0.41470906223231285,
+          "capacity_drop_fraction": 0.5852909377676871
+        },
+        {
+          "u": 22,
+          "v": 20,
+          "remaining_capacity_factor": 0.28817184490354664,
+          "capacity_drop_fraction": 0.7118281550964534
+        },
+        {
+          "u": 6,
+          "v": 5,
+          "remaining_capacity_factor": 0.4097611721419976,
+          "capacity_drop_fraction": 0.5902388278580024
+        },
+        {
+          "u": 8,
+          "v": 16,
+          "remaining_capacity_factor": 0.4443326211384473,
+          "capacity_drop_fraction": 0.5556673788615527
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_096",
+      "seed": 20260420,
+      "broken_buses": [
+        22,
+        32,
+        6,
+        3,
+        8,
+        11,
+        7,
+        2,
+        20,
+        18,
+        17,
+        33
+      ],
+      "broken_links": [
+        {
+          "u": 15,
+          "v": 19,
+          "remaining_capacity_factor": 0.13924404376685662,
+          "capacity_drop_fraction": 0.8607559562331434
+        },
+        {
+          "u": 4,
+          "v": 3,
+          "remaining_capacity_factor": 0.11999376209500734,
+          "capacity_drop_fraction": 0.8800062379049927
+        },
+        {
+          "u": 7,
+          "v": 8,
+          "remaining_capacity_factor": 0.2611102044178766,
+          "capacity_drop_fraction": 0.7388897955821234
+        },
+        {
+          "u": 8,
+          "v": 9,
+          "remaining_capacity_factor": 0.2641548867638307,
+          "capacity_drop_fraction": 0.7358451132361693
+        },
+        {
+          "u": 24,
+          "v": 13,
+          "remaining_capacity_factor": 0.016669065576578546,
+          "capacity_drop_fraction": 0.9833309344234215
+        },
+        {
+          "u": 18,
+          "v": 16,
+          "remaining_capacity_factor": 0.39564067846127027,
+          "capacity_drop_fraction": 0.6043593215387297
+        },
+        {
+          "u": 20,
+          "v": 19,
+          "remaining_capacity_factor": 0.10819873946715886,
+          "capacity_drop_fraction": 0.8918012605328411
+        },
+        {
+          "u": 9,
+          "v": 5,
+          "remaining_capacity_factor": 0.0009534065313139273,
+          "capacity_drop_fraction": 0.9990465934686861
+        },
+        {
+          "u": 11,
+          "v": 14,
+          "remaining_capacity_factor": 0.4264211184678821,
+          "capacity_drop_fraction": 0.5735788815321179
+        },
+        {
+          "u": 11,
+          "v": 4,
+          "remaining_capacity_factor": 0.09671353958089113,
+          "capacity_drop_fraction": 0.9032864604191089
+        },
+        {
+          "u": 3,
+          "v": 1,
+          "remaining_capacity_factor": 0.2696593429440406,
+          "capacity_drop_fraction": 0.7303406570559594
+        },
+        {
+          "u": 14,
+          "v": 11,
+          "remaining_capacity_factor": 0.1793026031430952,
+          "capacity_drop_fraction": 0.8206973968569048
+        },
+        {
+          "u": 15,
+          "v": 22,
+          "remaining_capacity_factor": 0.4605285336281951,
+          "capacity_drop_fraction": 0.5394714663718049
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_097",
+      "seed": 20260421,
+      "broken_buses": [
+        16,
+        8,
+        9,
+        14,
+        33,
+        12,
+        19,
+        17,
+        6,
+        15,
+        1,
+        5
+      ],
+      "broken_links": [
+        {
+          "u": 14,
+          "v": 11,
+          "remaining_capacity_factor": 0.2811940503973215,
+          "capacity_drop_fraction": 0.7188059496026785
+        },
+        {
+          "u": 10,
+          "v": 9,
+          "remaining_capacity_factor": 0.2117869673010756,
+          "capacity_drop_fraction": 0.7882130326989244
+        },
+        {
+          "u": 20,
+          "v": 19,
+          "remaining_capacity_factor": 0.1899827408959307,
+          "capacity_drop_fraction": 0.8100172591040693
+        },
+        {
+          "u": 14,
+          "v": 15,
+          "remaining_capacity_factor": 0.16762054678075589,
+          "capacity_drop_fraction": 0.8323794532192441
+        },
+        {
+          "u": 13,
+          "v": 12,
+          "remaining_capacity_factor": 0.23693090330062705,
+          "capacity_drop_fraction": 0.763069096699373
+        },
+        {
+          "u": 21,
+          "v": 24,
+          "remaining_capacity_factor": 0.05814820333412718,
+          "capacity_drop_fraction": 0.9418517966658728
+        },
+        {
+          "u": 8,
+          "v": 6,
+          "remaining_capacity_factor": 0.24466868502532324,
+          "capacity_drop_fraction": 0.7553313149746768
+        },
+        {
+          "u": 22,
+          "v": 15,
+          "remaining_capacity_factor": 0.2841033063339361,
+          "capacity_drop_fraction": 0.7158966936660639
+        },
+        {
+          "u": 10,
+          "v": 11,
+          "remaining_capacity_factor": 0.18695592812558937,
+          "capacity_drop_fraction": 0.8130440718744106
+        },
+        {
+          "u": 20,
+          "v": 22,
+          "remaining_capacity_factor": 0.38606265842802834,
+          "capacity_drop_fraction": 0.6139373415719717
+        },
+        {
+          "u": 4,
+          "v": 5,
+          "remaining_capacity_factor": 0.09481791678169049,
+          "capacity_drop_fraction": 0.9051820832183095
+        },
+        {
+          "u": 2,
+          "v": 1,
+          "remaining_capacity_factor": 0.4758190542266899,
+          "capacity_drop_fraction": 0.5241809457733101
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_098",
+      "seed": 20260422,
+      "broken_buses": [
+        15,
+        8,
+        30,
+        22,
+        12,
+        19,
+        27,
+        21,
+        24
+      ],
+      "broken_links": [
+        {
+          "u": 20,
+          "v": 19,
+          "remaining_capacity_factor": 0.1959118267785449,
+          "capacity_drop_fraction": 0.8040881732214551
+        },
+        {
+          "u": 19,
+          "v": 17,
+          "remaining_capacity_factor": 0.39415574356698124,
+          "capacity_drop_fraction": 0.6058442564330188
+        },
+        {
+          "u": 11,
+          "v": 4,
+          "remaining_capacity_factor": 0.30530032300890997,
+          "capacity_drop_fraction": 0.69469967699109
+        },
+        {
+          "u": 16,
+          "v": 8,
+          "remaining_capacity_factor": 0.15305395902372698,
+          "capacity_drop_fraction": 0.846946040976273
+        },
+        {
+          "u": 14,
+          "v": 23,
+          "remaining_capacity_factor": 0.3249663176926538,
+          "capacity_drop_fraction": 0.6750336823073462
+        },
+        {
+          "u": 13,
+          "v": 24,
+          "remaining_capacity_factor": 0.43786600985069746,
+          "capacity_drop_fraction": 0.5621339901493025
+        },
+        {
+          "u": 14,
+          "v": 11,
+          "remaining_capacity_factor": 0.28441887400697263,
+          "capacity_drop_fraction": 0.7155811259930274
+        },
+        {
+          "u": 8,
+          "v": 6,
+          "remaining_capacity_factor": 0.4137646625916418,
+          "capacity_drop_fraction": 0.5862353374083582
+        },
+        {
+          "u": 22,
+          "v": 15,
+          "remaining_capacity_factor": 0.41405476850964795,
+          "capacity_drop_fraction": 0.585945231490352
+        },
+        {
+          "u": 17,
+          "v": 10,
+          "remaining_capacity_factor": 0.46158276545199584,
+          "capacity_drop_fraction": 0.5384172345480042
+        },
+        {
+          "u": 16,
+          "v": 17,
+          "remaining_capacity_factor": 0.09976334162125233,
+          "capacity_drop_fraction": 0.9002366583787477
+        },
+        {
+          "u": 2,
+          "v": 1,
+          "remaining_capacity_factor": 0.130480750365767,
+          "capacity_drop_fraction": 0.869519249634233
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_099",
+      "seed": 20260423,
+      "broken_buses": [
+        6,
+        8,
+        30,
+        25,
+        32,
+        4,
+        31,
+        13,
+        33,
+        7,
+        27,
+        10,
+        21
+      ],
+      "broken_links": [
+        {
+          "u": 4,
+          "v": 11,
+          "remaining_capacity_factor": 0.3990663430434187,
+          "capacity_drop_fraction": 0.6009336569565813
+        },
+        {
+          "u": 21,
+          "v": 22,
+          "remaining_capacity_factor": 0.2245858375801515,
+          "capacity_drop_fraction": 0.7754141624198485
+        },
+        {
+          "u": 2,
+          "v": 6,
+          "remaining_capacity_factor": 0.22645286717120128,
+          "capacity_drop_fraction": 0.7735471328287987
+        },
+        {
+          "u": 7,
+          "v": 8,
+          "remaining_capacity_factor": 0.412281441616273,
+          "capacity_drop_fraction": 0.587718558383727
+        },
+        {
+          "u": 1,
+          "v": 2,
+          "remaining_capacity_factor": 0.1280644868708738,
+          "capacity_drop_fraction": 0.8719355131291262
+        },
+        {
+          "u": 15,
+          "v": 10,
+          "remaining_capacity_factor": 0.46930944373043704,
+          "capacity_drop_fraction": 0.530690556269563
+        },
+        {
+          "u": 15,
+          "v": 19,
+          "remaining_capacity_factor": 0.44176739463092773,
+          "capacity_drop_fraction": 0.5582326053690723
+        },
+        {
+          "u": 14,
+          "v": 11,
+          "remaining_capacity_factor": 0.0484571557393938,
+          "capacity_drop_fraction": 0.9515428442606062
+        },
+        {
+          "u": 16,
+          "v": 8,
+          "remaining_capacity_factor": 0.3902643782041233,
+          "capacity_drop_fraction": 0.6097356217958767
+        },
+        {
+          "u": 16,
+          "v": 10,
+          "remaining_capacity_factor": 0.15650445142290748,
+          "capacity_drop_fraction": 0.8434955485770925
+        },
+        {
+          "u": 6,
+          "v": 5,
+          "remaining_capacity_factor": 0.4103938190501282,
+          "capacity_drop_fraction": 0.5896061809498718
+        },
+        {
+          "u": 5,
+          "v": 6,
+          "remaining_capacity_factor": 0.14499800414695696,
+          "capacity_drop_fraction": 0.855001995853043
+        },
+        {
+          "u": 23,
+          "v": 14,
+          "remaining_capacity_factor": 0.04316727032138146,
+          "capacity_drop_fraction": 0.9568327296786185
+        }
+      ]
+    },
+    {
+      "scenario_id": "scenario_100",
+      "seed": 20260424,
+      "broken_buses": [
+        28,
+        4,
+        10,
+        27,
+        16,
+        21,
+        22,
+        15
+      ],
+      "broken_links": [
+        {
+          "u": 14,
+          "v": 23,
+          "remaining_capacity_factor": 0.0017010129889334369,
+          "capacity_drop_fraction": 0.9982989870110666
+        },
+        {
+          "u": 10,
+          "v": 16,
+          "remaining_capacity_factor": 0.20931659812852776,
+          "capacity_drop_fraction": 0.7906834018714722
+        },
+        {
+          "u": 22,
+          "v": 21,
+          "remaining_capacity_factor": 0.30043278417427177,
+          "capacity_drop_fraction": 0.6995672158257282
+        },
+        {
+          "u": 16,
+          "v": 8,
+          "remaining_capacity_factor": 0.4979562607863294,
+          "capacity_drop_fraction": 0.5020437392136706
+        },
+        {
+          "u": 7,
+          "v": 8,
+          "remaining_capacity_factor": 0.08340958564440393,
+          "capacity_drop_fraction": 0.9165904143555961
+        },
+        {
+          "u": 5,
+          "v": 4,
+          "remaining_capacity_factor": 0.43454813108064005,
+          "capacity_drop_fraction": 0.56545186891936
+        }
+      ]
+    }
+  ]
+}
