@@ -2,12 +2,27 @@ from __future__ import annotations
 
 import heapq
 import os
-from typing import Dict, Iterable, List, Tuple
+from typing import Dict, Iterable, List, Mapping, Optional, Tuple
 
 Link = Tuple[int, int]
 
 
-def capacity_adjustment(input_file: str, output_file: str, links: Iterable[Link], adj_factor: float) -> None:
+def _normalized_link_factors(link_factors: Optional[Mapping[Link, float]]) -> Dict[Link, float]:
+    out: Dict[Link, float] = {}
+    if not link_factors:
+        return out
+    for (u, v), factor in link_factors.items():
+        out[(int(u), int(v))] = float(factor)
+    return out
+
+
+def capacity_adjustment(
+    input_file: str,
+    output_file: str,
+    links: Iterable[Link],
+    adj_factor: float,
+    link_factors: Optional[Mapping[Link, float]] = None,
+) -> None:
     """
     Edit a TAP-B network file by derating (or effectively disabling) specified links.
 
@@ -20,6 +35,7 @@ def capacity_adjustment(input_file: str, output_file: str, links: Iterable[Link]
         raise FileNotFoundError(f"input_file not found: {input_file!r}")
 
     links_set = {(int(u), int(v)) for (u, v) in links}
+    factor_map = _normalized_link_factors(link_factors)
 
     with open(input_file, "r", encoding="utf-8") as f:
         lines = f.readlines()
@@ -42,10 +58,11 @@ def capacity_adjustment(input_file: str, output_file: str, links: Iterable[Link]
         key_rev = (v, u)
 
         if key in links_set or key_rev in links_set:
-            if adj_factor < 0.1:
+            factor = float(factor_map.get(key, factor_map.get(key_rev, adj_factor)))
+            if factor < 0.1:
                 parts[4] = "9999"
             else:
-                cap = float(parts[2]) * float(adj_factor)
+                cap = float(parts[2]) * factor
                 parts[2] = f"{cap:.8f}"
 
         output_lines.append("\t".join(parts) + " \n")

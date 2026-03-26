@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import os
 import shutil
+import textwrap
 from datetime import datetime
 from typing import Any, Dict, List, Tuple, Optional
 
@@ -61,6 +62,52 @@ def _fmt(x: float, digits: int = 4) -> str:
     return f"{x:.{digits}g}"
 
 
+def _wrap_title(title: str, width: int = 72) -> str:
+    lines: List[str] = []
+    for chunk in str(title).split("\n"):
+        lines.extend(textwrap.wrap(chunk, width=width) or [""])
+    return "\n".join(lines)
+
+
+def _split_sequence_by_skill(sequence: List[Any]) -> Tuple[List[Any], List[Any]]:
+    power_seq = [asset for asset in sequence if not isinstance(asset, tuple)]
+    road_seq = [asset for asset in sequence if isinstance(asset, tuple)]
+    return power_seq, road_seq
+
+
+def _canonicalize_sequence_for_crews(sequence: List[Any], *, crew_mode: str) -> Tuple[List[Any], List[Any], List[Any]]:
+    seq = list(sequence)
+    power_seq, road_seq = _split_sequence_by_skill(seq)
+    if crew_mode == "specialized":
+        seq = list(power_seq) + list(road_seq)
+    return seq, power_seq, road_seq
+
+
+def _specialized_neighbor_factory(*, n_power: int, neighbor_mode: str):
+    def _neighbor(seq: List[Any], rng) -> List[Any]:
+        blocks: List[Tuple[int, int]] = []
+        if n_power >= 2:
+            blocks.append((0, n_power))
+        n_road = len(seq) - n_power
+        if n_road >= 2:
+            blocks.append((n_power, len(seq)))
+        if not blocks:
+            return list(seq)
+
+        start, end = blocks[0] if len(blocks) == 1 else rng.choice(blocks)
+        cand = list(seq)
+        if neighbor_mode == "insert":
+            i, j = rng.sample(range(start, end), 2)
+            x = cand.pop(i)
+            cand.insert(j, x)
+        else:
+            i, j = rng.sample(range(start, end), 2)
+            cand[i], cand[j] = cand[j], cand[i]
+        return cand
+
+    return _neighbor
+
+
 def eval_power_resilience(broken_buses: List[int]) -> float:
     functional = set(get_functional_nodes(set(map(int, broken_buses))))
     return float(len(functional)) / float(BUS_COUNT)
@@ -70,6 +117,7 @@ def _prepare_state_and_run_tapb(
     *,
     broken_buses: List[int],
     broken_links: List[Tuple[int, int]],
+    broken_link_factors: Optional[Dict[Tuple[int, int], float]],
     base_net: str,
     trips: str,
     net1: str,
@@ -82,7 +130,7 @@ def _prepare_state_and_run_tapb(
     _require(trips)
     _ensure_dir(os.path.dirname(net1) or ".")
 
-    capacity_adjustment(base_net, net1, broken_links, broken_link_factor)
+    capacity_adjustment(base_net, net1, broken_links, broken_link_factor, link_factors=broken_link_factors)
     _require(net1)
 
     unfunctional_nodes = delete_buses(list(map(int, broken_buses)))
@@ -103,6 +151,7 @@ def eval_road_resilience(
     broken_buses: List[int],
     broken_links: List[Tuple[int, int]],
     *,
+    broken_link_factors: Optional[Dict[Tuple[int, int], float]],
     base_net: str,
     trips: str,
     net1: str,
@@ -115,6 +164,7 @@ def eval_road_resilience(
     _prepare_state_and_run_tapb(
         broken_buses=broken_buses,
         broken_links=broken_links,
+        broken_link_factors=broken_link_factors,
         base_net=base_net,
         trips=trips,
         net1=net1,
@@ -154,21 +204,20 @@ def _plot_triangle_with_shading(
     if len(time_series) != len(road_series) or len(time_series) != len(power_series):
         raise ValueError("time_series/road_series/power_series length mismatch")
 
-    plt.figure()
-    plt.plot(time_series, road_series, label="Road functionality", linewidth=2.0)
-    plt.plot(time_series, power_series, label="Power functionality", linewidth=2.0)
+    fig, ax = plt.subplots(figsize=(11, 7), constrained_layout=True)
+    ax.plot(time_series, road_series, label="Road functionality", linewidth=2.0)
+    ax.plot(time_series, power_series, label="Power functionality", linewidth=2.0)
     ones = [1.0 for _ in time_series]
-    plt.fill_between(time_series, road_series, ones, alpha=0.2, label="Road complement")
-    plt.fill_between(time_series, power_series, ones, alpha=0.2, label="Power complement")
-    plt.ylim(0.0, 1.05)
-    plt.xlabel("Time")
-    plt.ylabel("Functionality")
-    plt.title(title)
-    plt.grid(True, alpha=0.3)
-    plt.legend()
-    plt.tight_layout()
-    plt.savefig(out_png, dpi=200)
-    plt.close()
+    ax.fill_between(time_series, road_series, ones, alpha=0.2, label="Road complement")
+    ax.fill_between(time_series, power_series, ones, alpha=0.2, label="Power complement")
+    ax.set_ylim(0.0, 1.05)
+    ax.set_xlabel("Time")
+    ax.set_ylabel("Functionality")
+    ax.set_title(_wrap_title(title), pad=14)
+    ax.grid(True, alpha=0.3)
+    ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.12), ncol=2, frameon=True)
+    fig.savefig(out_png, dpi=200, bbox_inches="tight", pad_inches=0.3)
+    plt.close(fig)
     return out_png
 
 
@@ -183,12 +232,12 @@ def _write_triangle_svg(
     if len(time_series) != len(road_series) or len(time_series) != len(power_series):
         raise ValueError("time_series/road_series/power_series length mismatch")
 
-    width = 900
-    height = 520
+    width = 960
+    height = 620
     margin_left = 70
     margin_right = 30
-    margin_top = 50
-    margin_bottom = 60
+    margin_top = 90
+    margin_bottom = 120
 
     xmin = min(time_series) if time_series else 0.0
     xmax = max(time_series) if time_series else 1.0
@@ -217,9 +266,15 @@ def _write_triangle_svg(
     road_line = polyline(time_series, road_series)
     power_line = polyline(time_series, power_series)
 
+    title_lines = _wrap_title(title, width=64).splitlines() or [title]
+    title_svg = "".join(
+        f'<tspan x="{width/2:.0f}" dy="{0 if idx == 0 else 20}">{line}</tspan>'
+        for idx, line in enumerate(title_lines)
+    )
+
     svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">
   <rect width="100%" height="100%" fill="white"/>
-  <text x="{width/2:.0f}" y="28" text-anchor="middle" font-family="Arial" font-size="18">{title}</text>
+  <text x="{width/2:.0f}" y="28" text-anchor="middle" font-family="Arial" font-size="18">{title_svg}</text>
   <line x1="{margin_left}" y1="{height-margin_bottom}" x2="{width-margin_right}" y2="{height-margin_bottom}" stroke="#222" stroke-width="2"/>
   <line x1="{margin_left}" y1="{margin_top}" x2="{margin_left}" y2="{height-margin_bottom}" stroke="#222" stroke-width="2"/>
   <text x="{width/2:.0f}" y="{height-18}" text-anchor="middle" font-family="Arial" font-size="14">Time</text>
@@ -228,11 +283,11 @@ def _write_triangle_svg(
   <polygon points="{power_fill}" fill="#ff7f0e" opacity="0.18"/>
   <polyline points="{road_line}" fill="none" stroke="#1f77b4" stroke-width="3"/>
   <polyline points="{power_line}" fill="none" stroke="#ff7f0e" stroke-width="3"/>
-  <rect x="{width-230}" y="70" width="170" height="56" fill="white" stroke="#ccc"/>
-  <line x1="{width-215}" y1="90" x2="{width-185}" y2="90" stroke="#1f77b4" stroke-width="3"/>
-  <text x="{width-175}" y="95" font-family="Arial" font-size="13">Road functionality</text>
-  <line x1="{width-215}" y1="112" x2="{width-185}" y2="112" stroke="#ff7f0e" stroke-width="3"/>
-  <text x="{width-175}" y="117" font-family="Arial" font-size="13">Power functionality</text>
+  <rect x="{width-300}" y="{height-88}" width="250" height="48" fill="white" stroke="#ccc"/>
+  <line x1="{width-285}" y1="{height-68}" x2="{width-255}" y2="{height-68}" stroke="#1f77b4" stroke-width="3"/>
+  <text x="{width-245}" y="{height-63}" font-family="Arial" font-size="13">Road functionality</text>
+  <line x1="{width-285}" y1="{height-46}" x2="{width-255}" y2="{height-46}" stroke="#ff7f0e" stroke-width="3"/>
+  <text x="{width-245}" y="{height-41}" font-family="Arial" font-size="13">Power functionality</text>
 </svg>
 """
     with open(out_svg, "w", encoding="utf-8") as f:
@@ -337,7 +392,7 @@ def run_model_multi(
     debug: bool = False,
     save_artifacts: bool = True,
     # crew
-    crew_mode: str = "multifunction",
+    crew_mode: str = "specialized",
     power_crews: int = 1,
     road_crews: int = 1,
     multifunction_crews: int = 1,
@@ -354,14 +409,15 @@ def run_model_multi(
     net1: str = DEFAULT_NET1,
     net2: str = DEFAULT_NET2,
     broken_link_factor: float = 0.0,
+    broken_link_factors: Optional[Dict[Tuple[int, int], float]] = None,
     power_road_factor: float = 0.5,
     baseline_tstt: float = 7475338.0,
     # Task B / CRI
     node_to_zone_path: str = "taskB_node_to_zone.json",
     bus_to_zone_path: str = "taskB_bus_to_zone.json",
     dest_path: str = DEFAULT_CRITICAL_LOCATION_PATH,
-    cri_w_e: float = 0.5,
-    cri_w_a: float = 0.5,
+    cri_w_e: float = 0.133,
+    cri_w_a: float = 0.867,
     cri_threshold: float = 0.9,
     critical_access_threshold: float = 0.9,
     # objective
@@ -398,6 +454,7 @@ def run_model_multi(
     _prepare_state_and_run_tapb(
         broken_buses=[],
         broken_links=[],
+        broken_link_factors=None,
         base_net=base_net,
         trips=trips,
         net1=net1,
@@ -410,7 +467,7 @@ def run_model_multi(
     shutil.copy2("s.txt", baseline_s)
     TT0 = compute_accessibility_TT(s_txt_path=baseline_s, zones=zones, destinations=destinations)
 
-    seq = list(sequence)
+    seq, power_sequence, road_sequence = _canonicalize_sequence_for_crews(list(sequence), crew_mode=crew_mode)
     broken_buses = {a for a in seq if not isinstance(a, tuple)}
     broken_links = {a for a in seq if isinstance(a, tuple)}
 
@@ -418,6 +475,7 @@ def run_model_multi(
     _prepare_state_and_run_tapb(
         broken_buses=list(broken_buses),
         broken_links=list(broken_links),
+        broken_link_factors=broken_link_factors,
         base_net=base_net,
         trips=trips,
         net1=net1,
@@ -455,6 +513,7 @@ def run_model_multi(
     road_func = eval_road_resilience(
         list(broken_buses),
         list(broken_links),
+        broken_link_factors=broken_link_factors,
         base_net=base_net,
         trips=trips,
         net1=net1,
@@ -474,7 +533,7 @@ def run_model_multi(
     # build CRI_z(t=0)
     func_buses0 = set(get_functional_nodes(set(map(int, broken_buses))))
     E0 = compute_E_by_zone(zones=zones, bus_to_zone=bus_to_zone, functional_buses=func_buses0, empty_zone_policy="error")
-    TT = compute_accessibility_TT(s_txt_path="s.txt", zones=zones, destinations=destinations)
+    TT = compute_accessibility_TT(s_txt_path=dispatch_s, zones=zones, destinations=destinations)
     A0 = compute_accessibility_ratio_by_zone(zones=zones, TT0=TT0, TT=TT)
     CRI0 = compute_CRI_by_zone(zones=zones, E=E0, TT0=TT0, TT=TT, w_e=cri_w_e, w_a=cri_w_a)
     cri_series: List[Dict[int, float]] = [CRI0]
@@ -501,6 +560,7 @@ def run_model_multi(
         road_func = eval_road_resilience(
             list(broken_buses),
             list(broken_links),
+            broken_link_factors=broken_link_factors,
             base_net=base_net,
             trips=trips,
             net1=net1,
@@ -519,7 +579,8 @@ def run_model_multi(
         # CRI at this event time, using current s.txt
         func_buses = set(get_functional_nodes(set(map(int, broken_buses))))
         E = compute_E_by_zone(zones=zones, bus_to_zone=bus_to_zone, functional_buses=func_buses, empty_zone_policy="error")
-        TT = compute_accessibility_TT(s_txt_path="s.txt", zones=zones, destinations=destinations)
+        current_s = os.path.abspath("s.txt")
+        TT = compute_accessibility_TT(s_txt_path=current_s, zones=zones, destinations=destinations)
         A = compute_accessibility_ratio_by_zone(zones=zones, TT0=TT0, TT=TT)
         CRI = compute_CRI_by_zone(zones=zones, E=E, TT0=TT0, TT=TT, w_e=cri_w_e, w_a=cri_w_a)
         cri_series.append(CRI)
@@ -565,6 +626,8 @@ def run_model_multi(
             print(f"timestamp: {timestamp}", file=f)
             print(message, file=f)
             print("sequence:", seq, file=f)
+            print("power_sequence:", power_sequence, file=f)
+            print("road_sequence:", road_sequence, file=f)
             print("timeline:", events, file=f)
             print("triangle_area:", triangle_area, file=f)
             print("equity_summary:", equity_summary, file=f)
@@ -576,6 +639,11 @@ def run_model_multi(
             print("bus_dispatch_mode:", bus_dispatch_mode, file=f)
             print("bus_location_source:", bus_location_source, file=f)
             print("bus_to_link_source:", bus_to_link_source, file=f)
+            print("crew_mode:", crew_mode, file=f)
+            print("power_crews:", power_crews, file=f)
+            print("road_crews:", road_crews, file=f)
+            print("multifunction_crews:", multifunction_crews, file=f)
+            print("broken_link_factors:", broken_link_factors, file=f)
 
         with open(en_path, "w", encoding="utf-8") as f:
             print("Task B run report (CRI + equity)", file=f)
@@ -587,6 +655,10 @@ def run_model_multi(
             print(f"Critical access threshold: {_fmt(critical_access_threshold)}", file=f)
             print(f"Bus dispatch mode: {bus_dispatch_mode}", file=f)
             print(f"Bus-to-link source: {bus_to_link_source}", file=f)
+            print(f"Crew mode: {crew_mode}", file=f)
+            print(f"Power crews: {power_crews}  Road crews: {road_crews}  Multifunction crews: {multifunction_crews}", file=f)
+            print(f"Power sequence: {power_sequence}", file=f)
+            print(f"Road sequence: {road_sequence}", file=f)
             print(f"Triangle area: {_fmt(triangle_area)}", file=f)
             print("", file=f)
             print("Equity summary (CRI-based):", file=f)
@@ -607,6 +679,10 @@ def run_model_multi(
             print(f"关键可达性阈值：{_fmt(critical_access_threshold)}", file=f)
             print(f"调度映射模式：{bus_dispatch_mode}", file=f)
             print(f"Bus-to-link 来源：{bus_to_link_source}", file=f)
+            print(f"队伍模式：{crew_mode}", file=f)
+            print(f"电力队伍：{power_crews}  路网队伍：{road_crews}  多功能队伍：{multifunction_crews}", file=f)
+            print(f"电力修复序列：{power_sequence}", file=f)
+            print(f"路网修复序列：{road_sequence}", file=f)
             print(f"Triangle 补面积：{_fmt(triangle_area)}", file=f)
             print("", file=f)
             print("公平性汇总指标（基于 CRI_z 的分布）:", file=f)
@@ -637,11 +713,17 @@ def run_model_multi(
                 __import__("json").dumps(
                     {
                         "time_series": time_series,
+                        "sequence": seq,
+                        "power_sequence": power_sequence,
+                        "road_sequence": road_sequence,
                         "zones": zones,
                         "destinations": destinations,
                         "cri_weights": {"w_e": cri_w_e, "w_a": cri_w_a},
                         "cri_threshold": cri_threshold,
                         "critical_access_threshold": critical_access_threshold,
+                        "broken_link_factors": {
+                            f"{u}-{v}": factor for (u, v), factor in (broken_link_factors or {}).items()
+                        },
                         "cri_series": cri_series,
                         "access_series": access_series,
                     },
@@ -653,6 +735,8 @@ def run_model_multi(
         "run_dir": run_dir,
         "timestamp": timestamp,
         "sequence": seq,
+        "power_sequence": list(power_sequence),
+        "road_sequence": list(road_sequence),
         "triangle_area": triangle_area,
         "equity_summary": equity_summary,
         "critical_access_summary": critical_access_summary,
@@ -666,6 +750,11 @@ def run_model_multi(
         "bus_dispatch_mode": bus_dispatch_mode,
         "bus_location_source": bus_location_source,
         "bus_to_link_source": bus_to_link_source,
+        "crew_mode": crew_mode,
+        "power_crews": int(power_crews),
+        "road_crews": int(road_crews),
+        "multifunction_crews": int(multifunction_crews),
+        "broken_link_factors": dict(broken_link_factors or {}),
         "triangle_png": (tri_plot_path if save_artifacts else ""),
     }
 
@@ -680,16 +769,19 @@ def optimize_sequence_sa(
     sa: Optional[SAConfig] = None,
     strict: bool = True,
     save_baseline: bool = True,
+    save_best_artifacts: bool = True,
     save_best_debug: bool = True,
     # pass-through
-    crew_mode: str = "multifunction",
+    crew_mode: str = "specialized",
+    power_crews: int = 1,
+    road_crews: int = 1,
     multifunction_crews: int = 1,
     bus_dispatch_mode: str = "link_only",
     bus_location_source: str = DEFAULT_BUS_LOCATION_SOURCE,
     bus_to_link_source: str = DEFAULT_BUS_TO_LINK_SOURCE,
     dest_path: str = DEFAULT_CRITICAL_LOCATION_PATH,
-    cri_w_e: float = 0.5,
-    cri_w_a: float = 0.5,
+    cri_w_e: float = 0.133,
+    cri_w_a: float = 0.867,
     cri_threshold: float = 0.9,
     critical_access_threshold: float = 0.9,
     objective_weights: Optional[Dict[str, float]] = None,
@@ -698,6 +790,7 @@ def optimize_sequence_sa(
     guardrail_metric: str = "",
     guardrail_limit: Optional[float] = None,
     guardrail_penalty: float = 1e6,
+    broken_link_factors: Optional[Dict[Tuple[int, int], float]] = None,
 ) -> Dict[str, Any]:
     if sa is None:
         sa = SAConfig()
@@ -711,6 +804,17 @@ def optimize_sequence_sa(
         f.write(
             "iter,tag,objective_value,triangle_area,var_restore,gini_restore,p90_restore,"
             "p90_access_restore,sequence\n"
+        )
+
+    canonical_base_sequence, power_base_sequence, road_base_sequence = _canonicalize_sequence_for_crews(
+        list(base_sequence),
+        crew_mode=crew_mode,
+    )
+    neighbor_fn = None
+    if crew_mode == "specialized":
+        neighbor_fn = _specialized_neighbor_factory(
+            n_power=len(power_base_sequence),
+            neighbor_mode=sa.neighbor,
         )
 
     def _append_log(it: int, tag: str, run: Dict[str, Any]) -> None:
@@ -728,7 +832,7 @@ def optimize_sequence_sa(
     if save_baseline:
         baseline_dir = os.path.join(session_dir, "baseline")
         baseline_run = run_model_multi(
-            base_sequence,
+            canonical_base_sequence,
             result_root=result_root,
             message=message + " | baseline",
             Scenario=Scenario,
@@ -737,6 +841,8 @@ def optimize_sequence_sa(
             debug=False,
             save_artifacts=True,
             crew_mode=crew_mode,
+            power_crews=power_crews,
+            road_crews=road_crews,
             multifunction_crews=multifunction_crews,
             bus_dispatch_mode=bus_dispatch_mode,
             bus_location_source=bus_location_source,
@@ -753,6 +859,7 @@ def optimize_sequence_sa(
             guardrail_metric=guardrail_metric,
             guardrail_limit=guardrail_limit,
             guardrail_penalty=guardrail_penalty,
+            broken_link_factors=broken_link_factors,
         )
         _append_log(-1, "baseline", baseline_run)
 
@@ -774,6 +881,8 @@ def optimize_sequence_sa(
             debug=False,
             save_artifacts=False,  # no per-iteration files
             crew_mode=crew_mode,
+            power_crews=power_crews,
+            road_crews=road_crews,
             multifunction_crews=multifunction_crews,
             bus_dispatch_mode=bus_dispatch_mode,
             bus_location_source=bus_location_source,
@@ -790,13 +899,15 @@ def optimize_sequence_sa(
             guardrail_metric=guardrail_metric,
             guardrail_limit=guardrail_limit,
             guardrail_penalty=guardrail_penalty,
+            broken_link_factors=broken_link_factors,
         )
         _append_log(i, run_tag, run)
         return run
 
     sa_res = simulated_annealing(
-        initial=list(base_sequence),
+        initial=list(canonical_base_sequence),
         evaluate=_eval,
+        neighbor_fn=neighbor_fn,
         config=sa,
         scenario_prefix=f"{Scenario}_sa",
     )
@@ -810,8 +921,10 @@ def optimize_sequence_sa(
         run_dir=best_dir,
         strict=strict,
         debug=False,
-        save_artifacts=True,
+        save_artifacts=save_best_artifacts,
         crew_mode=crew_mode,
+        power_crews=power_crews,
+        road_crews=road_crews,
         multifunction_crews=multifunction_crews,
         bus_dispatch_mode=bus_dispatch_mode,
         bus_location_source=bus_location_source,
@@ -828,6 +941,7 @@ def optimize_sequence_sa(
         guardrail_metric=guardrail_metric,
         guardrail_limit=guardrail_limit,
         guardrail_penalty=guardrail_penalty,
+        broken_link_factors=broken_link_factors,
     )
 
     best_debug_run = None
@@ -843,6 +957,8 @@ def optimize_sequence_sa(
             debug=True,
             save_artifacts=True,
             crew_mode=crew_mode,
+            power_crews=power_crews,
+            road_crews=road_crews,
             multifunction_crews=multifunction_crews,
             bus_dispatch_mode=bus_dispatch_mode,
             bus_location_source=bus_location_source,
@@ -859,6 +975,7 @@ def optimize_sequence_sa(
             guardrail_metric=guardrail_metric,
             guardrail_limit=guardrail_limit,
             guardrail_penalty=guardrail_penalty,
+            broken_link_factors=broken_link_factors,
         )
 
     return {
@@ -879,4 +996,9 @@ def optimize_sequence_sa(
         "bus_dispatch_mode": bus_dispatch_mode,
         "bus_location_source": bus_location_source,
         "bus_to_link_source": bus_to_link_source,
+        "crew_mode": crew_mode,
+        "power_crews": int(power_crews),
+        "road_crews": int(road_crews),
+        "multifunction_crews": int(multifunction_crews),
+        "broken_link_factors": dict(broken_link_factors or {}),
     }

@@ -1,14 +1,15 @@
-from tradeoff_runner import TradeoffConfig, run_tradeoff_study
+from batch_tradeoff_runner import BatchTradeoffConfig, run_batch_tradeoff_study
 
 
 def main() -> None:
-    info = run_tradeoff_study(TradeoffConfig())
-    print("Task B trade-off run complete.")
+    info = run_batch_tradeoff_study(BatchTradeoffConfig())
+    print("Batch trade-off run complete.")
     print("Result dir:", info["result_dir"])
-    print("CSV:", info["csv_path"])
-    print("Scatter:", info["scatter_png"])
+    print("Scenario manifest:", info["scenario_manifest_csv"])
+    print("Scenario rows:", info["scenario_rows_csv"])
+    print("Aggregate CSV:", info["aggregate_csv"])
+    print("Error-bar plot:", info["errorbar_png"])
     print("Summary:", info["summary_md"])
-    print("Discussion:", info["discussion_md"])
 
 
 if __name__ == "__main__":

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import os
+import textwrap
 from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Any, Dict, List, Tuple
@@ -21,6 +22,13 @@ def _sequence_key(seq: List[Any]) -> str:
 
 def _metric_or_nan(run: Dict[str, Any], key: str) -> float:
     return float(run["metric_catalog"].get(key, float("nan")))
+
+
+def _wrap_title(title: str, width: int = 72) -> str:
+    lines: List[str] = []
+    for chunk in str(title).split("\n"):
+        lines.extend(textwrap.wrap(chunk, width=width) or [""])
+    return "\n".join(lines)
 
 
 def _safe_guardrail_limit(value: float, improvement_factor: float) -> float:
@@ -95,7 +103,7 @@ def _plot_tradeoff_scatter(rows: List[Dict[str, Any]], out_png: str, *, x_key: s
         _write_tradeoff_svg(rows, out_svg=out_svg, x_key=x_key, y_key=y_key, palette=palette)
         return out_svg
 
-    plt.figure(figsize=(8, 6))
+    fig, ax = plt.subplots(figsize=(11, 7), constrained_layout=True)
     groups: Dict[str, List[Dict[str, Any]]] = {}
     for row in rows:
         groups.setdefault(row["rule_type"], []).append(row)
@@ -103,7 +111,7 @@ def _plot_tradeoff_scatter(rows: List[Dict[str, Any]], out_png: str, *, x_key: s
     for rule_type, items in groups.items():
         xs = [float(r[x_key]) for r in items]
         ys = [float(r[y_key]) for r in items]
-        plt.scatter(
+        ax.scatter(
             xs,
             ys,
             c=palette.get(rule_type, "#333333"),
@@ -116,7 +124,7 @@ def _plot_tradeoff_scatter(rows: List[Dict[str, Any]], out_png: str, *, x_key: s
     pareto = [r for r in rows if r.get("is_pareto") == "1"]
     pareto_sorted = sorted(pareto, key=lambda r: float(r[x_key]))
     if pareto_sorted:
-        plt.plot(
+        ax.plot(
             [float(r[x_key]) for r in pareto_sorted],
             [float(r[y_key]) for r in pareto_sorted],
             color="#111111",
@@ -126,16 +134,15 @@ def _plot_tradeoff_scatter(rows: List[Dict[str, Any]], out_png: str, *, x_key: s
         )
 
     for row in pareto_sorted[:8]:
-        plt.annotate(row["experiment_id"], (float(row[x_key]), float(row[y_key])), fontsize=7, alpha=0.8)
+        ax.annotate(row["experiment_id"], (float(row[x_key]), float(row[y_key])), fontsize=7, alpha=0.8)
 
-    plt.xlabel("Triangle area")
-    plt.ylabel("Gini restore")
-    plt.title("Efficiency-Equity Trade-off")
-    plt.grid(True, alpha=0.3)
-    plt.legend()
-    plt.tight_layout()
-    plt.savefig(out_png, dpi=220)
-    plt.close()
+    ax.set_xlabel("Triangle area")
+    ax.set_ylabel("Gini restore")
+    ax.set_title(_wrap_title("Efficiency-Equity Trade-off"), pad=14)
+    ax.grid(True, alpha=0.3)
+    ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.12), ncol=3, frameon=True)
+    fig.savefig(out_png, dpi=220, bbox_inches="tight", pad_inches=0.3)
+    plt.close(fig)
     return out_png
 
 
@@ -147,12 +154,12 @@ def _write_tradeoff_svg(
     y_key: str,
     palette: Dict[str, str],
 ) -> None:
-    width = 900
-    height = 560
+    width = 980
+    height = 660
     margin_left = 80
     margin_right = 30
-    margin_top = 50
-    margin_bottom = 65
+    margin_top = 70
+    margin_bottom = 120
 
     xs = [float(r[x_key]) for r in rows]
     ys = [float(r[y_key]) for r in rows]
@@ -191,12 +198,12 @@ def _write_tradeoff_svg(
             )
 
     legend_rows = []
-    legend_y = 84
+    legend_y = height - 126
     for rule_type in ["baseline", "single", "weighted_sum", "guardrail"]:
         color = palette.get(rule_type, "#333333")
         legend_rows.append(
-            f'<circle cx="{width-200}" cy="{legend_y}" r="5.5" fill="{color}"/>'
-            f'<text x="{width-186}" y="{legend_y + 4}" font-family="Arial" font-size="12">{rule_type}</text>'
+            f'<circle cx="{width-220}" cy="{legend_y}" r="5.5" fill="{color}"/>'
+            f'<text x="{width-206}" y="{legend_y + 4}" font-family="Arial" font-size="12">{rule_type}</text>'
         )
         legend_y += 22
 
@@ -206,9 +213,15 @@ def _write_tradeoff_svg(
         else ""
     )
 
+    title_lines = _wrap_title("Efficiency-Equity Trade-off", width=60).splitlines() or ["Efficiency-Equity Trade-off"]
+    title_svg = "".join(
+        f'<tspan x="{width/2:.0f}" dy="{0 if idx == 0 else 20}">{line}</tspan>'
+        for idx, line in enumerate(title_lines)
+    )
+
     svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">
   <rect width="100%" height="100%" fill="white"/>
-  <text x="{width/2:.0f}" y="28" text-anchor="middle" font-family="Arial" font-size="18">Efficiency-Equity Trade-off</text>
+  <text x="{width/2:.0f}" y="28" text-anchor="middle" font-family="Arial" font-size="18">{title_svg}</text>
   <line x1="{margin_left}" y1="{height-margin_bottom}" x2="{width-margin_right}" y2="{height-margin_bottom}" stroke="#222" stroke-width="2"/>
   <line x1="{margin_left}" y1="{margin_top}" x2="{margin_left}" y2="{height-margin_bottom}" stroke="#222" stroke-width="2"/>
   <text x="{width/2:.0f}" y="{height-18}" text-anchor="middle" font-family="Arial" font-size="14">Triangle area</text>
@@ -216,10 +229,10 @@ def _write_tradeoff_svg(
   {pareto_svg}
   {''.join(circles)}
   {''.join(labels)}
-  <rect x="{width-220}" y="58" width="170" height="110" fill="white" stroke="#ccc"/>
+  <rect x="{width-250}" y="{height-150}" width="210" height="130" fill="white" stroke="#ccc"/>
   {''.join(legend_rows)}
-  <line x1="{width-206}" y1="{legend_y + 2}" x2="{width-178}" y2="{legend_y + 2}" stroke="#111111" stroke-width="2" stroke-dasharray="6 4"/>
-  <text x="{width-168}" y="{legend_y + 6}" font-family="Arial" font-size="12">Pareto front</text>
+  <line x1="{width-236}" y1="{legend_y + 2}" x2="{width-208}" y2="{legend_y + 2}" stroke="#111111" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="{width-198}" y="{legend_y + 6}" font-family="Arial" font-size="12">Pareto front</text>
 </svg>
 """
     with open(out_svg, "w", encoding="utf-8") as f:
@@ -231,7 +244,7 @@ class TradeoffConfig:
     base_sequence: List[Any] = field(default_factory=lambda: [(9, 10), 28, 11, 17, 15, 32, (11, 14)])
     result_root: str = "results"
     critical_locations: List[int] = field(default_factory=lambda: [1, 24])
-    cri_weight_pairs: List[Tuple[float, float]] = field(default_factory=lambda: [(0.5, 0.5), (0.7, 0.3), (0.3, 0.7)])
+    cri_weight_pairs: List[Tuple[float, float]] = field(default_factory=lambda: [(0.133, 0.867)])
     cri_thresholds: List[float] = field(default_factory=lambda: [0.8, 0.9, 0.95])
     critical_access_thresholds: List[float] = field(default_factory=lambda: [0.8, 0.9, 0.95])
     weighted_lambdas: List[float] = field(default_factory=lambda: [0.25, 0.5, 1.0])
@@ -239,11 +252,20 @@ class TradeoffConfig:
     plot_equity_metric: str = "equity:gini_restore"
     sa: SAConfig = field(default_factory=lambda: SAConfig(seed=0, max_iter=80, T0=2.0, alpha=0.98, neighbor="swap"))
     strict: bool = True
-    crew_mode: str = "multifunction"
+    crew_mode: str = "specialized"
+    power_crews: int = 1
+    road_crews: int = 1
     multifunction_crews: int = 1
     bus_dispatch_mode: str = "link_only"
     bus_location_source: str = "original_bus_location.json"
     bus_to_link_source: str = "new_bus_to_link.json"
+    broken_link_factors: Dict[Tuple[int, int], float] = field(default_factory=dict)
+    enabled_experiment_ids: List[str] = field(default_factory=list)
+    run_sensitivity: bool = True
+    save_reference_artifacts: bool = True
+    save_baseline: bool = True
+    save_best_artifacts: bool = True
+    save_best_debug: bool = True
 
 
 def _build_experiments(reference_metrics: Dict[str, float], cfg: TradeoffConfig) -> List[Dict[str, Any]]:
@@ -301,7 +323,15 @@ def _build_experiments(reference_metrics: Dict[str, float], cfg: TradeoffConfig)
             }
         )
 
-    return specs
+    if not cfg.enabled_experiment_ids:
+        return specs
+
+    enabled = set(cfg.enabled_experiment_ids)
+    known = {spec["experiment_id"] for spec in specs}
+    unknown = sorted(enabled - known)
+    if unknown:
+        raise ValueError(f"Unknown enabled_experiment_ids: {unknown}")
+    return [spec for spec in specs if spec["experiment_id"] in enabled]
 
 
 def _base_row(run: Dict[str, Any], *, experiment_id: str, rule_type: str, label: str, source_experiment_id: str = "") -> Dict[str, Any]:
@@ -332,6 +362,8 @@ def _base_row(run: Dict[str, Any], *, experiment_id: str, rule_type: str, label:
         "session_dir": run.get("session_dir", ""),
         "run_dir": run.get("run_dir", ""),
         "sequence": _sequence_key(run["sequence"]),
+        "power_sequence": _sequence_key(run.get("power_sequence", [])),
+        "road_sequence": _sequence_key(run.get("road_sequence", [])),
     }
 
 
@@ -370,7 +402,10 @@ def _write_results_discussion_zh(
     lines.append(f"- 主结果文件：`{os.path.basename(os.path.join(result_dir, 'tradeoff_summary.csv'))}`")
     lines.append(f"- 图：`{os.path.basename(os.path.join(result_dir, 'tradeoff_scatter.png'))}`")
     lines.append(f"- 主设定：`w_e={primary_w_e}, w_a={primary_w_a}, cri_threshold={primary_cri_threshold}, critical_access_threshold={primary_access_threshold}`")
+    lines.append(f"- 队伍配置：`{cfg.crew_mode}`，power crews=`{cfg.power_crews}`，road crews=`{cfg.road_crews}`")
     lines.append(f"- 调度映射：`{cfg.bus_dispatch_mode}`，使用 `{cfg.bus_to_link_source}`")
+    if cfg.enabled_experiment_ids:
+        lines.append(f"- 启用实验：`{cfg.enabled_experiment_ids}`")
     lines.append("")
     lines.append("## 表 1 主实验详细结果")
     lines.append("")
@@ -464,12 +499,15 @@ def run_tradeoff_study(cfg: TradeoffConfig) -> Dict[str, str]:
         run_dir=os.path.join(result_dir, "reference"),
         strict=cfg.strict,
         debug=False,
-        save_artifacts=True,
+        save_artifacts=cfg.save_reference_artifacts,
         crew_mode=cfg.crew_mode,
+        power_crews=cfg.power_crews,
+        road_crews=cfg.road_crews,
         multifunction_crews=cfg.multifunction_crews,
         bus_dispatch_mode=cfg.bus_dispatch_mode,
         bus_location_source=cfg.bus_location_source,
         bus_to_link_source=cfg.bus_to_link_source,
+        broken_link_factors=cfg.broken_link_factors,
         dest_path=paths["critical_location_path"],
         cri_w_e=primary_w_e,
         cri_w_a=primary_w_a,
@@ -500,13 +538,17 @@ def run_tradeoff_study(cfg: TradeoffConfig) -> Dict[str, str]:
             objective=spec["objective"],
             sa=cfg.sa,
             strict=cfg.strict,
-            save_baseline=True,
-            save_best_debug=True,
+            save_baseline=cfg.save_baseline,
+            save_best_artifacts=cfg.save_best_artifacts,
+            save_best_debug=cfg.save_best_debug,
             crew_mode=cfg.crew_mode,
+            power_crews=cfg.power_crews,
+            road_crews=cfg.road_crews,
             multifunction_crews=cfg.multifunction_crews,
             bus_dispatch_mode=cfg.bus_dispatch_mode,
             bus_location_source=cfg.bus_location_source,
             bus_to_link_source=cfg.bus_to_link_source,
+            broken_link_factors=cfg.broken_link_factors,
             dest_path=paths["critical_location_path"],
             cri_w_e=primary_w_e,
             cri_w_a=primary_w_a,
@@ -539,74 +581,80 @@ def run_tradeoff_study(cfg: TradeoffConfig) -> Dict[str, str]:
     scatter_path = _plot_tradeoff_scatter(optimized_rows, scatter_png, x_key="triangle_area", y_key="gini_restore")
 
     all_rows: List[Dict[str, Any]] = list(optimized_rows)
-    sensitivity_tmp = os.path.join(result_dir, "_sensitivity_tmp")
-    os.makedirs(sensitivity_tmp, exist_ok=True)
+    if cfg.run_sensitivity:
+        sensitivity_tmp = os.path.join(result_dir, "_sensitivity_tmp")
+        os.makedirs(sensitivity_tmp, exist_ok=True)
 
-    for seq_key, seq_info in sequence_bank.items():
-        seq = list(seq_info["sequence"])
-        for (w_e, w_a) in cfg.cri_weight_pairs:
-            for cri_threshold in cfg.cri_thresholds:
-                for access_threshold in cfg.critical_access_thresholds:
-                    run = run_model_multi(
-                        seq,
-                        result_root=result_dir,
-                        message="Sensitivity re-evaluation",
-                        Scenario="sensitivity",
-                        run_dir=sensitivity_tmp,
-                        strict=cfg.strict,
-                        debug=False,
-                        save_artifacts=False,
-                        crew_mode=cfg.crew_mode,
-                        multifunction_crews=cfg.multifunction_crews,
-                        bus_dispatch_mode=cfg.bus_dispatch_mode,
-                        bus_location_source=cfg.bus_location_source,
-                        bus_to_link_source=cfg.bus_to_link_source,
-                        dest_path=paths["critical_location_path"],
-                        cri_w_e=w_e,
-                        cri_w_a=w_a,
-                        cri_threshold=cri_threshold,
-                        critical_access_threshold=access_threshold,
-                        objective="triangle",
-                    )
-                    all_rows.append(
-                        {
-                            "row_kind": "sensitivity",
-                            "experiment_id": (
-                                f"sens::{seq_info['source_experiment_id']}::"
-                                f"we{w_e:.2f}_wa{w_a:.2f}_ct{cri_threshold:.2f}_at{access_threshold:.2f}"
-                            ),
-                            "source_experiment_id": seq_info["source_experiment_id"],
-                            "rule_type": "sensitivity",
-                            "rule_label": "Sensitivity re-evaluation",
-                            "description": "Sensitivity re-evaluation of an optimized sequence under alternate weights and thresholds.",
-                            "objective": run["objective"],
-                            "objective_value": run["objective_value"],
-                            "triangle_area": run["triangle_area"],
-                            "var_restore": _metric_or_nan(run, "equity:var_restore"),
-                            "gini_restore": _metric_or_nan(run, "equity:gini_restore"),
-                            "p90_restore": _metric_or_nan(run, "equity:p90_restore"),
-                            "min_time_avg_cri": _metric_or_nan(run, "equity:min_time_avg_cri"),
-                            "p90_access_restore": _metric_or_nan(run, "critical_access:p90_access_restore"),
-                            "share_access_initial": _metric_or_nan(run, "critical_access:share_access_initial"),
-                            "share_access_final": _metric_or_nan(run, "critical_access:share_access_final"),
-                            "time_avg_share_access": _metric_or_nan(run, "critical_access:time_avg_share_access"),
-                            "cri_w_e": w_e,
-                            "cri_w_a": w_a,
-                            "cri_threshold": cri_threshold,
-                            "critical_access_threshold": access_threshold,
-                            "is_primary_setting": (
-                                "1"
-                                if (w_e, w_a) == (primary_w_e, primary_w_a)
-                                and cri_threshold == primary_cri_threshold
-                                and access_threshold == primary_access_threshold
-                                else "0"
-                            ),
-                            "is_pareto": "",
-                            "session_dir": "",
-                            "run_dir": run["run_dir"],
-                            "sequence": seq_key,
-                        }
-                    )
+        for seq_key, seq_info in sequence_bank.items():
+            seq = list(seq_info["sequence"])
+            for (w_e, w_a) in cfg.cri_weight_pairs:
+                for cri_threshold in cfg.cri_thresholds:
+                    for access_threshold in cfg.critical_access_thresholds:
+                        run = run_model_multi(
+                            seq,
+                            result_root=result_dir,
+                            message="Sensitivity re-evaluation",
+                            Scenario="sensitivity",
+                            run_dir=sensitivity_tmp,
+                            strict=cfg.strict,
+                            debug=False,
+                            save_artifacts=False,
+                            crew_mode=cfg.crew_mode,
+                            power_crews=cfg.power_crews,
+                            road_crews=cfg.road_crews,
+                            multifunction_crews=cfg.multifunction_crews,
+                            bus_dispatch_mode=cfg.bus_dispatch_mode,
+                            bus_location_source=cfg.bus_location_source,
+                            bus_to_link_source=cfg.bus_to_link_source,
+                            broken_link_factors=cfg.broken_link_factors,
+                            dest_path=paths["critical_location_path"],
+                            cri_w_e=w_e,
+                            cri_w_a=w_a,
+                            cri_threshold=cri_threshold,
+                            critical_access_threshold=access_threshold,
+                            objective="triangle",
+                        )
+                        all_rows.append(
+                            {
+                                "row_kind": "sensitivity",
+                                "experiment_id": (
+                                    f"sens::{seq_info['source_experiment_id']}::"
+                                    f"we{w_e:.2f}_wa{w_a:.2f}_ct{cri_threshold:.2f}_at{access_threshold:.2f}"
+                                ),
+                                "source_experiment_id": seq_info["source_experiment_id"],
+                                "rule_type": "sensitivity",
+                                "rule_label": "Sensitivity re-evaluation",
+                                "description": "Sensitivity re-evaluation of an optimized sequence under alternate weights and thresholds.",
+                                "objective": run["objective"],
+                                "objective_value": run["objective_value"],
+                                "triangle_area": run["triangle_area"],
+                                "var_restore": _metric_or_nan(run, "equity:var_restore"),
+                                "gini_restore": _metric_or_nan(run, "equity:gini_restore"),
+                                "p90_restore": _metric_or_nan(run, "equity:p90_restore"),
+                                "min_time_avg_cri": _metric_or_nan(run, "equity:min_time_avg_cri"),
+                                "p90_access_restore": _metric_or_nan(run, "critical_access:p90_access_restore"),
+                                "share_access_initial": _metric_or_nan(run, "critical_access:share_access_initial"),
+                                "share_access_final": _metric_or_nan(run, "critical_access:share_access_final"),
+                                "time_avg_share_access": _metric_or_nan(run, "critical_access:time_avg_share_access"),
+                                "cri_w_e": w_e,
+                                "cri_w_a": w_a,
+                                "cri_threshold": cri_threshold,
+                                "critical_access_threshold": access_threshold,
+                                "is_primary_setting": (
+                                    "1"
+                                    if (w_e, w_a) == (primary_w_e, primary_w_a)
+                                    and cri_threshold == primary_cri_threshold
+                                    and access_threshold == primary_access_threshold
+                                    else "0"
+                                ),
+                                "is_pareto": "",
+                                "session_dir": "",
+                                "run_dir": run["run_dir"],
+                                "sequence": seq_key,
+                                "power_sequence": _sequence_key(run.get("power_sequence", [])),
+                                "road_sequence": _sequence_key(run.get("road_sequence", [])),
+                            }
+                        )
 
     csv_path = os.path.join(result_dir, "tradeoff_summary.csv")
     fieldnames = [
@@ -636,6 +684,8 @@ def run_tradeoff_study(cfg: TradeoffConfig) -> Dict[str, str]:
         "session_dir",
         "run_dir",
         "sequence",
+        "power_sequence",
+        "road_sequence",
     ]
     with open(csv_path, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
@@ -651,11 +701,15 @@ def run_tradeoff_study(cfg: TradeoffConfig) -> Dict[str, str]:
         f.write(f"- Primary CRI weights: `(w_e={primary_w_e}, w_a={primary_w_a})`\n")
         f.write(f"- Primary CRI threshold: `{primary_cri_threshold}`\n")
         f.write(f"- Primary critical-access threshold: `{primary_access_threshold}`\n")
+        f.write(f"- Crew mode: `{cfg.crew_mode}` (power=`{cfg.power_crews}`, road=`{cfg.road_crews}`)\n")
         f.write(f"- Bus dispatch mode: `{cfg.bus_dispatch_mode}`\n")
         f.write(f"- Bus-to-link source: `{cfg.bus_to_link_source}`\n")
+        if cfg.enabled_experiment_ids:
+            f.write(f"- Enabled experiments: `{cfg.enabled_experiment_ids}`\n")
         f.write(f"- Pareto experiments (triangle vs gini_restore): `{pareto_ids}`\n")
         f.write(f"- Combined CSV: `{os.path.basename(csv_path)}`\n")
         f.write(f"- Scatter plot: `{os.path.basename(scatter_path)}`\n")
+        f.write("- The combined CSV includes both `power_sequence` and `road_sequence` for specialized-crew runs.\n")
         f.write("\n## Optimized Results\n\n")
         f.write("| Experiment | Type | Description | Triangle | Gini | Min time-avg CRI | P90 access | Time-avg share access | Pareto |\n")
         f.write("|---|---|---|---:|---:|---:|---:|---:|---|\n")

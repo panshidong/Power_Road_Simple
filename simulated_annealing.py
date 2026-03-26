@@ -3,7 +3,7 @@ from __future__ import annotations
 import math
 import random
 from dataclasses import dataclass
-from typing import Any, Callable, Dict, List, Tuple
+from typing import Any, Callable, Dict, List, Optional, Tuple
 
 
 @dataclass
@@ -38,6 +38,7 @@ def simulated_annealing(
     *,
     initial: List[Any],
     evaluate: Callable[[List[Any], str], Dict[str, Any]],
+    neighbor_fn: Optional[Callable[[List[Any], random.Random], List[Any]]] = None,
     # evaluate(seq, run_tag) -> dict containing at least:
     #   dict["objective_value"] (float)
     config: SAConfig,
@@ -61,12 +62,15 @@ def simulated_annealing(
     T = float(config.T0)
 
     for it in range(int(config.max_iter)):
-        if config.neighbor == "swap":
-            cand = _neighbor_swap(curr, rng)
-        elif config.neighbor == "insert":
-            cand = _neighbor_insert(curr, rng)
+        if neighbor_fn is not None:
+            cand = neighbor_fn(curr, rng)
         else:
-            raise ValueError(f"Unknown neighbor={config.neighbor!r}")
+            if config.neighbor == "swap":
+                cand = _neighbor_swap(curr, rng)
+            elif config.neighbor == "insert":
+                cand = _neighbor_insert(curr, rng)
+            else:
+                raise ValueError(f"Unknown neighbor={config.neighbor!r}")
 
         cand_run = evaluate(cand, f"{scenario_prefix}_it{it:04d}")
         cand_val = float(cand_run["objective_value"])
