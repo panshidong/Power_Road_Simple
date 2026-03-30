@@ -8,7 +8,7 @@ from datetime import datetime
 from typing import Any, Dict, List, Tuple, Optional
 
 from crews import CrewPool, make_crews
-from scheduler import evaluate_with_crews
+from scheduler import simulate_with_dynamic_network
 from run_tapb import run_tapb
 from road_util import capacity_adjustment, eval_tot_OD_travel_time
 from power_util import delete_buses, get_functional_nodes
@@ -468,24 +468,56 @@ def run_model_multi(
     TT0 = compute_accessibility_TT(s_txt_path=baseline_s, zones=zones, destinations=destinations)
 
     seq, power_sequence, road_sequence = _canonicalize_sequence_for_crews(list(sequence), crew_mode=crew_mode)
-    broken_buses = {a for a in seq if not isinstance(a, tuple)}
-    broken_links = {a for a in seq if isinstance(a, tuple)}
 
-    # Dispatch snapshot (initial damaged state) for scheduling
-    _prepare_state_and_run_tapb(
-        broken_buses=list(broken_buses),
-        broken_links=list(broken_links),
-        broken_link_factors=broken_link_factors,
-        base_net=base_net,
-        trips=trips,
-        net1=net1,
-        net2=net2,
-        broken_link_factor=broken_link_factor,
-        power_road_factor=power_road_factor,
-        strict=strict,
-    )
-    dispatch_s = os.path.join(run_dir, "dispatch_s.txt")
-    shutil.copy2("s.txt", dispatch_s)
+    state_dir = os.path.join(run_dir, "state_snapshots")
+    _ensure_dir(state_dir)
+    state_cache: Dict[Tuple[Tuple[int, ...], Tuple[Tuple[int, int], ...]], Dict[str, Any]] = {}
+
+    def _state_key(curr_broken_buses: List[int], curr_broken_links: List[Tuple[int, int]]) -> Tuple[Tuple[int, ...], Tuple[Tuple[int, int], ...]]:
+        key_buses = tuple(sorted(int(b) for b in curr_broken_buses))
+        key_links = tuple(sorted((int(u), int(v)) for (u, v) in curr_broken_links))
+        return key_buses, key_links
+
+    def _evaluate_state_snapshot(
+        curr_broken_buses: List[int],
+        curr_broken_links: List[Tuple[int, int]],
+        state_tag: str,
+    ) -> Dict[str, Any]:
+        key = _state_key(curr_broken_buses, curr_broken_links)
+        cached = state_cache.get(key)
+        if cached is not None:
+            return dict(cached)
+
+        _prepare_state_and_run_tapb(
+            broken_buses=list(curr_broken_buses),
+            broken_links=list(curr_broken_links),
+            broken_link_factors=broken_link_factors,
+            base_net=base_net,
+            trips=trips,
+            net1=net1,
+            net2=net2,
+            broken_link_factor=broken_link_factor,
+            power_road_factor=power_road_factor,
+            strict=strict,
+        )
+
+        snapshot_s = os.path.join(state_dir, f"{state_tag}.txt")
+        shutil.copy2("s.txt", snapshot_s)
+
+        current_tstt = float(eval_tot_OD_travel_time("s.txt"))
+        if strict and current_tstt <= 0:
+            raise RuntimeError(f"current_tstt <= 0 from s.txt; got {current_tstt}")
+        road_func = max(0.0, min(1.0, float(baseline_tstt) / max(current_tstt, 1e-9)))
+        TT = compute_accessibility_TT(s_txt_path=snapshot_s, zones=zones, destinations=destinations)
+
+        state = {
+            "s_txt_path": snapshot_s,
+            "road_func": road_func,
+            "current_tstt": current_tstt,
+            "TT": TT,
+        }
+        state_cache[key] = dict(state)
+        return dict(state)
 
     pool: CrewPool = make_crews(
         mode=crew_mode,
@@ -496,98 +528,68 @@ def run_model_multi(
         speed=crew_speed,
     )
 
-    sim = evaluate_with_crews(
+    sim = simulate_with_dynamic_network(
         sequence=seq,
         crew_pool=pool,
+        state_evaluator=_evaluate_state_snapshot,
         service_time_power=service_time_power,
         service_time_road=service_time_road,
         default_depot=depot_node,
-        s_txt_path=dispatch_s,
+        bus_location_path="bus_location.json",
         bus_to_link_path="bus_to_link.json",
         strict=strict,
         bus_dispatch_mode=bus_dispatch_mode,
+        scenario_prefix=Scenario,
     )
     events = sorted(sim["timeline"], key=lambda x: x[0])
-
-    # initial functionality + CRI
-    road_func = eval_road_resilience(
-        list(broken_buses),
-        list(broken_links),
-        broken_link_factors=broken_link_factors,
-        base_net=base_net,
-        trips=trips,
-        net1=net1,
-        net2=net2,
-        broken_link_factor=broken_link_factor,
-        power_road_factor=power_road_factor,
-        baseline_tstt=baseline_tstt,
-        strict=strict,
-    )
-    power_func = eval_power_resilience(list(broken_buses))
-
-    # CRI series (aligned with time_series)
-    time_series = [0.0]
-    road_series = [road_func]
-    power_series = [power_func]
-
-    # build CRI_z(t=0)
-    func_buses0 = set(get_functional_nodes(set(map(int, broken_buses))))
-    E0 = compute_E_by_zone(zones=zones, bus_to_zone=bus_to_zone, functional_buses=func_buses0, empty_zone_policy="error")
-    TT = compute_accessibility_TT(s_txt_path=dispatch_s, zones=zones, destinations=destinations)
-    A0 = compute_accessibility_ratio_by_zone(zones=zones, TT0=TT0, TT=TT)
-    CRI0 = compute_CRI_by_zone(zones=zones, E=E0, TT0=TT0, TT=TT, w_e=cri_w_e, w_a=cri_w_a)
-    cri_series: List[Dict[int, float]] = [CRI0]
-    access_series: List[Dict[int, float]] = [A0]
+    event_log = list(sim["event_log"])
 
     triangle_area = 0.0
-    t_prev = 0.0
+    time_series: List[float] = []
+    road_series: List[float] = []
+    power_series: List[float] = []
+    cri_series: List[Dict[int, float]] = []
+    access_series: List[Dict[int, float]] = []
 
     debug_lines: List[str] = []
-    if debug:
-        debug_lines.append(f"[INIT] t=0 road={road_func} power={power_func}")
+    prev_time: Optional[float] = None
+    prev_road_func: Optional[float] = None
+    prev_power_func: Optional[float] = None
 
-    for (t, asset) in events:
-        dt = float(t - t_prev)
-        triangle_area += ((1 - road_func) + (1 - power_func)) * dt
-        t_prev = float(t)
+    for idx, entry in enumerate(event_log):
+        t = float(entry["time"])
+        curr_broken_buses = [int(b) for b in entry["broken_buses"]]
+        state = dict(entry["state"])
+        road_func = float(state["road_func"])
+        power_func = eval_power_resilience(curr_broken_buses)
 
-        if isinstance(asset, tuple):
-            broken_links.discard(asset)
-        else:
-            broken_buses.discard(asset)
+        if prev_time is not None and prev_road_func is not None and prev_power_func is not None:
+            dt = float(t - prev_time)
+            triangle_area += ((1 - prev_road_func) + (1 - prev_power_func)) * dt
 
-        # Re-evaluate system-level functions (updates s.txt)
-        road_func = eval_road_resilience(
-            list(broken_buses),
-            list(broken_links),
-            broken_link_factors=broken_link_factors,
-            base_net=base_net,
-            trips=trips,
-            net1=net1,
-            net2=net2,
-            broken_link_factor=broken_link_factor,
-            power_road_factor=power_road_factor,
-            baseline_tstt=baseline_tstt,
-            strict=strict,
-        )
-        power_func = eval_power_resilience(list(broken_buses))
-
-        time_series.append(t_prev)
-        road_series.append(road_func)
-        power_series.append(power_func)
-
-        # CRI at this event time, using current s.txt
-        func_buses = set(get_functional_nodes(set(map(int, broken_buses))))
+        func_buses = set(get_functional_nodes(set(map(int, curr_broken_buses))))
         E = compute_E_by_zone(zones=zones, bus_to_zone=bus_to_zone, functional_buses=func_buses, empty_zone_policy="error")
-        current_s = os.path.abspath("s.txt")
-        TT = compute_accessibility_TT(s_txt_path=current_s, zones=zones, destinations=destinations)
+        TT = dict(state["TT"])
         A = compute_accessibility_ratio_by_zone(zones=zones, TT0=TT0, TT=TT)
         CRI = compute_CRI_by_zone(zones=zones, E=E, TT0=TT0, TT=TT, w_e=cri_w_e, w_a=cri_w_a)
-        cri_series.append(CRI)
+
+        time_series.append(t)
+        road_series.append(road_func)
+        power_series.append(power_func)
         access_series.append(A)
+        cri_series.append(CRI)
 
         if debug:
-            debug_lines.append(f"[EVENT] t={t_prev} asset={asset} road={road_func} power={power_func}")
+            if idx == 0:
+                debug_lines.append(f"[INIT] t=0 road={road_func} power={power_func}")
+            else:
+                debug_lines.append(
+                    f"[EVENT] t={t} completed={entry['completed_assets']} road={road_func} power={power_func}"
+                )
+
+        prev_time = t
+        prev_road_func = road_func
+        prev_power_func = power_func
 
     equity_summary = equity_summary_from_CRI(zones=zones, time_series=time_series, cri_series=cri_series, threshold=cri_threshold)
     critical_access_summary = critical_access_summary_from_series(
@@ -629,6 +631,7 @@ def run_model_multi(
             print("power_sequence:", power_sequence, file=f)
             print("road_sequence:", road_sequence, file=f)
             print("timeline:", events, file=f)
+            print("event_log:", event_log, file=f)
             print("triangle_area:", triangle_area, file=f)
             print("equity_summary:", equity_summary, file=f)
             print("critical_access_summary:", critical_access_summary, file=f)
@@ -735,6 +738,8 @@ def run_model_multi(
         "run_dir": run_dir,
         "timestamp": timestamp,
         "sequence": seq,
+        "timeline": events,
+        "event_log": event_log,
         "power_sequence": list(power_sequence),
         "road_sequence": list(road_sequence),
         "triangle_area": triangle_area,

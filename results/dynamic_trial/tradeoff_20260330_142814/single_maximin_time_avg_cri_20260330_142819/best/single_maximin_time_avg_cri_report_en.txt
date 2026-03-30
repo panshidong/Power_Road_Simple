@@ -1,0 +1,38 @@
+Task B run report (CRI + equity)
+Timestamp: 20260330_142820
+Scenario: single_maximin_time_avg_cri
+Objective: equity:maximin_time_avg_cri_loss  value=0.4167
+CRI weights: w_e=0.133  w_a=0.867
+CRI threshold: 0.9
+Critical access threshold: 0.9
+Bus dispatch mode: link_only
+Bus-to-link source: new_bus_to_link.json
+Crew mode: specialized
+Power crews: 1  Road crews: 1  Multifunction crews: 1
+Power sequence: [28, 11, 17, 15, 32]
+Road sequence: [(9, 10), (11, 14)]
+Triangle area: 170.9
+
+Equity summary (CRI-based):
+- var_restore: 1.822e+04
+- gini_restore: 0.3133
+- p90_restore: 352.8
+- p95_restore: 371
+- min_time_avg_cri: 0.5833
+- maximin_time_avg_cri_loss: 0.4167
+- min_final_cri: 1
+- maximin_final_cri_loss: 0
+- var_final_cri: 0
+- gini_final_cri: 0
+- p10_final_cri: 1
+- p90_final_cri: 1
+
+Critical-access summary (A_z-based):
+- var_access_restore: 2.08e+04
+- gini_access_restore: 0.3794
+- p90_access_restore: 352.8
+- p95_access_restore: 371
+- share_access_initial: 0.2917
+- mean_access_final: 1
+- share_access_final: 1
+- time_avg_share_access: 0.4513
