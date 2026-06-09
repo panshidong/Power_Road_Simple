@@ -5,3 +5,10 @@ __pycache__/
 .env
 .idea/
 .vscode/
+
+# Generated experiment outputs
+results/
+submission/
+s.txt
+full_log.txt
+matrix0.bin

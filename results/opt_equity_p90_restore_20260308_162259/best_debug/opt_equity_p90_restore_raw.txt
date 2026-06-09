@@ -1,8 +1,0 @@
-timestamp: 20260308_162314
-SA optimize objective=equity:p90_restore | BEST_DEBUG
-sequence: [11, 15, (11, 14), (9, 10), 17, 28, 32]
-timeline: [(20.0, 11), (40.0, 15), (90.78997100000001, (11, 14)), (142.85149900000002, (9, 10)), (195.06113000000002, 17), (256.36705500000005, 28), (276.36705500000005, 32)]
-triangle_area: 124.66919836500094
-equity_summary: {'var_restore': 12412.12188645877, 'gini_restore': 0.5518804415278924, 'p90_restore': 276.36705500000005, 'p95_restore': 276.36705500000005, 'var_final_cri': 0.01909722222222222, 'gini_final_cri': 0.03985507246376807, 'p10_final_cri': 1.0, 'p90_final_cri': 1.0}
-objective: equity:p90_restore
-objective_value: 276.36705500000005

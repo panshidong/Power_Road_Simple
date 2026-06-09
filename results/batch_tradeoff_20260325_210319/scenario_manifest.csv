@@ -1,2 +1,0 @@
-scenario_id,scenario_seed,broken_bus_count,broken_link_count,study_result_dir,csv_path
-scenario_001,41,14,8,results/batch_tradeoff_20260325_210319/scenario_runs/tradeoff_20260325_210319,results/batch_tradeoff_20260325_210319/scenario_runs/tradeoff_20260325_210319/tradeoff_summary.csv
