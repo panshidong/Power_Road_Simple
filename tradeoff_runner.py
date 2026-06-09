@@ -60,6 +60,36 @@ def _experiment_description(experiment_id: str, rule_label: str) -> str:
     return rule_label
 
 
+def _display_rule_type(rule_type: str) -> str:
+    labels = {
+        "baseline": "Baseline",
+        "single": "Single-objective",
+        "weighted_sum": "Weighted objective",
+        "guardrail": "Guardrail objective",
+        "sensitivity": "Sensitivity re-evaluation",
+    }
+    return labels.get(rule_type, rule_type.replace("_", " ").title())
+
+
+def _display_experiment_label(experiment_id: str) -> str:
+    labels = {
+        "baseline_reference": "Baseline sequence",
+        "single_triangle": "Efficiency objective",
+        "single_var_restore": "Variance equity objective",
+        "single_gini_restore": "Gini equity objective",
+        "single_maximin_time_avg_cri": "Maximin CRI objective",
+        "single_p90_access_restore": "P90 access objective",
+        "weighted_gini_restore_l050": "Weighted Gini objective",
+        "weighted_maximin_time_avg_cri_l050": "Weighted maximin objective",
+        "guardrail_gini_restore": "Gini guardrail objective",
+    }
+    if experiment_id.startswith("sens::"):
+        parts = experiment_id.split("::")
+        if len(parts) >= 2:
+            return _display_experiment_label(parts[1])
+    return labels.get(experiment_id, experiment_id.replace("_", " ").title())
+
+
 def _pct_change(value: float, baseline: float) -> float:
     baseline = float(baseline)
     value = float(value)
@@ -103,7 +133,7 @@ def _plot_tradeoff_scatter(rows: List[Dict[str, Any]], out_png: str, *, x_key: s
         _write_tradeoff_svg(rows, out_svg=out_svg, x_key=x_key, y_key=y_key, palette=palette)
         return out_svg
 
-    fig, ax = plt.subplots(figsize=(11, 7), constrained_layout=True)
+    fig, ax = plt.subplots(figsize=(16, 10), constrained_layout=True)
     groups: Dict[str, List[Dict[str, Any]]] = {}
     for row in rows:
         groups.setdefault(row["rule_type"], []).append(row)
@@ -116,9 +146,9 @@ def _plot_tradeoff_scatter(rows: List[Dict[str, Any]], out_png: str, *, x_key: s
             ys,
             c=palette.get(rule_type, "#333333"),
             marker=markers.get(rule_type, "o"),
-            s=60,
+            s=130,
             alpha=0.85,
-            label=rule_type,
+            label=_display_rule_type(rule_type),
         )
 
     pareto = [r for r in rows if r.get("is_pareto") == "1"]
@@ -128,20 +158,28 @@ def _plot_tradeoff_scatter(rows: List[Dict[str, Any]], out_png: str, *, x_key: s
             [float(r[x_key]) for r in pareto_sorted],
             [float(r[y_key]) for r in pareto_sorted],
             color="#111111",
-            linewidth=1.5,
+            linewidth=2.4,
             linestyle="--",
             label="Pareto front",
         )
 
     for row in pareto_sorted[:8]:
-        ax.annotate(row["experiment_id"], (float(row[x_key]), float(row[y_key])), fontsize=7, alpha=0.8)
+        ax.annotate(
+            _display_experiment_label(row["experiment_id"]),
+            (float(row[x_key]), float(row[y_key])),
+            xytext=(8, 6),
+            textcoords="offset points",
+            fontsize=12,
+            alpha=0.9,
+        )
 
-    ax.set_xlabel("Triangle area")
-    ax.set_ylabel("Gini restore")
-    ax.set_title(_wrap_title("Efficiency-Equity Trade-off"), pad=14)
+    ax.set_xlabel("Triangle area", fontsize=18, labelpad=10)
+    ax.set_ylabel("Gini restore", fontsize=18, labelpad=10)
+    ax.set_title(_wrap_title("Resilience-Equity Trade-off"), fontsize=22, pad=18)
+    ax.tick_params(axis="both", labelsize=14)
     ax.grid(True, alpha=0.3)
-    ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.12), ncol=3, frameon=True)
-    fig.savefig(out_png, dpi=220, bbox_inches="tight", pad_inches=0.3)
+    ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.12), ncol=3, frameon=True, fontsize=14)
+    fig.savefig(out_png, dpi=600, bbox_inches="tight", pad_inches=0.35)
     plt.close(fig)
     return out_png
 

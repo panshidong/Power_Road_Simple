@@ -10,7 +10,7 @@ from typing import Any, Dict, List, Tuple
 
 from disaster import DisasterScenario, generate_scenarios, scenario_sequence
 from simulated_annealing import SAConfig
-from tradeoff_runner import TradeoffConfig, run_tradeoff_study
+from tradeoff_runner import TradeoffConfig, run_tradeoff_study, _display_experiment_label, _display_rule_type
 
 
 def _ts() -> str:
@@ -89,7 +89,7 @@ def _plot_errorbar_tradeoff(
         "guardrail": "D",
     }
 
-    fig, ax = plt.subplots(figsize=(12, 8), constrained_layout=True)
+    fig, ax = plt.subplots(figsize=(18, 11), constrained_layout=True)
     grouped: Dict[str, List[Dict[str, Any]]] = {}
     for row in rows:
         grouped.setdefault(row["rule_type"], []).append(row)
@@ -100,7 +100,7 @@ def _plot_errorbar_tradeoff(
         xs = [float(row[f"{x_metric}_mean"]) for row in items]
         ys = [float(row[f"{y_metric}_mean"]) for row in items]
         if len(items) >= 2:
-            ax.plot(xs, ys, color=palette.get(rule_type, "#333333"), alpha=0.35, linewidth=1.0)
+            ax.plot(xs, ys, color=palette.get(rule_type, "#333333"), alpha=0.35, linewidth=1.8)
         for row in items:
             x = float(row[f"{x_metric}_mean"])
             y = float(row[f"{y_metric}_mean"])
@@ -114,20 +114,29 @@ def _plot_errorbar_tradeoff(
                 fmt=markers.get(rule_type, "o"),
                 color=palette.get(rule_type, "#333333"),
                 ecolor=palette.get(rule_type, "#333333"),
-                capsize=3,
-                markersize=7,
+                capsize=5,
+                elinewidth=1.8,
+                markersize=10,
                 alpha=0.9,
-                label=(rule_type if not seen_label else None),
+                label=(_display_rule_type(rule_type) if not seen_label else None),
             )
             seen_label = True
-            ax.annotate(row["experiment_id"], (x, y), xytext=(6, 4), textcoords="offset points", fontsize=7, alpha=0.85)
+            ax.annotate(
+                _display_experiment_label(row["experiment_id"]),
+                (x, y),
+                xytext=(9, 6),
+                textcoords="offset points",
+                fontsize=12,
+                alpha=0.9,
+            )
 
-    ax.set_xlabel(f"{_label_for_metric(x_metric)} (mean ± 95% CI)")
-    ax.set_ylabel(f"{_label_for_metric(y_metric)} (mean ± 95% CI)")
-    ax.set_title(_wrap_title("Trade-off Curve Across 100 Disaster Scenarios with 95% Confidence Intervals"), pad=16)
+    ax.set_xlabel(f"{_label_for_metric(x_metric)} (mean ± 95% CI)", fontsize=18, labelpad=10)
+    ax.set_ylabel(f"{_label_for_metric(y_metric)} (mean ± 95% CI)", fontsize=18, labelpad=10)
+    ax.set_title(_wrap_title("Trade-off Curve Across 100 Disaster Scenarios with 95% Confidence Intervals"), fontsize=22, pad=20)
+    ax.tick_params(axis="both", labelsize=14)
     ax.grid(True, alpha=0.3)
-    ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.12), ncol=4, frameon=True)
-    fig.savefig(out_png, dpi=220, bbox_inches="tight", pad_inches=0.3)
+    ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.12), ncol=4, frameon=True, fontsize=14)
+    fig.savefig(out_png, dpi=600, bbox_inches="tight", pad_inches=0.35)
     plt.close(fig)
     return out_png
 
