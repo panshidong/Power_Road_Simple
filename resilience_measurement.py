@@ -75,10 +75,15 @@ def _split_sequence_by_skill(sequence: List[Any]) -> Tuple[List[Any], List[Any]]
     return power_seq, road_seq
 
 
-def _canonicalize_sequence_for_crews(sequence: List[Any], *, crew_mode: str) -> Tuple[List[Any], List[Any], List[Any]]:
+def _canonicalize_sequence_for_crews(
+    sequence: List[Any],
+    *,
+    crew_mode: str,
+    preserve_sequence_order: bool = False,
+) -> Tuple[List[Any], List[Any], List[Any]]:
     seq = list(sequence)
     power_seq, road_seq = _split_sequence_by_skill(seq)
-    if crew_mode == "specialized":
+    if crew_mode == "specialized" and not preserve_sequence_order:
         seq = list(power_seq) + list(road_seq)
     return seq, power_seq, road_seq
 
@@ -396,6 +401,7 @@ def run_model_multi(
     power_crews: int = 1,
     road_crews: int = 1,
     multifunction_crews: int = 1,
+    preserve_sequence_order: bool = False,
     depot_node: int = 1,
     crew_speed: float = 1.0,
     service_time_power: float = 20.0,
@@ -467,7 +473,11 @@ def run_model_multi(
     shutil.copy2("s.txt", baseline_s)
     TT0 = compute_accessibility_TT(s_txt_path=baseline_s, zones=zones, destinations=destinations)
 
-    seq, power_sequence, road_sequence = _canonicalize_sequence_for_crews(list(sequence), crew_mode=crew_mode)
+    seq, power_sequence, road_sequence = _canonicalize_sequence_for_crews(
+        list(sequence),
+        crew_mode=crew_mode,
+        preserve_sequence_order=preserve_sequence_order,
+    )
 
     state_dir = os.path.join(run_dir, "state_snapshots")
     _ensure_dir(state_dir)
@@ -643,9 +653,11 @@ def run_model_multi(
             print("bus_location_source:", bus_location_source, file=f)
             print("bus_to_link_source:", bus_to_link_source, file=f)
             print("crew_mode:", crew_mode, file=f)
+            print("preserve_sequence_order:", preserve_sequence_order, file=f)
             print("power_crews:", power_crews, file=f)
             print("road_crews:", road_crews, file=f)
             print("multifunction_crews:", multifunction_crews, file=f)
+            print("active_multifunction_crews:", 0 if crew_mode == "specialized" else multifunction_crews, file=f)
             print("broken_link_factors:", broken_link_factors, file=f)
 
         with open(en_path, "w", encoding="utf-8") as f:
@@ -756,9 +768,11 @@ def run_model_multi(
         "bus_location_source": bus_location_source,
         "bus_to_link_source": bus_to_link_source,
         "crew_mode": crew_mode,
+        "preserve_sequence_order": bool(preserve_sequence_order),
         "power_crews": int(power_crews),
         "road_crews": int(road_crews),
         "multifunction_crews": int(multifunction_crews),
+        "active_multifunction_crews": 0 if crew_mode == "specialized" else int(multifunction_crews),
         "broken_link_factors": dict(broken_link_factors or {}),
         "triangle_png": (tri_plot_path if save_artifacts else ""),
     }
@@ -781,6 +795,7 @@ def optimize_sequence_sa(
     power_crews: int = 1,
     road_crews: int = 1,
     multifunction_crews: int = 1,
+    preserve_sequence_order: bool = False,
     bus_dispatch_mode: str = "link_only",
     bus_location_source: str = DEFAULT_BUS_LOCATION_SOURCE,
     bus_to_link_source: str = DEFAULT_BUS_TO_LINK_SOURCE,
@@ -814,9 +829,10 @@ def optimize_sequence_sa(
     canonical_base_sequence, power_base_sequence, road_base_sequence = _canonicalize_sequence_for_crews(
         list(base_sequence),
         crew_mode=crew_mode,
+        preserve_sequence_order=preserve_sequence_order,
     )
     neighbor_fn = None
-    if crew_mode == "specialized":
+    if crew_mode == "specialized" and not preserve_sequence_order:
         neighbor_fn = _specialized_neighbor_factory(
             n_power=len(power_base_sequence),
             neighbor_mode=sa.neighbor,
@@ -849,6 +865,7 @@ def optimize_sequence_sa(
             power_crews=power_crews,
             road_crews=road_crews,
             multifunction_crews=multifunction_crews,
+            preserve_sequence_order=preserve_sequence_order,
             bus_dispatch_mode=bus_dispatch_mode,
             bus_location_source=bus_location_source,
             bus_to_link_source=bus_to_link_source,
@@ -889,6 +906,7 @@ def optimize_sequence_sa(
             power_crews=power_crews,
             road_crews=road_crews,
             multifunction_crews=multifunction_crews,
+            preserve_sequence_order=preserve_sequence_order,
             bus_dispatch_mode=bus_dispatch_mode,
             bus_location_source=bus_location_source,
             bus_to_link_source=bus_to_link_source,
@@ -931,6 +949,7 @@ def optimize_sequence_sa(
         power_crews=power_crews,
         road_crews=road_crews,
         multifunction_crews=multifunction_crews,
+        preserve_sequence_order=preserve_sequence_order,
         bus_dispatch_mode=bus_dispatch_mode,
         bus_location_source=bus_location_source,
         bus_to_link_source=bus_to_link_source,
@@ -965,6 +984,7 @@ def optimize_sequence_sa(
             power_crews=power_crews,
             road_crews=road_crews,
             multifunction_crews=multifunction_crews,
+            preserve_sequence_order=preserve_sequence_order,
             bus_dispatch_mode=bus_dispatch_mode,
             bus_location_source=bus_location_source,
             bus_to_link_source=bus_to_link_source,

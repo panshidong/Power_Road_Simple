@@ -1,0 +1,25 @@
+**4.2 Task A – Resilient Strategy Comparison: Criticality-Based Analysis**
+
+Building on the interdependent recovery simulator in Section 3.1 and the study inputs defined in Section 4.1, Task A provides a controlled comparison of criticality-based restoration strategies in an interdependent power–road setting. The main outcome is system-level resilience, quantified by the resilience-triangle area computed from the simulated restoration trajectory.
+
+In practice, power and road restoration are typically performed by specialized agencies or crews rather than by a single all-purpose repair team. Accordingly, Task A assumes that power and road components are repaired by their respective specialized repair processes, while the repair priority within each system is determined by a criticality-based ranking. The purpose is not to solve a fully joint, event-specific optimization problem for every scenario, but to evaluate whether different criticality definitions lead to meaningfully different recovery trajectories under the same recovery simulator.
+
+With this scope, Task A evaluates three strategy classes. **S0** represents a conventional centrality-based strategy, where power and road components are ranked separately using applicable topology-based centrality measures, such as betweenness-type indices. **S1** represents a sector-specific Shapley-value-based strategy, where criticality scores are computed separately within the power and road systems using service-based performance outcomes. **S2** represents an integrated Shapley-value-based strategy, where component criticality is evaluated using a coupled power–road system functionality measure, while the resulting rankings are still applied within the corresponding specialized power and road repair processes.
+
+The distinction between S1 and S2 is central to this task. S1 evaluates component importance within each infrastructure sector, whereas S2 evaluates component importance with respect to the coupled system response. Thus, S2 is not based on a simple merged-network centrality calculation. Instead, it uses an integrated characteristic function so that a component’s importance reflects its marginal contribution to interdependent system functionality, including cross-system effects that may not be captured by sector-specific rankings.
+
+To generate Shapley-value-based criticality scores, Task A uses the following standard formulation:
+
+[
+\phi_i(v)=\sum_{S\subseteq N\setminus{i}}
+\frac{|S|!(n-|S|-1)!}{n!}
+\left[v(S\cup{i})-v(S)\right]
+]
+
+where (N) is the set of damaged components considered in the criticality calculation, (S) is a subset of components excluding component (i), and (v(S)) is the system performance value associated with restoring the components in (S). In this study, the value function is defined using service outcomes produced by the recovery simulator, so that component importance reflects recovery contribution rather than topology alone.
+
+Since exact Shapley-value computation becomes expensive as the number of damaged components increases, Shapley-based scores will be estimated using sampling over repair orderings. The sampling configuration will be reported, and the analysis will check whether the resulting rankings are reasonably stable under changes in sampling effort.
+
+Because recovery outcomes can be case-sensitive and depend on the damage pattern, Task A will evaluate the strategies across a broad set of randomly generated disruption scenarios. This design is intended to distinguish systematic strategy differences from scenario-specific outcomes.
+
+Task A will report resilience-triangle outcomes to evaluate how the choice of criticality metric affects recovery efficiency. The main comparison is between topology-based centrality, sector-specific Shapley criticality, and integrated Shapley criticality. In addition, the heuristic-based best-found sequence from Section 3.1 will be reported as a reference point for context rather than as a guaranteed global optimum. These results address RQ1 by assessing whether more interdependence-aware criticality definitions produce meaningfully different restoration outcomes than simpler sector-specific or topology-based prioritization rules.
