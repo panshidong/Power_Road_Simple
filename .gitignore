@@ -12,3 +12,18 @@ submission/
 s.txt
 full_log.txt
 matrix0.bin
+
+# Per-worker scratch copies and run progress logs (parallel runs)
+workers/
+logs/
+logs_driver*.txt
+
+# Paper materials stay local: this repository is public (decided 2026-09-30).
+# Already-tracked files such as 4.2.docx / 4.3.docx are unaffected.
+*.docx
+*.png
+build_od_paper*.py
+build_section3_zh.py
+patch_v*.py
+versions/
+language_review*/
