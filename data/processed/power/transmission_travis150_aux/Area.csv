@@ -1,0 +1,2 @@
+AreaNum,AreaName,SAName,BGReportLimits,BGReportLimMaxKV,BGReportLimMinKV,BGAutoSS,BGAutoXF,BGAGC,AreaUnSpecifiedStudyMW,BusSlack,ConvergenceTol,EnforceGenMWLimits,InjGrpName,UseConstantPF,AreaInjGrpSlackPowerFactor,PVCQPowerFactMult,AreaInjGrpSlackEnforcePosLoad,AreaInjGrpSlackEnforceMWLimits,AreaInjGrpSlackEnforceAGC,DataMaintainerAssign
+1,Travis,FullCase,YES,9999.0000,0.0000,YES,YES,Part. AGC,0.000,,1.00,YES,,YES,1.000000,1.000000,NO ,NO ,NO ,

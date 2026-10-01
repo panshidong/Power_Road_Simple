@@ -1,0 +1,7 @@
+# Same study, but reject any damaged asset missing a trained JSH/IJSH score.
+# This does not magically increase table coverage; inspect coverage and increase
+# construction_scenarios in your own overlay if required. Use a separate output.
+[runtime]
+output = "output/strict_scores"
+[task_a]
+unseen_asset_policy = "error"

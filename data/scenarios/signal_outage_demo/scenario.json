@@ -1,0 +1,11 @@
+{
+  "description": "Hypothetical signals-off capacity assignment; the substation choice uses unverified proximity candidates. No power-flow fault simulation.",
+  "substation_id": "p5uhs3_1247",
+  "selection_rule": "Substation with most joint provisional road-power matches; lexicographic tie break",
+  "signals_affected": 45,
+  "links_affected": 147,
+  "capacity_factor": 0.5,
+  "signal_power_mapping": "synthetic nearest load within 200m",
+  "approach_mapping": "all incoming physical links at uniquely selected candidate node",
+  "restoration_or_power_contingency_solved": false
+}

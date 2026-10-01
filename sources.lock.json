@@ -1,0 +1,118 @@
+{
+  "snapshot_recorded_utc": "2026-10-01T03:39:32.323619+00:00",
+  "sources": [
+    {
+      "path": "data/raw/road/Austin_sdb_net.txt",
+      "url": "https://raw.githubusercontent.com/spartalab/tap-b/5cde0110979857dbe3d3df0be45c811a8352bf78/net/Austin_sdb_net.txt",
+      "source_page": "https://github.com/spartalab/tap-b",
+      "note": "Local project copy; submodule HEAD 5cde0110979857dbe3d3df0be45c811a8352bf78",
+      "bytes": 997636,
+      "sha256": "6cd47b03394fa06bc7d5dd938e677873c4ed0f055dd785fe77ee3f8b9bfb4e73"
+    },
+    {
+      "path": "data/raw/road/Austin_sdb_trips.txt",
+      "url": "https://raw.githubusercontent.com/spartalab/tap-b/5cde0110979857dbe3d3df0be45c811a8352bf78/net/Austin_sdb_trips.txt",
+      "source_page": "https://github.com/spartalab/tap-b",
+      "note": "Local project copy; same Austin_sdb version",
+      "bytes": 2929719,
+      "sha256": "7324ba9128123ad7114015837fab13941be03e18c81483e4f673250ab20ffa90"
+    },
+    {
+      "path": "data/raw/power/syn-Austin-TDgrid-v03.zip",
+      "url": "https://drive.usercontent.google.com/download?id=1v_B20t6aZKiOG9O9BdD39sYtjR8g5sxZ&export=download&confirm=t",
+      "source_page": "https://electricgrids.engr.tamu.edu/combined-td-synthetic-dataset/",
+      "note": "Official public Drive link in public WordPress page metadata; no form or personal data submitted",
+      "bytes": 320294926,
+      "sha256": "92f534b65d4f937c39a7f4586c03e3efaffce014f9f2606d4d26a70c445dbe40"
+    },
+    {
+      "path": "data/raw/power/Travis150_Electric_Gas.zip",
+      "url": "https://drive.usercontent.google.com/download?id=10CtkgU01hd-8_J6arGBieQYRPj1JiMst&export=download&confirm=t",
+      "source_page": "https://electricgrids.engr.tamu.edu/synthetic-gas-electric-test-case-for-the-travis-150-system/",
+      "note": "Separate release with text AUX; not asserted identical to v03 PWB",
+      "bytes": 544266,
+      "sha256": "e1fd658583fa335b8a175e6ae77962a39f990e982e72d75b50177b28fbdd8533"
+    },
+    {
+      "path": "data/raw/signals/traffic_signals.json",
+      "url": "https://data.austintexas.gov/resource/p53x-x73x.json?$limit=10000&$order=signal_id",
+      "source_page": "https://data.austintexas.gov/d/p53x-x73x",
+      "note": "City of Austin inventory snapshot; live data changes over time",
+      "bytes": 1393022,
+      "sha256": "ce027bacd358d01c3b1afe5e0a60b443c51b7ca30d261e72aed8b32ca8a5220e"
+    },
+    {
+      "path": "data/raw/road_coordinates/dstap_Austin_sdb_net.txt",
+      "url": "https://raw.githubusercontent.com/venktesh22/DSTAP/2e2d95234f3c580e26683231832866678f31385b/Networks/Austin_sdb/Austin_sdb_net.txt",
+      "source_page": "https://github.com/venktesh22/DSTAP",
+      "note": "Austin_sdb geography evidence; preserve README citation requirements; do not substitute DSTAP modified link times.",
+      "bytes": 997572,
+      "sha256": "6e72bda1f313724bbf5e8afaece11edfc6f3e1d4f56324176dc89a8bae2bcf62"
+    },
+    {
+      "path": "data/raw/road_coordinates/dstap_Austin_sdb_node.txt",
+      "url": "https://raw.githubusercontent.com/venktesh22/DSTAP/2e2d95234f3c580e26683231832866678f31385b/Networks/Austin_sdb/Austin_sdb_node.txt",
+      "source_page": "https://github.com/venktesh22/DSTAP",
+      "note": "Austin_sdb geography evidence; preserve README citation requirements; do not substitute DSTAP modified link times.",
+      "bytes": 198755,
+      "sha256": "81b37cfd051b67dff3e872520b0adcd6be0f0e61999f034cfd3bed7f4353007d"
+    },
+    {
+      "path": "data/raw/road_coordinates/dstap_Austin_sdb_node_weirdXY.txt",
+      "url": "https://raw.githubusercontent.com/venktesh22/DSTAP/2e2d95234f3c580e26683231832866678f31385b/Networks/Austin_sdb/Austin_sdb_node_weirdXY.txt",
+      "source_page": "https://github.com/venktesh22/DSTAP",
+      "note": "Austin_sdb geography evidence; preserve README citation requirements; do not substitute DSTAP modified link times.",
+      "bytes": 185554,
+      "sha256": "01384ba73e23c6dffd6b33cba6ade26bfd5eeaf0c1b2624c459d9047802372e0"
+    },
+    {
+      "path": "data/raw/road_coordinates/dstap_Austin_sdb_trips.txt",
+      "url": "https://raw.githubusercontent.com/venktesh22/DSTAP/2e2d95234f3c580e26683231832866678f31385b/Networks/Austin_sdb/Austin_sdb_trips.txt",
+      "source_page": "https://github.com/venktesh22/DSTAP",
+      "note": "Austin_sdb geography evidence; preserve README citation requirements; do not substitute DSTAP modified link times.",
+      "bytes": 2929785,
+      "sha256": "df6046eb85fe4133f239762fcc6bcacdc4955de5bd428bfa441d8e3747c0a6a5"
+    },
+    {
+      "path": "data/raw/road_coordinates/dstap_README.md",
+      "url": "https://raw.githubusercontent.com/venktesh22/DSTAP/2e2d95234f3c580e26683231832866678f31385b/README.md",
+      "source_page": "https://github.com/venktesh22/DSTAP",
+      "note": "Austin_sdb geography evidence; preserve README citation requirements; do not substitute DSTAP modified link times.",
+      "bytes": 2438,
+      "sha256": "d5293e0493670e0f3f2781f42ec462b0e8717ffae74193f89120d2002da1552d"
+    },
+    {
+      "path": "data/raw/road_coordinates/tap_demand_Austin_sdb_net.txt",
+      "url": "https://raw.githubusercontent.com/spartalab/TAP_Demand/9e7463fbe2911924767b08a7e7429178efdb1e71/Austin_sdb/Austin_sdb_net.txt",
+      "source_page": "https://github.com/spartalab/TAP_Demand",
+      "note": "Austin_sdb geography evidence; preserve README citation requirements; do not substitute DSTAP modified link times.",
+      "bytes": 978919,
+      "sha256": "5ab9aaf923513fd020c5d1e9c534f40f1feda1cc1aa88c34e61bfa0f97fb4405"
+    },
+    {
+      "path": "data/raw/road_coordinates/tap_demand_Austin_sdb_node.txt",
+      "url": "https://raw.githubusercontent.com/spartalab/TAP_Demand/9e7463fbe2911924767b08a7e7429178efdb1e71/Austin_sdb/Austin_sdb_node.txt",
+      "source_page": "https://github.com/spartalab/TAP_Demand",
+      "note": "Austin_sdb geography evidence; preserve README citation requirements; do not substitute DSTAP modified link times.",
+      "bytes": 368739,
+      "sha256": "c55e919cae4bc2552c6f001f375e6475e931702b475f7ff5a1771b7ab4052409"
+    },
+    {
+      "path": "data/raw/road_coordinates/tap_demand_Austin_sdb_trips.txt",
+      "url": "https://raw.githubusercontent.com/spartalab/TAP_Demand/9e7463fbe2911924767b08a7e7429178efdb1e71/Austin_sdb/Austin_sdb_trips.txt",
+      "source_page": "https://github.com/spartalab/TAP_Demand",
+      "note": "Austin_sdb geography evidence; preserve README citation requirements; do not substitute DSTAP modified link times.",
+      "bytes": 2879632,
+      "sha256": "6cf4fa6f23262f6de086c36a178dd9f3ed04bb55ad6731c6b61f93d8a4690fce"
+    },
+    {
+      "path": "data/raw/road_coordinates/tap_demand_README.md",
+      "url": "https://raw.githubusercontent.com/spartalab/TAP_Demand/9e7463fbe2911924767b08a7e7429178efdb1e71/README.md",
+      "source_page": "https://github.com/spartalab/TAP_Demand",
+      "note": "Austin_sdb geography evidence; preserve README citation requirements; do not substitute DSTAP modified link times.",
+      "bytes": 3233,
+      "sha256": "330d282476e4245de8afe8bda256f4d8ab711fe37acf28a78184a0c46d30661a"
+    }
+  ],
+  "geography_added_utc": "2026-10-01T04:06:00.502238+00:00"
+}

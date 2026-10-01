@@ -1,0 +1,21 @@
+# Merged over research.toml. All six physical regions remain in the model.
+[runtime]
+workers = 1
+tapb_threads = 2
+output = "output/smoke"
+[task_a]
+construction_scenarios = 2
+evaluation_scenarios = 2
+shift_scenarios = 1
+shapley_permutations = 2
+checkpoints = [1, 2]
+representative_cases = 1
+[task_b]
+scenarios = 2
+sa_iterations = 2
+representative_scenario = 1
+[task_c]
+sensitivity_scenarios = 1
+alternative_sets = ["allpairs", "randA"]
+[analysis]
+bootstrap_resamples = 100

@@ -1,0 +1,2 @@
+LSName,LSDisabled,DataMaintainerAssign,LSAmpMVA,LSEndMonitor,LSLinePercent,LSInterfacePercent,LSLineRateSet,LSInterfaceRateSet,LSLineRateSet:1,LSInterfaceRateSet:1,LSPUHigh,LSPULow,LSCtgPUHigh,LSCtgPULow,LSBusHighRateSet,LSBusLowRateSet,LSCtgBusHighRateSet,LSCtgBusLowRateSet
+Default,NO ,,MVA,Higher,100.0000,100.0000,A,A,A,A,1.100000,0.900000,1.100000,0.900000,A,A,A,A

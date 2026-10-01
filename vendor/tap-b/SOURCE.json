@@ -1,0 +1,32 @@
+{
+  "upstream": "https://github.com/spartalab/tap-b",
+  "local_snapshot_commit": "5cde0110979857dbe3d3df0be45c811a8352bf78",
+  "binary_sha256": "21363a96fcbe5bf38466a6758acb87e2b41bb8d4fd7c2bf5d1404404931420c8",
+  "source_sha256": {
+    "src/fileio.c": "b1ce6c9334171d446c5121abf3fab9b83c72db81957705e8076a144f72a63ab9",
+    "src/parallel_bush.c": "67710334e7342c77d03b2df846604ef075990c98a9ee809c18c62a9d111d82d5",
+    "src/bush.c_minmem": "03070a6b750f7435392597b2a45dfa870d3ea389901d1afb133727f300a16bf0",
+    "src/thpool.c": "252d2a04fd8f3f72af880197c90deb735a2c3f41d5ab34896647f6a24c5a979b",
+    "src/convexcombination.c": "d5535462f16485ce3e976d733f8e25d37df25f7e85889e24265bbd93d03a3ec9",
+    "src/main.c": "1f6d30735a893c05711fa55e35e0261473769f1ec81902262437ec48d0633074",
+    "src/tap.c": "d3ca10c20b408d2ffede0cae72e34b0d0b0e581b6f3e146cf2e8881adb55d17f",
+    "src/bush.c": "8a35956f130727be0e4ae6eda8ca759a93472f5f3994f2c2cfefbb2dc2c07f0e",
+    "src/networks.c": "8ae3c59573936cfcb33ff243cb95445543d1c2c30d8a6ea1da2a2d7f108a9a21",
+    "src/utils.c": "be9ce6fa95e9e5b4333b61a3ec78ed47a7834ab88c0f9f58a6cb1e9caea768ab",
+    "src/datastructures.c": "2f4ac3f53b31173359eab0bb708e6adc5932d7b2ebc7189d08fc005bb529eebf",
+    "include/convexcombination.h": "1a04d80a0cb57c3a3b9fae127e5649749b0c5e91cad98807e6345cfccf2cefd9",
+    "include/thpool.h": "4d16e6a016a1a2df2c8cfc6503c92bf1124658a7d46f968d1240ce2edb0f61b5",
+    "include/main.h": "b0d24116c2f0c92d3eb0cfd9a5c1c5d1722081d96bbf4b12677fa0254d4cedd4",
+    "include/datastructures.h": "249c9df11fec2985df6762949d5b6118bb872bea9250a416e59a00fbeefd8570",
+    "include/networks.h": "a98ae4317951c6ccbd1cd964054e999063f4c4fad89f3a663179d163c3344b5b",
+    "include/tap.h": "d355f4957ddada0f1ae127cd70fe0a8567c628044d258188506290fbef69b978",
+    "include/parallel_bush.h": "796d0a83a3a2d7dbb827d055829532105678dbf727646b9cef054aa336e146f9",
+    "include/fileio.h": "1d2eb6e7aa7bafd0ea6a08abc87415ae0a31b356ebbc028133b161e7feaf652f",
+    "include/bush.h": "a63d899b9c7e36633b1c7587097498d2c3d41811eb1417bb01710353361442b7",
+    "include/utils.h": "10a0b5076fe915fe1945dbe1950ce99271443cac893f903492209f38e04b2088",
+    "nctcog/NCTCOG_net_20.csv": "f05b8b51327539790c72f080ee5d7808475e7b192ba249b961faa0037fdf193e",
+    "nctcog/AM_convertertable.csv": "4fcd5584d10b0284781f7738865b912e7a6e0fb512419fb7b387e386fb417f53",
+    "nctcog/PM_convertertable.csv": "de6c8edb241e165a5f8fdcf76f34bdcb1fae874d778ae1be386f90c6dba841ac",
+    "nctcog/PM_NCTCOG_net.csv": "283a8922c4dae33736519cda85a8b16c1bc0c8ce2b9f7bae8ba2b35a9d367ff4"
+  }
+}

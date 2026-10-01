@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "network_sha256": "fdc9684963ef60f4dc3ab1b5dbb00e8016f62c16979909b7fef53a041f53e650",
+  "trips_sha256": "73fa94cc057822edacdc6467507d62523a5483818d6047e813aa4181002e740d",
+  "max_node_flow_balance_error": 2.0000004496978363e-06,
+  "parallel_links_preserved_in_row_order": true,
+  "binary_sha256": "21363a96fcbe5bf38466a6758acb87e2b41bb8d4fd7c2bf5d1404404931420c8",
+  "command": [
+    "/home/workenv/Austin/vendor/tap-b/bin/tap",
+    "0.0001",
+    "1",
+    "/home/workenv/Austin/data/processed/road/Austin_net.tntp",
+    "/home/workenv/Austin/data/processed/road/Austin_trips.tntp",
+    "4"
+  ],
+  "iterations": 13,
+  "relative_gap": 9.4263439647e-05,
+  "tstt_source_units": 20579939.026198,
+  "tstt_from_rounded_link_file": 20579938.979675584,
+  "link_flow_rows": 18710,
+  "wall_seconds": 123.51689922599962,
+  "scope": "Intact road assignment only; no coupled restoration claim."
+}

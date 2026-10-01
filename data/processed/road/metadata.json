@@ -1,0 +1,29 @@
+{
+  "source_variant": "spartalab/tap-b Austin_sdb",
+  "nodes": 7466,
+  "zones": 1117,
+  "physical_nodes": 6349,
+  "first_thru_node": 1118,
+  "directed_links": 18710,
+  "centroid_connectors": 5134,
+  "duplicate_directed_pairs": {
+    "6018,6016": 2,
+    "6703,4574": 2,
+    "4574,6703": 2,
+    "6010,6009": 2,
+    "2531,2541": 2,
+    "4335,4334": 2,
+    "4334,4335": 2
+  },
+  "physical_scc_count": 17,
+  "largest_physical_scc_nodes": 6333,
+  "all_positive_interzonal_od_reachable_without_centroid_through_traffic": true,
+  "od_records": 234729,
+  "positive_od_pairs": 234729,
+  "total_demand_source": 695013.0,
+  "intrazonal_demand_source": 19873.0,
+  "coordinate_status": "all_source_ids_crosschecked",
+  "coordinate_reference": "longitude/latitude decimal degrees; source geodetic datum undeclared",
+  "coordinate_audit": "reports/road_coordinate_audit.json",
+  "units": "Numerical source units preserved. Time/length/period labels need independent source confirmation; no OD rescaling."
+}

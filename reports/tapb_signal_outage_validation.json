@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "network_sha256": "1ec3b1b63ac025f7a5582f5b423c9fa807da9c6eb968fd292f055d00fec73e1b",
+  "trips_sha256": "73fa94cc057822edacdc6467507d62523a5483818d6047e813aa4181002e740d",
+  "max_node_flow_balance_error": 2.0000004496978363e-06,
+  "parallel_links_preserved_in_row_order": true,
+  "binary_sha256": "21363a96fcbe5bf38466a6758acb87e2b41bb8d4fd7c2bf5d1404404931420c8",
+  "command": [
+    "/home/workenv/Austin/vendor/tap-b/bin/tap",
+    "0.0001",
+    "1",
+    "/home/workenv/Austin/data/scenarios/signal_outage_demo/Austin_signal_outage_net.tntp",
+    "/home/workenv/Austin/data/processed/road/Austin_trips.tntp",
+    "4"
+  ],
+  "iterations": 13,
+  "relative_gap": 9.3803883529e-05,
+  "tstt_source_units": 20692218.992426,
+  "tstt_from_rounded_link_file": 20692218.84020315,
+  "link_flow_rows": 18710,
+  "wall_seconds": 129.21635125899957,
+  "scope": "Hypothetical signals-off capacity assignment; the substation choice uses unverified proximity candidates. No power-flow fault simulation.",
+  "provisional_substation_id": "p5uhs3_1247",
+  "signals_affected": 45,
+  "directed_approach_links_affected": 147,
+  "capacity_factor": 0.5,
+  "baseline_tstt_source_units": 20579939.026198,
+  "tstt_change_percent": 0.5455796836184579,
+  "only_selected_capacity_fields_changed": true,
+  "real_event_or_calibrated_outage": false
+}

@@ -1,0 +1,91 @@
+# This file defines experiments, not automatic execution.
+[runtime]
+workers = 0 # automatic CPU AND available-memory limit; CLI can override
+reserve_cpus = 2
+tapb_threads = 4
+memory_gb_per_worker = 16.0 # unbenchmarked estimate; inspect new-host smoke RSS
+jobs_per_worker_batch = 4 # renew entire pool after workers * this many jobs
+output = "output/research"
+cache = "cache"
+prepared = "prepared"
+
+[traffic]
+relative_gap = 0.0001
+timeout_seconds = 1200
+closure_penalty = 9999.0
+signal_outage_capacity_factor = 0.5
+time_to_minutes = 1.0 # inferred original FFT unit, documented assumption
+centrality_sources = 512 # 0 requests exact all-source betweenness
+centrality_seed = 20260930
+
+[power]
+model = "tamu_regional_opendss"
+voltage_min_pu = 0.90
+voltage_max_pu = 1.10
+thermal_tolerance = 0.01
+voltage_tolerance = 0.0001
+balance_relative_tolerance = 0.001
+load_scales = [1.0, 0.95, 0.90, 0.85, 0.80, 0.70, 0.60, 0.50, 0.40, 0.30, 0.20, 0.10, 0.05, 0.01]
+max_switch_trials = 8
+max_switch_closures = 2
+signal_min_served_fraction = 0.10
+partial_failure_probability = 0.5
+partial_rating_range = [0.2, 0.8]
+
+[recovery]
+power_crews = 1
+road_crews = 1
+power_repair_minutes = 20.0
+road_repair_minutes = 10.0
+horizon_minutes = 1440.0
+depot_lon_lat = [-97.7431, 30.2672] # assumed dispatch location, NOT a verified depot
+shelter_lon_lat = [-97.7160, 30.2770] # assumed facility, NOT a verified shelter
+critical_sites_lon_lat = [[-97.7400, 30.3100], [-97.7700, 30.2400]] # assumed facilities; nearest distinct substations
+offroad_speed_kph = 15.0
+critical_load_multiplier = 3.0
+
+[equity]
+electric_weight = 0.133
+access_weight = 0.867
+cri_threshold = 0.9
+access_threshold = 0.9
+zones = "taz_with_positive_load"
+
+[task_a]
+construction_scenarios = 400
+evaluation_scenarios = 300
+shift_scenarios = 100
+shapley_permutations = 120
+alpha_values = [0.0, 0.5, 1.0, 2.0]
+checkpoints = [50, 100, 200, 400]
+construction_seed = 20263001
+evaluation_seed = 20264001
+unseen_asset_policy = "centrality_fallback_recorded"
+closure_penalties = [1000.0, 9999.0, 100000.0]
+representative_cases = 3
+
+[task_b]
+scenarios = 100
+seed = 20260325
+sa_seed = 0
+sa_iterations = 80
+temperature = 1.4
+cooling = 0.97
+guardrail_improvement = 0.95
+guardrail_penalty = 1000000.0
+representative_scenario = 65
+weight_sensitivity = [[0.3, 0.7], [0.7, 0.3]]
+threshold_sensitivity = [0.85, 0.95]
+lambda_sensitivity = [0.25, 0.75]
+
+[task_c]
+k = 3
+path_weights = [1.0, 0.6, 0.35]
+k_sensitivity = [1, 2, 5]
+sensitivity_scenarios = 100
+alternative_sets = ["allpairs", "central", "roadcentral", "randA", "randB", "randC", "size4", "size7", "size11", "allnodes"]
+
+[analysis]
+bootstrap_resamples = 20000
+seed = 20260930
+trim_each_tail = 0.025

@@ -1,0 +1,198 @@
+{
+  "voltagebase_corrections": [
+    {
+      "feeder_id": "p1rhs1_1247--p1rdt6578",
+      "change": "Append source basekV to Set Voltagebases for correct per-unit reporting",
+      "original_voltagebases": [
+        0.2080002494301389,
+        7.199560000000001
+      ],
+      "added_voltagebase_kv": 12.47,
+      "derived_master": "runs/opendss/p1rhs1_1247--p1rdt6578/Master_voltagebases_fixed.dss",
+      "converged": true,
+      "max_physical_voltage_change_v": 0.0,
+      "min_energized_voltage_pu": 0.9834796652112487,
+      "max_voltage_pu": 1.0299999099423705,
+      "passed": true
+    },
+    {
+      "feeder_id": "p1rhs4_1247--p1rdt5851",
+      "change": "Append source basekV to Set Voltagebases for correct per-unit reporting",
+      "original_voltagebases": [
+        0.2080002494301389,
+        7.199560000000001
+      ],
+      "added_voltagebase_kv": 12.47,
+      "derived_master": "runs/opendss/p1rhs4_1247--p1rdt5851/Master_voltagebases_fixed.dss",
+      "converged": true,
+      "max_physical_voltage_change_v": 0.0,
+      "min_energized_voltage_pu": 0.9918069214738724,
+      "max_voltage_pu": 1.0299998708182054,
+      "passed": true
+    },
+    {
+      "feeder_id": "p1rhs7_1247--p1rdt1161",
+      "change": "Append source basekV to Set Voltagebases for correct per-unit reporting",
+      "original_voltagebases": [
+        0.2080002494301389,
+        7.199560000000001
+      ],
+      "added_voltagebase_kv": 12.47,
+      "derived_master": "runs/opendss/p1rhs7_1247--p1rdt1161/Master_voltagebases_fixed.dss",
+      "converged": true,
+      "max_physical_voltage_change_v": 0.0,
+      "min_energized_voltage_pu": 0.9855425027191371,
+      "max_voltage_pu": 1.029999849703814,
+      "passed": true
+    },
+    {
+      "feeder_id": "p1uhs6_1247--p1udt7653",
+      "change": "Append source basekV to Set Voltagebases for correct per-unit reporting",
+      "original_voltagebases": [
+        0.2080002494301389,
+        7.199560000000001
+      ],
+      "added_voltagebase_kv": 12.47,
+      "derived_master": "runs/opendss/p1uhs6_1247--p1udt7653/Master_voltagebases_fixed.dss",
+      "converged": true,
+      "max_physical_voltage_change_v": 0.0,
+      "min_energized_voltage_pu": 1.011948969902572,
+      "max_voltage_pu": 1.030274649556646,
+      "passed": true
+    },
+    {
+      "feeder_id": "p1uhs9_1247--p1udt19234",
+      "change": "Append source basekV to Set Voltagebases for correct per-unit reporting",
+      "original_voltagebases": [
+        0.2080002494301389,
+        7.199560000000001
+      ],
+      "added_voltagebase_kv": 12.47,
+      "derived_master": "runs/opendss/p1uhs9_1247--p1udt19234/Master_voltagebases_fixed.dss",
+      "converged": true,
+      "max_physical_voltage_change_v": 0.0,
+      "min_energized_voltage_pu": 0.9898186699982384,
+      "max_voltage_pu": 1.0299998989070969,
+      "passed": true
+    },
+    {
+      "feeder_id": "p1uhs9_1247--p1udt20692",
+      "change": "Append source basekV to Set Voltagebases for correct per-unit reporting",
+      "original_voltagebases": [
+        0.2080002494301389,
+        7.199560000000001
+      ],
+      "added_voltagebase_kv": 12.47,
+      "derived_master": "runs/opendss/p1uhs9_1247--p1udt20692/Master_voltagebases_fixed.dss",
+      "converged": true,
+      "max_physical_voltage_change_v": 0.0,
+      "min_energized_voltage_pu": 1.0104796204223392,
+      "max_voltage_pu": 1.0307003504119707,
+      "passed": true
+    },
+    {
+      "feeder_id": "p4uhs11_1247--p4udt11208",
+      "change": "Append source basekV to Set Voltagebases for correct per-unit reporting",
+      "original_voltagebases": [
+        0.2080002494301389,
+        7.199560000000001
+      ],
+      "added_voltagebase_kv": 12.47,
+      "derived_master": "runs/opendss/p4uhs11_1247--p4udt11208/Master_voltagebases_fixed.dss",
+      "converged": true,
+      "max_physical_voltage_change_v": 0.0,
+      "min_energized_voltage_pu": 1.018271707094608,
+      "max_voltage_pu": 1.0299999958219683,
+      "passed": true
+    },
+    {
+      "feeder_id": "p4uhs16_1247--p4udt2769",
+      "change": "Append source basekV to Set Voltagebases for correct per-unit reporting",
+      "original_voltagebases": [
+        0.2080002494301389,
+        7.199560000000001
+      ],
+      "added_voltagebase_kv": 12.47,
+      "derived_master": "runs/opendss/p4uhs16_1247--p4udt2769/Master_voltagebases_fixed.dss",
+      "converged": true,
+      "max_physical_voltage_change_v": 0.0,
+      "min_energized_voltage_pu": 0.9922786658595959,
+      "max_voltage_pu": 1.0306517645608584,
+      "passed": true
+    },
+    {
+      "feeder_id": "p4uhs1_1247--p4udt5565",
+      "change": "Append source basekV to Set Voltagebases for correct per-unit reporting",
+      "original_voltagebases": [
+        0.2080002494301389,
+        7.199560000000001
+      ],
+      "added_voltagebase_kv": 12.47,
+      "derived_master": "runs/opendss/p4uhs1_1247--p4udt5565/Master_voltagebases_fixed.dss",
+      "converged": true,
+      "max_physical_voltage_change_v": 0.0,
+      "min_energized_voltage_pu": 1.0060566504166382,
+      "max_voltage_pu": 1.030108400608601,
+      "passed": true
+    },
+    {
+      "feeder_id": "p4uhs20_1247--p4udt9759",
+      "change": "Append source basekV to Set Voltagebases for correct per-unit reporting",
+      "original_voltagebases": [
+        0.2080002494301389,
+        7.199560000000001
+      ],
+      "added_voltagebase_kv": 12.47,
+      "derived_master": "runs/opendss/p4uhs20_1247--p4udt9759/Master_voltagebases_fixed.dss",
+      "converged": true,
+      "max_physical_voltage_change_v": 0.0,
+      "min_energized_voltage_pu": 0.9910710363468738,
+      "max_voltage_pu": 1.029999889647645,
+      "passed": true
+    },
+    {
+      "feeder_id": "p5uhs27_1247--p5udt21906",
+      "change": "Append source basekV to Set Voltagebases for correct per-unit reporting",
+      "original_voltagebases": [
+        0.2080002494301389,
+        7.199560000000001
+      ],
+      "added_voltagebase_kv": 12.47,
+      "derived_master": "runs/opendss/p5uhs27_1247--p5udt21906/Master_voltagebases_fixed.dss",
+      "converged": true,
+      "max_physical_voltage_change_v": 0.0,
+      "min_energized_voltage_pu": 0.9890586057116778,
+      "max_voltage_pu": 1.0299999086026725,
+      "passed": true
+    }
+  ],
+  "original_regional_solves": [
+    {
+      "region": "P3U",
+      "scope": "Original regional OpenDSS network including upstream 230/69 kV elements and cross-feeder controls; independent regional ideal source, not full TAMU T+D co-simulation",
+      "passed": true,
+      "converged": true,
+      "loads": 80848,
+      "nominal_kw": 741996.5787953,
+      "expected_kw": 741996.5787953002,
+      "unenergized_loads": [],
+      "min_energized_voltage_pu": 0.9016546336108903,
+      "max_voltage_pu": 1.0284384168425285,
+      "wall_seconds": 79.12662742500015
+    },
+    {
+      "region": "P5U",
+      "scope": "Original regional OpenDSS network including upstream 230/69 kV elements and cross-feeder controls; independent regional ideal source, not full TAMU T+D co-simulation",
+      "passed": true,
+      "converged": true,
+      "loads": 78637,
+      "nominal_kw": 998419.8850733,
+      "expected_kw": 998419.8850733,
+      "unenergized_loads": [],
+      "min_energized_voltage_pu": 0.8578087119688979,
+      "max_voltage_pu": 1.0278799591047416,
+      "wall_seconds": 73.53135721299986
+    }
+  ],
+  "raw_sources_modified": false
+}

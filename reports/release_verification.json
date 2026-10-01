@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "source_files_verified": 14,
+  "processed_files_verified_against_build_hashes": 51,
+  "road_links": 18710,
+  "loads": 307236,
+  "feeders_import_solve_ready": 448,
+  "raw_standalone_feeders_passed": 446,
+  "regional_dependency_exceptions_verified": 2,
+  "voltagebase_metadata_corrections_verified": 11,
+  "signal_power_provisional_matches": 889,
+  "source_road_nodes_with_coordinates": 7466,
+  "provisional_road_signal_matches": 428,
+  "provisional_joint_signal_road_power_matches": 410,
+  "actual_road_signal_matches_verified": 0,
+  "tapb_signal_outage_scenario_passed": true,
+  "html_javascript_syntax_checked": true,
+  "full_geographic_coupling_ready": false,
+  "operating_limits_and_restoration_validated": false
+}

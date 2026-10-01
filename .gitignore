@@ -1,22 +1,16 @@
 .venv/
-venv/
+.venv-runtime/
 __pycache__/
 *.pyc
-.env
-.idea/
-.vscode/
+*.egg-info/
+runs/
+# Frozen small source files and processed data belong in the clone.
+data/raw/power/syn-Austin-TDgrid-v03.zip
+Austin_v*.zip
+reports/*.html
 
-# Generated experiment outputs
-results/
-submission/
-s.txt
-full_log.txt
-matrix0.bin
-
-# Paper materials stay local: this repository is public (decided 2026-09-30).
-# Already-tracked files such as 4.2.docx / 4.3.docx are unaffected.
-*.docx
-*.png
-build_criticality_paper*.py
-audit_criticality_*.py
-word_qa_*.ps1
+# Rebuild native executables on the destination host.
+vendor/tap-b/bin/
+vendor/tap-b/obj/
+vendor/tap-b/.depend/
+reports/*.log

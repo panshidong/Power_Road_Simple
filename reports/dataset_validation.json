@@ -1,0 +1,136 @@
+{
+  "release": "austin-v1-georeferenced",
+  "geography": {
+    "coordinate_nodes": 7466,
+    "eligible_intersection_nodes": 3269,
+    "active_signals": 965,
+    "road_provisional_matches": 428,
+    "joint_road_power_provisional_matches": 410,
+    "approach_link_rows": 1427,
+    "road_match_status_counts": {
+      "provisional_spatial_candidate": 428,
+      "over_50m": 518,
+      "ambiguous_nearby_nodes": 17,
+      "multiple_signals_same_node": 2
+    },
+    "nearest_eligible_road_distance_m": {
+      "min": 1.2565352664714082,
+      "p50": 65.40788566198584,
+      "p90": 639.7530101049532,
+      "p95": 920.197249987441,
+      "max": 2634.0543896284494
+    },
+    "sensitivity_before_collision_exclusion": {
+      "25": 103,
+      "50": 430,
+      "75": 487,
+      "100": 522,
+      "150": 575,
+      "200": 620
+    },
+    "rule": {
+      "max_distance_m": 50.0,
+      "min_second_candidate_margin_m": 20.0,
+      "min_distinct_physical_neighbours": 3,
+      "multiple_signals_at_same_node": "retain candidates, leave unselected"
+    },
+    "substation_access_candidates": 384,
+    "nearest_substation_access_within_500m": 82,
+    "physical_links_chord_longer_than_1_2_times_length_if_feet": 42,
+    "manual_road_matches_verified": 0,
+    "source_datum_declared": false,
+    "road_polylines_available": false,
+    "scope": "Geographic candidates and an aggregate signal-outage scenario; not observed wiring, confirmed turning movements, or a coupled power-restoration model."
+  },
+  "road": {
+    "source_variant": "spartalab/tap-b Austin_sdb",
+    "nodes": 7466,
+    "zones": 1117,
+    "physical_nodes": 6349,
+    "first_thru_node": 1118,
+    "directed_links": 18710,
+    "centroid_connectors": 5134,
+    "duplicate_directed_pairs": {
+      "6018,6016": 2,
+      "6703,4574": 2,
+      "4574,6703": 2,
+      "6010,6009": 2,
+      "2531,2541": 2,
+      "4335,4334": 2,
+      "4334,4335": 2
+    },
+    "physical_scc_count": 17,
+    "largest_physical_scc_nodes": 6333,
+    "all_positive_interzonal_od_reachable_without_centroid_through_traffic": true,
+    "od_records": 234729,
+    "positive_od_pairs": 234729,
+    "total_demand_source": 695013.0,
+    "intrazonal_demand_source": 19873.0,
+    "coordinate_status": "all_source_ids_crosschecked",
+    "coordinate_reference": "longitude/latitude decimal degrees; source geodetic datum undeclared",
+    "coordinate_audit": "reports/road_coordinate_audit.json",
+    "units": "Numerical source units preserved. Time/length/period labels need independent source confirmation; no OD rescaling."
+  },
+  "transmission_aux": {
+    "case_label": "Travis150_Electric_Gas release; not silently substituted for v03 PWB",
+    "bus_records": 173,
+    "substation_records": 140,
+    "two_terminal_branch_records": 308,
+    "three_winding_transformer_records": 5,
+    "generator_records": 39,
+    "load_records": 128,
+    "active_constant_power_load_mw": 3254.2199975345284,
+    "conversion": "Lossless AUX object tables; branch circuits and 3-winding objects retained separately. No unverified MATPOWER conversion or transmission power-flow claim."
+  },
+  "distribution": {
+    "feeder_count": 448,
+    "substation_count": 128,
+    "load_count": 307236,
+    "load_kw": 3099277.7403102005,
+    "load_kvar": 660787.843914021,
+    "feeder_bus_coordinate_records": 853449,
+    "line_records": 721341,
+    "transformer_records": 132427,
+    "all_feeder_loads_topologically_connected": true,
+    "scope": "Leaf feeders only; upstream substation circuits and interconnections remain in original ZIP. Bus coordinates count buses, not phase nodes. Transformer winding records and line impedance matrices retained verbatim."
+  },
+  "signals": {
+    "inventory_records": 1345,
+    "active_primary_traffic_signals_with_coordinates": 965,
+    "provisional_power_matches_within_200m": 889,
+    "unmatched_power_over_200m": 76,
+    "nearest_power_distance_m_quantiles": {
+      "min": 10.000038331834563,
+      "p50": 47.07602448690238,
+      "p90": 155.7077294386283,
+      "p95": 336.0682310031714,
+      "max": 5977.464426865986
+    },
+    "accepted_road_matches": 0,
+    "cross_release_substation_match_counts": {
+      "unique_location_voltage_candidate": 128
+    },
+    "model_assumptions": {
+      "signal_supply": "Nearest synthetic customer load within 200 m; three candidates retained; not measured utility service. Threshold requires sensitivity analysis.",
+      "signal_road_mapping": "Nearest physical intersection within 50 m, >=20 m separation from second candidate, no multi-signal collisions; all are unreviewed candidates.",
+      "signal_timing": "Not supplied; left empty. Existing aggregate capacity-loss model does not require phase timing.",
+      "signal_outage_capacity_factor": 0.5,
+      "capacity_factor_status": "Scenario assumption inherited from small-case design; not calibrated Austin evidence.",
+      "date_alignment": "Current signal snapshot and historical network are not contemporaneous."
+    },
+    "provisional_road_matches": 428,
+    "joint_road_power_provisional_matches": 410
+  },
+  "readiness": {
+    "tapb_road_input": true,
+    "distribution_opendss_source": true,
+    "full_geographic_road_power_coupling": false,
+    "full_abc_restoration_experiments": false
+  },
+  "remaining_inputs": [
+    "Coordinate geodetic datum confirmation and actual road polylines if needed",
+    "Reviewed road-node-to-signal assignment and repair access mapping",
+    "A chosen transmission/distribution model and validated restoration adapter",
+    "Critical destinations, depots, equity regions and repair scenario assumptions"
+  ]
+}

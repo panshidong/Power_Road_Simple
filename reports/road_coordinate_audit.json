@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "node_count": 7466,
+  "all_ids_covered": true,
+  "primary": "spartalab/TAP_Demand@9e7463fbe2911924767b08a7e7429178efdb1e71",
+  "crosscheck": "venktesh22/DSTAP@2e2d95234f3c580e26683231832866678f31385b",
+  "coordinate_tables_numerically_identical": true,
+  "primary_road_all_rows_all_ten_fields_same_order": true,
+  "primary_and_secondary_od_equal_local": true,
+  "secondary_road_endpoint_order_identical": true,
+  "secondary_road_fft_differences": 286,
+  "secondary_road_parameters_adopted": false,
+  "bounds_lon_lat": [
+    [
+      -98.270406,
+      29.773576
+    ],
+    [
+      -97.162178,
+      30.905132
+    ]
+  ],
+  "coordinate_interpretation": "X=longitude, Y=latitude in decimal degrees; source does not declare a geodetic datum. WGS84-compatible plotting and sphere distances are an explicit assumption.",
+  "source_sha256": {
+    "dstap_Austin_sdb_net.txt": "6e72bda1f313724bbf5e8afaece11edfc6f3e1d4f56324176dc89a8bae2bcf62",
+    "dstap_Austin_sdb_node.txt": "81b37cfd051b67dff3e872520b0adcd6be0f0e61999f034cfd3bed7f4353007d",
+    "dstap_Austin_sdb_node_weirdXY.txt": "01384ba73e23c6dffd6b33cba6ade26bfd5eeaf0c1b2624c459d9047802372e0",
+    "dstap_Austin_sdb_trips.txt": "df6046eb85fe4133f239762fcc6bcacdc4955de5bd428bfa441d8e3747c0a6a5",
+    "dstap_README.md": "d5293e0493670e0f3f2781f42ec462b0e8717ffae74193f89120d2002da1552d",
+    "tap_demand_Austin_sdb_net.txt": "5ab9aaf923513fd020c5d1e9c534f40f1feda1cc1aa88c34e61bfa0f97fb4405",
+    "tap_demand_Austin_sdb_node.txt": "c55e919cae4bc2552c6f001f375e6475e931702b475f7ff5a1771b7ab4052409",
+    "tap_demand_Austin_sdb_trips.txt": "6cf4fa6f23262f6de086c36a178dd9f3ed04bb55ad6731c6b61f93d8a4690fce",
+    "tap_demand_README.md": "330d282476e4245de8afe8bda256f4d8ab711fe37acf28a78184a0c46d30661a"
+  }
+}

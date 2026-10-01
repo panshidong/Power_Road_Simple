@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "canvas_operations": 569708,
+  "scope": "Node VM functional smoke test with stub DOM/canvas; no real browser screenshot",
+  "checked": [
+    "initial render finite coordinates",
+    "fit/city/zoom",
+    "signal selection",
+    "road-node lookup",
+    "layer toggles",
+    "wheel",
+    "drag"
+  ]
+}

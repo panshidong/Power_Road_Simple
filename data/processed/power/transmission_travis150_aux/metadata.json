@@ -1,0 +1,11 @@
+{
+  "case_label": "Travis150_Electric_Gas release; not silently substituted for v03 PWB",
+  "bus_records": 173,
+  "substation_records": 140,
+  "two_terminal_branch_records": 308,
+  "three_winding_transformer_records": 5,
+  "generator_records": 39,
+  "load_records": 128,
+  "active_constant_power_load_mw": 3254.2199975345284,
+  "conversion": "Lossless AUX object tables; branch circuits and 3-winding objects retained separately. No unverified MATPOWER conversion or transmission power-flow claim."
+}

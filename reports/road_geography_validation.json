@@ -1,0 +1,42 @@
+{
+  "coordinate_nodes": 7466,
+  "eligible_intersection_nodes": 3269,
+  "active_signals": 965,
+  "road_provisional_matches": 428,
+  "joint_road_power_provisional_matches": 410,
+  "approach_link_rows": 1427,
+  "road_match_status_counts": {
+    "provisional_spatial_candidate": 428,
+    "over_50m": 518,
+    "ambiguous_nearby_nodes": 17,
+    "multiple_signals_same_node": 2
+  },
+  "nearest_eligible_road_distance_m": {
+    "min": 1.2565352664714082,
+    "p50": 65.40788566198584,
+    "p90": 639.7530101049532,
+    "p95": 920.197249987441,
+    "max": 2634.0543896284494
+  },
+  "sensitivity_before_collision_exclusion": {
+    "25": 103,
+    "50": 430,
+    "75": 487,
+    "100": 522,
+    "150": 575,
+    "200": 620
+  },
+  "rule": {
+    "max_distance_m": 50.0,
+    "min_second_candidate_margin_m": 20.0,
+    "min_distinct_physical_neighbours": 3,
+    "multiple_signals_at_same_node": "retain candidates, leave unselected"
+  },
+  "substation_access_candidates": 384,
+  "nearest_substation_access_within_500m": 82,
+  "physical_links_chord_longer_than_1_2_times_length_if_feet": 42,
+  "manual_road_matches_verified": 0,
+  "source_datum_declared": false,
+  "road_polylines_available": false,
+  "scope": "Geographic candidates and an aggregate signal-outage scenario; not observed wiring, confirmed turning movements, or a coupled power-restoration model."
+}

@@ -1,0 +1,27 @@
+{
+  "inventory_records": 1345,
+  "active_primary_traffic_signals_with_coordinates": 965,
+  "provisional_power_matches_within_200m": 889,
+  "unmatched_power_over_200m": 76,
+  "nearest_power_distance_m_quantiles": {
+    "min": 10.000038331834563,
+    "p50": 47.07602448690238,
+    "p90": 155.7077294386283,
+    "p95": 336.0682310031714,
+    "max": 5977.464426865986
+  },
+  "accepted_road_matches": 0,
+  "cross_release_substation_match_counts": {
+    "unique_location_voltage_candidate": 128
+  },
+  "model_assumptions": {
+    "signal_supply": "Nearest synthetic customer load within 200 m; three candidates retained; not measured utility service. Threshold requires sensitivity analysis.",
+    "signal_road_mapping": "Nearest physical intersection within 50 m, >=20 m separation from second candidate, no multi-signal collisions; all are unreviewed candidates.",
+    "signal_timing": "Not supplied; left empty. Existing aggregate capacity-loss model does not require phase timing.",
+    "signal_outage_capacity_factor": 0.5,
+    "capacity_factor_status": "Scenario assumption inherited from small-case design; not calibrated Austin evidence.",
+    "date_alignment": "Current signal snapshot and historical network are not contemporaneous."
+  },
+  "provisional_road_matches": 428,
+  "joint_road_power_provisional_matches": 410
+}

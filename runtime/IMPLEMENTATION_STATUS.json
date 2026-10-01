@@ -1,0 +1,16 @@
+{
+  "status": "written_not_executed",
+  "reason": "User requested no execution on the CPU-saturated source host.",
+  "runtime_solver_runs": 0,
+  "runtime_test_runs": 0,
+  "dependencies_installed_for_this_runtime": false,
+  "runtime_native_build_executed": false,
+  "destination_host_acceptance_required": true,
+  "legacy_article_projects_modified": false,
+  "note": "Earlier dataset checks do not validate this new runtime. Numerical feasibility and performance remain unverified until destination-host acceptance.",
+  "publication_target": {
+    "repository": "panshidong/Power_Road_Simple",
+    "branch": "austin-runtime",
+    "layout": "Austin project at repository root"
+  }
+}

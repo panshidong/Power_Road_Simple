@@ -1,0 +1,12 @@
+{
+  "feeder_count": 448,
+  "substation_count": 128,
+  "load_count": 307236,
+  "load_kw": 3099277.7403102005,
+  "load_kvar": 660787.843914021,
+  "feeder_bus_coordinate_records": 853449,
+  "line_records": 721341,
+  "transformer_records": 132427,
+  "all_feeder_loads_topologically_connected": true,
+  "scope": "Leaf feeders only; upstream substation circuits and interconnections remain in original ZIP. Bus coordinates count buses, not phase nodes. Transformer winding records and line impedance matrices retained verbatim."
+}
