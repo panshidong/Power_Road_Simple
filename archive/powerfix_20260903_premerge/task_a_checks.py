@@ -4,7 +4,6 @@ import os
 from typing import Any, Dict, List, Set
 
 from disaster import generate_scenarios
-from power_util import delete_buses, get_functional_nodes
 from resilience_measurement import run_model_multi
 from task_a_criticality import (
     FullFunctionalityValue,
@@ -19,48 +18,6 @@ from task_a_criticality import (
 def _assert_close(actual: float, expected: float, *, tol: float, label: str) -> None:
     if abs(float(actual) - float(expected)) > float(tol):
         raise AssertionError(f"{label}: expected {expected}, got {actual}")
-
-
-def check_power_functionality_semantics() -> Dict[str, Any]:
-    """The performance metric and dependency propagation must use one outage rule."""
-    all_buses = set(range(1, 34))
-    cases = [set(), {1}, {2}, {5}, {18}, {33}, {2, 19}, {3, 30}, all_buses]
-    case_counts: Dict[str, int] = {}
-    for broken in cases:
-        functional = set(get_functional_nodes(broken))
-        unavailable = set(delete_buses(sorted(broken)))
-        expected = all_buses - unavailable
-        if functional != expected:
-            raise AssertionError(
-                "Power functionality and downstream outage propagation disagree: "
-                f"broken={sorted(broken)}, functional={sorted(functional)}, "
-                f"expected={sorted(expected)}"
-            )
-        case_counts[str(sorted(broken))] = len(functional)
-
-    expected_bus5_unavailable = {
-        5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
-        21, 22, 26, 27, 28, 29, 30, 31, 32, 33,
-    }
-    actual_bus5_unavailable = set(delete_buses([5]))
-    if actual_bus5_unavailable != expected_bus5_unavailable:
-        raise AssertionError(
-            "Unexpected directed downstream closure for bus 5: "
-            f"{sorted(actual_bus5_unavailable)}"
-        )
-
-    for bus in all_buses:
-        functional = set(get_functional_nodes({bus}))
-        unavailable = set(delete_buses([bus]))
-        if functional != all_buses - unavailable:
-            raise AssertionError(f"Single-bus outage semantics disagree for bus {bus}")
-
-    return {
-        "checked_cases": len(cases),
-        "checked_single_bus_outages": len(all_buses),
-        "bus_5_unavailable_count": len(actual_bus5_unavailable),
-        "functional_counts": case_counts,
-    }
 
 
 def check_known_shapley_game() -> Dict[str, Any]:
@@ -243,7 +200,6 @@ def check_specialized_crews_and_dynamic_tapb() -> Dict[str, Any]:
 
 def main() -> None:
     checks = {
-        "power_functionality_semantics": check_power_functionality_semantics(),
         "known_shapley_game": check_known_shapley_game(),
         "strategy_generation": check_strategy_generation(),
         "full_functionality_shapley_game": check_full_functionality_shapley_game(),

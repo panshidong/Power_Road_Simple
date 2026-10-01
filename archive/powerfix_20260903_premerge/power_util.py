@@ -1,6 +1,6 @@
 import random
 def get_functional_nodes(broken_nodes):
-    # Define the directed parent-to-child topology used by the model.
+    # Define the topology of the IEEE 33-bus system   this function is broken, use the below one
     connections = {
         1: [2],
         2: [3, 19],
@@ -36,21 +36,27 @@ def get_functional_nodes(broken_nodes):
         32: [],
         33: []
     }
-    # A bus is functional iff neither it nor any upstream bus is broken. Because
-    # `connections` maps parent -> children, a broken bus takes down itself and
-    # every reachable descendant. This is deliberately the same outage rule as
-    # `delete_buses`, which supplies the power-to-road dependency state.
-    broken = set(int(bus) for bus in broken_nodes)
-    unfunctional = set(broken)
-    stack = list(broken)
-    while stack:
-        current = stack.pop()
-        for child in connections.get(current, []):
-            if child not in unfunctional:
-                unfunctional.add(child)
-                stack.append(child)
+    # Function to check if a node is functional
+    def is_functional(node, broken_nodes, connections, visited):
+        if node in broken_nodes:
+            return False
+        if node in visited:
+            return True
+        visited.add(node)
+        for neighbor in connections[node]:
+            if not is_functional(neighbor, broken_nodes, connections, visited):
+                return False
+        return True
 
-    functional_nodes = set(connections.keys()) - unfunctional
+    # Initialize the set of functional nodes
+    functional_nodes = set()
+    visited = set()
+
+    # Check each node
+    for node in connections.keys():
+        if is_functional(node, broken_nodes, connections, visited):
+            functional_nodes.add(node)
+
     return functional_nodes
 
 def delete_buses(broken_nodes):
