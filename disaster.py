@@ -42,6 +42,10 @@ def load_candidates(
     bus_source = json.loads(Path(bus_candidate_path).read_text(encoding="utf-8"))
     buses = sorted(int(k) for k in bus_source.keys())
 
+    # A road repair represents one physical facility.  Sioux Falls stores the
+    # two travel directions as separate arcs, but the recovery model derates
+    # and restores both directions together.  Canonical undirected pairs keep
+    # disaster sampling, Shapley coalitions, and execution semantics aligned.
     links = set()
     with open(base_net_path, "r", encoding="utf-8") as f:
         for line in f:
@@ -56,7 +60,8 @@ def load_candidates(
                 v = int(parts[1])
             except Exception:
                 continue
-            links.add((u, v))
+            if u != v:
+                links.add((min(u, v), max(u, v)))
 
     return {"buses": buses, "links": sorted(links)}
 

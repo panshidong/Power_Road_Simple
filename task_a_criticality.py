@@ -493,7 +493,13 @@ def build_task_a_strategies(
     power_cent, road_cent = centrality_scores(road_net)
     s0_scores: Dict[Asset, float] = {
         **{bus: float(power_cent.get(bus, 0.0)) for bus in power_assets},
-        **{link: float(road_cent.get(link, road_cent.get((link[1], link[0]), 0.0))) for link in road_assets},
+        **{
+            link: max(
+                float(road_cent.get(link, 0.0)),
+                float(road_cent.get((link[1], link[0]), 0.0)),
+            )
+            for link in road_assets
+        },
     }
     s0_sequence = _sorted_by_score(power_assets, s0_scores) + _sorted_by_score(road_assets, s0_scores)
 
