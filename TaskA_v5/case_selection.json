@@ -1,0 +1,330 @@
+{
+  "selection": "Nearest to median paired H2 reduction; maximum reduction; minimum reduction. Selected before reruns or alternative closure settings.",
+  "cases": {
+    "typical": "scenario_018",
+    "largest_gain": "scenario_046",
+    "largest_loss": "scenario_220"
+  },
+  "rows": {
+    "scenario_018": {
+      "CEN": {
+        "scenario_id": "scenario_018",
+        "scenario_seed": "20264018",
+        "n_power": "12",
+        "n_road": "5",
+        "strategy_id": "CEN",
+        "triangle_area": "1269.030586078758",
+        "gini_restore": "0.13910180636182012",
+        "min_time_avg_cri": "0.34886691934964453",
+        "p90_access_restore": "1006.2756079999999",
+        "power_sequence": "[3, 5, 6, 7, 9, 12, 26, 14, 15, 29, 22, 32]",
+        "road_sequence": "[(6, 8), (4, 5), (21, 22), (5, 9), (20, 22)]"
+      },
+      "JSH": {
+        "scenario_id": "scenario_018",
+        "scenario_seed": "20264018",
+        "n_power": "12",
+        "n_road": "5",
+        "strategy_id": "JSH",
+        "triangle_area": "1221.7385914303072",
+        "gini_restore": "0.14332046461665726",
+        "min_time_avg_cri": "0.3825318847997179",
+        "p90_access_restore": "1007.4108899999998",
+        "power_sequence": "[3, 5, 6, 7, 9, 26, 12, 14, 15, 29, 22, 32]",
+        "road_sequence": "[(6, 8), (5, 9), (4, 5), (20, 22), (21, 22)]"
+      },
+      "IJSH": {
+        "scenario_id": "scenario_018",
+        "scenario_seed": "20264018",
+        "n_power": "12",
+        "n_road": "5",
+        "strategy_id": "IJSH",
+        "triangle_area": "1173.5358230816105",
+        "gini_restore": "0.13881811454208526",
+        "min_time_avg_cri": "0.38756311766774065",
+        "p90_access_restore": "975.98207",
+        "power_sequence": "[3, 6, 5, 7, 9, 12, 26, 14, 15, 29, 22, 32]",
+        "road_sequence": "[(4, 5), (5, 9), (6, 8), (21, 22), (20, 22)]"
+      }
+    },
+    "scenario_046": {
+      "CEN": {
+        "scenario_id": "scenario_046",
+        "scenario_seed": "20264046",
+        "n_power": "12",
+        "n_road": "6",
+        "strategy_id": "CEN",
+        "triangle_area": "19390.124433393976",
+        "gini_restore": "0.04870029789694752",
+        "min_time_avg_cri": "0.07948567237170596",
+        "p90_access_restore": "11000.3930859",
+        "power_sequence": "[2, 4, 6, 12, 13, 23, 27, 15, 25, 30, 31, 32]",
+        "road_sequence": "[(6, 8), (13, 24), (10, 16), (1, 3), (1, 2), (8, 9)]"
+      },
+      "JSH": {
+        "scenario_id": "scenario_046",
+        "scenario_seed": "20264046",
+        "n_power": "12",
+        "n_road": "6",
+        "strategy_id": "JSH",
+        "triangle_area": "19382.951810502054",
+        "gini_restore": "0.04693641239742874",
+        "min_time_avg_cri": "0.06195371659409294",
+        "p90_access_restore": "10923.204916999997",
+        "power_sequence": "[2, 4, 6, 23, 12, 27, 25, 13, 15, 30, 31, 32]",
+        "road_sequence": "[(6, 8), (10, 16), (13, 24), (8, 9), (1, 3), (1, 2)]"
+      },
+      "IJSH": {
+        "scenario_id": "scenario_046",
+        "scenario_seed": "20264046",
+        "n_power": "12",
+        "n_road": "6",
+        "strategy_id": "IJSH",
+        "triangle_area": "1010.1024117156865",
+        "gini_restore": "0.13662953518930854",
+        "min_time_avg_cri": "0.41991511045231494",
+        "p90_access_restore": "880.8532570000001",
+        "power_sequence": "[2, 4, 6, 23, 12, 27, 25, 13, 15, 30, 31, 32]",
+        "road_sequence": "[(1, 3), (13, 24), (6, 8), (10, 16), (8, 9), (1, 2)]"
+      }
+    },
+    "scenario_220": {
+      "CEN": {
+        "scenario_id": "scenario_220",
+        "scenario_seed": "20264220",
+        "n_power": "15",
+        "n_road": "11",
+        "strategy_id": "CEN",
+        "triangle_area": "4571.596762081297",
+        "gini_restore": "0.11071074368708334",
+        "min_time_avg_cri": "0.267135965859705",
+        "p90_access_restore": "3079.5170156",
+        "power_sequence": "[1, 2, 4, 5, 12, 14, 24, 25, 29, 30, 31, 18, 20, 21, 22]",
+        "road_sequence": "[(6, 8), (3, 12), (13, 24), (8, 16), (9, 10), (10, 11), (1, 2), (5, 9), (23, 24), (19, 20), (10, 17)]"
+      },
+      "JSH": {
+        "scenario_id": "scenario_220",
+        "scenario_seed": "20264220",
+        "n_power": "15",
+        "n_road": "11",
+        "strategy_id": "JSH",
+        "triangle_area": "4806.304561369948",
+        "gini_restore": "0.07479835782177768",
+        "min_time_avg_cri": "0.2003258715068826",
+        "p90_access_restore": "3049.6308503",
+        "power_sequence": "[1, 2, 4, 5, 12, 24, 25, 14, 29, 20, 30, 18, 31, 22, 21]",
+        "road_sequence": "[(10, 11), (9, 10), (6, 8), (5, 9), (13, 24), (10, 17), (19, 20), (3, 12), (23, 24), (8, 16), (1, 2)]"
+      },
+      "IJSH": {
+        "scenario_id": "scenario_220",
+        "scenario_seed": "20264220",
+        "n_power": "15",
+        "n_road": "11",
+        "strategy_id": "IJSH",
+        "triangle_area": "5690.124897321493",
+        "gini_restore": "0.06420916504831142",
+        "min_time_avg_cri": "0.11766343323261069",
+        "p90_access_restore": "3384.0094043000004",
+        "power_sequence": "[2, 1, 4, 5, 12, 24, 25, 14, 29, 30, 20, 18, 31, 22, 21]",
+        "road_sequence": "[(10, 11), (5, 9), (13, 24), (6, 8), (9, 10), (3, 12), (10, 17), (23, 24), (1, 2), (19, 20), (8, 16)]"
+      }
+    }
+  },
+  "scenarios": {
+    "scenario_018": {
+      "scenario_id": "scenario_018",
+      "seed": 20264018,
+      "broken_buses": [
+        29,
+        26,
+        22,
+        3,
+        14,
+        7,
+        5,
+        12,
+        32,
+        9,
+        15,
+        6
+      ],
+      "broken_links": [
+        {
+          "u": 6,
+          "v": 8,
+          "remaining_capacity_factor": 0.4607623614545604,
+          "capacity_drop_fraction": 0.5392376385454396
+        },
+        {
+          "u": 5,
+          "v": 9,
+          "remaining_capacity_factor": 0.10217598606702583,
+          "capacity_drop_fraction": 0.8978240139329742
+        },
+        {
+          "u": 20,
+          "v": 22,
+          "remaining_capacity_factor": 0.2190898608185754,
+          "capacity_drop_fraction": 0.7809101391814246
+        },
+        {
+          "u": 4,
+          "v": 5,
+          "remaining_capacity_factor": 0.09159737415573632,
+          "capacity_drop_fraction": 0.9084026258442637
+        },
+        {
+          "u": 21,
+          "v": 22,
+          "remaining_capacity_factor": 0.36337874857794994,
+          "capacity_drop_fraction": 0.6366212514220501
+        }
+      ]
+    },
+    "scenario_046": {
+      "scenario_id": "scenario_046",
+      "seed": 20264046,
+      "broken_buses": [
+        12,
+        32,
+        2,
+        6,
+        4,
+        15,
+        31,
+        30,
+        23,
+        27,
+        25,
+        13
+      ],
+      "broken_links": [
+        {
+          "u": 10,
+          "v": 16,
+          "remaining_capacity_factor": 0.10958970072885243,
+          "capacity_drop_fraction": 0.8904102992711476
+        },
+        {
+          "u": 1,
+          "v": 2,
+          "remaining_capacity_factor": 0.05573508206156852,
+          "capacity_drop_fraction": 0.9442649179384315
+        },
+        {
+          "u": 1,
+          "v": 3,
+          "remaining_capacity_factor": 0.02831960697737279,
+          "capacity_drop_fraction": 0.9716803930226272
+        },
+        {
+          "u": 6,
+          "v": 8,
+          "remaining_capacity_factor": 0.4772052890620715,
+          "capacity_drop_fraction": 0.5227947109379285
+        },
+        {
+          "u": 13,
+          "v": 24,
+          "remaining_capacity_factor": 0.3193967422279399,
+          "capacity_drop_fraction": 0.6806032577720601
+        },
+        {
+          "u": 8,
+          "v": 9,
+          "remaining_capacity_factor": 0.1523487887620124,
+          "capacity_drop_fraction": 0.8476512112379876
+        }
+      ]
+    },
+    "scenario_220": {
+      "scenario_id": "scenario_220",
+      "seed": 20264220,
+      "broken_buses": [
+        29,
+        18,
+        22,
+        24,
+        4,
+        31,
+        2,
+        1,
+        21,
+        20,
+        30,
+        14,
+        25,
+        5,
+        12
+      ],
+      "broken_links": [
+        {
+          "u": 5,
+          "v": 9,
+          "remaining_capacity_factor": 0.008643557793716061,
+          "capacity_drop_fraction": 0.9913564422062839
+        },
+        {
+          "u": 9,
+          "v": 10,
+          "remaining_capacity_factor": 0.06028672240859401,
+          "capacity_drop_fraction": 0.939713277591406
+        },
+        {
+          "u": 13,
+          "v": 24,
+          "remaining_capacity_factor": 0.10507245090972406,
+          "capacity_drop_fraction": 0.8949275490902759
+        },
+        {
+          "u": 8,
+          "v": 16,
+          "remaining_capacity_factor": 0.36397399356322413,
+          "capacity_drop_fraction": 0.6360260064367759
+        },
+        {
+          "u": 6,
+          "v": 8,
+          "remaining_capacity_factor": 0.2201557542972845,
+          "capacity_drop_fraction": 0.7798442457027155
+        },
+        {
+          "u": 10,
+          "v": 11,
+          "remaining_capacity_factor": 0.49152805440951064,
+          "capacity_drop_fraction": 0.5084719455904894
+        },
+        {
+          "u": 3,
+          "v": 12,
+          "remaining_capacity_factor": 0.4704268344868383,
+          "capacity_drop_fraction": 0.5295731655131617
+        },
+        {
+          "u": 19,
+          "v": 20,
+          "remaining_capacity_factor": 0.04929959089793057,
+          "capacity_drop_fraction": 0.9507004091020694
+        },
+        {
+          "u": 1,
+          "v": 2,
+          "remaining_capacity_factor": 0.019058352988785554,
+          "capacity_drop_fraction": 0.9809416470112144
+        },
+        {
+          "u": 23,
+          "v": 24,
+          "remaining_capacity_factor": 0.4069374372061758,
+          "capacity_drop_fraction": 0.5930625627938242
+        },
+        {
+          "u": 10,
+          "v": 17,
+          "remaining_capacity_factor": 0.24472218415356384,
+          "capacity_drop_fraction": 0.7552778158464362
+        }
+      ]
+    }
+  }
+}
