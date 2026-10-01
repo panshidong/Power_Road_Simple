@@ -36,23 +36,27 @@ def get_functional_nodes(broken_nodes):
         32: [],
         33: []
     }
-    # FIX (TaskC_OD branch, 2026-09-03): a bus is functional iff neither it nor any
-    # upstream bus is broken. `connections` maps parent -> children on the radial
-    # feeder, so a broken bus takes down itself and every descendant. The previous
-    # implementation recursed over *children* with a shared `visited` cache and
-    # therefore did not propagate outages downstream (see
-    # backup_prefix_powerbug_20260903/BACKUP_RECORD.md for the analysis).
-    broken = set(int(b) for b in broken_nodes)
-    unfunctional = set(broken)
-    stack = list(broken)
-    while stack:
-        current = stack.pop()
-        for child in connections.get(current, []):
-            if child not in unfunctional:
-                unfunctional.add(child)
-                stack.append(child)
+    # Function to check if a node is functional
+    def is_functional(node, broken_nodes, connections, visited):
+        if node in broken_nodes:
+            return False
+        if node in visited:
+            return True
+        visited.add(node)
+        for neighbor in connections[node]:
+            if not is_functional(neighbor, broken_nodes, connections, visited):
+                return False
+        return True
 
-    functional_nodes = set(connections.keys()) - unfunctional
+    # Initialize the set of functional nodes
+    functional_nodes = set()
+    visited = set()
+
+    # Check each node
+    for node in connections.keys():
+        if is_functional(node, broken_nodes, connections, visited):
+            functional_nodes.add(node)
+
     return functional_nodes
 
 def delete_buses(broken_nodes):

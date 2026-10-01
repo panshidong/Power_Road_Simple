@@ -1,0 +1,19 @@
+TaskC_OD
+9e091016d9f1de4ea34af1b1a8f4b6277c3abf64
+?? OD_Representation_Paper_Draft.docx
+?? OD_Representation_Paper_Draft_OLD.docx
+?? TASKC_ASSUMPTIONS.md
+?? backup_prefix_powerbug_20260903/
+?? build_od_paper.py
+?? build_od_paper_OLD.py
+?? od_efficiency_figure.png
+?? od_tradeoff_figure.png
+?? od_weighted_figure.png
+?? plot_od_tradeoff.py
+?? taskC_setup.py
+?? task_c_analysis.py
+?? task_c_checks.py
+?? task_c_od.py
+?? task_c_runner.py
+?? task_c_weighted_triangle.py
+?? ~$_Representation_Paper_Draft.docx

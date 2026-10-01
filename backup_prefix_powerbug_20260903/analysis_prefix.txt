@@ -1,0 +1,40 @@
+n scenarios with all 4 strategies: 100 / 100
+
+=== Marginal means ===
+S0_centrality            triangle_area            mean=    2033.591 ci95=   720.196
+S0_centrality            weighted_triangle_area   mean=    3216.642 ci95=  1185.149
+
+S1_separate_shapley      triangle_area            mean=    1524.736 ci95=   199.520
+S1_separate_shapley      weighted_triangle_area   mean=    2430.877 ci95=   325.504
+
+S2_integrated_shapley    triangle_area            mean=    1558.500 ci95=   457.934
+S2_integrated_shapley    weighted_triangle_area   mean=    2413.106 ci95=   741.073
+
+S3_od_representation     triangle_area            mean=    1268.901 ci95=   373.122
+S3_od_representation     weighted_triangle_area   mean=    1902.327 ci95=   583.745
+
+
+=== Paired differences: S3 - baseline (per-scenario) ===
+
+-- S3_od_representation vs S0_centrality --
+triangle_area            mean_diff=    -764.690 ci95=   412.917 [SIGNIFICANT] (S3 better 89, worse 9, tied 2 of 100)
+weighted_triangle_area   mean_diff=   -1314.314 ci95=   699.186 [SIGNIFICANT] (S3 better 88, worse 10, tied 2 of 100)
+
+-- S3_od_representation vs S1_separate_shapley --
+triangle_area            mean_diff=    -255.834 ci95=   332.651 [not significant] (S3 better 89, worse 11, tied 0 of 100)
+weighted_triangle_area   mean_diff=    -528.550 ci95=   519.515 [SIGNIFICANT] (S3 better 90, worse 10, tied 0 of 100)
+
+-- S3_od_representation vs S2_integrated_shapley --
+triangle_area            mean_diff=    -289.598 ci95=   148.085 [SIGNIFICANT] (S3 better 70, worse 30, tied 0 of 100)
+weighted_triangle_area   mean_diff=    -510.779 ci95=   248.358 [SIGNIFICANT] (S3 better 75, worse 25, tied 0 of 100)
+
+=== Relative change in mean triangle metrics (S3 vs baseline) ===
+triangle_area            vs S0_centrality            base=  2033.591 S3=  1268.901 pct=  -37.60%
+triangle_area            vs S1_separate_shapley      base=  1524.736 S3=  1268.901 pct=  -16.78%
+triangle_area            vs S2_integrated_shapley    base=  1558.500 S3=  1268.901 pct=  -18.58%
+weighted_triangle_area   vs S0_centrality            base=  3216.642 S3=  1902.327 pct=  -40.86%
+weighted_triangle_area   vs S1_separate_shapley      base=  2430.877 S3=  1902.327 pct=  -21.74%
+weighted_triangle_area   vs S2_integrated_shapley    base=  2413.106 S3=  1902.327 pct=  -21.17%
+
+=== How often is S3's road sequence identical to S0's? (degeneracy check) ===
+S3 road sequence identical to S0 in 2 / 100 scenarios
