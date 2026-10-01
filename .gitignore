@@ -12,3 +12,11 @@ submission/
 s.txt
 full_log.txt
 matrix0.bin
+
+# Paper materials stay local: this repository is public (decided 2026-09-30).
+# Already-tracked files such as 4.2.docx / 4.3.docx are unaffected.
+*.docx
+*.png
+build_criticality_paper*.py
+audit_criticality_*.py
+word_qa_*.ps1
