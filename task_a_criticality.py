@@ -306,14 +306,45 @@ def sampled_shapley(
     samples: int,
     seed: int,
 ) -> Dict[Asset, float]:
+    """Estimate Shapley values from random orderings.
+
+    This is a thin wrapper around ``sampled_shapley_checkpoints`` so the
+    production estimate and the sampling-stability study use exactly the same
+    permutation stream and marginal-contribution calculation.
+    """
+    return sampled_shapley_checkpoints(
+        assets,
+        value_fn,
+        sample_sizes=[int(samples)],
+        seed=seed,
+    )[int(samples)]
+
+
+def sampled_shapley_checkpoints(
+    assets: Sequence[Asset],
+    value_fn: Callable[[Set[Asset]], float],
+    *,
+    sample_sizes: Sequence[int],
+    seed: int,
+) -> Dict[int, Dict[Asset, float]]:
+    """Return nested Monte Carlo Shapley estimates at requested sample sizes.
+
+    A single seeded permutation stream is accumulated up to the largest
+    requested sample size.  Estimates at smaller checkpoints are therefore
+    directly comparable to the largest-sample reference without introducing
+    a second source of random variation.
+    """
     players = [_asset_from_json_like(asset) for asset in assets]
+    checkpoints = sorted({int(value) for value in sample_sizes})
+    if not checkpoints or checkpoints[0] <= 0:
+        raise ValueError("sample_sizes must contain positive integers")
     if not players:
-        return {}
-    if int(samples) <= 0:
-        raise ValueError("samples must be positive for sampled Shapley")
+        return {checkpoint: {} for checkpoint in checkpoints}
+
     rng = random.Random(int(seed))
     scores = {asset: 0.0 for asset in players}
     cache: Dict[frozenset[Asset], float] = {}
+    estimates: Dict[int, Dict[Asset, float]] = {}
 
     def cached_value(coalition: Set[Asset]) -> float:
         key = frozenset(coalition)
@@ -321,7 +352,8 @@ def sampled_shapley(
             cache[key] = float(value_fn(set(coalition)))
         return cache[key]
 
-    for _ in range(int(samples)):
+    checkpoint_set = set(checkpoints)
+    for sample_index in range(1, checkpoints[-1] + 1):
         order = list(players)
         rng.shuffle(order)
         coalition: Set[Asset] = set()
@@ -331,8 +363,13 @@ def sampled_shapley(
             curr = cached_value(coalition)
             scores[asset] += curr - prev
             prev = curr
-    denom = max(int(samples), 1)
-    return {asset: value / denom for asset, value in scores.items()}
+        if sample_index in checkpoint_set:
+            estimates[sample_index] = {
+                asset: value / float(sample_index)
+                for asset, value in scores.items()
+            }
+
+    return estimates
 
 
 def exact_shapley_by_permutation(

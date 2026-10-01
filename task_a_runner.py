@@ -72,6 +72,8 @@ class TaskAConfig:
     n_scenarios: int = 10
     seed0: int = 20260402
     result_root: str = "results"
+    result_dir: str | None = None
+    resume: bool = True
     bus_count_range: Tuple[int, int] = (8, 15)
     link_count_range: Tuple[int, int] = (3, 13)
     link_drop_range: Tuple[float, float] = (0.5, 1.0)
@@ -254,6 +256,40 @@ def _write_csv(path: str, rows: List[Dict[str, Any]]) -> None:
         writer.writerows(rows)
 
 
+def _read_csv(path: str) -> List[Dict[str, Any]]:
+    if not os.path.exists(path):
+        return []
+    with open(path, newline="", encoding="utf-8") as f:
+        return list(csv.DictReader(f))
+
+
+def _checkpoint_paths(result_dir: str) -> Dict[str, str]:
+    return {
+        "scenario_manifest_csv": os.path.join(result_dir, "scenario_manifest.csv"),
+        "strategy_rows_csv": os.path.join(result_dir, "scenario_strategy_rows.csv"),
+        "ranking_csv": os.path.join(result_dir, "criticality_rankings.csv"),
+        "aggregate_csv": os.path.join(result_dir, "aggregate_task_a_summary.csv"),
+        "summary_md": os.path.join(result_dir, "task_a_summary.md"),
+    }
+
+
+def _save_checkpoint(
+    *,
+    paths: Dict[str, str],
+    cfg: TaskAConfig,
+    manifest_rows: List[Dict[str, Any]],
+    strategy_rows: List[Dict[str, Any]],
+    ranking_rows: List[Dict[str, Any]],
+) -> None:
+    aggregate_rows = _aggregate_rows(strategy_rows)
+    _write_csv(paths["scenario_manifest_csv"], manifest_rows)
+    _write_csv(paths["ranking_csv"], ranking_rows)
+    _write_csv(paths["aggregate_csv"], aggregate_rows)
+    _write_summary(paths["summary_md"], cfg, aggregate_rows)
+    # This file is the resume completion marker and is intentionally written last.
+    _write_csv(paths["strategy_rows_csv"], strategy_rows)
+
+
 def _write_summary(path: str, cfg: TaskAConfig, aggregate_rows: List[Dict[str, Any]]) -> None:
     with open(path, "w", encoding="utf-8") as f:
         f.write("# Task A Criticality Strategy Summary\n\n")
@@ -288,10 +324,11 @@ def _write_summary(path: str, cfg: TaskAConfig, aggregate_rows: List[Dict[str, A
 
 
 def run_task_a_study(cfg: TaskAConfig) -> Dict[str, str]:
-    result_dir = os.path.join(cfg.result_root, f"task_a_criticality_{_ts()}")
+    result_dir = cfg.result_dir or os.path.join(cfg.result_root, f"task_a_criticality_{_ts()}")
     os.makedirs(result_dir, exist_ok=True)
     scenario_root = os.path.join(result_dir, "scenario_runs")
     os.makedirs(scenario_root, exist_ok=True)
+    paths = _checkpoint_paths(result_dir)
 
     scenarios = generate_scenarios(
         n_scenarios=cfg.n_scenarios,
@@ -304,14 +341,38 @@ def run_task_a_study(cfg: TaskAConfig) -> Dict[str, str]:
         out_json=os.path.join(result_dir, "random_disasters.json"),
     )
 
-    manifest_rows: List[Dict[str, Any]] = []
-    strategy_rows: List[Dict[str, Any]] = []
-    ranking_rows: List[Dict[str, Any]] = []
+    manifest_rows: List[Dict[str, Any]] = _read_csv(paths["scenario_manifest_csv"]) if cfg.resume else []
+    strategy_rows: List[Dict[str, Any]] = _read_csv(paths["strategy_rows_csv"]) if cfg.resume else []
+    ranking_rows: List[Dict[str, Any]] = _read_csv(paths["ranking_csv"]) if cfg.resume else []
+
+    expected_strategy_ids = {
+        "S0_centrality",
+        "S1_separate_shapley",
+        "S2_integrated_shapley",
+    }
+    if cfg.include_heuristic:
+        expected_strategy_ids.add("heuristic_triangle_sa")
+    completed_scenarios = {
+        scenario_id
+        for scenario_id in {str(row.get("scenario_id", "")) for row in strategy_rows}
+        if {
+            str(row.get("strategy_id", ""))
+            for row in strategy_rows
+            if str(row.get("scenario_id", "")) == scenario_id
+        }
+        >= expected_strategy_ids
+    }
 
     for idx, scenario in enumerate(scenarios, start=1):
+        if scenario.scenario_id in completed_scenarios:
+            print(f"[task-a] skipping completed {scenario.scenario_id} ({idx}/{len(scenarios)})")
+            continue
         print(f"[task-a] running {scenario.scenario_id} ({idx}/{len(scenarios)}) ...")
         current_root = os.path.join(scenario_root, scenario.scenario_id)
         os.makedirs(current_root, exist_ok=True)
+        manifest_rows = [row for row in manifest_rows if row.get("scenario_id") != scenario.scenario_id]
+        strategy_rows = [row for row in strategy_rows if row.get("scenario_id") != scenario.scenario_id]
+        ranking_rows = [row for row in ranking_rows if row.get("scenario_id") != scenario.scenario_id]
         strategies = build_task_a_strategies(scenario, cfg=cfg.criticality)
 
         manifest_rows.append(
@@ -339,28 +400,17 @@ def run_task_a_study(cfg: TaskAConfig) -> Dict[str, str]:
                     scenario_root=current_root,
                 )
             )
-
-    aggregate_rows = _aggregate_rows(strategy_rows)
-
-    manifest_csv = os.path.join(result_dir, "scenario_manifest.csv")
-    strategy_csv = os.path.join(result_dir, "scenario_strategy_rows.csv")
-    ranking_csv = os.path.join(result_dir, "criticality_rankings.csv")
-    aggregate_csv = os.path.join(result_dir, "aggregate_task_a_summary.csv")
-    summary_md = os.path.join(result_dir, "task_a_summary.md")
-
-    _write_csv(manifest_csv, manifest_rows)
-    _write_csv(strategy_csv, strategy_rows)
-    _write_csv(ranking_csv, ranking_rows)
-    _write_csv(aggregate_csv, aggregate_rows)
-    _write_summary(summary_md, cfg, aggregate_rows)
+        _save_checkpoint(
+            paths=paths,
+            cfg=cfg,
+            manifest_rows=manifest_rows,
+            strategy_rows=strategy_rows,
+            ranking_rows=ranking_rows,
+        )
 
     return {
         "result_dir": result_dir,
-        "scenario_manifest_csv": manifest_csv,
-        "strategy_rows_csv": strategy_csv,
-        "ranking_csv": ranking_csv,
-        "aggregate_csv": aggregate_csv,
-        "summary_md": summary_md,
+        **paths,
     }
 
 
