@@ -1,9 +1,10 @@
 from __future__ import annotations
-import gzip, heapq, json, math, os, re, subprocess, tempfile, time
+import gzip, heapq, json, math, os, re, shutil, subprocess, tempfile, time
 from collections import OrderedDict, defaultdict
 from pathlib import Path
 import numpy as np
 from .common import AUSTIN, RUNTIME, atomic_json, digest, file_lock, local_path, rows, sha_file
+from .progress import phase
 
 
 class TrafficState:
@@ -37,7 +38,8 @@ class TrafficState:
 
 
 class TrafficEngine:
-    def __init__(self,cfg,catalog,fingerprint,scratch):
+    def __init__(self,cfg,catalog,fingerprint,scratch,*,verbose=False):
+        self.verbose=verbose
         self.cfg=cfg; self.catalog=catalog; self.scratch=Path(scratch);self.scratch.mkdir(parents=True,exist_ok=True)
         self.links=list(rows(AUSTIN/"data/processed/road/links.csv"))
         self.net=AUSTIN/"data/processed/road/Austin_net.tntp";self.trips=AUSTIN/"data/processed/road/Austin_trips.tntp"
@@ -85,9 +87,10 @@ class TrafficEngine:
         return state
 
     def _solve(self,factors,penalty,key):
-        # Every subprocess gets its own s.txt/matrix files, even in the same worker.
-        with tempfile.TemporaryDirectory(prefix="tapb-",dir=self.scratch) as name:
-            folder=Path(name);network=folder/"network.tntp"
+        # Upstream TAP-B writes flows.txt. Retain ALL files if solving or parsing fails.
+        folder=Path(tempfile.mkdtemp(prefix="tapb-",dir=self.scratch))
+        try:
+            network=folder/"network.tntp"
             head=self.net.read_text().splitlines()[:8]
             lines=[]
             for r,factor in zip(self.links,factors):
@@ -100,7 +103,7 @@ class TrafficEngine:
             args=[str(self.binary),str(self.cfg["traffic"]["relative_gap"]),"1",str(network),str(self.trips),str(self.cfg["runtime"]["tapb_threads"])]
             start=time.monotonic();logfile=folder/"tapb.log"
             try:
-                with logfile.open("w") as handle:
+                with phase(f"TAP-B solve; log={logfile}",enabled=self.verbose), logfile.open("w") as handle:
                     result=subprocess.run(args,cwd=folder,stdout=handle,stderr=subprocess.STDOUT,
                         timeout=self.cfg["traffic"]["timeout_seconds"],check=False)
             except subprocess.TimeoutExpired:
@@ -111,8 +114,11 @@ class TrafficEngine:
             if result.returncode or not math.isfinite(gap) or not 0<=gap<=self.cfg["traffic"]["relative_gap"]:
                 error=self.scratch/(key+".failed.log");error.write_text(log)
                 raise RuntimeError(f"TAP-B failed convergence/exit check; {error}")
+            flow_file=folder/"flows.txt"
+            if not flow_file.is_file():
+                raise RuntimeError(f"TAP-B returned success but did not write flows.txt; files={sorted(p.name for p in folder.iterdir())}")
             records=[]
-            for line in (folder/"s.txt").read_text().splitlines():
+            for line in flow_file.read_text().splitlines():
                 m=re.match(r"\((\d+),(\d+)\)\s+(\S+)\s+(\S+)",line.strip())
                 if m:records.append(tuple(map(float,m.groups())))
             if len(records)!=len(self.links):raise ValueError("TAP-B lost arcs")
@@ -129,4 +135,13 @@ class TrafficEngine:
                 max_node_imbalance=error,parallel_arcs_preserved=True,network_sha256=sha_file(network),binary_sha256=self.binary_hash,
                 closure_penalty=penalty,closed_arc_flow_sum=float(np.sum(np.asarray(flows)[factors<=0])),
                 closure_semantics="finite assignment penalty; closed arcs excluded from crew routes; flow sum is NOT unique unserved OD demand")
-            return np.asarray(costs),np.asarray(flows),report
+            answer=np.asarray(costs),np.asarray(flows),report
+        except BaseException as exc:
+            (folder/"failure.txt").write_text(f"{type(exc).__name__}: {exc}\n")
+            # Do not let TemporaryDirectory erase the evidence of an interface failure.
+            if isinstance(exc,Exception):
+                raise RuntimeError(f"{exc}; TAP-B diagnostic files retained at {folder}") from exc
+            raise
+        else:
+            shutil.rmtree(folder)
+            return answer

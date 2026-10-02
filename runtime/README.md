@@ -40,9 +40,25 @@ bash runtime/run_all.sh research
 
 本项目发布到 `panshidong/Power_Road_Simple` 的独立分支 `austin-runtime`，该分支根目录直接是当前 Austin 项目内容，采用独立目录布局，旧文章分支不变。冻结数据和运行时一起纳入版本控制，第三方许可证与来源保留。请按根目录 [RUN_ON_NEW_MACHINE.md](../RUN_ON_NEW_MACHINE.md) 克隆和启动；不要在 clone 后再进入一层不存在的 `Austin/` 子目录。
 
+## 修复旧版 smoke 的 flows.txt 接口错误
+
+如果旧版报 `FileNotFoundError: .../s.txt`，原因是该版本读取了旧项目的文件名；本项目附带的原生 TAP-B 实际写入 `flows.txt`。更新后不需要重新安装依赖、编译 TAP-B 或 prepare。源码指纹改变，必须使用新输出目录：
+
+```bash
+git pull --ff-only origin austin-runtime
+.venv-runtime/bin/python -m unittest discover -s runtime/tests -v
+bash runtime/run_all.sh smoke 2 output/smoke-v2
+```
+
+三条命令依次执行，测试失败时先停下并保留错误。旧 `output/smoke/` 与其缓存保留；新版本不会自动导入旧代码指纹下的物理缓存。再次续跑修复版时，使用同一个 `output/smoke-v2` 即可。源机器仅做文本和 Git 差异检查，新增回归测试及多进程原生验收仍需在目标机器运行。
+
+验收现在写入 `validation.json` 的 `status` 和 `phase`，并立即打印阶段进度。电网加载、潮流、物理限制检查和 TAP-B 调用会每 30 秒报告经过时间；这是心跳，不表示数值迭代一定有进展，也不是强制超时。OpenDSS 单次原生调用仍没有实际耗时上限。TAP-B 任意求解或解析错误都会保留该次 `tapb-*` 目录中的 `network.tntp`、`tapb.log`、已生成的 `flows.txt` 和 `failure.txt`，异常信息给出目录；成功调用的临时目录才会清理。
+
 ## 并行与资源
 
-实验以“一个场景 + 一个策略”为进程任务；构表以一个场景为任务。每个进程有独立 OpenDSS context，每个原生 TAP-B 调用有独立工作目录，避免 `s.txt` 等固定文件覆盖。进程采用 spawn；默认每批最多安排 workers×4 个任务，批内动态派发，批末整体更换进程池以释放原生内存。Python 较早版本的单 worker 自动回收存在挂起问题，因此不使用 `max_tasks_per_child`；参见 [Python 官方说明](https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ProcessPoolExecutor)。批边界需要等待该批最慢任务。
+启动验收先使用独立区域进程池，最多并行计算六个完整原始区域。默认数量按 CPU 和每进程 16 GiB 可用内存预算决定，记录为 `run_manifest.json` 的 `budget.validation_power_workers`；可用 `runtime.validation_power_workers` 显式调低。它独立于命令行实验 worker 数，因此 `smoke 2` 的初始电网验收也能使用多于两个进程。区域进程各有独立 OpenDSS context、工作目录和缓存锁；合并结果仍按固定区域顺序，修复复原检查绕过缓存并在现有区域进程内重新加载。验收结束后先退出区域进程池，再启动实验进程池，不叠加两层并行预算。单区域故障复算以及尾部只剩一个未完成区域时仍可能只有一个繁忙核心，不承诺全程占满 CPU。
+
+实验以“一个场景 + 一个策略”为进程任务；构表以一个场景为任务。队列优先交错不同场景，减少同时等待相同冷缓存的策略任务；不会改动场景种子、策略内容或任务签名。每个进程有独立 OpenDSS context，每个原生 TAP-B 调用有独立工作目录，避免 `flows.txt` 等固定文件覆盖。进程采用 spawn；默认每批最多安排 workers×4 个任务，批内动态派发，批末整体更换进程池以释放原生内存。Python 较早版本的单 worker 自动回收存在挂起问题，因此不使用 `max_tasks_per_child`；参见 [Python 官方说明](https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ProcessPoolExecutor)。批边界需要等待该批最慢任务。
 
 默认每个 TAP-B 使用 4 线程，BLAS/OMP 限制为 1 线程。自动 worker 数取 CPU 预算和可用内存预算的较小值：CPU affinity/cgroup v2 quota 减保留的 2 核，再除以 TAP-B 线程数；内存按每 worker 16 GiB 估计，并考虑可读取的 cgroup v2 限制。**16 GiB 尚未实测，不是内存上界。** 先查看 smoke 结果的 `resources`，再调整，低于预算时会拒绝启动。
 
@@ -90,7 +106,7 @@ bash runtime/run_all.sh research 16
 
 | 文件/目录 | 用途 |
 |---|---|
-| `run_manifest.json`、`validation.json` | 环境、配置指纹、实际验收证据 |
+| `run_manifest.json`、`validation.json` | 环境、进程预算、配置指纹、验收当前阶段及最终证据 |
 | `plans/` | 各阶段确切任务及失败清单 |
 | `results/<stage>/*.json` | 场景、完整恢复事件、派工、每区域物理运行诊断、求解质量、指标、资源占用 |
 | `results/<stage>/*.error.json` | 失败原因和堆栈，不作为零损失结果 |

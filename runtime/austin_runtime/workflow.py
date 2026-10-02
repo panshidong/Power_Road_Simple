@@ -5,6 +5,7 @@ from collections import defaultdict
 from pathlib import Path
 from .common import RUNTIME, atomic_json, cpu_budget, digest, file_lock, fingerprint, local_path, read_json, sha_file
 from .plan import STAGES, jobs
+from .progress import phase, report
 
 
 def result_path(output,job):return Path(output)/"results"/job["stage"]/(job["id"]+".json")
@@ -40,7 +41,7 @@ def execute(cfg,fp,job,expected_signature):
             return dict(id=job["id"],status="resumed")
         scratch=output/"scratch"/job["stage"]/job["id"];scratch.mkdir(parents=True,exist_ok=True)
         checkpoint=output/"checkpoints"/job["stage"]/(job["id"]+".json")
-        previous=Path.cwd();started=time.monotonic()
+        previous=Path.cwd();started=time.monotonic();engine=None
         try:
             os.chdir(scratch)
             seed0=(cfg["task_a"]["construction_seed"] if job["stage"]=="construct" else
@@ -83,7 +84,10 @@ def execute(cfg,fp,job,expected_signature):
             atomic_json(path.with_suffix(".error.json"),dict(signature=expected_signature,fingerprint=fp,job=job,
                 exception=type(exc).__name__,message=str(exc),traceback=traceback.format_exc()))
             return dict(id=job["id"],status="failed",error=str(exc))
-        finally:os.chdir(previous)
+        finally:
+            try:
+                if engine is not None:engine.close()
+            finally:os.chdir(previous)
 
 
 def results(output,stage,fp):
@@ -127,6 +131,13 @@ def run_stage(cfg,stage,fp,budget):
             stale_error=path.with_suffix(".error.json")
             if stale_error.exists():stale_error.unlink()
         else:pending.append((item,sig))
+    # Give different scenarios the first slots instead of concurrently blocking
+    # on the same cold physical state for several strategies of one scenario.
+    buckets=defaultdict(list)
+    for item in pending:
+        task=item[0];buckets[(task["variant"],task["index"])].append(item)
+    pending=[bucket[i] for i in range(max(map(len,buckets.values()),default=0))
+             for bucket in buckets.values() if i<len(bucket)]
     print(f"{stage}: {len(pending)} pending / {len(todo)} total; {budget['workers']} workers",flush=True)
     if not pending:
         failures=output/"plans"/(stage+".failures.json")
@@ -147,7 +158,8 @@ def run_stage(cfg,stage,fp,budget):
                 running[pool.submit(execute,cfg,fp,item,sig)]=item;return True
             for _ in range(budget["workers"]):submit_one()
             while running:
-                done,_=futures.wait(running,return_when=futures.FIRST_COMPLETED)
+                done,_=futures.wait(running,timeout=30,return_when=futures.FIRST_COMPLETED)
+                if not done:report(f"{stage}: {completed}/{len(pending)} complete; {len(running)} tasks still running")
                 for future in done:
                     item=running.pop(future)
                     try:status=future.result()
@@ -178,7 +190,8 @@ def run(cfg,stage="all",requested=None):
     from .validation import validate, verify_inputs
     catalog_path=local_path(cfg,"prepared")/"catalog.json"
     if not catalog_path.exists():raise FileNotFoundError("Run the explicit prepare step first")
-    catalog=read_json(catalog_path);verify_inputs(cfg,catalog)
+    with phase("verify prepared data and model checksums"):
+        catalog=read_json(catalog_path);verify_inputs(cfg,catalog)
     fp=fingerprint(cfg,catalog);output=local_path(cfg,"output")
     output.mkdir(parents=True,exist_ok=True);budget=cpu_budget(cfg,requested) if stage!="analyze" else {}
     with file_lock(output/"run.lock",blocking=False):
@@ -192,6 +205,6 @@ def run(cfg,stage="all",requested=None):
         if stage!="analyze":
             gate=output/"validation.json"
             if not gate.exists() or read_json(gate).get("fingerprint")!=fp or not read_json(gate).get("passed"):
-                validate(cfg,fp)
+                validate(cfg,fp,budget)
         for selected in (STAGES if stage=="all" else [stage]):run_stage(cfg,selected,fp,budget)
     return dict(output=str(output),fingerprint=fp,stage=stage,status="completed")

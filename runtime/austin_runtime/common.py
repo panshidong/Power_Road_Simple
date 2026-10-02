@@ -159,5 +159,10 @@ def cpu_budget(cfg, requested=None):
     workers = requested or cfg["runtime"]["workers"] or automatic
     if workers > automatic:
         raise ValueError(f"Requested {workers} workers, CPU/memory budget permits {automatic}; adjust explicit budgets if measured safe")
-    return dict(workers=workers,tapb_threads=threads,available_cpus=cpus,available_memory_bytes=available,
+    regional_limit=min(budget,memory_workers,6)
+    regional_requested=cfg["runtime"].get("validation_power_workers",0)
+    if regional_requested<0 or regional_requested>regional_limit:
+        raise ValueError(f"validation_power_workers exceeds CPU/RAM/region limit {regional_limit}")
+    return dict(workers=workers,validation_power_workers=regional_requested or regional_limit,
+                tapb_threads=threads,available_cpus=cpus,available_memory_bytes=available,
                 memory_estimate_gb_per_worker=cfg["runtime"]["memory_gb_per_worker"])

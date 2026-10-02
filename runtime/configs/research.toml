@@ -1,6 +1,7 @@
 # This file defines experiments, not automatic execution.
 [runtime]
 workers = 0 # automatic CPU AND available-memory limit; CLI can override
+validation_power_workers = 0 # automatic, at most six AC regions; separate from experiment workers
 reserve_cpus = 2
 tapb_threads = 4
 memory_gb_per_worker = 16.0 # unbenchmarked estimate; inspect new-host smoke RSS

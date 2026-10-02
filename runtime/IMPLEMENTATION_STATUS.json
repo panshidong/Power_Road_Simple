@@ -1,5 +1,5 @@
 {
-  "status": "written_not_executed",
+  "status": "source_fix_written_destination_revalidation_required",
   "reason": "User requested no execution on the CPU-saturated source host.",
   "runtime_solver_runs": 0,
   "runtime_test_runs": 0,
@@ -12,5 +12,20 @@
     "repository": "panshidong/Power_Road_Simple",
     "branch": "austin-runtime",
     "layout": "Austin project at repository root"
-  }
+  },
+  "source_host_execution_scope": "All zero run/build/test counters refer to the source host.",
+  "destination_host_report": {
+    "environment": "WSL2, i9-14900K, host RAM 128 GB",
+    "healthy_power_returned": true,
+    "baseline_tapb_exit_and_gap_checks_passed": true,
+    "acceptance_completed": false,
+    "reported_failure": "FileNotFoundError reading s.txt; bundled native TAP-B writes flows.txt"
+  },
+  "fixes_pending_destination_verification": [
+    "Read native flows.txt and retain all failed TAP-B call artifacts",
+    "Parallel independent AC regions during startup validation within CPU/RAM budget",
+    "Print phase progress and periodic heartbeat; record current validation phase",
+    "Spread independent scenarios through the experiment queue"
+  ],
+  "validation": "Source and Git diff review only; no tests, builds, solver calls or numerical speed measurements on source host."
 }

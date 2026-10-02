@@ -4,20 +4,41 @@ The operator searches an explicit uniform regional curtailment grid and existing
 open switches. It is a feasible heuristic, not an OPF or guaranteed optimum.
 """
 from __future__ import annotations
-import math
+import concurrent.futures as futures
+import math, multiprocessing, os, signal
 from collections import defaultdict
 from pathlib import Path
 from .common import cached_json, digest, local_path, rows
+from .progress import phase, report
 
 
 class PowerInfeasible(RuntimeError):
     pass
 
 
+_regional_engine = None
+
+
+def _init_regional_worker(cfg, catalog, fingerprint, scratch, verbose):
+    global _regional_engine
+    if hasattr(os,"setsid"): os.setsid()
+    for name in ("OMP_NUM_THREADS","OPENBLAS_NUM_THREADS","MKL_NUM_THREADS","NUMEXPR_NUM_THREADS"):
+        os.environ[name]="1"
+    _regional_engine=PowerEngine(cfg,catalog,fingerprint,Path(scratch)/f"region-worker-{os.getpid()}",verbose=verbose)
+
+
+def _solve_regional_state(region, damage, fresh=False):
+    if fresh:return _regional_engine._operate(region,damage)
+    return _regional_engine._regional_state(region,damage)
+
+
 class PowerEngine:
-    def __init__(self, cfg, catalog, fingerprint, scratch):
+    def __init__(self, cfg, catalog, fingerprint, scratch, *, region_workers=1, verbose=False):
         from opendssdirect import dss
         self.cfg=cfg["power"]; self.catalog=catalog; self.fingerprint=fingerprint
+        self.verbose=verbose; self.region_workers=max(1,min(region_workers,len(catalog["regions"])))
+        self._pool=None
+        self._pool_args=(cfg,catalog,fingerprint,str(scratch),verbose)
         self.prepared=local_path(cfg,"prepared"); self.cache=local_path(cfg,"cache")/fingerprint/"power"
         self.scratch=Path(scratch); self.scratch.mkdir(parents=True,exist_ok=True)
         self.dss=dss.NewContext()
@@ -30,12 +51,53 @@ class PowerEngine:
             region=catalog["substation_region"][r["substation_id"]]
             self.signal_loads[(region,r["load_id"].lower())].append(r["signal_id"])
 
+    def _regional_state(self, region, damage):
+        key=digest(dict(region=region,damage=damage,engine=self.version,settings=self.cfg))
+        with phase(f"AC region {region}; damaged_assets={len(damage)}",enabled=self.verbose):
+            return cached_json(self.cache/region/(key+".json"),lambda:self._operate(region,damage))
+
+    def fresh_region(self, region, damage):
+        # Use an existing regional process, without creating another large native
+        # circuit in the coordinator. This deliberately bypasses the state cache.
+        if self._pool is None:return self._operate(region,damage)
+        try:return self._pool.submit(_solve_regional_state,region,damage,True).result()
+        except BaseException:
+            self.close(cancel=True)
+            raise
+
+    def close(self, *, cancel=False):
+        pool,self._pool=self._pool,None
+        if pool is None:return
+        if cancel:
+            for child in list((getattr(pool,"_processes",None) or {}).values()):
+                try:os.killpg(child.pid,signal.SIGTERM)
+                except ProcessLookupError:child.terminate()
+                except PermissionError:child.terminate()
+        pool.shutdown(wait=True,cancel_futures=cancel)
+
     def evaluate(self, remaining):
-        results=[]
+        tasks=[]
         for region in self.catalog["regions"]:
             damage={key:factor for key,factor in remaining.items() if key.startswith("power:") and self.catalog["assets"][key]["region"]==region}
-            key=digest(dict(region=region,damage=damage,engine=self.version,settings=self.cfg))
-            results.append(cached_json(self.cache/region/(key+".json"),lambda r=region,d=damage:self._operate(r,d)))
+            tasks.append((region,damage))
+        if self.region_workers==1:
+            results=[self._regional_state(region,damage) for region,damage in tasks]
+        else:
+            if self._pool is None:
+                report(f"AC regional pool: {self.region_workers} processes for {len(tasks)} complete original circuits")
+                self._pool=futures.ProcessPoolExecutor(max_workers=self.region_workers,
+                    mp_context=multiprocessing.get_context("spawn"),initializer=_init_regional_worker,initargs=self._pool_args)
+            completed={}
+            try:
+                pending={self._pool.submit(_solve_regional_state,region,damage):region for region,damage in tasks}
+                for future in futures.as_completed(pending):
+                    region=pending[future];completed[region]=future.result()
+                    if self.verbose:report(f"AC regions complete: {len(completed)}/{len(tasks)}; region={region}")
+            except BaseException:
+                self.close(cancel=True)
+                raise
+            # Completion order must not change summation order or output identities.
+            results=[completed[region] for region,_ in tasks]
         zones=defaultdict(float); subs=defaultdict(float); signals={}
         for r in results:
             for k,v in r["zone_served_kw"].items():zones[k]+=v
@@ -50,7 +112,9 @@ class PowerEngine:
         d.Basic.AllowChangeDir(False)
         d.Basic.DataPath(str(self.scratch))
         master=self.prepared/"models"/region/"Master_runtime.dss"
-        d(f'Redirect "{master}"')
+        with phase(f"AC {region}: load circuit / voltage bases; load_scale={scale}; ties={len(closed)}",
+                   enabled=getattr(self,"verbose",False)):
+            d(f'Redirect "{master}"')
         d.Basic.DataPath(str(self.scratch))
         d("Set mode=snapshot controlmode=static maxcontroliter=100 maxiterations=100")
         d.Solution.LoadMult(scale)
@@ -146,14 +210,17 @@ class PowerEngine:
         for scale in self.cfg["load_scales"]:
             deratings,disabled=self._compile(region,damage,scale,closed)
             try:
-                self.dss.Solution.Solve()
+                with phase(f"AC {region}: power flow; load_scale={scale}; ties={len(closed)}",enabled=self.verbose):
+                    self.dss.Solution.Solve()
                 if not self.dss.Solution.Converged() or not self.dss.Solution.ControlActionsDone():
                     raise PowerInfeasible("Power flow or controller iteration did not converge")
                 for name in disabled:
                     self.dss.Circuit.SetActiveElement("Transformer."+name)
                     if self.dss.CktElement.Name().lower()!="transformer."+name or self.dss.CktElement.Enabled():
                         raise ValueError("Fault isolation failed: "+name)
-                result=self._measure(region,scale,closed,deratings)
+                with phase(f"AC {region}: check voltages / thermal limits / balance",enabled=self.verbose):
+                    result=self._measure(region,scale,closed,deratings)
+                if self.verbose:report(f"AC {region}: load_scale={scale}, feasible={result['feasible']}")
                 result["isolated_transformers"]=sorted(disabled)
                 result["rating_derating_factors"]=deratings
                 attempts.append({k:result[k] for k in ("load_scale","feasible","min_loaded_voltage_pu","max_loaded_voltage_pu","max_thermal_loading_ratio","active_balance_residual_kw","unrated_energized_elements")})

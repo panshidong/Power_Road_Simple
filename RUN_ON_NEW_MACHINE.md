@@ -73,3 +73,23 @@ nohup bash runtime/run_all.sh research >> runtime/output/research.log 2>&1 &
 这是 TAMU 六个区域原始模型的 AC 运行与道路耦合，保留各区域理想上级电源，没有联合求解完整上级输电网。空间供电关系、关键设施和抢修时间等假设见 [runtime/ASSUMPTIONS.md](runtime/ASSUMPTIONS.md)。
 
 默认 400 个构表场景可能覆盖不了 Austin 的全部道路。结果明确记录未采样资产的中心性补位；正式解释 JSH/IJSH 前应检查 `table_coverage.json`、补位数及截尾恢复数。严格拒绝补位的配置见 `runtime/configs/strict_scores.toml`。
+
+## 已安装旧版且 smoke 报 s.txt 不存在时
+
+该错误由原生 TAP-B 输出 `flows.txt`、旧接口却读取 `s.txt` 引起。本次同时加入启动电网验收的区域进程池、每 30 秒进度信息和失败现场保留。停止旧进程后，在 Austin 根目录依次运行：
+
+```bash
+git pull --ff-only origin austin-runtime
+```
+
+```bash
+.venv-runtime/bin/python -m unittest discover -s runtime/tests -v
+```
+
+测试通过后运行：
+
+```bash
+bash runtime/run_all.sh smoke 2 output/smoke-v2
+```
+
+不需要重新 bootstrap 或编译。新输出位于 `runtime/output/smoke-v2/`，避免与旧代码指纹混用；旧输出和缓存保留。观察 `AC regional pool: N processes` 和各区域进度；验收区域进程数会根据实际可用 CPU/内存自动选择，最多六个，与实验的两个 worker 分别计数。源机器没有执行新增测试或求解器，因此性能和完整验收仍待目标机器确认。

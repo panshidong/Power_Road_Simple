@@ -2,7 +2,8 @@ from __future__ import annotations
 import importlib.util, math
 from collections import Counter
 from pathlib import Path
-from .common import AUSTIN, RUNTIME, atomic_json, digest, fingerprint, local_path, read_json, sha_file
+from .common import AUSTIN, RUNTIME, atomic_json, cpu_budget, digest, fingerprint, local_path, read_json, sha_file
+from .progress import phase
 
 
 def verify_inputs(cfg,catalog):
@@ -30,42 +31,59 @@ def doctor(cfg):
     return report
 
 
-def validate(cfg,fp=None):
+def validate(cfg,fp=None,budget=None):
     from .simulation import Coupled
     from .traffic import TrafficState
     import numpy as np
     catalog=read_json(local_path(cfg,"prepared")/"catalog.json");verify_inputs(cfg,catalog)
     fp=fp or fingerprint(cfg,catalog);output=local_path(cfg,"output")
-    report=dict(fingerprint=fp,passed=False,checks=[],scope="destination-host runtime acceptance: physical AC limits, coupling, TAP-B, full-damage and repair round trip")
+    budget=budget or cpu_budget(cfg)
+    report=dict(fingerprint=fp,passed=False,status="running",checks=[],
+        regional_processes=budget["validation_power_workers"],
+        scope="destination-host runtime acceptance: physical AC limits, coupling, TAP-B, full-damage and repair round trip")
+    engine=None
+    def mark(label):
+        report["phase"]=label;atomic_json(output/"validation.json",report)
     try:
-        engine=Coupled(cfg,catalog,fp,output/"validation_scratch")
-        healthy=engine.state({})
+        mark("healthy_baseline")
+        with phase(f"validation healthy baseline; AC processes={budget['validation_power_workers']}"):
+            engine=Coupled(cfg,catalog,fp,output/"validation_scratch",power_workers=budget["validation_power_workers"],verbose=True)
+            healthy=engine.state({})
         if not math.isclose(healthy["power_func"],1.) or not math.isclose(healthy["road_func"],1.):raise ValueError("Healthy normalization failed")
         if len(healthy["power"]["regions"])!=6 or not all(r["feasible"] and r["served_kw"]>0 for r in healthy["power"]["regions"]):
             raise ValueError("Every one of the six healthy regions must supply positive load within AC limits")
         report["checks"].append("all six original regional circuits AC-feasible with explicitly recorded curtailment")
         counts=Counter(r["substation_id"] for r in catalog["signals"])
         sub=sorted(counts,key=lambda s:(-counts[s],s))[0];asset="power:"+sub
-        damaged=engine.state({asset:0.0})
+        mark("full_substation_fault")
+        with phase(f"validation full fault: {asset}"):
+            damaged=engine.state({asset:0.0})
         if any(not r["feasible"] for r in damaged["power"]["regions"]):raise ValueError("Infeasible damaged state")
         region=catalog["assets"][asset]["region"]
         # Force a new native compile/solve for the restoration round trip (bypass cache).
-        restored=engine.power._operate(region,{})
+        mark("fresh_restoration")
+        with phase(f"validation fresh restoration: {region}"):
+            restored=engine.power.fresh_region(region,{})
         reference=next(r for r in healthy["power"]["regions"] if r["region"]==region)
         if not math.isclose(restored["served_kw"],reference["served_kw"],rel_tol=1e-6,abs_tol=.1):raise ValueError("Restoration depends on previous electrical state")
         if np.array_equal(healthy["traffic"].factors,damaged["traffic"].factors):
             report["checks"].append("selected full substation fault caused no signal-factor change; inspect native tie restoration/baseline shedding")
         else:report["checks"].append("AC-derived signal service changed TAP-B capacities")
-        partial=engine.power.evaluate({asset:.5})
+        mark("partial_derating")
+        with phase(f"validation partial derating: {asset}"):
+            partial=engine.power.evaluate({asset:.5})
         if not all(r["feasible"] for r in partial["regions"]):raise ValueError("Partial transformer derating is infeasible")
-        report.update(passed=True,healthy_served_kw=healthy["power"]["served_kw"],nominal_kw=healthy["power"]["nominal_kw"],
+        report.update(passed=True,status="passed",phase="complete",healthy_served_kw=healthy["power"]["served_kw"],nominal_kw=healthy["power"]["nominal_kw"],
             healthy_power_regions=healthy["power"]["regions"],healthy_traffic=healthy["traffic"].report,
             tested_substation=sub,full_fault_served_kw=damaged["power"]["served_kw"],partial_fault_served_kw=partial["served_kw"],
             damaged_traffic=damaged["traffic"].report,restoration_round_trip_served_kw=restored["served_kw"],
             modeled_signals=len(catalog["signals"]),modeled_zones=len(engine.zones),excluded_zones=engine.excluded_zones)
         report["checks"] += ["native full-fault isolation and partial thermal derating solved", "fresh physical restoration agrees with healthy state", "TAP-B row identities, relative gap and nodal flow conservation passed"]
         return report
-    except Exception as exc:
-        report["error"]=f"{type(exc).__name__}: {exc}"
+    except BaseException as exc:
+        report.update(status="failed",error=f"{type(exc).__name__}: {exc}")
         raise
-    finally:atomic_json(output/"validation.json",report)
+    finally:
+        try:atomic_json(output/"validation.json",report)
+        finally:
+            if engine is not None:engine.close(cancel=not report["passed"])

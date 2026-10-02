@@ -18,19 +18,26 @@ def gini(values):
 
 
 class Coupled:
-    def __init__(self,cfg,catalog,fingerprint,scratch):
+    def __init__(self,cfg,catalog,fingerprint,scratch,*,power_workers=1,verbose=False):
         self.cfg=cfg;self.catalog=catalog
-        self.power=PowerEngine(cfg,catalog,fingerprint,Path(scratch)/"dss")
-        self.traffic=TrafficEngine(cfg,catalog,fingerprint,Path(scratch)/"tapb")
-        self.healthy_power=self.power.evaluate({})
-        if self.healthy_power["served_kw"]<=0:raise RuntimeError("Healthy AC case has no served load")
-        self.healthy_traffic=self.traffic.evaluate({},self.healthy_power["signal_powered"])
-        self.depot=catalog["depot"];self.shelter=catalog["shelter"]
-        self.essential=[self.shelter]+[catalog["assets"]["power:"+s]["targets"][0] for s in catalog["critical_substations"]]
-        self.baseline_tt=self.healthy_traffic.distances(self.essential,reverse=True)
-        self.zones=sorted(int(z) for z,v in self.healthy_power["zone_served_kw"].items() if v>1e-9 and math.isfinite(self.baseline_tt.get(int(z),math.inf)))
-        if not self.zones:raise RuntimeError("No zones have both baseline power and essential access")
-        self.excluded_zones=sorted(set(map(int,catalog["zone_nominal_kw"]))-set(self.zones))
+        self.power=PowerEngine(cfg,catalog,fingerprint,Path(scratch)/"dss",region_workers=power_workers,verbose=verbose)
+        try:
+            self.traffic=TrafficEngine(cfg,catalog,fingerprint,Path(scratch)/"tapb",verbose=verbose)
+            self.healthy_power=self.power.evaluate({})
+            if self.healthy_power["served_kw"]<=0:raise RuntimeError("Healthy AC case has no served load")
+            self.healthy_traffic=self.traffic.evaluate({},self.healthy_power["signal_powered"])
+            self.depot=catalog["depot"];self.shelter=catalog["shelter"]
+            self.essential=[self.shelter]+[catalog["assets"]["power:"+s]["targets"][0] for s in catalog["critical_substations"]]
+            self.baseline_tt=self.healthy_traffic.distances(self.essential,reverse=True)
+            self.zones=sorted(int(z) for z,v in self.healthy_power["zone_served_kw"].items() if v>1e-9 and math.isfinite(self.baseline_tt.get(int(z),math.inf)))
+            if not self.zones:raise RuntimeError("No zones have both baseline power and essential access")
+            self.excluded_zones=sorted(set(map(int,catalog["zone_nominal_kw"]))-set(self.zones))
+        except BaseException:
+            self.power.close(cancel=True)
+            raise
+
+    def close(self, *, cancel=False):
+        self.power.close(cancel=cancel)
 
     def state(self,remaining,penalty=None):
         power=self.power.evaluate(remaining)
