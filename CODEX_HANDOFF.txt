@@ -1,0 +1,214 @@
+Austin 项目：给新机器 Codex 会话的交接
+更新时间：2026-10-02（America/Chicago）
+
+一、从这里接手
+
+仓库：https://github.com/panshidong/Power_Road_Simple
+分支：austin-runtime
+布局：该分支的根目录直接是 Austin 项目，不要在根目录再进入不存在的 Austin 子目录。
+源主机目录：/home/workenv/Austin
+用户此前的目标目录：~/Shidong/PowerRoad/Austin（以新机器实际路径为准）
+目标环境：WSL2，i9-14900K，主机内存 128 GB。WSL 实际可用 RAM、CPU affinity 和 cgroup
+限额尚未取得完整记录，不应把主机 128 GB 当作 WSL 可用内存。
+
+当前最高优先级是性能：用户认为 smoke 跑得过久，担心完整 A/B/C 无法完成。
+之前提出扩大灾害的任务也保留，但两个损伤百分比已被用户要求按网上证据重新审查。
+不要从头重新收集已有路网/电网；先利用当前数据、代码、缓存及目标机上的运行现场。
+
+交接前最新代码提交：90e3081c12fa92b9e2d4fcb95996f038e154aab5
+  新 smoke 只做物理验收；旧小样本矩阵另存 mini-research。
+此前提交：
+  6a78ea57295a2f90c9c49f01133b1caaac56cb76：灾害证据审查，撤回无依据百分比。
+  8b65d9a9d05cffe8398162783ff401a50548111d：修复 flows.txt 接口、区域并行和进度报告。
+  21fc8d4d7e9d66ed25d4ee5a0da7de27ccf16043：独立 Austin 数据及运行时初始发布。
+本交接说明会在后续提交中加入；不要把上述“最新代码提交”当成远端永远不变的 HEAD。
+浅克隆可能只显示一个提交，这是正常的；先核对当前分支、HEAD 和未提交修改。
+
+二、已交付的范围
+
+1. Austin_sdb：7,466 个节点，18,710 条有向弧，1,117 TAZ；234,729 个正需求 OD。
+   已找到与节点编号匹配的公开坐标并交叉核对，保留原有 TAP-B 路网、OD 和全部平行弧。
+   不是 TransportationNetworks 的 7,388 节点版本。坐标有来源，但道路仅有端点直线几何。
+2. TAMU v03：六个完整区域 P1R/P1U/P2U/P3U/P4U/P5U，448 馈线、128 个配电变电站、
+   307,236 个负荷。使用完整区域 OpenDSS，保留跨馈线控制和原始理想上级电源。
+   不是全输配电联合调度；Travis150 AUX 是另一发布版本，不作为该运行时的潮流替代。
+3. 交通信号：冻结市政府快照，410 个信号同时有道路与合成供电负荷候选。
+   关联是暂定空间映射，不是真实 Austin Energy 接线记录；没有完整信号配时/UPS 数据。
+4. 独立 runtime：A 的 CEN/JSH/IJSH 与敏感性，B 的恢复序列模拟退火/公平性目标，
+   C 的 OD 路径权重及组合策略，另有检查点、缓存、统计和诊断。
+   矩阵细节见 runtime/TASK_MATRIX.md；不能声称全矩阵已经运行通过。
+
+已纳入 Git 的内容包括运行时代码、源代码、公开来源的小型原始快照、处理数据与来源锁。
+未上传虚拟环境、运行结果、缓存、原生二进制和较早的 Austin_v*.zip 数据包。
+320,294,926 字节的官方 syn-Austin-TDgrid-v03.zip 不在 Git；按 sources.lock.json
+的固定 URL/校验值取回。runtime/bootstrap.sh 可在全新目标环境安装、编译并准备数据。
+已有安装不要为排查性能重新 bootstrap 或重建所有数据。
+
+三、验证状态：严格区分三种证据
+
+早期数据检查确实运行过：完整 TAP-B 基准/信号容量场景、448 条馈线及区域例外检查，
+对应 reports/ 下的历史报告。它们证明数据可导入，不等于后来 A/B/C 运行时已验收。
+
+新 runtime 的源主机执行被用户禁止：没有为该 runtime 安装依赖、构建、运行测试或求解器。
+后续修复只做代码阅读、Python AST、TOML/JSON 解析、Bash 语法及 Git 差异检查。
+新增测试待目标机执行，见 runtime/tests/；不要把静态检查写成单元测试通过。
+
+用户在目标机运行过旧 smoke，并提供：
+- 一个 python 进程持续约 22 分钟、约 100% 单核占用，起初没有 validation.json/tapb.log。
+- 随后出现 FileNotFoundError，运行时读 s.txt，而附带 TAP-B 实际写 flows.txt。
+- 报错路径位于 /home/acc/Shidong/PowerRoad/Austin/runtime/output/smoke/validation_scratch/。
+这段 traceback 表明当时健康供电调用返回，TAP-B 已走到结果解析；不是完整验收通过。
+
+后来用户再次反映 smoke 耗时过长，但截至交接，没有收到其所说“部分输出”的实际日志。
+因此还不能确定当前慢在健康基线、故障/开关搜索还是 225 个实验任务；新机器本地日志
+应当能补齐。不要编造各阶段耗时或声称测得加速倍数。
+
+四、已经修复的两个问题
+
+1. flows.txt / 并行 / 可见进度（8b65d9a）
+   runtime/austin_runtime/traffic.py 读取原生 flows.txt，逐弧核对行身份。
+   失败的 TAP-B 目录保留网络、日志、输出与 failure.txt；成功目录才清理。
+   验收并行计算最多六个独立 AC 区域；实验阶段按场景/策略进程任务并行，两层池不同时叠加。
+   资源预算是每 worker 16 GiB 的未实测估计。每 30 秒心跳只表示程序仍在等待，不代表迭代进展。
+   validation.json 提前写 status/phase；任务队列交错场景以减少同状态缓存锁争用。
+   新增回归测试：runtime/tests/test_native_interface.py。
+
+2. smoke 不再默认执行小样本全矩阵（90e3081）
+   bash runtime/run_all.sh smoke 2 [output] -> runtime/smoke.py
+   只执行既有物理验收：六区健康基线、一个整站故障、强制重新求解的修复复原、部分降额。
+   已通过且指纹匹配的 validation.json 会复用并结束；结果另写 smoke_summary.json。
+   experiment_jobs=0，不生成 analysis/status.json，不证明调度/优化/统计链路通过。
+   旧 smoke 实际安排 225 个实验任务，完整保留为 mini-research。
+   新增测试：runtime/tests/test_smoke_entry.py。
+
+这次入口修复没有更改 runtime/austin_runtime/*.py 或解析后的 smoke 数值配置。
+runtime/smoke.py 在数值模块目录外，所以从已修复 flows.txt 的版本更新可沿用缓存与输出目录。
+如果从更早 s.txt 错误版更新，或其他数值代码/依赖/二进制已经变化，仍需新输出目录。
+不要手动删指纹检查或搬运不匹配缓存来加速。
+
+五、性能诊断重点（静态发现，尚非测量结论）
+
+runtime/austin_runtime/power.py：
+- _feasible 对默认 14 个 load_scales 依次搜索，每个尝试调用 _compile。
+- _compile 重新 Redirect 完整 Master_runtime.dss，原始电压基准与控制保留。
+- _operate 每轮尝试最多 8 个已有联络开关，最多 2 轮；这些尝试又调用 _feasible。
+  缓存未命中时加载、CalcVoltageBases、Solve 或逐元件检查都可能累积。
+- _measure 逐个遍历负荷、线路与变压器的原生接口；需要测量各阶段耗时，不能断定一定是
+  Python/GIL、OpenDSS 或磁盘。多区域并发也不能让一个原生区域求解自动使用全部核心。
+
+runtime/austin_runtime/workflow.py / simulation.py：
+- 每个实验任务新建 Coupled，重新读取负荷目录、健康缓存与图结构。
+- GREEDY 对可达候选逐项试修；构表按排列反复求联盟；B 按候选序列模拟恢复。
+- 完整 A 构表是 400 × 120 = 48,000 条排列路径，每条包含多个状态，并非 48,000 次求解。
+- 磁盘物理缓存按区域损伤状态或交通状态复用；唯一状态数量才影响原生求解次数。
+- common.fingerprint 目前包含全部数值模块、非 runtime 配置、数据和依赖；改变实验样本数
+  也可能更换缓存命名空间。缓存拆分值得评估，但不能未经校验宣称旧缓存等价。
+
+建议接手顺序：
+1. 在目标机读当前终端/日志、run_manifest.json、validation.json、smoke_summary.json、
+   plans/*.json、*.error.json 和保留的 tapb.log，确认正在运行的版本、配置和阶段。
+2. 核对 WSL 实际资源与使用的解释器。用户 shell 是 conda base；优先使用已准备的
+   .venv-runtime/bin/python，避免误用另一套依赖。实际是否曾误用尚未确认。
+3. 根据已有 phase START/DONE/heartbeat 判断加载、AC Solve、约束检查、TAP-B 或实验队列
+   哪项耗时突出。必要时按用户当前调试任务做一个有限范围的测量，别先跑完整研究。
+4. 针对实测瓶颈做修改。若复用已加载电路/控制状态或改变降载搜索，验证故障隔离、控制收敛、
+   电压/热限值、有功平衡及恢复复原；不要靠删除物理约束换取速度。
+5. 报告每状态耗时、缓存命中、峰值 RAM 与有效并发，再估算 A/B/C 规模。新 smoke 的范围
+   缩减不是物理内核加速，也没有解决完整研究的计算预算问题。
+
+六、目标机的常用入口
+
+下面只是命令说明，交接过程没有执行它们。在仓库根目录操作。
+正在运行旧程序时，先在该终端 Ctrl+C 并等退出，再更新源文件；不要杀不属于本项目的进程。
+
+更新：
+  git status --short --branch
+  git pull --ff-only origin austin-runtime
+
+不启动求解器的范围说明：
+  .venv-runtime/bin/python runtime/smoke.py --plan
+
+不调用原生求解器的回归测试（源主机未跑）：
+  .venv-runtime/bin/python -m unittest discover -s runtime/tests -v
+
+物理 smoke（可能仍慢；末尾应换成这台机器原先的输出目录）：
+  bash runtime/run_all.sh smoke 2 output/smoke-v2
+
+注意：用户最早用的是 output/smoke；后来建议过 output/smoke-v2，实际是否换过尚未确认。
+复用已完成验收时应指向相应原目录，不要为了“干净”而删除旧目录。
+
+仅在确实需要且已评估成本时启动的小样本全流程：
+  bash runtime/run_all.sh mini-research 2
+
+完整研究入口（不要为性能诊断自动运行）：
+  bash runtime/run_all.sh research
+
+runtime/run.py --config runtime/configs/smoke.toml run --stage all 仍会执行旧的 225 个任务。
+新版轻量入口是 runtime/smoke.py 或上面的 run_all.sh smoke，不能混淆。
+新机器完全没有环境才参考 RUN_ON_NEW_MACHINE.md 安装/准备；已安装时不要重复 bootstrap。
+
+七、灾害规模：已撤回的设定与已找到的数据
+
+用户最初选择过“变电站 15–30%，道路 1–3%，24 小时”，随后明确要求两种比例都必须
+根据网上数据，不要照搬小模型或编造。两种比例均已撤回，未写进 scenarios.py。
+当前 main 仍是旧算法分布：8–15 个站组、3–13 个道路组，未校准为真实 Austin 灾害。
+电力损伤单位是一个站的全部 HV/MV 变压器组；道路单位是无向端点对含全部方向/平行弧。
+固定每站 20 分钟、每道路组 10 分钟也只是原算法假设。
+
+已核对的一手资料、下载链接、发布方校验值和适用限制保存于：
+  reports/disaster_evidence.json
+  runtime/ASSUMPTIONS.md 的“灾害规模证据审查”
+
+关键结论：
+- 2013 Austin/Travis 洪灾报告记载超过 40 处道路封闭及 Onion Creek 变电站中断。
+  报告点名一站不等于全市仅损坏一站，封闭处数也未映射到本模型道路组。
+- 2015 的 440 处封闭是整个 CAPCOG 区域、灾害期间的统计，不能除以当前路网分母。
+- Austin Energy 2025 风暴中 52 台变压器替换不是 52 座变电站损坏。
+- Preisser/Passalacqua/Bixler/Boyles 2023 研究提供按洪水深度与道路空间叠加的方法，
+  但研究区与当前全网不同；0.15 m 道路不可通行阈值不能用于变电站失效判断。
+
+后续候选数据：Zenodo 6584401 / Compound_Flood.zip，346,697,452 字节，
+发布方 md5:30601b855e301a75b9e04d8f633f11eb，目录内有 Compound_Flood/Compound_output.tif。
+只读了元数据、README 和 ZIP 中央目录，未完整下载、验校验值、读取像素或空间叠加。
+需核验 CRS、深度单位、NoData、时间和范围；范围外不应当成无灾，静态峰值图也不是退水过程。
+当前端点直线道路还缺中心线/桥面信息；电力侧缺设备层级失效依据和真实/合成设施对应。
+不要给出“已经校准”的替代比例。保留用户选择的 24 小时观察窗并报告未修复。
+
+八、旧项目与发布边界
+
+源主机相邻 Power_Road_Simple、TaskA_v4、TaskB_powerfix、OD、power_sys_test 等属于旧项目。
+work/SiouxFalls_net1.txt 和 net2.txt 的已有差异是三组双向道路容量降低（10–16、14–23、22–23），
+时间戳早于本轮 Austin；两文件在旧流程中分别承接道路损伤和电力关联影响。
+本会话没有修改或恢复它们，baseline_check_net2.txt 也不需要处理。
+
+用户已经明确授权把完整 Austin 项目发布到上述公开仓库的 austin-runtime 分支。
+只发布属于 Austin 的代码、公开数据和说明；不要上传虚拟环境、运行输出/缓存、凭据或旧文章。
+本地源环境没有 git push 凭据，之前通过已授权 GitHub 连接器创建 tree/commit 并以
+force=false 更新分支，再 fetch 核验。目标机可使用其实际可用的授权方式，不要假设必须重演。
+git fetch --depth=1 有时显示 forced update；此前已核对远端提交的原始 parent，发布实际是
+线性提交，未强制覆盖其他工作。今后仍先检查远端变化，不使用 force push 掩盖冲突。
+
+九、文件导航
+
+AGENTS.md                           新会话约束与当前任务
+RUN_ON_NEW_MACHINE.md               clone、安装、运行说明
+runtime/README.md                   入口、并行、缓存和结果说明
+runtime/IMPLEMENTATION_STATUS.json  源机/目标机验证状态
+runtime/ASSUMPTIONS.md              电力、道路、耦合、恢复与灾害假设
+runtime/TASK_MATRIX.md              A/B/C 任务清单
+runtime/smoke.py                    新验收入口与通过结果复用
+runtime/austin_runtime/power.py     AC 区域求解、降载、联络开关、限值检查
+runtime/austin_runtime/traffic.py   TAP-B 调用与 flows.txt 解析
+runtime/austin_runtime/workflow.py  实验进程池、检查点和结果写入
+runtime/austin_runtime/simulation.py 恢复派工与耦合状态
+runtime/austin_runtime/scenarios.py 当前未校准损伤分布
+reports/disaster_evidence.json      灾害资料与仍未填补的缺口
+sources.lock.json                  数据版本和下载校验
+
+十、可直接给新会话的任务提示
+
+先读 AGENTS.md 和 CODEX_HANDOFF.txt，接手 Austin 项目。当前运行环境是目标 WSL2，
+i9-14900K、主机内存 128 GB。先检查已有 smoke 输出和运行现场，定位单次 AC/重复加载的
+性能瓶颈，在小范围测量后优化；不要默认启动 research/mini-research，不要删除缓存或结果，
+不要修改旧论文内容。保留真实 AC 与 TAP-B 验收要求。灾害比例必须按已有一手资料和空间
+映射确定，不能恢复已撤回的变电站 15–30%、道路 1–3%。按实际测试证据更新交接与说明。

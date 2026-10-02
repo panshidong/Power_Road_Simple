@@ -2,6 +2,8 @@
 
 分支：[`austin-runtime`](https://github.com/panshidong/Power_Road_Simple/tree/austin-runtime)。这个分支的仓库根目录直接是 Austin 项目，采用独立目录布局，不依赖旧文章目录。运行代码尚未在源机器构建、测试或执行；以下验收步骤必须在目标机器完成。
 
+已有 clone 并准备在本机开启 Codex 会话时，先读 [AGENTS.md](AGENTS.md) 和 [CODEX_HANDOFF.txt](CODEX_HANDOFF.txt)，其中记录了当前进度及尚未解决的问题。下文安装步骤面向全新环境；已有安装先检查日志和运行状态，不必重装。
+
 ## 1. 克隆与系统依赖
 
 以下适用于 Ubuntu/Debian Linux。其他 Linux 发行版安装同等依赖即可。
