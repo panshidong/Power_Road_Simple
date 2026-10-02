@@ -1,10 +1,9 @@
-# run_all.sh smoke uses runtime/smoke.py: physical validation only, then exit.
-# Legacy sample settings below preserve the numerical fingerprint/cache; they are not scheduled.
-# Merged over research.toml. All six physical regions remain in the model.
+# Legacy small-sample A/B/C matrix, explicitly requested. Not a quick smoke test.
+# All six physical regions and all sensitivities remain.
 [runtime]
 workers = 1
 tapb_threads = 2
-output = "output/smoke"
+output = "output/mini-research"
 [task_a]
 construction_scenarios = 2
 evaluation_scenarios = 2

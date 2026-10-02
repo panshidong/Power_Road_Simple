@@ -26,15 +26,23 @@ bash runtime/bootstrap.sh
 
 冻结路网、节点坐标、处理后的电网表及信号灯快照已纳入分支。若官方 ZIP 下载失败，可从原主机复制 `Austin/data/raw/power/syn-Austin-TDgrid-v03.zip` 到新机器同一相对路径，再重试；不得拿另一个发布版本替换同名文件。准备脚本会检查来源锁中的哈希。
 
-## 3. 用两进程完成小批量验收
+## 3. 完成物理 smoke 验收
 
 ```bash
 bash runtime/run_all.sh smoke 2
 ```
 
-先验证六区域 AC 健康/故障/修复状态及 TAP-B 质量，再执行缩小样本的 A/B/C 全流程。`smoke` 仍包含整个 Austin 路网和六个区域电网，因此不是瞬间结束的小算例。默认两进程至少需要满足约 32 GiB 可用内存预算；该预算是尚未实测的估计，并非实际峰值保证。
+只验证六区域 AC 健康/故障/修复状态及 TAP-B 质量，通过后结束，不执行 A/B/C 实验矩阵。实际 AC 并发由 CPU/内存预算确定，最多六个；这里的 `2` 保留原有预算参数兼容性，不代表只运行两个 AC 区域进程。完整电网的首次物理验收仍可能较慢，目前没有实测耗时保证。
 
-检查 `runtime/output/smoke/validation.json` 的 `passed`，以及 `runtime/output/smoke/analysis/status.json` 的 `complete`。不要把求解失败或未完成分析当作验收通过。每条结果中的 `resources` 可用于估计目标机器实际内存需求。
+检查 `runtime/output/smoke/validation.json` 与 `smoke_summary.json` 的 `passed=true`。smoke 不生成分析结果，也不证明完整研究流程已通过。旧版本 smoke 包含 225 个实验任务，现已改名为 `mini-research`；需要检查小样本 A/B/C 全流程时才显式执行 `bash runtime/run_all.sh mini-research 2`。先根据日志评估物理求解耗时，再决定是否启动完整矩阵。
+
+如果正运行旧 smoke，先在其运行终端用 Ctrl+C 停止并等待退出，再 `git pull --ff-only origin austin-runtime`。已经使用 `flows.txt` 修复版的用户可沿用原输出目录，例如：
+
+```bash
+bash runtime/run_all.sh smoke 2 output/smoke-v2
+```
+
+匹配且已通过的 `validation.json` 会复用并直接结束。入口拆分不改变物理代码、数值配置和现有缓存指纹；无需重新安装、编译或 prepare。已有实验结果保留。
 
 ## 4. 后台运行完整实验
 

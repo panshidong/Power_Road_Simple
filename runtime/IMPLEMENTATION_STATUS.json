@@ -27,5 +27,16 @@
     "Print phase progress and periodic heartbeat; record current validation phase",
     "Spread independent scenarios through the experiment queue"
   ],
-  "validation": "Source and Git diff review only; no tests, builds, solver calls or numerical speed measurements on source host."
+  "validation": "Source and Git diff review only; no tests, builds, solver calls or numerical speed measurements on source host.",
+  "smoke_scope_fix": {
+    "status": "source_written_destination_checks_pending",
+    "old_default_experiment_jobs": 225,
+    "new_default_experiment_jobs": 0,
+    "previous_matrix_profile": "mini-research",
+    "numerical_modules_changed": false,
+    "single_solve_speedup_measured": false,
+    "existing_matching_physical_cache_preserved": true,
+    "new_tests_executed_on_source": false,
+    "destination_timing_log_received": false
+  }
 }

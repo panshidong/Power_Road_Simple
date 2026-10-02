@@ -23,7 +23,9 @@ bash runtime/run_all.sh research
 
 `bootstrap.sh` 建立 `.venv-runtime/`，安装本项目，在 `runtime/build/tap-b/` 用 **make parallel** 编译含 `PARALLELISM=1` 的 TAP-B，下载并校验缺失原始文件，运行单元测试，解包完整区域模型、建立资产/TAZ/中心性表，最后打印环境和任务计划。它不会开始 A/B/C 批量实验。默认编译并发 4，可用 `AUSTIN_BUILD_JOBS` 调整；可用 `AUSTIN_PYTHON` 指定解释器。
 
-示例给 smoke 显式使用 2 个 worker，以覆盖并行路径；资源预算不足时先调低线程/内存预算或换更充足的机器。`smoke` 保留全部六个区域和完整路网，只缩减场景数、Shapley 排列数和 SA 迭代数。它仍可能较慢，不能把它当作小电网。`research` 使用完整实验矩阵。两者输出目录和数值指纹不同，不混用训练表。
+`smoke` 现在只进行六区域 AC 和 TAP-B 物理验收，通过后立即结束，不调度 A/B/C 实验。旧 smoke 实际是 225 个实验任务的小样本完整矩阵，已移到显式入口 `bash runtime/run_all.sh mini-research 2`；它仍可能很慢。`research` 保留完整实验内容。两种研究入口都不代表已完成运行时间评估。
+
+`smoke 2` 保留原有 worker 预算参数兼容性，实际 AC 验收进程数仍由 `validation_power_workers` 的 CPU/内存预算决定，最多六个。冷缓存下，完整区域加载、降载搜索与联络开关试算仍可能耗时很长；本次入口拆分没有提高单次原生求解速度。成功标志为 `validation.json` 和 `smoke_summary.json` 的 `passed=true`；smoke 不生成 `analysis/status.json`，也不证明 A/B/C 优化、调度、统计已经验收。
 
 完整任务入口会先执行验收：六个区域健康工况、一个关联信号灯的变电站完整故障、部分降额、重新编译后的修复复原、TAP-B 逐弧身份/收敛/流量守恒检查。验收不通过就停止，保留 `validation.json` 和异常；不会用简化供电计数或放松 TAP-B gap 补成成功。
 
@@ -41,6 +43,32 @@ bash runtime/run_all.sh research
 不要从旧的 `Austin_v0_prepared.zip` 或 `Austin_v1_georeferenced.zip` 推断本运行时已经包含在里面；这些是较早的数据包，本轮没有重新打包它们。不要把 `.venv*`、求解结果或旧主机二进制当作安装依赖复制。
 
 本项目发布到 `panshidong/Power_Road_Simple` 的独立分支 `austin-runtime`，该分支根目录直接是当前 Austin 项目内容，采用独立目录布局，旧文章分支不变。冻结数据和运行时一起纳入版本控制，第三方许可证与来源保留。请按根目录 [RUN_ON_NEW_MACHINE.md](../RUN_ON_NEW_MACHINE.md) 克隆和启动；不要在 clone 后再进入一层不存在的 `Austin/` 子目录。
+
+## 旧 smoke 耗时过长时更新入口
+
+本次修改仅涉及入口、说明和目标机测试，没有改动 `austin_runtime/*.py`、数值配置、数据或二进制，所以从已经修复 `flows.txt` 的版本更新时可继续使用同一输出目录及相同指纹下的物理缓存。先在运行终端用 Ctrl+C 停止旧 smoke，待它退出，再更新。不要在旧任务运行期间覆盖源文件或启动另一个调度器。
+
+```bash
+git pull --ff-only origin austin-runtime
+# 下列目录必须换成此前那次 smoke 的输出目录；这里沿用先前示例。
+bash runtime/run_all.sh smoke 2 output/smoke-v2
+```
+
+如果 `validation.json` 已通过且指纹匹配，新入口核对数据后直接结束；否则继续物理验收并复用已有成功物理状态缓存。失败的单次原生调用无法从迭代中间续跑。旧 A/B/C 成功结果和检查点保留，smoke 不再接着运行这些任务。从更早的 `s.txt` 错误版本更新仍需要新目录，见下一节。
+
+不启动求解器即可查看新版 smoke 范围：
+
+```bash
+.venv-runtime/bin/python runtime/smoke.py --plan
+```
+
+原来的小样本完整 A/B/C 矩阵必须显式选择：
+
+```bash
+bash runtime/run_all.sh mini-research 2
+```
+
+`mini-research` 与旧 smoke 数值设置一致，默认写 `output/mini-research/`；如明确要续跑旧的小样本矩阵，可把旧输出目录作为第三个参数。`runtime/run.py --config runtime/configs/smoke.toml run --stage all` 仍会直接执行旧矩阵；不要把这个高级入口当成新版 smoke。低成本目标机回归检查见 `runtime/tests/test_smoke_entry.py`，源机器没有运行它。
 
 ## 修复旧版 smoke 的 flows.txt 接口错误
 
