@@ -4,6 +4,8 @@
 
 **交付状态：源码、配置、安装/运行入口、测试与分析程序已写入；按用户要求，本轮没有安装依赖、编译、运行测试或启动任何求解器。可运行性、数值可行性和性能必须在目标机器验收。先前 Austin 数据检查不等于这个新运行时已通过验证。** 机器可读状态见 [IMPLEMENTATION_STATUS.json](IMPLEMENTATION_STATUS.json)。
 
+**灾害参数状态：现有场景损坏数量仍是从小算例沿用的未校准分布。此前讨论的变电站 15–30%、道路 1–3% 没有数据依据，均已撤回，未写入配置。2026-10-01 的官方灾情、研究方法和可下载洪水数据核查见 [ASSUMPTIONS.md](ASSUMPTIONS.md#灾害规模证据审查2026-10-01)。本次资料审查不等于完成灾害校准。**
+
 ## 在新机器开始
 
 目标环境为 Linux，Python >= 3.11，GCC、make、curl、Python venv、系统 C/C++ 运行库。可在 Debian/Ubuntu 上自行安装 `python3-venv python3-dev build-essential curl libgomp1`。本目录不提供 Windows 原生进程锁/取消实现；WSL2 Linux 可以作为目标环境，但需检查可用内存。

@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-10-01",
+  "status": "sources_reviewed_not_calibrated",
+  "runtime_parameters_changed": false,
+  "simulations_run": false,
+  "withdrawn_unsupported_proposals": {
+    "substation_fraction": [0.15, 0.30],
+    "road_group_fraction": [0.01, 0.03],
+    "reason": "No matched event inventory, geographical denominator, or component-level calibration supports these ranges. Neither proposal was installed."
+  },
+  "replacement_calibrated_fractions": null,
+  "observations": [
+    {
+      "id": "austin_travis_halloween_2013",
+      "url": "https://services.austintexas.gov/edims/document.cfm?id=208521",
+      "event_date": "2013-10-31",
+      "report_pages": [9, 27, 30],
+      "pdf_pages_one_based": [11, 29, 32],
+      "road_closures": {"operator": ">", "value": 40},
+      "first_roads_reopened_hours_after_first_closure": 30,
+      "reported_substation_outage_example": "Onion Creek",
+      "total_failed_substations": null,
+      "limitations": [
+        "Closure locations have not been mapped to Austin_sdb road groups.",
+        "The named station is an example, not a complete inventory or a calibrated one-station scenario.",
+        "A closure is not necessarily structural road damage."
+      ]
+    },
+    {
+      "id": "capcog_halloween_2015",
+      "url": "https://www.austintexas.gov/sites/default/files/files/hsem/2015_Halloween_Flood_AAR_City-County_Final.pdf",
+      "event_date": "2015-10-30",
+      "report_pages": [5],
+      "pdf_pages_one_based": [5],
+      "reported_crossing_and_other_road_closures": 440,
+      "geography": "CAPCOG region",
+      "time_basis": "Recorded during incident; simultaneous unique closure count not established.",
+      "limitations": [
+        "Broader geographical reporting scope than Austin city.",
+        "Do not divide by the Austin_sdb road-group count or combine with 2013 to create a random range."
+      ]
+    },
+    {
+      "id": "austin_energy_microburst_2025",
+      "url": "https://p02env.austinenergy.com/about/news/news-releases/2025/Austin-Energy-releases-data-on-the-full-impact-of-May-2025-microburst-storm",
+      "publication_date": "2025-06-16",
+      "poles_replaced": 91,
+      "transformers_replaced": 52,
+      "peak_customers_affected": {"operator": ">", "value": 72500},
+      "total_failed_substations": null,
+      "limitations": [
+        "Transformer replacement and customer outage counts are not counts of failed substations."
+      ]
+    }
+  ],
+  "candidate_method": {
+    "status": "literature_supported_method_not_yet_mapped_to_this_model",
+    "paper_url": "https://www.frontiersin.org/journals/water/articles/10.3389/frwa.2023.1278205/full",
+    "paper_doi": "10.3389/frwa.2023.1278205",
+    "event": "2015-05-25 Memorial Day flood",
+    "study_geography": "Approximately 250 square kilometres north of the Colorado River in Austin",
+    "method": "Intersect inundation depth with road geometry to derive disruption locations.",
+    "paper_road_impassability_depth_m": 0.15,
+    "threshold_is_observed_damage_fraction": false,
+    "threshold_applies_to_substations": false,
+    "paper_counts_directly_transferable": false
+  },
+  "candidate_datasets": [
+    {
+      "url": "https://zenodo.org/records/8350297",
+      "filename": "Network_Analysis.zip",
+      "bytes": 354235859,
+      "publisher_checksum": "md5:104f6fba7cc567f0a28be1cfbcea772b",
+      "inspection": "Read ZIP central directory with HTTP Range, without a full download or running any archive code.",
+      "identified_test_raster": "Network_Analysis/Network_Testing_Data/AOI_Testing/AOI_Inundation.tif",
+      "complete_hourly_inundation_series_verified": false,
+      "full_file_checksum_verified_locally": false
+    },
+    {
+      "url": "https://zenodo.org/records/6584401",
+      "paper_url": "https://hess.copernicus.org/articles/26/3941/2022/",
+      "record_license": "CC-BY-4.0",
+      "filename": "Compound_Flood.zip",
+      "download_url": "https://zenodo.org/api/records/6584401/files/Compound_Flood.zip/content",
+      "bytes": 346697452,
+      "publisher_checksum": "md5:30601b855e301a75b9e04d8f633f11eb",
+      "identified_raster": "Compound_Flood/Compound_output.tif",
+      "inspection": "Read record metadata, README.txt and ZIP central directory using HTTP Range.",
+      "full_file_checksum_verified_locally": false,
+      "raster_pixels_read": false,
+      "crs_depth_units_nodata_and_coverage_verified": false,
+      "roads_or_substations_intersected": false,
+      "limitations": [
+        "A study-area raster does not establish coverage of the complete Austin_sdb/TAMU footprint.",
+        "No hourly recession series has been verified.",
+        "The separately published Austin_North_Neighborhoods_1m.tif is an elevation DEM, not an inundation depth layer."
+      ]
+    }
+  ],
+  "unsuitable_as_historical_closure_inventory": [
+    {
+      "url": "https://maps.austintexas.gov/gis/rest/PublicSafetySharedServices/SharedAtxFloodRoadClosure/MapServer/0",
+      "finding": "Inspected schema provides point locations and STATUS but no historical event timestamps; timeInfo is null."
+    },
+    {
+      "url": "https://www.austintexas.gov/transportation-public-works/right-way-street-closures",
+      "finding": "Official page explicitly excludes emergency road closures."
+    }
+  ],
+  "model_mapping_gaps": [
+    "Road closures versus directed arcs versus undirected endpoint-pair repair groups.",
+    "True road centrelines and bridge-deck elevations; current road geometries use endpoint coordinates only.",
+    "Observed station/feeder/line damage inventory and synthetic-to-real power asset mapping.",
+    "Equipment-specific vulnerability: road depth thresholds cannot classify substation failures.",
+    "Flood recession and safe access release times versus crew repair durations.",
+    "Current 20-minute station and 10-minute road repair durations are uncalibrated algorithm assumptions."
+  ],
+  "retained_user_constraint": {
+    "observation_horizon_hours": 24,
+    "report_unrepaired_assets": true
+  }
+}
