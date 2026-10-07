@@ -1,5 +1,5 @@
 from __future__ import annotations
-import contextlib, csv, gzip, hashlib, importlib.metadata, json, os, sys, tempfile, tomllib
+import contextlib, csv, gzip, hashlib, importlib.metadata, json, math, os, sys, tempfile, tomllib
 from pathlib import Path
 
 RUNTIME = Path(__file__).resolve().parents[1]
@@ -58,6 +58,8 @@ def config(path=None):
     if path:
         with Path(path).open("rb") as f: cfg = merge(cfg, tomllib.load(f))
     if cfg["power"]["model"] != "tamu_regional_opendss": raise ValueError("Only the physical TAMU engine is implemented")
+    recovery_attempts=cfg["power"].get("native_recovery_attempts",0)
+    if type(recovery_attempts) is not int or recovery_attempts not in (0,1):raise ValueError("Native AC recovery attempts must be 0 or 1")
     if not 1 <= cfg["runtime"]["tapb_threads"] <= 64: raise ValueError("TAP-B threads must be in [1,64]")
     scales = cfg["power"]["load_scales"]
     if not scales or scales != sorted(set(scales), reverse=True) or not all(0 < x <= 1 for x in scales):
@@ -67,8 +69,11 @@ def config(path=None):
     if cfg["runtime"]["jobs_per_worker_batch"] < 1: raise ValueError("jobs_per_worker_batch must be positive")
     if any(cfg["recovery"][k] != 1 for k in ("power_crews", "road_crews")):
         raise ValueError("The reproduced dispatch policy requires one crew per trade")
-    if any(cfg["recovery"][k] <= 0 for k in ("power_repair_minutes","road_repair_minutes","horizon_minutes","offroad_speed_kph")):
-        raise ValueError("Durations and off-road speed must be positive")
+    if type(cfg["recovery"].get("stop_at_horizon",True)) is not bool:
+        raise ValueError("recovery.stop_at_horizon must be a boolean")
+    if any(type(cfg["recovery"][k]) not in (int,float) or not math.isfinite(cfg["recovery"][k]) or cfg["recovery"][k] <= 0
+           for k in ("power_repair_minutes","road_repair_minutes","horizon_minutes","offroad_speed_kph")):
+        raise ValueError("Durations and off-road speed must be finite and positive")
     if any(cfg["task_a"][k] < 1 for k in ("construction_scenarios","evaluation_scenarios","shift_scenarios","shapley_permutations")):
         raise ValueError("Task A sample counts must be positive")
     if cfg["task_b"]["scenarios"] < cfg["task_b"]["representative_scenario"] or cfg["task_b"]["representative_scenario"] < 1:
@@ -103,12 +108,15 @@ def local_path(cfg, name):
 
 
 def fingerprint(cfg, prepared):
+    from .native_env import allocator_path
+    allocator=allocator_path(cfg)
     # Worker count/output location do not alter experiments; physics and seeds do.
     numerical = {k:v for k,v in cfg.items() if k != "runtime"}
     code = {str(p.relative_to(RUNTIME)):sha_file(p) for p in sorted((RUNTIME/"austin_runtime").glob("*.py"))}
     versions={k:importlib.metadata.version(k) for k in ("numpy","scipy","networkx","OpenDSSDirect.py","dss-python","dss-python-backend","matplotlib")}
     return digest(dict(config=numerical,code=code,catalog=prepared,packages=versions,
-        python=sys.version,native_tapb=sha_file(RUNTIME/"build/tap-b/bin/tap"),tapb_threads=cfg["runtime"]["tapb_threads"]))
+        python=sys.version,native_tapb=sha_file(RUNTIME/"build/tap-b/bin/tap"),tapb_threads=cfg["runtime"]["tapb_threads"],
+        native_allocator=sha_file(allocator) if allocator else None))
 
 
 @contextlib.contextmanager

@@ -6,6 +6,16 @@ from .power import PowerEngine
 from .traffic import TrafficEngine
 
 
+class UnreachableRepairs(RuntimeError):
+    """An unbounded recovery cannot advance; retain the complete diagnostic state."""
+    def __init__(self,scenario,time,remaining,events,dispatch):
+        self.diagnostic=dict(scenario_id=scenario["id"],scenario_seed=scenario["seed"],
+            stop_reason="unreachable_pending_jobs",time=time,remaining=dict(remaining),
+            events=events,dispatch=dispatch,complete=False)
+        super().__init__(f"Recovery blocked at {time:g} minutes: {len(remaining)} repairs remain, "
+                         "no crew is busy and no pending repair is reachable")
+
+
 def ratio(reference, current):
     if not math.isfinite(reference) or not math.isfinite(current):return 0.0
     if reference==current==0:return 1.0
@@ -82,6 +92,7 @@ class Coupled:
         if set(sequence)!=set(scenario["damage"]) or len(sequence)!=len(set(sequence)):
             raise ValueError("Recovery sequence must contain each initially damaged asset once")
         recovery=self.cfg["recovery"];remaining=dict(scenario["damage"]);pending=list(sequence)
+        horizon=recovery["horizon_minutes"] if recovery.get("stop_at_horizon",True) else None
         critical=critical if critical is not None else self.catalog["critical_substations"]
         crews=[]
         for kind in ("power","road"):
@@ -98,6 +109,7 @@ class Coupled:
                 for rank,asset in enumerate(pending):
                     if self.catalog["assets"][asset]["kind"]!=crew["kind"]:continue
                     travel,target=self.site_travel(state["traffic"],crew["node"],asset,roundtrip_lastmile=True)
+                    if math.isnan(travel) or travel<0:raise ValueError(f"Invalid travel time for {asset}: {travel}")
                     if math.isfinite(travel):eligible.append((rank,asset,travel,target))
                 if not eligible:continue
                 gains={}
@@ -110,16 +122,20 @@ class Coupled:
                 else:choice=eligible[0]
                 _,asset,travel,target=choice;pending.remove(asset)
                 finish=time+travel+recovery[crew["kind"]+"_repair_minutes"]
+                if not math.isfinite(finish) or finish<=time:
+                    raise ValueError(f"Nonfinite or nonadvancing repair finish for {asset}: {finish}")
                 dispatch.append(dict(time=time,crew=crew["id"],asset=asset,origin=crew["node"],target=target,
                     travel_minutes=travel,finish=finish,gain=gains.get(asset),candidate_gains=gains))
                 crew.update(job=asset,finish=finish,target=target)
             busy=[c for c in crews if c["job"] is not None]
             if not busy:
-                stop="unreachable_pending_jobs";time=recovery["horizon_minutes"]
+                if horizon is None:
+                    raise UnreachableRepairs(scenario,time,remaining,events,dispatch)
+                stop="unreachable_pending_jobs";time=horizon
                 events.append(self.record(time,remaining,state,critical));break
             next_time=min(c["finish"] for c in busy)
-            if next_time>recovery["horizon_minutes"]:
-                stop="horizon";time=recovery["horizon_minutes"]
+            if horizon is not None and next_time>horizon:
+                stop="horizon";time=horizon
                 events.append(self.record(time,remaining,state,critical));break
             time=next_time
             for crew in busy:
@@ -130,6 +146,7 @@ class Coupled:
         metrics=measure(events,self.zones,equity or self.cfg["equity"])
         return dict(scenario_id=scenario["id"],scenario_seed=scenario["seed"],sequence=sequence,events=events,
             dispatch=dispatch,metrics=metrics,stop_reason=stop,complete=not remaining,remaining=list(remaining),
+            recovery_mode="fixed_horizon" if horizon is not None else "until_complete",observation_horizon_minutes=horizon,
             zones=self.zones,excluded_baseline_zones=self.excluded_zones,
             healthy_served_fraction=self.healthy_power["served_kw"]/self.healthy_power["nominal_kw"])
 

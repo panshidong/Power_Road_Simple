@@ -1,0 +1,33 @@
+# User-authorized 288-job core: complete every repair, no simulation horizon.
+# The physical acceptance limits, disaster ensembles and seeds are unchanged.
+[runtime]
+output = "output/core-unbounded-12"
+prepared = "prepared-unbounded-20261006"
+workers = 12
+validation_power_workers = 2
+reserve_cpus = 0
+tapb_threads = 2
+memory_gb_per_worker = 4.0
+
+[power]
+native_allocator_path = "build/native/libjemalloc.so.2"
+native_allocator_sha256 = "c769f7591006b37ac8893a69a82fc40d5ac831e8e109670878c4e4d44c8a6ba9"
+
+[recovery]
+stop_at_horizon = false
+
+[task_a]
+construction_scenarios = 24
+evaluation_scenarios = 24
+shift_scenarios = 1
+shapley_permutations = 16
+checkpoints = [8, 16, 24]
+representative_cases = 1
+
+[task_b]
+scenarios = 6
+sa_iterations = 12
+representative_scenario = 1
+
+[task_c]
+sensitivity_scenarios = 1

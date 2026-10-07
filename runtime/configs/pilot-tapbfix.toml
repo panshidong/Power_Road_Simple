@@ -1,0 +1,27 @@
+# Same reduced core and physical acceptance; use the corrected TAP-B build.
+[runtime]
+output = "output/pilot-tapbfix"
+workers = 8
+validation_power_workers = 2
+reserve_cpus = 0
+memory_gb_per_worker = 6.0
+
+[power]
+native_allocator_path = "build/native/libjemalloc.so.2"
+native_allocator_sha256 = "c769f7591006b37ac8893a69a82fc40d5ac831e8e109670878c4e4d44c8a6ba9"
+
+[task_a]
+construction_scenarios = 24
+evaluation_scenarios = 24
+shift_scenarios = 1
+shapley_permutations = 16
+checkpoints = [8, 16, 24]
+representative_cases = 1
+
+[task_b]
+scenarios = 6
+sa_iterations = 12
+representative_scenario = 1
+
+[task_c]
+sensitivity_scenarios = 1

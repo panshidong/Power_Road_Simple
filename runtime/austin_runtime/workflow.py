@@ -1,11 +1,38 @@
 from __future__ import annotations
 import concurrent.futures as futures
-import importlib.metadata, json, multiprocessing, os, resource, signal, sys, time, traceback
+from concurrent.futures.process import BrokenProcessPool
+import atexit, faulthandler, importlib.metadata, json, multiprocessing, os, resource, signal, sys, time, traceback
 from collections import defaultdict
 from pathlib import Path
 from .common import RUNTIME, atomic_json, cpu_budget, digest, file_lock, fingerprint, local_path, read_json, sha_file
 from .plan import STAGES, jobs
 from .progress import phase, report
+
+
+_worker_context=None
+
+
+def close_worker_context():
+    global _worker_context
+    context,_worker_context=_worker_context,None
+    if context is not None:context[2].close()
+
+
+def worker_context(cfg,fp,scratch):
+    """One coupled model per worker, still bounded by jobs_per_worker_batch."""
+    from .simulation import Coupled
+    global _worker_context
+    key=digest(dict(config=cfg,fingerprint=fp))
+    if _worker_context is None or _worker_context[0]!=key:
+        close_worker_context()
+        catalog=read_json(local_path(cfg,"prepared")/"catalog.json")
+        engine=Coupled(cfg,catalog,fp,scratch)
+        _worker_context=(key,catalog,engine)
+    _,catalog,engine=_worker_context
+    # Native diagnostic artifacts continue to belong to the current job.
+    engine.power.scratch=Path(scratch)/"dss";engine.power.scratch.mkdir(parents=True,exist_ok=True)
+    engine.traffic.scratch=Path(scratch)/"tapb";engine.traffic.scratch.mkdir(parents=True,exist_ok=True)
+    return catalog,engine
 
 
 def result_path(output,job):return Path(output)/"results"/job["stage"]/(job["id"]+".json")
@@ -25,14 +52,14 @@ def worker_init():
     if hasattr(os,"setsid"):os.setsid()
     for name in ("OMP_NUM_THREADS","OPENBLAS_NUM_THREADS","MKL_NUM_THREADS","NUMEXPR_NUM_THREADS"):
         os.environ[name]="1"
+    atexit.register(close_worker_context)
 
 
 def execute(cfg,fp,job,expected_signature):
-    from .simulation import Coupled
     from .scenarios import generate
     from .rankings import construct, order, od_table, critical_set
     from .experiments import anneal, base_sequence
-    output=local_path(cfg,"output");catalog=read_json(local_path(cfg,"prepared")/"catalog.json")
+    output=local_path(cfg,"output")
     path=result_path(output,job)
     with file_lock(path.with_suffix(".lock")):
         if path.exists():
@@ -42,13 +69,22 @@ def execute(cfg,fp,job,expected_signature):
         scratch=output/"scratch"/job["stage"]/job["id"];scratch.mkdir(parents=True,exist_ok=True)
         checkpoint=output/"checkpoints"/job["stage"]/(job["id"]+".json")
         previous=Path.cwd();started=time.monotonic();engine=None
+        crash_log=(scratch/"native_crash.log").open("a")
+        crash_log.write(f"\nATTEMPT pid={os.getpid()} unix_time={time.time()} job={job['id']} fatal_signals_only=True\n")
+        crash_log.flush()
+        # On this Python 3.12 build, two SIGSEGV instruction addresses resolve
+        # to dump_frame while the asynchronous timeout thread walks live frames.
+        # Keep fatal-signal diagnostics; use saved AC phases and coordinator
+        # heartbeats for progress instead of periodic cross-thread stack walks.
+        faulthandler.enable(file=crash_log,all_threads=False)
         try:
             os.chdir(scratch)
+            catalog,engine=worker_context(cfg,fp,scratch)
+            stats_before=dict(engine.power.stats)
             seed0=(cfg["task_a"]["construction_seed"] if job["stage"]=="construct" else
                    cfg["task_b"]["seed"] if job["stage"].startswith("b-") else
                    cfg["task_a"]["evaluation_seed"] if job["variant"]=="main" else None)
             scenario=generate(catalog,cfg,job["variant"],job["index"],seed0)
-            engine=Coupled(cfg,catalog,fp,scratch)
             if job["stage"]=="construct":
                 payload=construct(engine,scenario,cfg,checkpoint,expected_signature)
             elif job["stage"].startswith("b-"):
@@ -75,19 +111,23 @@ def execute(cfg,fp,job,expected_signature):
                     "od_damaged_roads_nonzero":sum(a.startswith("road:") and od["scores"].get(a,0)>0 for a in scenario["damage"]) if od else None}
             record=dict(signature=expected_signature,fingerprint=fp,job=job,payload=payload,
                 resources=dict(wall_seconds=time.monotonic()-started,worker_lifetime_peak_rss_mib=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024,
+                    power={k:v-stats_before.get(k,0) for k,v in engine.power.stats.items()},
                     native_children_peak_rss_mib=resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss/1024))
             atomic_json(path,record)
             error=path.with_suffix(".error.json")
             if error.exists():error.unlink()
             return dict(id=job["id"],status="complete")
         except Exception as exc:
+            close_worker_context()
+            from .simulation import UnreachableRepairs
+            if isinstance(exc,UnreachableRepairs):
+                atomic_json(scratch/"recovery_blocked.json",exc.diagnostic)
             atomic_json(path.with_suffix(".error.json"),dict(signature=expected_signature,fingerprint=fp,job=job,
                 exception=type(exc).__name__,message=str(exc),traceback=traceback.format_exc()))
             return dict(id=job["id"],status="failed",error=str(exc))
         finally:
-            try:
-                if engine is not None:engine.close()
-            finally:os.chdir(previous)
+            faulthandler.disable();crash_log.close()
+            os.chdir(previous)
 
 
 def results(output,stage,fp):
@@ -163,12 +203,40 @@ def run_stage(cfg,stage,fp,budget):
                 for future in done:
                     item=running.pop(future)
                     try:status=future.result()
+                    except BrokenProcessPool as exc:
+                        # One native death invalidates every in-flight future.
+                        # Record all interrupted jobs before leaving the pool;
+                        # submitting another job here hides the original failure.
+                        exitcodes={str(p.pid):p.exitcode for p in (getattr(pool,"_processes",None) or {}).values()}
+                        trace=traceback.format_exc()
+                        for interrupted in [item,*running.values()]:
+                            path=result_path(output,interrupted)
+                            if path.exists():continue # Completed results remain authoritative.
+                            diagnostic=output/"scratch"/interrupted["stage"]/interrupted["id"]
+                            current=diagnostic/"dss/ac_current.json"
+                            record=dict(fingerprint=fp,job=interrupted,message=str(exc),exception=type(exc).__name__,
+                                traceback=trace,worker_exitcodes=exitcodes,diagnostic_directory=str(diagnostic),
+                                failure_scope="pool interrupted; this job is not necessarily the native crash origin")
+                            if current.exists():record["last_ac_operation"]=read_json(current)
+                            atomic_json(path.with_suffix(".error.json"),record)
+                            errors.append(dict(id=interrupted["id"],status="failed",error=str(exc)))
+                        raise RuntimeError(f"{stage}: native worker pool failed; interrupted jobs recorded, no replacement jobs submitted") from exc
                     except Exception as exc:
                         status=dict(id=item["id"],status="failed",error=str(exc))
                         atomic_json(result_path(output,item).with_suffix(".error.json"),
-                            dict(fingerprint=fp,job=item,message=str(exc),exception=type(exc).__name__,traceback=traceback.format_exc()))
+                            dict(fingerprint=fp,job=item,message=str(exc),exception=type(exc).__name__,traceback=traceback.format_exc(),
+                                 worker_exitcodes={str(p.pid):p.exitcode for p in (getattr(pool,"_processes",None) or {}).values()},
+                                 diagnostic_directory=str(output/"scratch"/item["stage"]/item["id"])))
                     completed+=1;print(f"{stage} {completed}/{len(pending)}: {status}",flush=True)
-                    if status["status"]=="failed":errors.append(status)
+                    if status["status"]=="failed":
+                        errors.append(status)
+                        for interrupted in running.values():
+                            path=result_path(output,interrupted)
+                            if path.exists():continue
+                            atomic_json(path.with_suffix(".error.json"),dict(fingerprint=fp,job=interrupted,
+                                exception="StageInterrupted",message=f"Stopped after {item['id']} failed; this sibling is not the failure origin",
+                                diagnostic_directory=str(output/"scratch"/interrupted["stage"]/interrupted["id"])))
+                        raise RuntimeError(f"{stage}: job {item['id']} failed; no replacement jobs submitted")
                     submit_one()
             pool.shutdown(wait=True)
         except BaseException:

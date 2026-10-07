@@ -21,6 +21,10 @@ centrality_seed = 20260930
 
 [power]
 model = "tamu_regional_opendss"
+reuse_circuit = true # restore original controls/actuators/voltages before each trial; false retains cold reference path
+isolate_states = true # one native process per uncached regional state; reuse still applies to trial scales inside it
+state_timeout_seconds = 600 # hard cap per native attempt; no skipped state or relaxed physics
+native_recovery_attempts = 1 # only signal crashes: one fresh recovery plus another matching independent solve; otherwise stop
 voltage_min_pu = 0.90
 voltage_max_pu = 1.10
 thermal_tolerance = 0.01
@@ -39,6 +43,7 @@ road_crews = 1
 power_repair_minutes = 20.0
 road_repair_minutes = 10.0
 horizon_minutes = 1440.0
+stop_at_horizon = true # false runs until all repairs finish; unreachable deadlock raises and preserves diagnostics
 depot_lon_lat = [-97.7431, 30.2672] # assumed dispatch location, NOT a verified depot
 shelter_lon_lat = [-97.7160, 30.2770] # assumed facility, NOT a verified shelter
 critical_sites_lon_lat = [[-97.7400, 30.3100], [-97.7700, 30.2400]] # assumed facilities; nearest distinct substations

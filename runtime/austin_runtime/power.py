@@ -5,15 +5,45 @@ open switches. It is a feasible heuristic, not an OPF or guaranteed optimum.
 """
 from __future__ import annotations
 import concurrent.futures as futures
-import math, multiprocessing, os, signal
-from collections import defaultdict
+import math, multiprocessing, os, signal, subprocess, sys, tempfile, time
+from collections import OrderedDict, defaultdict
 from pathlib import Path
-from .common import cached_json, digest, local_path, rows
+from .common import RUNTIME, atomic_json, cached_json, digest, local_path, read_json, rows
 from .progress import phase, report
+from .native_env import child_environment
 
 
 class PowerInfeasible(RuntimeError):
     pass
+
+
+class NativeACFailure(RuntimeError):
+    def __init__(self, message, *, returncode, directory, retryable):
+        super().__init__(message)
+        self.returncode=returncode;self.directory=Path(directory);self.retryable=retryable
+
+
+def physical_differences(actual, expected, path=""):
+    """Strict physical identity, with only the previously validated float tolerance.
+
+    Timing/counter/diagnostic metadata is excluded. Signals, topology, trial
+    outcomes, limits, served loads and every other physical field are compared.
+    """
+    if isinstance(expected,dict):
+        if not isinstance(actual,dict):return [path+": type mismatch"]
+        keys=set(expected)-{"performance"}
+        if set(actual)-{"performance"}!=keys:return [path+": keys differ"]
+        return [item for key in sorted(keys) for item in physical_differences(actual[key],expected[key],path+"/"+key)]
+    if isinstance(expected,list):
+        if not isinstance(actual,list) or len(actual)!=len(expected):return [path+": list length/type differs"]
+        return [item for i,(a,b) in enumerate(zip(actual,expected)) for item in physical_differences(a,b,path+f"/{i}")]
+    if isinstance(expected,float):
+        if (not isinstance(actual,(float,int)) or isinstance(actual,bool) or
+            not math.isfinite(actual) or not math.isfinite(expected) or
+            not math.isclose(actual,expected,rel_tol=1e-9,abs_tol=1e-8)):
+            return [path+": numeric mismatch"]
+    elif type(actual) is not type(expected) or actual!=expected:return [path+": value/type mismatch"]
+    return []
 
 
 _regional_engine = None
@@ -28,7 +58,9 @@ def _init_regional_worker(cfg, catalog, fingerprint, scratch, verbose):
 
 
 def _solve_regional_state(region, damage, fresh=False):
-    if fresh:return _regional_engine._operate(region,damage)
+    if fresh:
+        _regional_engine._loaded_region=None
+        return _regional_engine._compute(region,damage)
     return _regional_engine._regional_state(region,damage)
 
 
@@ -36,6 +68,7 @@ class PowerEngine:
     def __init__(self, cfg, catalog, fingerprint, scratch, *, region_workers=1, verbose=False):
         from opendssdirect import dss
         self.cfg=cfg["power"]; self.catalog=catalog; self.fingerprint=fingerprint
+        self._full_cfg=cfg
         self.verbose=verbose; self.region_workers=max(1,min(region_workers,len(catalog["regions"])))
         self._pool=None
         self._pool_args=(cfg,catalog,fingerprint,str(scratch),verbose)
@@ -43,6 +76,10 @@ class PowerEngine:
         self.scratch=Path(scratch); self.scratch.mkdir(parents=True,exist_ok=True)
         self.dss=dss.NewContext()
         self.version=self.dss.Basic.Version()
+        self._loaded_region=None; self._baseline=None
+        self._changed_enabled={}; self._changed_terminals={}
+        self.memory=OrderedDict()
+        self.stats=defaultdict(float)
         self.loads=defaultdict(dict)
         for r in rows(self.prepared/"load_catalog.csv.gz"):
             r["kw"]=float(r["kw"]); self.loads[r["region"]][r["load_id"]]=r
@@ -53,13 +90,24 @@ class PowerEngine:
 
     def _regional_state(self, region, damage):
         key=digest(dict(region=region,damage=damage,engine=self.version,settings=self.cfg))
+        if key in self.memory:
+            self.stats["memory_hits"]+=1
+            self.memory.move_to_end(key)
+            return self.memory[key]
+        path=self.cache/region/(key+".json")
+        if path.exists():self.stats["disk_hits"]+=1
         with phase(f"AC region {region}; damaged_assets={len(damage)}",enabled=self.verbose):
-            return cached_json(self.cache/region/(key+".json"),lambda:self._operate(region,damage))
+            result=cached_json(path,lambda:self._compute(region,damage))
+        self.memory[key]=result
+        if len(self.memory)>128:self.memory.popitem(last=False)
+        return result
 
     def fresh_region(self, region, damage):
         # Use an existing regional process, without creating another large native
         # circuit in the coordinator. This deliberately bypasses the state cache.
-        if self._pool is None:return self._operate(region,damage)
+        if self._pool is None:
+            self._loaded_region=None
+            return self._compute(region,damage)
         try:return self._pool.submit(_solve_regional_state,region,damage,True).result()
         except BaseException:
             self.close(cancel=True)
@@ -67,6 +115,9 @@ class PowerEngine:
 
     def close(self, *, cancel=False):
         pool,self._pool=self._pool,None
+        if hasattr(self,"dss"):
+            self.dss.Basic.ClearAll()
+            self._loaded_region=None; self._baseline=None
         if pool is None:return
         if cancel:
             for child in list((getattr(pool,"_processes",None) or {}).values()):
@@ -74,6 +125,99 @@ class PowerEngine:
                 except ProcessLookupError:child.terminate()
                 except PermissionError:child.terminate()
         pool.shutdown(wait=True,cancel_futures=cancel)
+
+    def _compute(self, region, damage):
+        if not getattr(self,"cfg",{}).get("isolate_states",False):return self._operate(region,damage)
+        started=time.monotonic()
+        try:return self._operate_isolated(region,damage)
+        except NativeACFailure as failure:
+            if not failure.retryable or self.cfg.get("native_recovery_attempts",0)!=1:raise
+            # Exactly one recovery, then an independent confirmation. Neither
+            # run uses cache; any second fault, timeout, or mismatch propagates.
+            audit=failure.directory/"recovery.json"
+            record=dict(status="running",region=region,damage=damage,initial_returncode=failure.returncode,
+                        initial_failure=str(failure),maximum_recovery_attempts=1,independent_confirmation_required=True)
+            atomic_json(audit,record)
+            report(f"AC {region}: native exit {failure.returncode}; one fresh recovery plus independent physical confirmation; {audit}")
+            try:
+                recovered=self._operate_isolated(region,damage)
+                record["recovery_directory"]=str(self._last_isolated_directory);atomic_json(audit,record)
+                confirmed=self._operate_isolated(region,damage)
+                record["confirmation_directory"]=str(self._last_isolated_directory)
+                differences=physical_differences(confirmed,recovered)
+                if differences:
+                    record["differences"]=differences
+                    raise RuntimeError(f"{region}: independent AC recovery results disagree; no cache write; {audit}")
+                self.stats["native_recovered_states"]+=1
+                elapsed=time.monotonic()-started
+                record.update(status="recovered_and_confirmed",physical_differences=[],wall_seconds=elapsed)
+                atomic_json(audit,record)
+                recovered["performance"].update(native_recovered_states=1,recovery_wall_seconds=elapsed,recovery_audit=str(audit))
+                self._mark("recovered_and_confirmed",region=region,damage=damage,audit=str(audit))
+                return recovered
+            except BaseException as exc:
+                record.update(status="failed",error=f"{type(exc).__name__}: {exc}",wall_seconds=time.monotonic()-started)
+                atomic_json(audit,record)
+                raise
+
+    def _operate_isolated(self, region, damage):
+        """A cache miss owns one fresh native process, including all trial scales.
+
+        Native circuits never survive across regional states. The caller retains
+        the normal cache lock; only a clean exit with a matching feasible result
+        can populate that cache. Recovery, if enabled, is handled by _compute;
+        this single attempt never retries or substitutes physics.
+        """
+        timeout=float(self.cfg["state_timeout_seconds"])
+        if not math.isfinite(timeout) or timeout<=0:raise ValueError("Invalid AC state timeout")
+        folder=Path(tempfile.mkdtemp(prefix=f"ac-{region}-",dir=self.scratch)).resolve()
+        self._last_isolated_directory=folder
+        request=dict(config=self._full_cfg,fingerprint=self.fingerprint,region=region,damage=damage,
+                     directory=str(folder),verbose=self.verbose)
+        token=digest(request);request_path=folder/"request.json";atomic_json(request_path,request)
+        env=dict(os.environ,PYTHONPATH=str(RUNTIME))
+        for name in ("OMP_NUM_THREADS","OPENBLAS_NUM_THREADS","MKL_NUM_THREADS","NUMEXPR_NUM_THREADS"):
+            env[name]="1"
+        env=child_environment(self._full_cfg,env)
+        started=time.monotonic();code=None;reason=None
+        self.stats["isolated_calls"]+=1
+        with (folder/"native.log").open("w") as log:
+            # Inherit this worker's process group so supervisor cancellation
+            # still owns the native child. This child creates no further solvers.
+            with subprocess.Popen([sys.executable,"-u","-m","austin_runtime.ac_worker",str(request_path)],
+                stdin=subprocess.DEVNULL,stdout=log,stderr=subprocess.STDOUT,cwd=RUNTIME,env=env) as child:
+                self._mark("isolated_running",region=region,damage=damage,child_pid=child.pid,directory=str(folder))
+                try:code=child.wait(timeout=timeout)
+                except subprocess.TimeoutExpired:
+                    child.kill();code=child.wait();reason=f"AC state exceeded {timeout:g}s hard timeout"
+                except BaseException:
+                    child.kill();child.wait();raise
+        elapsed=time.monotonic()-started;self.stats["isolated_wall_seconds"]+=elapsed
+        try:
+            if reason:raise RuntimeError(reason)
+            if code:raise RuntimeError(f"Native AC process exited {code}")
+            envelope=read_json(folder/"result.json");result=envelope["result"]
+            if (envelope["request_digest"]!=token or envelope["fingerprint"]!=self.fingerprint or
+                envelope.get("native_allocator_sha256")!=(self.cfg.get("native_allocator_sha256") or None) or
+                result["region"]!=region or result["damage"]!=damage or result["engine"]!=self.version or
+                not all(result.get(k) is True for k in ("feasible","converged","controls_settled"))):
+                raise ValueError("Native AC result identity or physical acceptance mismatch")
+            for key,value in result["performance"].items():self.stats[key]+=value
+            result["performance"].update(process_wall_seconds=elapsed,child_peak_rss_mib=envelope["peak_rss_mib"])
+            self._mark("complete",region=region,damage=damage,child_pid=child.pid,directory=str(folder),
+                       performance=result["performance"])
+            atomic_json(folder/"status.json",dict(status="passed",returncode=code,wall_seconds=elapsed))
+            return result
+        except Exception as exc:
+            diagnostic=dict(status="failed",returncode=code,wall_seconds=elapsed,region=region,damage=damage,
+                            error=f"{type(exc).__name__}: {exc}",request_digest=token)
+            marker=folder/"dss/ac_current.json"
+            if marker.exists():diagnostic["last_ac_operation"]=read_json(marker)
+            atomic_json(folder/"failure.json",diagnostic)
+            self._mark("isolated_failed",**diagnostic,directory=str(folder))
+            retryable=reason is None and code in (-signal.SIGILL,-signal.SIGABRT,-signal.SIGBUS,-signal.SIGFPE,-signal.SIGSEGV)
+            raise NativeACFailure(f"{region}: {exc}; AC diagnostics retained in {folder}",
+                                  returncode=code,directory=folder,retryable=retryable) from exc
 
     def evaluate(self, remaining):
         tasks=[]
@@ -107,14 +251,92 @@ class PowerEngine:
             zone_served_kw=dict(zones),substation_served_kw=dict(subs),signal_powered=signals,
             regions=[{k:v for k,v in r.items() if k not in ("zone_served_kw","substation_served_kw","signal_powered")} for r in results])
 
-    def _compile(self, region, damage, scale, closed):
+    def _capture_baseline(self):
+        """Capture mutable state of the frozen TAMU snapshot model, before faults.
+
+        Unsupported element classes take the original cold-compile path. This is
+        intentionally not a general OpenDSS state serializer (e.g. storage).
+        """
+        d=self.dss
+        supported={"vsource","line","transformer","load","regcontrol","capacitor","capcontrol","fuse"}
+        if any(name.split(".",1)[0].lower() not in supported for name in d.Circuit.AllElementNames()):
+            return None
+        taps={}
+        for r in d.RegControls:
+            name=r.Transformer().lower().removeprefix("transformer."); winding=r.TapWinding()
+            d.Transformers.Name(name); d.Transformers.Wdg(winding)
+            taps[(name,winding)]=d.Transformers.Tap()
+        return dict(taps=taps,caps=[(c.Name(),list(c.States())) for c in d.Capacitors],
+                    fuses=[(f.Name(),list(f.State())) for f in d.Fuses])
+
+    def _mark(self, stage, **detail):
+        # Survives a native abort/SIGKILL; heartbeats alone cannot identify the
+        # native operation which was active when a worker disappeared.
+        atomic_json(self.scratch/"ac_current.json",dict(stage=stage,pid=os.getpid(),unix_time=time.time(),**detail))
+
+    def _restore_baseline(self):
+        d=self.dss; baseline=self._baseline
+        # Enable precisely the objects changed by fault isolation, then restore
+        # controller internals AND actuator states. Reset alone does not undo taps.
+        for name,enabled in self._changed_enabled.items():
+            d.Circuit.SetActiveElement(name); d.CktElement.Enabled(enabled)
+        self._changed_enabled.clear()
+        d("Reset")
+        d.CtrlQueue.ClearQueue(); d.CtrlQueue.ClearActions()
+        for (name,winding),tap in baseline["taps"].items():
+            d.Transformers.Name(name); d.Transformers.Wdg(winding); d.Transformers.Tap(tap)
+        for name,states in baseline["caps"]:
+            d.Capacitors.Name(name); d.Capacitors.States(states)
+        for name,states in baseline["fuses"]:
+            d.Fuses.Name(name); d.Fuses.State(states)
+        for name,states in self._changed_terminals.items():
+            d.Circuit.SetActiveElement(name)
+            for terminal,conductor,opened in states:
+                (d.CktElement.Open if opened else d.CktElement.Close)(terminal,conductor)
+        self._changed_terminals.clear()
+        # Recreate the original healthy zero-load voltage initialization before
+        # applying faults. Do not start from the preceding solved voltages/taps.
+        d.Solution.LoadMult(1.)
+        d("CalcVoltageBases")
+
+    def _load_circuit(self, region, scale, closed):
         d=self.dss
         d.Basic.AllowChangeDir(False)
         d.Basic.DataPath(str(self.scratch))
         master=self.prepared/"models"/region/"Master_runtime.dss"
+        reuse=(getattr(self,"_loaded_region",None)==region and self._baseline is not None
+               and self.cfg.get("reuse_circuit",True))
+        started=time.monotonic()
+        self._mark("reset" if reuse else "load",region=region,scale=scale,closed=closed)
+        if reuse:
+            try:self._restore_baseline()
+            except BaseException:
+                self._loaded_region=None
+                raise
+            self.stats["circuit_resets"]+=1
+            self.stats["reset_seconds"]+=time.monotonic()-started
+            return
+        self._loaded_region=None
         with phase(f"AC {region}: load circuit / voltage bases; load_scale={scale}; ties={len(closed)}",
                    enabled=getattr(self,"verbose",False)):
             d(f'Redirect "{master}"')
+        self._changed_enabled={}; self._changed_terminals={}
+        self._baseline=self._capture_baseline() if getattr(self,"cfg",{}).get("reuse_circuit",True) else None
+        self._loaded_region=region
+        if hasattr(self,"stats"):
+            self.stats["circuit_loads"]+=1
+            self.stats["load_seconds"]+=time.monotonic()-started
+
+    def _disable(self, name):
+        d=self.dss
+        d.Circuit.SetActiveElement(name)
+        if d.CktElement.Name().lower()!=name.lower():raise ValueError("Component not found: "+name)
+        self._changed_enabled.setdefault(name,d.CktElement.Enabled())
+        d("Disable "+name)
+
+    def _compile(self, region, damage, scale, closed):
+        self._load_circuit(region,scale,closed)
+        d=self.dss
         d.Basic.DataPath(str(self.scratch))
         d("Set mode=snapshot controlmode=static maxcontroliter=100 maxiterations=100")
         d.Solution.LoadMult(scale)
@@ -122,18 +344,20 @@ class PowerEngine:
         for key,factor in damage.items():
             for name in self.catalog["assets"][key]["isolation_transformers"]:
                 if factor==0:
-                    d("Disable "+name); disabled.add(name.split(".",1)[1])
+                    self._disable(name); disabled.add(name.split(".",1)[1].lower())
                 else: deratings[name]=factor
         # Only disable a regulator controlling an isolated transformer. Cross-feeder
         # references elsewhere remain intact; no control object is deleted.
         for name in d.RegControls.AllNames():
             if name.lower()=="none":continue
             d.RegControls.Name(name)
-            if d.RegControls.Transformer().lower().removeprefix("transformer.") in disabled: d("Disable RegControl."+name)
+            if d.RegControls.Transformer().lower().removeprefix("transformer.") in disabled: self._disable("RegControl."+name)
         for name in closed:
             d.Circuit.SetActiveElement(name)
             if d.CktElement.Name().lower()!=name.lower():raise ValueError("Switch not found: "+name)
             if not d.CktElement.Enabled():raise ValueError("Cannot close disabled component: "+name)
+            self._changed_terminals[name]=[(t,c,d.CktElement.IsOpen(t,c)) for t in (1,2)
+                                          for c in range(1,d.CktElement.NumConductors()+1)]
             for terminal in (1,2): d.CktElement.Close(terminal,0)
         expected=self.loads[region]
         if d.Loads.Count()!=len(expected):
@@ -210,16 +434,23 @@ class PowerEngine:
         for scale in self.cfg["load_scales"]:
             deratings,disabled=self._compile(region,damage,scale,closed)
             try:
+                started=time.monotonic()
+                self._mark("solve",region=region,scale=scale,damage=damage,closed=closed)
                 with phase(f"AC {region}: power flow; load_scale={scale}; ties={len(closed)}",enabled=self.verbose):
                     self.dss.Solution.Solve()
+                self.stats["solve_seconds"]+=time.monotonic()-started
+                self.stats["solve_calls"]+=1
                 if not self.dss.Solution.Converged() or not self.dss.Solution.ControlActionsDone():
                     raise PowerInfeasible("Power flow or controller iteration did not converge")
                 for name in disabled:
                     self.dss.Circuit.SetActiveElement("Transformer."+name)
                     if self.dss.CktElement.Name().lower()!="transformer."+name or self.dss.CktElement.Enabled():
                         raise ValueError("Fault isolation failed: "+name)
+                started=time.monotonic()
+                self._mark("measure",region=region,scale=scale,damage=damage,closed=closed)
                 with phase(f"AC {region}: check voltages / thermal limits / balance",enabled=self.verbose):
                     result=self._measure(region,scale,closed,deratings)
+                self.stats["measure_seconds"]+=time.monotonic()-started
                 if self.verbose:report(f"AC {region}: load_scale={scale}, feasible={result['feasible']}")
                 result["isolated_transformers"]=sorted(disabled)
                 result["rating_derating_factors"]=deratings
@@ -251,6 +482,7 @@ class PowerEngine:
         return sorted(candidates)
 
     def _operate(self, region, damage):
+        started=time.monotonic(); before=dict(self.stats)
         best=self._feasible(region,damage,[]); evaluations=[]
         for iteration in range(self.cfg["max_switch_closures"]):
             # Reestablish the best state before identifying energized/dark endpoints.
@@ -268,4 +500,7 @@ class PowerEngine:
         best["switch_trials"]=evaluations
         best["damage"]=damage
         best["operator"]="descending uniform-curtailment grid plus limited greedy existing-tie closure; no optimality claim"
+        best["performance"]={k:v-before.get(k,0) for k,v in self.stats.items()}
+        best["performance"]["wall_seconds"]=time.monotonic()-started
+        self._mark("complete",region=region,damage=damage,performance=best["performance"])
         return best

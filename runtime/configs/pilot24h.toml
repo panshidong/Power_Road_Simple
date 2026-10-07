@@ -1,0 +1,23 @@
+# Core feasibility pilot, not the full research matrix or a final inference set.
+# Use background_run.py prepare --profile core --max-run-hours 24 with this file.
+# Default research.toml physics, TAP-B gap=1e-4, seeds and damage generator persist.
+# The cap preserves completed work; it does not guarantee all jobs finish in 24h.
+[runtime]
+output = "output/pilot24h"
+
+[task_a]
+construction_scenarios = 24
+evaluation_scenarios = 24
+shift_scenarios = 1 # omitted from the core launch profile
+shapley_permutations = 16
+checkpoints = [8, 16, 24]
+representative_cases = 1
+
+[task_b]
+scenarios = 6
+sa_iterations = 12
+representative_scenario = 1
+# Keep temperature/cooling fixed: this is a truncated search, not equal-quality SA.
+
+[task_c]
+sensitivity_scenarios = 1 # omitted from the core launch profile
