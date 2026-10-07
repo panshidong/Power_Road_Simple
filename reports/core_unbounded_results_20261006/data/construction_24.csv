@@ -1,0 +1,25 @@
+﻿job_id,scenario_id,scenario_seed,damaged_power,damaged_road,permutations,wall_seconds,method
+main_00001_construct_2a1e8814a681,main_00001,20263001,12,8,16,11918.892917546997,E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions
+main_00002_construct_1b61cb46da94,main_00002,20263002,10,8,16,9701.337113784,E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions
+main_00003_construct_0e452301ae5b,main_00003,20263003,14,8,16,10983.876025596997,E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions
+main_00004_construct_ed46ded1a482,main_00004,20263004,12,5,16,11630.547966437996,E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions
+main_00005_construct_6c2bf80a6895,main_00005,20263005,14,9,16,11745.691612524999,E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions
+main_00006_construct_419e08831036,main_00006,20263006,13,6,16,13134.671123175998,E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions
+main_00007_construct_7f60a7cd8af0,main_00007,20263007,12,13,16,12866.66588842601,E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions
+main_00008_construct_ac8229ffefa4,main_00008,20263008,8,5,16,5418.627425854007,E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions
+main_00009_construct_46010c88fb40,main_00009,20263009,13,7,16,12066.160229722998,E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions
+main_00010_construct_8d63add91891,main_00010,20263010,8,3,16,3018.167277379005,E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions
+main_00011_construct_a58b95d1cc1e,main_00011,20263011,10,6,16,11376.485604953996,E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions
+main_00012_construct_74d722ce2302,main_00012,20263012,12,9,16,14920.326257055,E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions
+main_00013_construct_525184f98b94,main_00013,20263013,10,11,16,11224.795355613998,E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions
+main_00014_construct_4a0735b16958,main_00014,20263014,13,8,16,11825.147625742,E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions
+main_00015_construct_2ce39089dde3,main_00015,20263015,14,5,16,8325.24814310101,E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions
+main_00016_construct_346315cb3d90,main_00016,20263016,11,12,16,10107.345880103006,E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions
+main_00017_construct_13bf21a0e201,main_00017,20263017,14,10,16,11778.28956084,E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions
+main_00018_construct_fb6e54a4b92e,main_00018,20263018,8,7,16,5576.524071581007,E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions
+main_00019_construct_d7c73368ceaa,main_00019,20263019,8,5,16,5883.372786657987,E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions
+main_00020_construct_0b456bbf7184,main_00020,20263020,9,10,16,8352.31607329,E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions
+main_00021_construct_643ac4ab1023,main_00021,20263021,10,11,16,12954.484101260998,E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions
+main_00022_construct_2264e50d49a0,main_00022,20263022,8,9,16,7590.853520326011,E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions
+main_00023_construct_f29d19cc962e,main_00023,20263023,11,10,16,8285.46941210101,E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions
+main_00024_construct_304cb91ae352,main_00024,20263024,14,12,16,11644.025528453,E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions

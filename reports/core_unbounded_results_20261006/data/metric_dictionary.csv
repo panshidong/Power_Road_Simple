@@ -1,0 +1,30 @@
+﻿field,label,definition
+triangle_area,综合损失面积,∫[(1−P)+(1−R)]dt；模型分钟；越小越好
+weighted_triangle_area,重要负荷与避难所加权损失,∫[(1−R)+(1−加权P)+(1−避难所可达性)]dt；权重与普通面积不同
+power_loss,电力损失面积,P 相对于可行健康 AC 供电，而非名义负荷
+road_loss,交通损失面积,"R=健康总出行成本/当前总出行成本，截断到[0,1]"
+gini_restore,区域 CRI 首次恢复时间 Gini,包含初始已达90%阈值、恢复时间为0的区域；不是居民收入Gini
+var_restore,区域首次恢复时间方差,模型分钟²
+p90_restore / p95_restore,区域 CRI 首次恢复时间分位数,阈值0.9；未达到者填入结束时间，并另记删失数
+p90_access_restore / p95_access_restore,区域可达性首次恢复时间分位数,模型分钟；大量初始达标区会产生0
+gini_access_restore,可达性首次恢复时间 Gini,包含初始达标区及截止时间代入的删失区
+min_time_avg_cri,区域时间平均 CRI 的最小值,越大越好；平均区间为该条轨迹的完成/截止时间，不统一为24h
+mean_time_avg_cri,区域时间平均 CRI 的均值,同上；CRI=0.133×相对供电+0.867×相对可达性
+maximin_time_avg_cri_loss,最弱区域时间平均 CRI 损失,1−min_time_avg_cri；越小越好
+gini_final_cri / mean_final_cri / min_final_cri,终态区域 CRI 的 Gini/均值/最小值,本版终态为全部修复完成
+shelter_access_initial / shelter_access_final,避难所起始/终态可达性,"从仓库出发，健康最短路成本/当前成本，截断到[0,1]"
+completion_or_censor_time,本版全部修复完成时间,模型分钟；须与complete/stop_reason一起读取
+censored_cri_zones / censored_access_zones,从未达到恢复阈值的区域数,与remaining资产数量不同
+final_power_relative / final_power_absolute,终态相对健康/相对名义供电比例,健康基准为名义需求的26.26915%；相对健康100%不等于名义需求全供
+remaining_power / remaining_road,本版完成后尚未完成的修复数量，均为0,同时包含已派出未完成与尚未派出任务
+residual_factor / initial_residual_factor,初始剩余能力因子,0为完全故障；大于0为部分能力；不能解读为损失百分比
+mean_reduction_ci95,配对平均改善的95% bootstrap区间,与该指标同单位；不是百分比区间；正值代表候选更好
+exact_sign_p,配对符号检验 p 值,检验胜负次数；不同于均值差检验；未作多重比较校正
+scenario_seed,场景唯一依据,main_00001在构表、A/C和B中对应不同seed；请连同scenario_group/stage使用
+power in original scenario_rows,求解器资源统计对象,不是供电性能；实际供电指标见power_loss及事件power_func
+recovery_mode / observation_horizon_minutes,运行停止条件,until_complete / null；仅全部修复后结束。本版没有观察窗。
+first_24h_* / after_24h_*,本版轨迹的面积分段,在本版已保存轨迹上以1440分钟分段积分；不重新优化或求解；不等于旧版结果。
+old_* / new_* / delta_*,新旧版本配对,old是8 worker、TAP-B4线程的限窗版；new是12 worker、TAP-B2线程的无窗版；delta=new−old。
+sequence_equal,新旧优先序是否一致,比较完整sequence字段；数值细微变化可影响分数、排序或SA路径；不意味着实际派工完全相同。
+end_minutes / end_hours,全部修复所需模型时间,机器计算用时单列为active_seconds；二者不可混淆。
+guardrail_violation,软约束违反量,0才达标；正值表示该场景最终解仍违反Gini目标，优化任务成功不等于约束达标。

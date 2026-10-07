@@ -1,0 +1,17 @@
+{
+  "archive": "Austin_unbounded_complete_results_20261006.zip",
+  "sha256": "610c354769782b4a767cd1bbbbf4f523b89ccd513971f937e8d9086126805dbe",
+  "bytes": 79296236,
+  "members": 556,
+  "original_result_jsons": 288,
+  "csv_files": 30,
+  "excel_sheets": 30,
+  "pdf_pages": 14,
+  "all_archive_member_hashes_verified": true,
+  "workbook_xml_verified": true,
+  "html_local_links_verified": true,
+  "original_results_unchanged": true,
+  "previous_results_unchanged": true,
+  "solvers_started": 0,
+  "verified_at": "2026-10-06T21:19:30.451782-05:00"
+}

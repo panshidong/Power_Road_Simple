@@ -1,0 +1,11 @@
+{
+  "source_zip": "reports/core_unbounded_results_20261006/Austin_unbounded_complete_results_20261006.zip",
+  "source_zip_sha256": "610c354769782b4a767cd1bbbbf4f523b89ccd513971f937e8d9086126805dbe",
+  "archive": "reports/core_unbounded_github_20261006/Austin_unbounded_complete_results_20261006.tar.xz",
+  "sha256": "801e2841af22628aa88f91a425f43108098edde525533f3d271f6d1b4e8b08a1",
+  "bytes": 30492588,
+  "members": 556,
+  "all_member_bytes_identical_to_original_zip": true,
+  "reason": "Lossless repack for GitHub connector per-call transport limit",
+  "solvers_started": 0
+}
