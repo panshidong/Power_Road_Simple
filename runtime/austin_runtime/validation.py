@@ -53,6 +53,11 @@ def validate(cfg,fp=None,budget=None):
         if len(healthy["power"]["regions"])!=6 or not all(r["feasible"] and r["served_kw"]>0 for r in healthy["power"]["regions"]):
             raise ValueError("Every one of the six healthy regions must supply positive load within AC limits")
         report["checks"].append("all six original regional circuits AC-feasible with explicitly recorded curtailment")
+        healthy_fraction=healthy["power"]["served_kw"]/healthy["power"]["nominal_kw"]
+        if cfg["power"].get("operator","uniform_grid")=="local":
+            # Limits referenced to the healthy base case: the undamaged grid must serve its full nominal load.
+            if healthy_fraction<0.999:raise ValueError(f"Local operator sheds the healthy grid: served fraction {healthy_fraction:.6f}")
+            report["checks"].append("healthy base case serves nominal load under base-case-referenced limits")
         counts=Counter(r["substation_id"] for r in catalog["signals"])
         sub=sorted(counts,key=lambda s:(-counts[s],s))[0];asset="power:"+sub
         mark("full_substation_fault")
@@ -73,7 +78,13 @@ def validate(cfg,fp=None,budget=None):
         with phase(f"validation partial derating: {asset}"):
             partial=engine.power.evaluate({asset:.5})
         if not all(r["feasible"] for r in partial["regions"]):raise ValueError("Partial transformer derating is infeasible")
+        if cfg["power"].get("operator","uniform_grid")=="local":
+            # Damage may never raise supply above the undamaged grid (the legacy uniform grid could).
+            for label,served in (("full fault",damaged["power"]["served_kw"]),("partial derating",partial["served_kw"])):
+                if served>healthy["power"]["served_kw"]*(1+1e-9)+1e-6:raise ValueError(f"Non-monotone power operator: {label} serves more than the healthy grid")
+            report["checks"].append("full fault and partial derating serve no more than the healthy grid")
         report.update(passed=True,status="passed",phase="complete",healthy_served_kw=healthy["power"]["served_kw"],nominal_kw=healthy["power"]["nominal_kw"],
+            healthy_served_fraction=healthy_fraction,power_operator=cfg["power"].get("operator","uniform_grid"),
             healthy_power_regions=healthy["power"]["regions"],healthy_traffic=healthy["traffic"].report,
             tested_substation=sub,full_fault_served_kw=damaged["power"]["served_kw"],partial_fault_served_kw=partial["served_kw"],
             damaged_traffic=damaged["traffic"].report,restoration_round_trip_served_kw=restored["served_kw"],

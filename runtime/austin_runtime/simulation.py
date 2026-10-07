@@ -22,6 +22,30 @@ def ratio(reference, current):
     return max(0.0,min(1.0,reference/max(current,1e-12)))
 
 
+def crew_counts(cfg, damage):
+    """Crews per trade. ``per_damage`` mobilises one crew per ``<trade>_units_per_crew``
+    initially damaged units (at least one when the trade has damage, at most
+    ``max_crews_per_trade``); ``fixed`` keeps the configured constant counts."""
+    r=cfg["recovery"]
+    if r.get("crew_model","fixed")=="fixed":return {"power":r["power_crews"],"road":r["road_crews"]}
+    counts={}
+    for kind in ("power","road"):
+        units=sum(1 for key in damage if key.startswith(kind+":"))
+        counts[kind]=min(r["max_crews_per_trade"],math.ceil(units/r[kind+"_units_per_crew"])) if units else 0
+    return counts
+
+
+def repair_minutes(cfg, kind, factor):
+    """On-site repair duration. ``severity``: a failed unit (remaining factor 0)
+    takes ``<trade>_repair_minutes_full``; a partially damaged one interpolates
+    ``<trade>_repair_minutes_partial`` = [least, most] by lost capacity 1-factor."""
+    r=cfg["recovery"]
+    if r.get("repair_time_model","fixed")=="fixed":return r[kind+"_repair_minutes"]
+    if factor<=0:return r[kind+"_repair_minutes_full"]
+    least,most=r[kind+"_repair_minutes_partial"]
+    return least+(most-least)*min(1.0,max(0.0,1.0-factor))
+
+
 def gini(values):
     x=np.sort(np.asarray(values,dtype=float)); n=len(x)
     return float(2*np.dot(np.arange(1,n+1),x)/(n*x.sum())-(n+1)/n) if n and x.sum()>0 else 0.0
@@ -60,7 +84,7 @@ class Coupled:
         return dict(power=power,traffic=traffic,power_func=p,road_func=r,electric=electric,access=access)
 
     def site_travel(self,traffic,origin,asset,roundtrip_lastmile=False):
-        info=self.catalog["assets"][asset];cost,target=traffic.travel(origin,info["targets"])
+        info=self.catalog["assets"][asset];cost,target=traffic.travel(origin,info["targets"],crew=True)
         extra=info["offroad_m"]/(self.cfg["recovery"]["offroad_speed_kph"]*1000/60)
         return cost*self.cfg["traffic"]["time_to_minutes"]+extra*(2 if roundtrip_lastmile else 1),target
 
@@ -94,9 +118,9 @@ class Coupled:
         recovery=self.cfg["recovery"];remaining=dict(scenario["damage"]);pending=list(sequence)
         horizon=recovery["horizon_minutes"] if recovery.get("stop_at_horizon",True) else None
         critical=critical if critical is not None else self.catalog["critical_substations"]
-        crews=[]
+        crews=[];counts=crew_counts(self.cfg,scenario["damage"])
         for kind in ("power","road"):
-            for i in range(recovery[kind+"_crews"]):
+            for i in range(counts[kind]):
                 crews.append(dict(id=f"{kind}-{i}",kind=kind,node=self.depot,job=None,finish=None,target=None))
         time=0.0;events=[];dispatch=[];state=self.state(remaining,penalty);stop="completed"
         while True:
@@ -121,11 +145,12 @@ class Coupled:
                     choice=min(eligible,key=lambda item:(-gains[item[1]],item[1]))
                 else:choice=eligible[0]
                 _,asset,travel,target=choice;pending.remove(asset)
-                finish=time+travel+recovery[crew["kind"]+"_repair_minutes"]
+                duration=repair_minutes(self.cfg,crew["kind"],scenario["damage"][asset])
+                finish=time+travel+duration
                 if not math.isfinite(finish) or finish<=time:
                     raise ValueError(f"Nonfinite or nonadvancing repair finish for {asset}: {finish}")
                 dispatch.append(dict(time=time,crew=crew["id"],asset=asset,origin=crew["node"],target=target,
-                    travel_minutes=travel,finish=finish,gain=gains.get(asset),candidate_gains=gains))
+                    travel_minutes=travel,repair_minutes=duration,finish=finish,gain=gains.get(asset),candidate_gains=gains))
                 crew.update(job=asset,finish=finish,target=target)
             busy=[c for c in crews if c["job"] is not None]
             if not busy:
@@ -145,7 +170,7 @@ class Coupled:
             state=self.state(remaining,penalty)
         metrics=measure(events,self.zones,equity or self.cfg["equity"])
         return dict(scenario_id=scenario["id"],scenario_seed=scenario["seed"],sequence=sequence,events=events,
-            dispatch=dispatch,metrics=metrics,stop_reason=stop,complete=not remaining,remaining=list(remaining),
+            dispatch=dispatch,metrics=metrics,stop_reason=stop,complete=not remaining,remaining=list(remaining),crews=counts,
             recovery_mode="fixed_horizon" if horizon is not None else "until_complete",observation_horizon_minutes=horizon,
             zones=self.zones,excluded_baseline_zones=self.excluded_zones,
             healthy_served_fraction=self.healthy_power["served_kw"]/self.healthy_power["nominal_kw"])

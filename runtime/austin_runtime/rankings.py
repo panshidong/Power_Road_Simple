@@ -11,8 +11,12 @@ def construct(engine,scenario,cfg,checkpoint_path,signature):
     if checkpoint_path.exists():
         progress=read_json(checkpoint_path)
         if progress["signature"]!=signature:raise ValueError("Construction checkpoint fingerprint mismatch")
+    antithetic=cfg["task_a"].get("antithetic_permutations",False)
     for index in range(progress["permutations"],count):
-        permutation=assets.copy();random.Random(scenario["seed"]+303+index*1000003).shuffle(permutation)
+        # Antithetic pairs: every odd permutation is the reverse of the preceding one.
+        base=index-1 if antithetic and index%2 else index
+        permutation=assets.copy();random.Random(scenario["seed"]+303+base*1000003).shuffle(permutation)
+        if base!=index:permutation.reverse()
         repaired=set(); previous=engine.coalition(scenario,repaired);initial=previous; total=[0.,0.]
         for a in permutation:
             repaired.add(a);current=engine.coalition(scenario,repaired)
@@ -27,8 +31,9 @@ def construct(engine,scenario,cfg,checkpoint_path,signature):
         key="IJSH" if alpha==1 else f"IJSH_a{alpha:g}"
         scores[key]={a:(v[0]+alpha*v[1])/(1+alpha) for a,v in averages.items()}
     se={a:[math.sqrt(max(0.,(progress["squares"][a][j]-progress["sums"][a][j]**2/count)/max(count-1,1))/count) for j in (0,1)] for a in assets}
-    return dict(scenario=scenario,scores=scores,permutations=count,mc_standard_errors_joint_and_access=se,
-        method="E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions")
+    return dict(scenario=scenario,scores=scores,permutations=count,mc_standard_errors_joint_and_access=se,antithetic=antithetic,
+        method="E[scenario permutation marginal | asset damaged]; JSH and IJSH share exactly the same coalitions"
+               +("; antithetic permutation pairs (the i.i.d. standard error is conservative)" if antithetic else ""))
 
 
 def aggregate(records,cfg,catalog):
@@ -55,21 +60,29 @@ def order(assets,strategy,tables,catalog,cfg,od_scores=None):
     if strategy.startswith("OD_"):power_rule=strategy[3:];road_rule="OD"
     if strategy=="MIX_IJSHroad_JSHpower":power_rule="JSH";road_rule="IJSH"
     if strategy=="MIX_JSHroad_IJSHpower":power_rule="IJSH";road_rule="JSH"
-    scores={}
+    def table_score(rule,a):
+        if a in tables[rule]:return tables[rule][a]
+        if cfg["task_a"]["unseen_asset_policy"]!="centrality_fallback_recorded":raise ValueError(f"Missing {rule} score for {a}")
+        if a not in missing:missing.append(a)
+        return catalog["centrality"][a]
+    # OD scores are zero for every road off the selected paths. Legacy ordered those
+    # ties by asset name; base_rule orders them by the paired table's road score.
+    tie_break=road_rule=="OD" and cfg["task_c"].get("od_tie_break","asset_id")=="base_rule"
+    scores={};secondary={}
     for a in assets:
         rule=power_rule if a.startswith("power:") else road_rule
-        if rule=="OD":scores[a]=(od_scores or {}).get(a,0.0)
-        elif a in tables[rule]:scores[a]=tables[rule][a]
-        else:
-            if cfg["task_a"]["unseen_asset_policy"]!="centrality_fallback_recorded":raise ValueError(f"Missing {rule} score for {a}")
-            missing.append(a);scores[a]=catalog["centrality"][a]
-    return sorted(assets,key=lambda a:(-scores[a],a)),missing
+        if rule=="OD":
+            scores[a]=(od_scores or {}).get(a,0.0)
+            if tie_break:secondary[a]=table_score(power_rule,a)
+        else:scores[a]=table_score(rule,a)
+    return sorted(assets,key=lambda a:(-scores[a],-secondary.get(a,0.0),a)),missing
 
 
-def critical_set(catalog,tag):
+def critical_set(catalog,tag,cfg=None):
     powers=sorted(k for k,a in catalog["assets"].items() if a["kind"]=="power")
     critical=list(catalog["critical_substations"]); destinations=[catalog["shelter"]]
-    pair_mode="all_pairs" if tag=="allpairs" else "depot_to_critical"
+    default=(cfg or {}).get("task_c",{}).get("default_pairs","depot_to_critical")
+    pair_mode="all_pairs" if tag=="allpairs" else default if tag=="default" else "depot_to_critical"
     if tag=="central":critical=[a.split(":",1)[1] for a in sorted(powers,key=lambda a:(-catalog["centrality"][a],a))[:2]]
     elif tag=="roadcentral":
         scores=defaultdict(float)
@@ -85,11 +98,15 @@ def critical_set(catalog,tag):
         critical=[];destinations=sorted({n for a in catalog["assets"].values() if a["kind"]=="road" for n in a["targets"]})
     destinations += [catalog["assets"]["power:"+sid]["targets"][0] for sid in critical]
     destinations=sorted(set(destinations)-{catalog["depot"]})
-    return dict(critical_substations=critical,destinations=destinations,pair_mode=pair_mode,tag=tag)
+    selection=dict(critical_substations=critical,destinations=destinations,pair_mode=pair_mode,tag=tag)
+    if pair_mode=="zones_to_essential":
+        # Every loaded TAZ to its nearest essential site: the trips the CRI access term measures.
+        selection["zones"]=sorted(int(z) for z,kw in catalog["zone_nominal_kw"].items() if kw>0)
+    return selection
 
 
 def od_table(catalog,cfg,fingerprint,tag="default",k=None):
-    k=k or cfg["task_c"]["k"]; selection=critical_set(catalog,tag)
+    k=k or cfg["task_c"]["k"]; selection=critical_set(catalog,tag,cfg)
     key=digest(dict(selection=selection,k=k,weights=cfg["task_c"]["path_weights"]))
     path=local_path(cfg,"cache")/fingerprint/"od"/(key+".json")
     def compute():
@@ -105,6 +122,22 @@ def od_table(catalog,cfg,fingerprint,tag="default",k=None):
         depot=catalog["depot"];destinations=selection["destinations"]
         pairs=([(o,d) for o in [depot]+destinations for d in [depot]+destinations if o!=d]
             if selection["pair_mode"]=="all_pairs" else [(depot,d) for d in destinations])
+        if selection["pair_mode"]=="zones_to_essential":
+            # A zone enters the physical network only through its own connectors, so a
+            # zone source node has no incoming arcs and no path can pass through a TAZ.
+            connectors=defaultdict(list);zones=set(selection["zones"])
+            for r in rows(AUSTIN/"data/processed/road/links.csv"):
+                if r["centroid_connector"]=="1" and int(r["from_node"]) in zones:
+                    connectors[int(r["from_node"])].append((int(r["to_node"]),float(r["free_flow_time_source"])))
+            for zone,arcs in connectors.items():
+                for node,cost in arcs:
+                    if node in graph:graph.add_edge(("zone",zone),node,weight=cost)
+            nearest={}
+            _,paths=nx.multi_source_dijkstra(graph.reverse(copy=False),set(destinations),weight="weight")
+            for zone in selection["zones"]:
+                if ("zone",zone) in paths:nearest[zone]=paths[("zone",zone)][0]
+            pairs+=[(("zone",zone),nearest[zone]) for zone in selection["zones"] if zone in nearest]
+            unconnected=[zone for zone in selection["zones"] if zone not in nearest]
         weights=cfg["task_c"]["path_weights"];scores=defaultdict(float);unreachable=[];path_count=0
         for origin,destination in pairs:
             try:
@@ -112,8 +145,11 @@ def od_table(catalog,cfg,fingerprint,tag="default",k=None):
                 for rank,path_nodes in enumerate(paths):
                     weight=weights[min(rank,len(weights)-1)];path_count+=1
                     for node in path_nodes:
-                        if isinstance(node,tuple) and node[1] in owner:scores[owner[node[1]]]+=weight
+                        if isinstance(node,tuple) and node[0]=="arc" and node[1] in owner:scores[owner[node[1]]]+=weight
             except (nx.NetworkXNoPath,nx.NodeNotFound):unreachable.append([origin,destination])
+        if selection["pair_mode"]=="zones_to_essential":
+            unreachable+=[[["zone",zone],None] for zone in unconnected]
         return dict(scores=dict(scores),selection=selection,k=k,od_pairs=len(pairs),paths=path_count,unreachable_pairs=unreachable,
+            scored_road_groups=sum(1 for v in scores.values() if v>0),
             score_method="sum path-rank weights across arc identities, then aggregate to physical road groups")
     return cached_json(path,compute)

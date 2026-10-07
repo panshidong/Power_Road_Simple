@@ -1,0 +1,5 @@
+# Full research matrix with the corrected 2026-10-07 model. Not for performance probing.
+extends = ["model-v2.toml"]
+[runtime]
+output = "output/research-v2"
+prepared = "prepared-v2"

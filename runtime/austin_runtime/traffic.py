@@ -8,18 +8,29 @@ from .progress import phase
 
 
 class TrafficState:
-    def __init__(self, links, costs, flows, factors, report, first_thru=1118):
+    def __init__(self, links, costs, flows, factors, report, first_thru=1118, crew_costs=None):
         self.costs=costs; self.flows=flows; self.factors=factors; self.report=report; self.first_thru=first_thru
-        self.forward=defaultdict(list); self.reverse=defaultdict(list); self._distances={}
-        for r,c,f in zip(links,costs,factors):
+        self._links=links; self.crew_costs=crew_costs; self._crew=None
+        self.forward,self.reverse=self._graph(costs); self._distances={}
+
+    def _graph(self, costs):
+        forward=defaultdict(list); reverse=defaultdict(list)
+        for r,c,f in zip(self._links,costs,self.factors):
             if f<=0:continue # Closed arcs remain a penalty device in assignment, never in crew routing.
             u,v,i=int(r["from_node"]),int(r["to_node"]),int(r["link_id"])
-            self.forward[u].append((v,float(c),i)); self.reverse[v].append((u,float(c),i))
+            forward[u].append((v,float(c),i)); reverse[v].append((u,float(c),i))
+        return forward,reverse
 
-    def distances(self, sources, reverse=False):
-        sources=tuple(sorted(set(sources))); key=(sources,reverse)
+    def distances(self, sources, reverse=False, crew=False):
+        """Shortest times. ``crew`` uses the crew cost vector when one is configured
+        (assignment costs capped at a multiple of free-flow time); otherwise the
+        equilibrium costs that also define community access."""
+        crew=bool(crew and self.crew_costs is not None)
+        sources=tuple(sorted(set(sources))); key=(sources,reverse,crew)
         if key in self._distances:return self._distances[key]
-        adjacency=self.reverse if reverse else self.forward
+        if crew and self._crew is None:self._crew=self._graph(self.crew_costs)
+        forward,backward=self._crew if crew else (self.forward,self.reverse)
+        adjacency=backward if reverse else forward
         dist={s:0.0 for s in sources}; heap=[(0.0,s) for s in sources]; heapq.heapify(heap)
         while heap:
             value,u=heapq.heappop(heap)
@@ -32,8 +43,8 @@ class TrafficState:
         self._distances[key]=dist
         return dist
 
-    def travel(self, origin, targets):
-        dist=self.distances([origin]); reachable=[(dist.get(t,math.inf),t) for t in targets]
+    def travel(self, origin, targets, crew=False):
+        dist=self.distances([origin],crew=crew); reachable=[(dist.get(t,math.inf),t) for t in targets]
         return min(reachable) if reachable else (math.inf,origin)
 
 
@@ -42,6 +53,7 @@ class TrafficEngine:
         self.verbose=verbose
         self.cfg=cfg; self.catalog=catalog; self.scratch=Path(scratch);self.scratch.mkdir(parents=True,exist_ok=True)
         self.links=list(rows(AUSTIN/"data/processed/road/links.csv"))
+        self.free_flow=np.asarray([float(r["free_flow_time_source"]) for r in self.links])
         self.net=AUSTIN/"data/processed/road/Austin_net.tntp";self.trips=AUSTIN/"data/processed/road/Austin_trips.tntp"
         self.binary=RUNTIME/"build/tap-b/bin/tap"
         if not self.binary.is_file():raise FileNotFoundError("Build native TAP-B with runtime/setup.sh on the destination host")
@@ -81,7 +93,12 @@ class TrafficEngine:
                     os.replace(name,path)
                 finally:
                     if os.path.exists(name):os.unlink(name)
-        state=TrafficState(self.links,costs,flows,factors,report)
+        crew=None
+        if self.cfg["recovery"].get("crew_travel_cost","congested")=="capped_congestion":
+            # Static peak-period BPR costs reach >200x free flow on overloaded arcs;
+            # crew vehicles are routed on those costs capped at a fixed multiple.
+            crew=np.minimum(costs,self.cfg["recovery"]["crew_congestion_cap"]*self.free_flow)
+        state=TrafficState(self.links,costs,flows,factors,report,crew_costs=crew)
         self.memory[key]=state
         if len(self.memory)>8:self.memory.popitem(last=False)
         return state

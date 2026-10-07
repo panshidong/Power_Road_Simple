@@ -1,0 +1,52 @@
+# Corrected model settings (2026-10-07), shared by the *-v2 run configurations via
+#   extends = ["model-v2.toml"]
+# research.toml keeps the 2026-10-06 semantics so historical configurations and their
+# tests still mean what they ran. Rationale and evidence: runtime/MODEL_FIXES_20261007.md.
+
+[power]
+# Normal rating of an element = max(nameplate, healthy base-case loading). The published
+# TAMU base case already loads some substation transformers and 69 kV lines at 2-4.7x
+# nameplate and holds some load nodes below 0.90 pu; those are data conditions, not
+# disaster effects, so the healthy grid serves its full nominal load. Damaged states are
+# checked against emergency ratings = emergency_factor x normal (TAMU transformers carry
+# EmergHKVA = 1.5 x kVA); a derated damaged transformer gets factor x normal, without
+# emergency loading. Violations shed only the loads downstream of the violated element;
+# a low load voltage sheds its own feeder stepwise; ties pick up dark load only within
+# spare capacity. The legacy "uniform_grid" lowered one multiplier for a whole region.
+operator = "local"
+limit_reference = "healthy_base_case"
+emergency_factor = 1.5
+max_shed_iterations = 10
+shed_safety = 0.98 # shed to 98 % of the violated limit, absorbing loss/voltage nonlinearity
+voltage_shed_step = 0.9 # feeder multiplier per iteration while one of its load nodes is below band
+
+[recovery]
+# One crew per 3 initially damaged units of a trade (>= 1 if the trade is damaged, <= 6).
+crew_model = "per_damage"
+power_units_per_crew = 3
+road_units_per_crew = 3
+max_crews_per_trade = 6
+# On-site repair in hours, by severity. A failed unit takes *_full; a partially damaged
+# one interpolates *_partial = [least, most] by lost capacity (1 - remaining factor).
+# Modelling assumptions chosen to be neither minutes nor weeks; not calibrated curves.
+repair_time_model = "severity"
+power_repair_minutes_full = 480.0 # failed substation transformer group: 8 h
+power_repair_minutes_partial = [120.0, 360.0] # derated group (remaining 0.2-0.8): 2.8-5.2 h
+road_repair_minutes_full = 240.0 # closed road group: 4 h
+road_repair_minutes_partial = [60.0, 180.0] # capacity-reduced group (remaining 0.1-0.5): 2-2.8 h
+# Crew routing on min(equilibrium cost, cap x free-flow time). Static peak-period BPR
+# costs reach >200x free flow on overloaded arcs (a 25-minute free-flow crew trip took
+# 822 minutes). Community access and TSTT keep the uncapped equilibrium costs.
+crew_travel_cost = "capped_congestion"
+crew_congestion_cap = 3.0
+
+[task_a]
+antithetic_permutations = true # each odd permutation is the reverse of the preceding one
+
+[task_c]
+# Depot -> each essential site, plus every loaded TAZ -> its nearest essential site (the
+# trips the CRI access term measures). The legacy set had 3 pairs and scored 75 of 8,414
+# road groups; 194 of 197 damaged roads in the 2026-10-06 run had OD score 0.
+default_pairs = "zones_to_essential"
+# Roads off every OD path keep the paired table's order instead of the asset-name order.
+od_tie_break = "base_rule"

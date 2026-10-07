@@ -1,0 +1,39 @@
+# Core A/B/C run after the 2026-10-07 model fixes (see runtime/MODEL_FIXES_20261007.md).
+# Model settings come from model-v2.toml: local power operator with healthy-base-case
+# limits, severity-based repair times, crews scaled to the damage, capped crew congestion,
+# zone-to-essential OD pairs with base-rule tie-breaking, antithetic Shapley permutations.
+extends = ["model-v2.toml"]
+# Same core stages, evaluation scenarios and Task B budget as core-unbounded-12; the
+# construction budget moves from permutations to scenarios (24x16 -> 72x4): the
+# 2026-10-06 tables showed between-scenario variance ~250x the 16-permutation MC variance.
+[runtime]
+output = "output/core-v2"
+prepared = "prepared-v2"
+workers = 12
+validation_power_workers = 2
+reserve_cpus = 0
+tapb_threads = 2
+memory_gb_per_worker = 4.0
+
+[power]
+native_allocator_path = "build/native/libjemalloc.so.2"
+native_allocator_sha256 = "c769f7591006b37ac8893a69a82fc40d5ac831e8e109670878c4e4d44c8a6ba9"
+
+[recovery]
+stop_at_horizon = false
+
+[task_a]
+construction_scenarios = 72
+evaluation_scenarios = 24
+shift_scenarios = 1
+shapley_permutations = 4
+checkpoints = [24, 48, 72]
+representative_cases = 1
+
+[task_b]
+scenarios = 6
+sa_iterations = 12
+representative_scenario = 1
+
+[task_c]
+sensitivity_scenarios = 1

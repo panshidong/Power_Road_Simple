@@ -56,7 +56,11 @@ def merge(a, b):
 def config(path=None):
     with (RUNTIME/"configs/research.toml").open("rb") as f: cfg = tomllib.load(f)
     if path:
-        with Path(path).open("rb") as f: cfg = merge(cfg, tomllib.load(f))
+        with Path(path).open("rb") as f: overlay = tomllib.load(f)
+        # An overlay may first merge shared model settings: extends = ["model-v2.toml"].
+        for name in overlay.pop("extends", []):
+            with (Path(path).parent/name).open("rb") as f: cfg = merge(cfg, tomllib.load(f))
+        cfg = merge(cfg, overlay)
     if cfg["power"]["model"] != "tamu_regional_opendss": raise ValueError("Only the physical TAMU engine is implemented")
     recovery_attempts=cfg["power"].get("native_recovery_attempts",0)
     if type(recovery_attempts) is not int or recovery_attempts not in (0,1):raise ValueError("Native AC recovery attempts must be 0 or 1")
@@ -67,8 +71,41 @@ def config(path=None):
     if cfg["runtime"]["workers"] < 0 or cfg["runtime"]["reserve_cpus"] < 0 or cfg["runtime"]["memory_gb_per_worker"] <= 0:
         raise ValueError("Invalid worker/resource budget")
     if cfg["runtime"]["jobs_per_worker_batch"] < 1: raise ValueError("jobs_per_worker_batch must be positive")
-    if any(cfg["recovery"][k] != 1 for k in ("power_crews", "road_crews")):
-        raise ValueError("The reproduced dispatch policy requires one crew per trade")
+    rec = cfg["recovery"]; power = cfg["power"]
+    def positive_int(value): return type(value) is int and value >= 1
+    def positive(value): return type(value) in (int, float) and math.isfinite(value) and value > 0
+    if rec.get("crew_model", "fixed") == "fixed":
+        if not all(positive_int(rec[k]) for k in ("power_crews", "road_crews")):
+            raise ValueError("Fixed crew counts must be positive integers")
+    elif rec["crew_model"] == "per_damage":
+        if not all(positive_int(rec.get(k)) for k in ("power_units_per_crew", "road_units_per_crew", "max_crews_per_trade")):
+            raise ValueError("per_damage crews need positive integer units_per_crew and max_crews_per_trade")
+    else: raise ValueError("recovery.crew_model must be fixed or per_damage")
+    if rec.get("repair_time_model", "fixed") == "severity":
+        for kind in ("power", "road"):
+            span = rec.get(kind+"_repair_minutes_partial")
+            if (not positive(rec.get(kind+"_repair_minutes_full")) or not isinstance(span, list) or len(span) != 2
+                or not all(positive(x) for x in span) or span[0] > span[1]):
+                raise ValueError(f"Severity repair times for {kind} need a positive full duration and [least, most] partial durations")
+    elif rec.get("repair_time_model", "fixed") != "fixed": raise ValueError("recovery.repair_time_model must be fixed or severity")
+    if rec.get("crew_travel_cost", "congested") == "capped_congestion":
+        if not positive(rec.get("crew_congestion_cap")) or rec["crew_congestion_cap"] < 1:
+            raise ValueError("crew_congestion_cap must be a multiple of free-flow time >= 1")
+    elif rec.get("crew_travel_cost", "congested") != "congested": raise ValueError("recovery.crew_travel_cost must be congested or capped_congestion")
+    if power.get("operator", "uniform_grid") == "local":
+        if power.get("limit_reference") != "healthy_base_case": raise ValueError("The local operator requires limit_reference = healthy_base_case")
+        if not positive_int(power.get("max_shed_iterations")) or not 0 < power.get("shed_safety", 0) <= 1 or not 0 < power.get("voltage_shed_step", 0) < 1:
+            raise ValueError("Local shedding needs max_shed_iterations >= 1, 0 < shed_safety <= 1 and 0 < voltage_shed_step < 1")
+        if not positive(power.get("emergency_factor")) or power["emergency_factor"] < 1:
+            raise ValueError("power.emergency_factor must be >= 1")
+    elif power.get("operator", "uniform_grid") != "uniform_grid": raise ValueError("power.operator must be uniform_grid or local")
+    if type(cfg["task_a"].get("antithetic_permutations", False)) is not bool or (
+        cfg["task_a"].get("antithetic_permutations", False) and cfg["task_a"]["shapley_permutations"] % 2):
+        raise ValueError("antithetic_permutations is a boolean and needs an even permutation count")
+    if cfg["task_c"].get("default_pairs", "depot_to_critical") not in ("depot_to_critical", "zones_to_essential"):
+        raise ValueError("task_c.default_pairs must be depot_to_critical or zones_to_essential")
+    if cfg["task_c"].get("od_tie_break", "asset_id") not in ("asset_id", "base_rule"):
+        raise ValueError("task_c.od_tie_break must be asset_id or base_rule")
     if type(cfg["recovery"].get("stop_at_horizon",True)) is not bool:
         raise ValueError("recovery.stop_at_horizon must be a boolean")
     if any(type(cfg["recovery"][k]) not in (int,float) or not math.isfinite(cfg["recovery"][k]) or cfg["recovery"][k] <= 0
