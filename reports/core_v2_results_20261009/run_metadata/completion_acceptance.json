@@ -1,0 +1,4583 @@
+{
+  "passed": true,
+  "checked_at": "2026-10-09T03:43:24-05:00",
+  "fingerprint": "21bd74ff9e413dc306d81dc4609e1574b63b18d6155732d54bb264735ef63dbe",
+  "stage_counts": {
+    "a-main": 72,
+    "b-main": 48,
+    "c-main": 144,
+    "construct": 72
+  },
+  "total_tasks": 336,
+  "evaluation_trajectories": 264,
+  "incomplete_repairs": 0,
+  "construction_permutations": 288,
+  "sa_iterations": 504,
+  "longest_recovery_minutes": 1627.0131492931694,
+  "trajectories": [
+    {
+      "stage": "a-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00001",
+      "scenario_seed": 20264001,
+      "end_minutes": 1321.306064159035,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00001",
+      "scenario_seed": 20264001,
+      "end_minutes": 1321.306064159035,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00001",
+      "scenario_seed": 20264001,
+      "end_minutes": 1321.306064159035,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00002",
+      "scenario_seed": 20264002,
+      "end_minutes": 1115.1060557571086,
+      "events": 12,
+      "regional_physical_checks": 72,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 1
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00002",
+      "scenario_seed": 20264002,
+      "end_minutes": 1044.283684818436,
+      "events": 12,
+      "regional_physical_checks": 72,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 1
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00002",
+      "scenario_seed": 20264002,
+      "end_minutes": 1044.283684818436,
+      "events": 12,
+      "regional_physical_checks": 72,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 1
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00003",
+      "scenario_seed": 20264003,
+      "end_minutes": 1072.1218497009256,
+      "events": 23,
+      "regional_physical_checks": 138,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00003",
+      "scenario_seed": 20264003,
+      "end_minutes": 1301.1592849215922,
+      "events": 23,
+      "regional_physical_checks": 138,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00003",
+      "scenario_seed": 20264003,
+      "end_minutes": 1110.6985248700134,
+      "events": 23,
+      "regional_physical_checks": 138,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00004",
+      "scenario_seed": 20264004,
+      "end_minutes": 1196.7900655287604,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00004",
+      "scenario_seed": 20264004,
+      "end_minutes": 1358.3210496482957,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00004",
+      "scenario_seed": 20264004,
+      "end_minutes": 1358.3210496482957,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00005",
+      "scenario_seed": 20264005,
+      "end_minutes": 1295.0619014965005,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00005",
+      "scenario_seed": 20264005,
+      "end_minutes": 1278.8100104499263,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00005",
+      "scenario_seed": 20264005,
+      "end_minutes": 1294.9810624965003,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00006",
+      "scenario_seed": 20264006,
+      "end_minutes": 1627.0131492931694,
+      "events": 14,
+      "regional_physical_checks": 84,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00006",
+      "scenario_seed": 20264006,
+      "end_minutes": 1417.907020323209,
+      "events": 14,
+      "regional_physical_checks": 84,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00006",
+      "scenario_seed": 20264006,
+      "end_minutes": 1478.4404323226254,
+      "events": 14,
+      "regional_physical_checks": 84,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00007",
+      "scenario_seed": 20264007,
+      "end_minutes": 1550.0920258818244,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00007",
+      "scenario_seed": 20264007,
+      "end_minutes": 1571.5352311808524,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00007",
+      "scenario_seed": 20264007,
+      "end_minutes": 1542.7363003882597,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00008",
+      "scenario_seed": 20264008,
+      "end_minutes": 1421.5333608972423,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00008",
+      "scenario_seed": 20264008,
+      "end_minutes": 1351.9133330939371,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00008",
+      "scenario_seed": 20264008,
+      "end_minutes": 1351.9133330939371,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00009",
+      "scenario_seed": 20264009,
+      "end_minutes": 1409.6447075424396,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00009",
+      "scenario_seed": 20264009,
+      "end_minutes": 1361.3148186810404,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00009",
+      "scenario_seed": 20264009,
+      "end_minutes": 1490.171818452509,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00010",
+      "scenario_seed": 20264010,
+      "end_minutes": 1619.3609714253766,
+      "events": 25,
+      "regional_physical_checks": 150,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00010",
+      "scenario_seed": 20264010,
+      "end_minutes": 1595.1750353627226,
+      "events": 25,
+      "regional_physical_checks": 150,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00010",
+      "scenario_seed": 20264010,
+      "end_minutes": 1502.4359495249068,
+      "events": 25,
+      "regional_physical_checks": 150,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00011",
+      "scenario_seed": 20264011,
+      "end_minutes": 1044.5795876658317,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00011",
+      "scenario_seed": 20264011,
+      "end_minutes": 944.5378608933046,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00011",
+      "scenario_seed": 20264011,
+      "end_minutes": 834.7085695973202,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00012",
+      "scenario_seed": 20264012,
+      "end_minutes": 1543.706014444083,
+      "events": 29,
+      "regional_physical_checks": 174,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00012",
+      "scenario_seed": 20264012,
+      "end_minutes": 1406.4222256802977,
+      "events": 29,
+      "regional_physical_checks": 174,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00012",
+      "scenario_seed": 20264012,
+      "end_minutes": 1406.4222256802977,
+      "events": 29,
+      "regional_physical_checks": 174,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00013",
+      "scenario_seed": 20264013,
+      "end_minutes": 1236.8382703894272,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00013",
+      "scenario_seed": 20264013,
+      "end_minutes": 1349.1247844593063,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00013",
+      "scenario_seed": 20264013,
+      "end_minutes": 1337.0514909030371,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00014",
+      "scenario_seed": 20264014,
+      "end_minutes": 1249.7629574442176,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00014",
+      "scenario_seed": 20264014,
+      "end_minutes": 1255.46342896742,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00014",
+      "scenario_seed": 20264014,
+      "end_minutes": 1298.865501912965,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00015",
+      "scenario_seed": 20264015,
+      "end_minutes": 1358.942066188923,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00015",
+      "scenario_seed": 20264015,
+      "end_minutes": 1375.0514326709604,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00015",
+      "scenario_seed": 20264015,
+      "end_minutes": 1333.8615432575245,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00016",
+      "scenario_seed": 20264016,
+      "end_minutes": 1437.5016034007072,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00016",
+      "scenario_seed": 20264016,
+      "end_minutes": 1485.081093186424,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00016",
+      "scenario_seed": 20264016,
+      "end_minutes": 1460.9300126664405,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00017",
+      "scenario_seed": 20264017,
+      "end_minutes": 1267.9092201046703,
+      "events": 17,
+      "regional_physical_checks": 102,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00017",
+      "scenario_seed": 20264017,
+      "end_minutes": 1219.8545795499967,
+      "events": 17,
+      "regional_physical_checks": 102,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00017",
+      "scenario_seed": 20264017,
+      "end_minutes": 1211.2792455138438,
+      "events": 17,
+      "regional_physical_checks": 102,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00018",
+      "scenario_seed": 20264018,
+      "end_minutes": 1518.8129151613616,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00018",
+      "scenario_seed": 20264018,
+      "end_minutes": 1348.7234408031952,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00018",
+      "scenario_seed": 20264018,
+      "end_minutes": 1348.7234408031952,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00019",
+      "scenario_seed": 20264019,
+      "end_minutes": 1399.256278091998,
+      "events": 23,
+      "regional_physical_checks": 138,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00019",
+      "scenario_seed": 20264019,
+      "end_minutes": 1288.5778887165832,
+      "events": 23,
+      "regional_physical_checks": 138,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00019",
+      "scenario_seed": 20264019,
+      "end_minutes": 1379.082833270385,
+      "events": 23,
+      "regional_physical_checks": 138,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00020",
+      "scenario_seed": 20264020,
+      "end_minutes": 1212.2181981594767,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00020",
+      "scenario_seed": 20264020,
+      "end_minutes": 1029.9721148815129,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00020",
+      "scenario_seed": 20264020,
+      "end_minutes": 1212.1975571594767,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00021",
+      "scenario_seed": 20264021,
+      "end_minutes": 1172.2930503292223,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00021",
+      "scenario_seed": 20264021,
+      "end_minutes": 1239.1862496424365,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00021",
+      "scenario_seed": 20264021,
+      "end_minutes": 1156.555362996322,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00022",
+      "scenario_seed": 20264022,
+      "end_minutes": 1278.0841278733708,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00022",
+      "scenario_seed": 20264022,
+      "end_minutes": 1278.0841278733708,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00022",
+      "scenario_seed": 20264022,
+      "end_minutes": 1278.0841278733708,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00023",
+      "scenario_seed": 20264023,
+      "end_minutes": 1302.927143652934,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00023",
+      "scenario_seed": 20264023,
+      "end_minutes": 1313.3594539183239,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00023",
+      "scenario_seed": 20264023,
+      "end_minutes": 1302.927143652934,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00024",
+      "scenario_seed": 20264024,
+      "end_minutes": 1100.6207400407243,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00024",
+      "scenario_seed": 20264024,
+      "end_minutes": 1132.717402886377,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "a-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00024",
+      "scenario_seed": 20264024,
+      "end_minutes": 1107.4326285854738,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "baseline_reference",
+      "scenario_id": "main_00001",
+      "scenario_seed": 20260325,
+      "end_minutes": 1359.6990444311796,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "guardrail_gini_restore",
+      "scenario_id": "main_00001",
+      "scenario_seed": 20260325,
+      "end_minutes": 1153.4220695254824,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "single_gini_restore",
+      "scenario_id": "main_00001",
+      "scenario_seed": 20260325,
+      "end_minutes": 1289.3419123306262,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "single_maximin_time_avg_cri",
+      "scenario_id": "main_00001",
+      "scenario_seed": 20260325,
+      "end_minutes": 1309.719282100978,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "single_p90_access_restore",
+      "scenario_id": "main_00001",
+      "scenario_seed": 20260325,
+      "end_minutes": 1359.6990444311796,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "single_triangle",
+      "scenario_id": "main_00001",
+      "scenario_seed": 20260325,
+      "end_minutes": 1358.4820130785538,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "weighted_gini_restore_l050",
+      "scenario_id": "main_00001",
+      "scenario_seed": 20260325,
+      "end_minutes": 1301.7576138350614,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "weighted_maximin_time_avg_cri_l050",
+      "scenario_id": "main_00001",
+      "scenario_seed": 20260325,
+      "end_minutes": 1283.3358317389193,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "baseline_reference",
+      "scenario_id": "main_00002",
+      "scenario_seed": 20260326,
+      "end_minutes": 1188.596605769756,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "guardrail_gini_restore",
+      "scenario_id": "main_00002",
+      "scenario_seed": 20260326,
+      "end_minutes": 1042.231949824459,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "single_gini_restore",
+      "scenario_id": "main_00002",
+      "scenario_seed": 20260326,
+      "end_minutes": 1076.445924032592,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "single_maximin_time_avg_cri",
+      "scenario_id": "main_00002",
+      "scenario_seed": 20260326,
+      "end_minutes": 1361.8779418895522,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "single_p90_access_restore",
+      "scenario_id": "main_00002",
+      "scenario_seed": 20260326,
+      "end_minutes": 1188.596605769756,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "single_triangle",
+      "scenario_id": "main_00002",
+      "scenario_seed": 20260326,
+      "end_minutes": 1064.661769252686,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "weighted_gini_restore_l050",
+      "scenario_id": "main_00002",
+      "scenario_seed": 20260326,
+      "end_minutes": 1265.5055447468433,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "weighted_maximin_time_avg_cri_l050",
+      "scenario_id": "main_00002",
+      "scenario_seed": 20260326,
+      "end_minutes": 1265.5055447468433,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "baseline_reference",
+      "scenario_id": "main_00003",
+      "scenario_seed": 20260327,
+      "end_minutes": 1302.3040061871857,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "guardrail_gini_restore",
+      "scenario_id": "main_00003",
+      "scenario_seed": 20260327,
+      "end_minutes": 1296.8180109700986,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "single_gini_restore",
+      "scenario_id": "main_00003",
+      "scenario_seed": 20260327,
+      "end_minutes": 1324.766248342025,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "single_maximin_time_avg_cri",
+      "scenario_id": "main_00003",
+      "scenario_seed": 20260327,
+      "end_minutes": 1349.9415600502998,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "single_p90_access_restore",
+      "scenario_id": "main_00003",
+      "scenario_seed": 20260327,
+      "end_minutes": 1302.3040061871857,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "single_triangle",
+      "scenario_id": "main_00003",
+      "scenario_seed": 20260327,
+      "end_minutes": 1331.4800146166522,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "weighted_gini_restore_l050",
+      "scenario_id": "main_00003",
+      "scenario_seed": 20260327,
+      "end_minutes": 1324.1402384023422,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "weighted_maximin_time_avg_cri_l050",
+      "scenario_id": "main_00003",
+      "scenario_seed": 20260327,
+      "end_minutes": 1324.1402384023422,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "baseline_reference",
+      "scenario_id": "main_00004",
+      "scenario_seed": 20260328,
+      "end_minutes": 1499.5133778502643,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "guardrail_gini_restore",
+      "scenario_id": "main_00004",
+      "scenario_seed": 20260328,
+      "end_minutes": 1549.4758386964752,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "single_gini_restore",
+      "scenario_id": "main_00004",
+      "scenario_seed": 20260328,
+      "end_minutes": 1499.5108478502643,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "single_maximin_time_avg_cri",
+      "scenario_id": "main_00004",
+      "scenario_seed": 20260328,
+      "end_minutes": 1521.3359944809042,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "single_p90_access_restore",
+      "scenario_id": "main_00004",
+      "scenario_seed": 20260328,
+      "end_minutes": 1499.5133778502643,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "single_triangle",
+      "scenario_id": "main_00004",
+      "scenario_seed": 20260328,
+      "end_minutes": 1521.335050480904,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "weighted_gini_restore_l050",
+      "scenario_id": "main_00004",
+      "scenario_seed": 20260328,
+      "end_minutes": 1521.3359944809042,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "weighted_maximin_time_avg_cri_l050",
+      "scenario_id": "main_00004",
+      "scenario_seed": 20260328,
+      "end_minutes": 1521.3359944809042,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "baseline_reference",
+      "scenario_id": "main_00005",
+      "scenario_seed": 20260329,
+      "end_minutes": 1523.2959868222006,
+      "events": 29,
+      "regional_physical_checks": 174,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "guardrail_gini_restore",
+      "scenario_id": "main_00005",
+      "scenario_seed": 20260329,
+      "end_minutes": 1327.4344408155314,
+      "events": 29,
+      "regional_physical_checks": 174,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "single_gini_restore",
+      "scenario_id": "main_00005",
+      "scenario_seed": 20260329,
+      "end_minutes": 1506.9777437581392,
+      "events": 29,
+      "regional_physical_checks": 174,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "single_maximin_time_avg_cri",
+      "scenario_id": "main_00005",
+      "scenario_seed": 20260329,
+      "end_minutes": 1460.6812097088118,
+      "events": 29,
+      "regional_physical_checks": 174,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "single_p90_access_restore",
+      "scenario_id": "main_00005",
+      "scenario_seed": 20260329,
+      "end_minutes": 1523.2959868222006,
+      "events": 29,
+      "regional_physical_checks": 174,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "single_triangle",
+      "scenario_id": "main_00005",
+      "scenario_seed": 20260329,
+      "end_minutes": 1360.9498104756892,
+      "events": 29,
+      "regional_physical_checks": 174,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "weighted_gini_restore_l050",
+      "scenario_id": "main_00005",
+      "scenario_seed": 20260329,
+      "end_minutes": 1305.4303543768838,
+      "events": 29,
+      "regional_physical_checks": 174,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "weighted_maximin_time_avg_cri_l050",
+      "scenario_id": "main_00005",
+      "scenario_seed": 20260329,
+      "end_minutes": 1385.8271501915244,
+      "events": 29,
+      "regional_physical_checks": 174,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "baseline_reference",
+      "scenario_id": "main_00006",
+      "scenario_seed": 20260330,
+      "end_minutes": 998.0734208787275,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "guardrail_gini_restore",
+      "scenario_id": "main_00006",
+      "scenario_seed": 20260330,
+      "end_minutes": 964.2298898347885,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "single_gini_restore",
+      "scenario_id": "main_00006",
+      "scenario_seed": 20260330,
+      "end_minutes": 915.446044724764,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "single_maximin_time_avg_cri",
+      "scenario_id": "main_00006",
+      "scenario_seed": 20260330,
+      "end_minutes": 998.0734208787275,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "single_p90_access_restore",
+      "scenario_id": "main_00006",
+      "scenario_seed": 20260330,
+      "end_minutes": 998.0734208787275,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "single_triangle",
+      "scenario_id": "main_00006",
+      "scenario_seed": 20260330,
+      "end_minutes": 952.8355400162387,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "weighted_gini_restore_l050",
+      "scenario_id": "main_00006",
+      "scenario_seed": 20260330,
+      "end_minutes": 998.0734208787275,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "b-main",
+      "strategy": "weighted_maximin_time_avg_cri_l050",
+      "scenario_id": "main_00006",
+      "scenario_seed": 20260330,
+      "end_minutes": 998.0734208787275,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00001",
+      "scenario_seed": 20264001,
+      "end_minutes": 1321.306064159035,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00001",
+      "scenario_seed": 20264001,
+      "end_minutes": 1321.306064159035,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00001",
+      "scenario_seed": 20264001,
+      "end_minutes": 1321.306064159035,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_CEN",
+      "scenario_id": "main_00001",
+      "scenario_seed": 20264001,
+      "end_minutes": 1321.306064159035,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_IJSH",
+      "scenario_id": "main_00001",
+      "scenario_seed": 20264001,
+      "end_minutes": 1321.306064159035,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_JSH",
+      "scenario_id": "main_00001",
+      "scenario_seed": 20264001,
+      "end_minutes": 1321.306064159035,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00002",
+      "scenario_seed": 20264002,
+      "end_minutes": 1115.1060557571086,
+      "events": 12,
+      "regional_physical_checks": 72,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 1
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00002",
+      "scenario_seed": 20264002,
+      "end_minutes": 1044.283684818436,
+      "events": 12,
+      "regional_physical_checks": 72,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 1
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00002",
+      "scenario_seed": 20264002,
+      "end_minutes": 1044.283684818436,
+      "events": 12,
+      "regional_physical_checks": 72,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 1
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_CEN",
+      "scenario_id": "main_00002",
+      "scenario_seed": 20264002,
+      "end_minutes": 1115.1037687571086,
+      "events": 12,
+      "regional_physical_checks": 72,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 1
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_IJSH",
+      "scenario_id": "main_00002",
+      "scenario_seed": 20264002,
+      "end_minutes": 1044.2789728184362,
+      "events": 12,
+      "regional_physical_checks": 72,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 1
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_JSH",
+      "scenario_id": "main_00002",
+      "scenario_seed": 20264002,
+      "end_minutes": 1044.2789728184362,
+      "events": 12,
+      "regional_physical_checks": 72,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 1
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00003",
+      "scenario_seed": 20264003,
+      "end_minutes": 1072.1218497009256,
+      "events": 23,
+      "regional_physical_checks": 138,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00003",
+      "scenario_seed": 20264003,
+      "end_minutes": 1301.1592849215922,
+      "events": 23,
+      "regional_physical_checks": 138,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00003",
+      "scenario_seed": 20264003,
+      "end_minutes": 1110.6985248700134,
+      "events": 23,
+      "regional_physical_checks": 138,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_CEN",
+      "scenario_id": "main_00003",
+      "scenario_seed": 20264003,
+      "end_minutes": 1072.1288387009258,
+      "events": 23,
+      "regional_physical_checks": 138,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_IJSH",
+      "scenario_id": "main_00003",
+      "scenario_seed": 20264003,
+      "end_minutes": 1301.1738359215924,
+      "events": 23,
+      "regional_physical_checks": 138,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_JSH",
+      "scenario_id": "main_00003",
+      "scenario_seed": 20264003,
+      "end_minutes": 1110.6937408700135,
+      "events": 23,
+      "regional_physical_checks": 138,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00004",
+      "scenario_seed": 20264004,
+      "end_minutes": 1196.7900655287604,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00004",
+      "scenario_seed": 20264004,
+      "end_minutes": 1358.3210496482957,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00004",
+      "scenario_seed": 20264004,
+      "end_minutes": 1358.3210496482957,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_CEN",
+      "scenario_id": "main_00004",
+      "scenario_seed": 20264004,
+      "end_minutes": 1196.7724905287603,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_IJSH",
+      "scenario_id": "main_00004",
+      "scenario_seed": 20264004,
+      "end_minutes": 1358.3237316482955,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_JSH",
+      "scenario_id": "main_00004",
+      "scenario_seed": 20264004,
+      "end_minutes": 1358.3237316482955,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00005",
+      "scenario_seed": 20264005,
+      "end_minutes": 1295.0619014965005,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00005",
+      "scenario_seed": 20264005,
+      "end_minutes": 1278.8100104499263,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00005",
+      "scenario_seed": 20264005,
+      "end_minutes": 1294.9810624965003,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_CEN",
+      "scenario_id": "main_00005",
+      "scenario_seed": 20264005,
+      "end_minutes": 1294.7723554965005,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_IJSH",
+      "scenario_id": "main_00005",
+      "scenario_seed": 20264005,
+      "end_minutes": 1278.812911449926,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_JSH",
+      "scenario_id": "main_00005",
+      "scenario_seed": 20264005,
+      "end_minutes": 1294.6915164965003,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00006",
+      "scenario_seed": 20264006,
+      "end_minutes": 1627.0131492931694,
+      "events": 14,
+      "regional_physical_checks": 84,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00006",
+      "scenario_seed": 20264006,
+      "end_minutes": 1417.907020323209,
+      "events": 14,
+      "regional_physical_checks": 84,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00006",
+      "scenario_seed": 20264006,
+      "end_minutes": 1478.4404323226254,
+      "events": 14,
+      "regional_physical_checks": 84,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_CEN",
+      "scenario_id": "main_00006",
+      "scenario_seed": 20264006,
+      "end_minutes": 1627.0131492931694,
+      "events": 14,
+      "regional_physical_checks": 84,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_IJSH",
+      "scenario_id": "main_00006",
+      "scenario_seed": 20264006,
+      "end_minutes": 1417.907020323209,
+      "events": 14,
+      "regional_physical_checks": 84,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_JSH",
+      "scenario_id": "main_00006",
+      "scenario_seed": 20264006,
+      "end_minutes": 1478.4404323226254,
+      "events": 14,
+      "regional_physical_checks": 84,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00007",
+      "scenario_seed": 20264007,
+      "end_minutes": 1550.0920258818244,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00007",
+      "scenario_seed": 20264007,
+      "end_minutes": 1571.5352311808524,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00007",
+      "scenario_seed": 20264007,
+      "end_minutes": 1542.7363003882597,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_CEN",
+      "scenario_id": "main_00007",
+      "scenario_seed": 20264007,
+      "end_minutes": 1550.0942508818243,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_IJSH",
+      "scenario_id": "main_00007",
+      "scenario_seed": 20264007,
+      "end_minutes": 1571.5471991808524,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_JSH",
+      "scenario_id": "main_00007",
+      "scenario_seed": 20264007,
+      "end_minutes": 1542.7502173882597,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00008",
+      "scenario_seed": 20264008,
+      "end_minutes": 1421.5333608972423,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00008",
+      "scenario_seed": 20264008,
+      "end_minutes": 1351.9133330939371,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00008",
+      "scenario_seed": 20264008,
+      "end_minutes": 1351.9133330939371,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_CEN",
+      "scenario_id": "main_00008",
+      "scenario_seed": 20264008,
+      "end_minutes": 1421.5304718972423,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_IJSH",
+      "scenario_id": "main_00008",
+      "scenario_seed": 20264008,
+      "end_minutes": 1351.907026093937,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_JSH",
+      "scenario_id": "main_00008",
+      "scenario_seed": 20264008,
+      "end_minutes": 1351.907026093937,
+      "events": 21,
+      "regional_physical_checks": 126,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00009",
+      "scenario_seed": 20264009,
+      "end_minutes": 1409.6447075424396,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00009",
+      "scenario_seed": 20264009,
+      "end_minutes": 1361.3148186810404,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00009",
+      "scenario_seed": 20264009,
+      "end_minutes": 1490.171818452509,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_CEN",
+      "scenario_id": "main_00009",
+      "scenario_seed": 20264009,
+      "end_minutes": 1409.6001045424398,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_IJSH",
+      "scenario_id": "main_00009",
+      "scenario_seed": 20264009,
+      "end_minutes": 1361.3091406810404,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_JSH",
+      "scenario_id": "main_00009",
+      "scenario_seed": 20264009,
+      "end_minutes": 1490.181178452509,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00010",
+      "scenario_seed": 20264010,
+      "end_minutes": 1619.3609714253766,
+      "events": 25,
+      "regional_physical_checks": 150,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00010",
+      "scenario_seed": 20264010,
+      "end_minutes": 1595.1750353627226,
+      "events": 25,
+      "regional_physical_checks": 150,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00010",
+      "scenario_seed": 20264010,
+      "end_minutes": 1502.4359495249068,
+      "events": 25,
+      "regional_physical_checks": 150,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_CEN",
+      "scenario_id": "main_00010",
+      "scenario_seed": 20264010,
+      "end_minutes": 1619.3609714253766,
+      "events": 25,
+      "regional_physical_checks": 150,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_IJSH",
+      "scenario_id": "main_00010",
+      "scenario_seed": 20264010,
+      "end_minutes": 1595.1719363627226,
+      "events": 25,
+      "regional_physical_checks": 150,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_JSH",
+      "scenario_id": "main_00010",
+      "scenario_seed": 20264010,
+      "end_minutes": 1502.4359495249068,
+      "events": 25,
+      "regional_physical_checks": 150,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00011",
+      "scenario_seed": 20264011,
+      "end_minutes": 1044.5795876658317,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00011",
+      "scenario_seed": 20264011,
+      "end_minutes": 944.5378608933046,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00011",
+      "scenario_seed": 20264011,
+      "end_minutes": 834.7085695973202,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_CEN",
+      "scenario_id": "main_00011",
+      "scenario_seed": 20264011,
+      "end_minutes": 1044.6075216658314,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_IJSH",
+      "scenario_id": "main_00011",
+      "scenario_seed": 20264011,
+      "end_minutes": 944.5345818933046,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_JSH",
+      "scenario_id": "main_00011",
+      "scenario_seed": 20264011,
+      "end_minutes": 834.7124435973202,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00012",
+      "scenario_seed": 20264012,
+      "end_minutes": 1543.706014444083,
+      "events": 29,
+      "regional_physical_checks": 174,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00012",
+      "scenario_seed": 20264012,
+      "end_minutes": 1406.4222256802977,
+      "events": 29,
+      "regional_physical_checks": 174,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00012",
+      "scenario_seed": 20264012,
+      "end_minutes": 1406.4222256802977,
+      "events": 29,
+      "regional_physical_checks": 174,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_CEN",
+      "scenario_id": "main_00012",
+      "scenario_seed": 20264012,
+      "end_minutes": 1543.689035444083,
+      "events": 29,
+      "regional_physical_checks": 174,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_IJSH",
+      "scenario_id": "main_00012",
+      "scenario_seed": 20264012,
+      "end_minutes": 1406.3874816802977,
+      "events": 29,
+      "regional_physical_checks": 174,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_JSH",
+      "scenario_id": "main_00012",
+      "scenario_seed": 20264012,
+      "end_minutes": 1406.3874816802977,
+      "events": 29,
+      "regional_physical_checks": 174,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00013",
+      "scenario_seed": 20264013,
+      "end_minutes": 1236.8382703894272,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00013",
+      "scenario_seed": 20264013,
+      "end_minutes": 1349.1247844593063,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00013",
+      "scenario_seed": 20264013,
+      "end_minutes": 1337.0514909030371,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_CEN",
+      "scenario_id": "main_00013",
+      "scenario_seed": 20264013,
+      "end_minutes": 1236.8382703894272,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_IJSH",
+      "scenario_id": "main_00013",
+      "scenario_seed": 20264013,
+      "end_minutes": 1349.1247844593063,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_JSH",
+      "scenario_id": "main_00013",
+      "scenario_seed": 20264013,
+      "end_minutes": 1337.0514909030371,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00014",
+      "scenario_seed": 20264014,
+      "end_minutes": 1249.7629574442176,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00014",
+      "scenario_seed": 20264014,
+      "end_minutes": 1255.46342896742,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00014",
+      "scenario_seed": 20264014,
+      "end_minutes": 1298.865501912965,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_CEN",
+      "scenario_id": "main_00014",
+      "scenario_seed": 20264014,
+      "end_minutes": 1249.7629574442176,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_IJSH",
+      "scenario_id": "main_00014",
+      "scenario_seed": 20264014,
+      "end_minutes": 1255.46342896742,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_JSH",
+      "scenario_id": "main_00014",
+      "scenario_seed": 20264014,
+      "end_minutes": 1298.865501912965,
+      "events": 16,
+      "regional_physical_checks": 96,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00015",
+      "scenario_seed": 20264015,
+      "end_minutes": 1358.942066188923,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00015",
+      "scenario_seed": 20264015,
+      "end_minutes": 1375.0514326709604,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00015",
+      "scenario_seed": 20264015,
+      "end_minutes": 1333.8615432575245,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_CEN",
+      "scenario_id": "main_00015",
+      "scenario_seed": 20264015,
+      "end_minutes": 1358.942066188923,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_IJSH",
+      "scenario_id": "main_00015",
+      "scenario_seed": 20264015,
+      "end_minutes": 1375.0514326709604,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_JSH",
+      "scenario_id": "main_00015",
+      "scenario_seed": 20264015,
+      "end_minutes": 1333.8615432575245,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00016",
+      "scenario_seed": 20264016,
+      "end_minutes": 1437.5016034007072,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00016",
+      "scenario_seed": 20264016,
+      "end_minutes": 1485.081093186424,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00016",
+      "scenario_seed": 20264016,
+      "end_minutes": 1460.9300126664405,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_CEN",
+      "scenario_id": "main_00016",
+      "scenario_seed": 20264016,
+      "end_minutes": 1437.4996514007073,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_IJSH",
+      "scenario_id": "main_00016",
+      "scenario_seed": 20264016,
+      "end_minutes": 1485.0796861864237,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_JSH",
+      "scenario_id": "main_00016",
+      "scenario_seed": 20264016,
+      "end_minutes": 1460.9300126664405,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00017",
+      "scenario_seed": 20264017,
+      "end_minutes": 1267.9092201046703,
+      "events": 17,
+      "regional_physical_checks": 102,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00017",
+      "scenario_seed": 20264017,
+      "end_minutes": 1219.8545795499967,
+      "events": 17,
+      "regional_physical_checks": 102,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00017",
+      "scenario_seed": 20264017,
+      "end_minutes": 1211.2792455138438,
+      "events": 17,
+      "regional_physical_checks": 102,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_CEN",
+      "scenario_id": "main_00017",
+      "scenario_seed": 20264017,
+      "end_minutes": 1267.9092201046703,
+      "events": 17,
+      "regional_physical_checks": 102,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_IJSH",
+      "scenario_id": "main_00017",
+      "scenario_seed": 20264017,
+      "end_minutes": 1219.8545795499967,
+      "events": 17,
+      "regional_physical_checks": 102,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_JSH",
+      "scenario_id": "main_00017",
+      "scenario_seed": 20264017,
+      "end_minutes": 1211.2792455138438,
+      "events": 17,
+      "regional_physical_checks": 102,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00018",
+      "scenario_seed": 20264018,
+      "end_minutes": 1518.8129151613616,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00018",
+      "scenario_seed": 20264018,
+      "end_minutes": 1348.7234408031952,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00018",
+      "scenario_seed": 20264018,
+      "end_minutes": 1348.7234408031952,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_CEN",
+      "scenario_id": "main_00018",
+      "scenario_seed": 20264018,
+      "end_minutes": 1518.8129151613616,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_IJSH",
+      "scenario_id": "main_00018",
+      "scenario_seed": 20264018,
+      "end_minutes": 1348.7234408031952,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_JSH",
+      "scenario_id": "main_00018",
+      "scenario_seed": 20264018,
+      "end_minutes": 1348.7234408031952,
+      "events": 18,
+      "regional_physical_checks": 108,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00019",
+      "scenario_seed": 20264019,
+      "end_minutes": 1399.256278091998,
+      "events": 23,
+      "regional_physical_checks": 138,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00019",
+      "scenario_seed": 20264019,
+      "end_minutes": 1288.5778887165832,
+      "events": 23,
+      "regional_physical_checks": 138,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00019",
+      "scenario_seed": 20264019,
+      "end_minutes": 1379.082833270385,
+      "events": 23,
+      "regional_physical_checks": 138,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_CEN",
+      "scenario_id": "main_00019",
+      "scenario_seed": 20264019,
+      "end_minutes": 1360.1398126221218,
+      "events": 23,
+      "regional_physical_checks": 138,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_IJSH",
+      "scenario_id": "main_00019",
+      "scenario_seed": 20264019,
+      "end_minutes": 1288.7036367165833,
+      "events": 23,
+      "regional_physical_checks": 138,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_JSH",
+      "scenario_id": "main_00019",
+      "scenario_seed": 20264019,
+      "end_minutes": 1379.2605722703847,
+      "events": 23,
+      "regional_physical_checks": 138,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00020",
+      "scenario_seed": 20264020,
+      "end_minutes": 1212.2181981594767,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00020",
+      "scenario_seed": 20264020,
+      "end_minutes": 1029.9721148815129,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00020",
+      "scenario_seed": 20264020,
+      "end_minutes": 1212.1975571594767,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_CEN",
+      "scenario_id": "main_00020",
+      "scenario_seed": 20264020,
+      "end_minutes": 1212.1054721594764,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_IJSH",
+      "scenario_id": "main_00020",
+      "scenario_seed": 20264020,
+      "end_minutes": 1030.0296650625128,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_JSH",
+      "scenario_id": "main_00020",
+      "scenario_seed": 20264020,
+      "end_minutes": 1212.1054721594764,
+      "events": 24,
+      "regional_physical_checks": 144,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 5
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00021",
+      "scenario_seed": 20264021,
+      "end_minutes": 1172.2930503292223,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00021",
+      "scenario_seed": 20264021,
+      "end_minutes": 1239.1862496424365,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00021",
+      "scenario_seed": 20264021,
+      "end_minutes": 1156.555362996322,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_CEN",
+      "scenario_id": "main_00021",
+      "scenario_seed": 20264021,
+      "end_minutes": 1172.2930503292223,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_IJSH",
+      "scenario_id": "main_00021",
+      "scenario_seed": 20264021,
+      "end_minutes": 1239.1862496424365,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_JSH",
+      "scenario_id": "main_00021",
+      "scenario_seed": 20264021,
+      "end_minutes": 1156.555362996322,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00022",
+      "scenario_seed": 20264022,
+      "end_minutes": 1278.0841278733708,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00022",
+      "scenario_seed": 20264022,
+      "end_minutes": 1278.0841278733708,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00022",
+      "scenario_seed": 20264022,
+      "end_minutes": 1278.0841278733708,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_CEN",
+      "scenario_id": "main_00022",
+      "scenario_seed": 20264022,
+      "end_minutes": 1278.0841278733708,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_IJSH",
+      "scenario_id": "main_00022",
+      "scenario_seed": 20264022,
+      "end_minutes": 1278.0841278733708,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_JSH",
+      "scenario_id": "main_00022",
+      "scenario_seed": 20264022,
+      "end_minutes": 1278.0841278733708,
+      "events": 22,
+      "regional_physical_checks": 132,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 3,
+        "road": 4
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00023",
+      "scenario_seed": 20264023,
+      "end_minutes": 1302.927143652934,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00023",
+      "scenario_seed": 20264023,
+      "end_minutes": 1313.3594539183239,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00023",
+      "scenario_seed": 20264023,
+      "end_minutes": 1302.927143652934,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_CEN",
+      "scenario_id": "main_00023",
+      "scenario_seed": 20264023,
+      "end_minutes": 1302.9237056529341,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_IJSH",
+      "scenario_id": "main_00023",
+      "scenario_seed": 20264023,
+      "end_minutes": 1313.3471139183239,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_JSH",
+      "scenario_id": "main_00023",
+      "scenario_seed": 20264023,
+      "end_minutes": 1302.9237056529341,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 4,
+        "road": 3
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "CEN",
+      "scenario_id": "main_00024",
+      "scenario_seed": 20264024,
+      "end_minutes": 1100.6207400407243,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "IJSH",
+      "scenario_id": "main_00024",
+      "scenario_seed": 20264024,
+      "end_minutes": 1132.717402886377,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "JSH",
+      "scenario_id": "main_00024",
+      "scenario_seed": 20264024,
+      "end_minutes": 1107.4326285854738,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_CEN",
+      "scenario_id": "main_00024",
+      "scenario_seed": 20264024,
+      "end_minutes": 1100.5688690407244,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_IJSH",
+      "scenario_id": "main_00024",
+      "scenario_seed": 20264024,
+      "end_minutes": 1132.7155888863767,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    },
+    {
+      "stage": "c-main",
+      "strategy": "OD_JSH",
+      "scenario_id": "main_00024",
+      "scenario_seed": 20264024,
+      "end_minutes": 1107.4733935854738,
+      "events": 20,
+      "regional_physical_checks": 120,
+      "metrics_checked": 22,
+      "crews": {
+        "power": 5,
+        "road": 2
+      },
+      "power_operator": "local",
+      "voltage_audit": "saved per-node violation counts and healthy-reference envelope"
+    }
+  ],
+  "source_sha256": {
+    "results/a-main/main_00001_CEN_c009d56e1301.json": "f26c7edbca95bdbc134cd73661c1a19bf476a21618ba799630ce54c66f1f58f1",
+    "results/a-main/main_00001_IJSH_3d6102eab38a.json": "deaf4b53ee0253aea08a18c7d8da8ed04088871fb3c80858ed0e53120d67560d",
+    "results/a-main/main_00001_JSH_24a7b3a603de.json": "dd4a3173c3b59735ea46fe4244f499f2c6173e4586c29f6adb27758f0f32ceea",
+    "results/a-main/main_00002_CEN_ec39b9a63474.json": "141907e53b0438422f85c7bdda7ccccbbc92af24fea4ff6c49f194d1ea5a8996",
+    "results/a-main/main_00002_IJSH_a5bcd6da496b.json": "9a9f0afcf269568a60c795636b01184c7d02273fbe160e1fedd2f3751b1d8321",
+    "results/a-main/main_00002_JSH_0c401e1e9d8d.json": "bd808e3c46cff4a5cc81cf64a648e6f677e724873cb388f36a365acd8aaf5132",
+    "results/a-main/main_00003_CEN_fe84ace3945e.json": "adc5ef8c109b2a41c4763cf40b26c034c4119d5c36e218f6d724230efe3be253",
+    "results/a-main/main_00003_IJSH_9d19bbb9f45b.json": "b824dd0976928839838537562b0cd63a003c5510c9fee597f2d62196fbbc2092",
+    "results/a-main/main_00003_JSH_8717f121d6d9.json": "8485297318e7cf6b0dda9dc4e54729be35f7c9cc438b2f7fd90d265602e94c10",
+    "results/a-main/main_00004_CEN_66d8742b441a.json": "aa8d1f7f971aef897407a11930fc80df7ff1a5c747c61f02154f46e729bb9ca8",
+    "results/a-main/main_00004_IJSH_ddcf2e38f578.json": "c44a63ff3bba87b7edc37cfb3a26e2ee55ab4d91eb2ea8546698d85db61649d5",
+    "results/a-main/main_00004_JSH_2a2d12dd828b.json": "97752cfddded96fa44f18bac34d796be57c60fd5b965e292016c5fb35dd7f459",
+    "results/a-main/main_00005_CEN_d65e2f591d3e.json": "53340e7993fef23466742ceae1eb0009f950984d8a273523b38b1e3ab676e45a",
+    "results/a-main/main_00005_IJSH_7c83a1f724aa.json": "8a24581d758bea10a46c1c77b98e506c9ed8e2d5bf4f0bb483af96e75cf72563",
+    "results/a-main/main_00005_JSH_394df183372a.json": "c208903eebc3ca933f289ebee6b044b874d0a55dd3b79a106505cf6349c5b578",
+    "results/a-main/main_00006_CEN_a3eeee0e346a.json": "be0b5aa24bda0c8e3b79572b2ad20f083770860f5730e0e9de6ca97af6270122",
+    "results/a-main/main_00006_IJSH_5e1f6f938047.json": "2d49243fbb2278d4f59219335c956abf475bed4f4749ffc5fee22be15d5443f1",
+    "results/a-main/main_00006_JSH_af3afb25c4a7.json": "add83c5587caf98e31d3d130f1fc319a651ad3a39092cc42a40dcdda1fb05dc0",
+    "results/a-main/main_00007_CEN_a497c0c0c3d8.json": "b22b346a06916dd24de9cae0c1a696392939b152ddb74a329311175ea78c0013",
+    "results/a-main/main_00007_IJSH_5d01b2a3d8d2.json": "2a8b4d984ea8925ab79643fd8264e46dbd253a11e0f0fae67b85a6140ee997b4",
+    "results/a-main/main_00007_JSH_b04c12d8980b.json": "81483f568279297c6b356834b09386d87e43ed3515c007c5f9a2fcd109adca48",
+    "results/a-main/main_00008_CEN_973fed54633a.json": "09d8348dde0230280386b99073493c313b9d9415f6c2df78afea0d65e04e7708",
+    "results/a-main/main_00008_IJSH_f75f4073618c.json": "5bb132461002c889b258974f788fb8a98a3c1cef2de7e6d701fa22a4cd730333",
+    "results/a-main/main_00008_JSH_5ad7ef0f98bf.json": "006fffb1eff36666fffa8d9ec1a28dae7f899110ec18004ab4822f549b76fe9b",
+    "results/a-main/main_00009_CEN_808ec4de22c9.json": "8054e0f10a5f8d8008f0c948f82180e9b36d2711e1448db5eead6df9ce415850",
+    "results/a-main/main_00009_IJSH_6af5df3af367.json": "d246903f5a351a5ab0cbdeedf9750173d89b18d4ce1059d3c752c0ad1682db28",
+    "results/a-main/main_00009_JSH_1d33400e957d.json": "f9621b71a1433b6c5a95122d078757cc1ca81a73eb7a4ccf90c7f61031b3d6dc",
+    "results/a-main/main_00010_CEN_4b3259415f39.json": "5b5e3c390c094454407b2683cba5552c4f80d5f011355c7ae3db9d7725c20f3b",
+    "results/a-main/main_00010_IJSH_ab26cc9c23ad.json": "a4d00a2bd6ac4192d18109de1ee3828c604af5082a593157de037406c429d623",
+    "results/a-main/main_00010_JSH_4f160b8187fd.json": "943e543e56817e60a8639bff23b62067b3cf5896f8c1aeb3d10b0ab366a2af65",
+    "results/a-main/main_00011_CEN_fbbd06b62da0.json": "bf94a0a5b96b9d3ab48be0388d3dd78e3cc3a2c8bd60855bcce5c6aa7057be1d",
+    "results/a-main/main_00011_IJSH_f691e09ef34f.json": "e3ec8981f37c3def64fb6ee5da0011de06dd864a0b69ff4dc56328881cfef357",
+    "results/a-main/main_00011_JSH_0fd8435cfe5b.json": "eb73931e5fa5d4e9bf26f15078f5f54c1b20df20dac1431738d68a60f136d6d1",
+    "results/a-main/main_00012_CEN_ec48ef18ad1d.json": "8553ffeedce89da9a66d9df319f140492367a80e04f0782a4bf2edc75ca11c1b",
+    "results/a-main/main_00012_IJSH_5238b59c348f.json": "01fc0c20437886bb722c170ffc812fc169056ae94d7c4c2041327543b71ef24b",
+    "results/a-main/main_00012_JSH_7e1db52bd5de.json": "82e4ae7e4394186ae82f1b47352d0689133f96aa6009f09f4d20396f45edc30f",
+    "results/a-main/main_00013_CEN_c0f7dcbc356d.json": "b93ff3a06ba32145ad47ceb09fff8c36d92a1d614bbe948ffbf48e4c10d518ed",
+    "results/a-main/main_00013_IJSH_eb24fca4a969.json": "d44e040ebe2cc10939af85f426e4c65be69a87602c4846d28aa6c48f78462a6e",
+    "results/a-main/main_00013_JSH_fe3e1fe969f6.json": "ab80155f902d22dd42d7d2b604e37abfde0301249870a37ab27dff966f1895c1",
+    "results/a-main/main_00014_CEN_344cdf7437c9.json": "5d31d200f0a12f9db49257977d4a06880df05c3eb8983f25f83a15aa410f6792",
+    "results/a-main/main_00014_IJSH_4f84a662899d.json": "12b317e4703f457a1daa54fe39dd8c597c4f7d73d6768e5c9b69ccf423ae856e",
+    "results/a-main/main_00014_JSH_0dfeebfc63b3.json": "52bd641638d6162776a3bfdeadfbe651eb1cb047041d04f1c88c713e8da9a197",
+    "results/a-main/main_00015_CEN_fd494a402c3c.json": "90b318ca1c6ad45bd95c5a1950364b7e673d9e5539e107c92502d91e42f6b68a",
+    "results/a-main/main_00015_IJSH_7da9b1ad156e.json": "939659046db943a051e9d2d9a48c5359ea7b6781a17abdabbf5cbba48d1b286e",
+    "results/a-main/main_00015_JSH_ca4cbac1723f.json": "cdd0821c2f923d3c27f8f5a6c2535697ff57bc5667ded27a7923e24f9aec4601",
+    "results/a-main/main_00016_CEN_c3bfa26f46c8.json": "0b6fff67baba47f81bfeb3972e7540cb6aeee9c702923dff5ad9b9e59b5397f7",
+    "results/a-main/main_00016_IJSH_5b44a41165fb.json": "bda1d37463666c5b53ad33614bb8d07762e8fe8b75df0a35766c7ec56f72caee",
+    "results/a-main/main_00016_JSH_51b0c63004bf.json": "833d6d67e93679a37bf5c3d950c6f35b383a05fa52b07214971fa935f87eda43",
+    "results/a-main/main_00017_CEN_63ca5a2bb33d.json": "a0ec98bd30ed5dba8f94629e259b749388a45dd68afd6cc5780a4f91e008fc35",
+    "results/a-main/main_00017_IJSH_b0f3f8ffdc81.json": "097b594e49889f927007e4242dda224746dfbd0220466626860386e04b707215",
+    "results/a-main/main_00017_JSH_a04f8dea2a02.json": "fe8572207428c5bd914b0a90d324655def39853b0b59dc9870dc28247c4bc4c5",
+    "results/a-main/main_00018_CEN_8c59d783b012.json": "448c0664c2abac23dd22dc8e89cac4723cc84822958c70ce4dfdfc243d51d9b3",
+    "results/a-main/main_00018_IJSH_a6fbe2ca7e40.json": "5c010301157e2c2cf37ff688bd568fa14dec6fee7f739f8dedd012b7ae22564f",
+    "results/a-main/main_00018_JSH_ce3801ebc719.json": "a8ae9f518d0d95e312d1ed0977a5b8ff3a44bc341f4b9ec0de67f0d5ae42dc80",
+    "results/a-main/main_00019_CEN_6614e11c5be2.json": "bbc547cab89aa22db2e52ef66840dccc27859510c4def10dee5cff8838589a60",
+    "results/a-main/main_00019_IJSH_476b5343fe32.json": "1b12037abfa9d789beed16d0b99855dfd19a0e79b8eda26cb58c1f0ef7889b66",
+    "results/a-main/main_00019_JSH_380f3fa00ff0.json": "f537dfcabd3f904acc901f0f59617974f20401b0da273f17bba377dec9b07592",
+    "results/a-main/main_00020_CEN_953181712a9f.json": "8fd0ea493bc04f41ded663c3f088239a9aa6512ee12a5ce56d95a68942d83f84",
+    "results/a-main/main_00020_IJSH_2c95252ba605.json": "5323deb02bfde80f0ff8f909a8963865dfd8807a7635f6479d2d5b57832f6419",
+    "results/a-main/main_00020_JSH_67fda0b8b989.json": "cf628e615a90d1ba0b3623e01f7d5b212d309f5b2d71ba506caf895ae3736cdd",
+    "results/a-main/main_00021_CEN_0ac456c40ba0.json": "66ed68f0043503db2aa1fac5ec9441ad50a31c3874216ae8afa9fdb28a22cf78",
+    "results/a-main/main_00021_IJSH_2d7321db3867.json": "ff14d12cbe680e3f0b1a283a502bdf8a18c0dd37c990c07b7df0eac47da40014",
+    "results/a-main/main_00021_JSH_c246173bb4c7.json": "9acf234305d49c06c9d06221c751c2c66a89ccc3be88572d1cafaab8c37679d4",
+    "results/a-main/main_00022_CEN_1444f74fbdd9.json": "78cb3d045369fd5ba544c32723549c1413c50933dc63e5a73f35081959e5d97b",
+    "results/a-main/main_00022_IJSH_2ae20b74316e.json": "8ff8e0ba19707e2c5234b0b657ac1eda8a3c23aa9837b0ef5cda24d2f899803a",
+    "results/a-main/main_00022_JSH_0bbafcf408ec.json": "b5adcb5e75186e2e2ecfdb69a2fc160a3b77fa58bac2ebc560115e7d25ce6848",
+    "results/a-main/main_00023_CEN_1cc8ab0f6039.json": "310f3bf1f048d261a0a28b6246a8c6195bc4aef3880a2acee7950aa2a73bb80e",
+    "results/a-main/main_00023_IJSH_e9c31989388e.json": "ed4fd2a53c718bca41b75838433a8206174bd390a0bf3a8a5cb557e238b266e9",
+    "results/a-main/main_00023_JSH_006764f0e17e.json": "729966d88f312131b5a5c4fed9070c4cd5c9fdddba70642dfe4f15a19daea29b",
+    "results/a-main/main_00024_CEN_8ea646256708.json": "f59dd602476208ed9e19d1d55d8ddcecfb4b4c9513e0cdb7995b6c20b3fff6bb",
+    "results/a-main/main_00024_IJSH_0a476132fd96.json": "eb6970790fe46e1f54238d5915d14fd6a334a2685e82bf595a1e3b5f3cd2607c",
+    "results/a-main/main_00024_JSH_43bb73e2a025.json": "cd29ce15e9677281f457e5d0cdccedb616736759290af10783f76d815ff5fd12",
+    "results/b-main/main_00001_baseline_reference_39c603733183.json": "237ffba4a2cd6e61b88773678a1fcf2c63a5915bcb66961a021462e7aeb1c7e9",
+    "results/b-main/main_00001_guardrail_gini_restore_37da2961274a.json": "8371e859904584fa638724ba193b0d851c0e3e035e2b22d2e7c8ed948b528354",
+    "results/b-main/main_00001_single_gini_restore_e49ad7773042.json": "f0c86eb021e3acded28dcad9b6fddfa05e5c87424219b09e59c40d843cf51a98",
+    "results/b-main/main_00001_single_maximin_time_avg_cri_9b284bcd345e.json": "74b393c9acc92545432550523a079b618596aadd9427840c341c10922440adaa",
+    "results/b-main/main_00001_single_p90_access_restore_9a3cbb6483c8.json": "b45d7edccf03d9a1e0fa5561f06e2b1c5efee5383e3a3b87149e01e1592798b6",
+    "results/b-main/main_00001_single_triangle_6d40503b2757.json": "6b95b474e48fa9aa5bc6589ca68de5ecb9c094995af5fd1d735e37a1c519bab5",
+    "results/b-main/main_00001_weighted_gini_restore_l050_0227ca720b57.json": "001a38512af137da833a7320414c8a3d43842fd0e1ea70c4f44eddb7bd63b09d",
+    "results/b-main/main_00001_weighted_maximin_time_avg_cri_l050_3784c03ae5e1.json": "82151b776cfb5242cc6578889f5c8318a4d48190ba16f1082f3f2725a66263c4",
+    "results/b-main/main_00002_baseline_reference_55f3fc93e4ef.json": "e9074e14260ff7c87837949950c43eead15bc5587b3e6755765463455ff12e42",
+    "results/b-main/main_00002_guardrail_gini_restore_679e6b2a0c36.json": "dad26743e4ec603c676dcc345f4aa392631a6827a5d4b313fb695fdc59a7a23a",
+    "results/b-main/main_00002_single_gini_restore_a16500aa4601.json": "d6230a5cbee32ea418a3708caa36723e095cda120d9d3edf20f2e3d601729315",
+    "results/b-main/main_00002_single_maximin_time_avg_cri_cccde0e8588f.json": "d6c7cac1043a36e305e0f84edd43ef6449fbc5a3850cb10c959be17f505b7f0d",
+    "results/b-main/main_00002_single_p90_access_restore_ec75f0f9dde6.json": "4ce589b0c444987d441184554cb8092e95bf8d6c4172b2dd1b5595c58c8702ec",
+    "results/b-main/main_00002_single_triangle_f56df0ee93fe.json": "5926b1636830af1fb9841acc3b5da0e454f297bfe1458e0644188febb4c1015b",
+    "results/b-main/main_00002_weighted_gini_restore_l050_90b27c6f821e.json": "fe0904fa76c2a940fbe72092d6282daef1be765fefd67a8cc48de9395e03c9b1",
+    "results/b-main/main_00002_weighted_maximin_time_avg_cri_l050_a43d1c12f7b4.json": "6f506ce4a18998bdf556f6dface4c83c60ab24590716fd02911729d5c285f7c0",
+    "results/b-main/main_00003_baseline_reference_43987d166462.json": "2d563bcfa5adb64949c0695f9516ebcb7395bb6454f42662272a65c0b67c04e4",
+    "results/b-main/main_00003_guardrail_gini_restore_64bf5627bcdc.json": "87d4207d6889e7629210b832eb97d63773789167eefe9ea2d33c579771d9315c",
+    "results/b-main/main_00003_single_gini_restore_f05395094684.json": "31ac5ee1b17b21ad12c90d36b4b1806d1aee4803448561b4be53e5fd7a794727",
+    "results/b-main/main_00003_single_maximin_time_avg_cri_df477d6040b4.json": "69380a489d99b3110a98547b42ce72a72a83858c0875835be19e4ac32d7c50a0",
+    "results/b-main/main_00003_single_p90_access_restore_a0ad46fef552.json": "9c4b327beb0dc8397fbf44b151065e51e72847c64be2df07479edcf7baebca72",
+    "results/b-main/main_00003_single_triangle_fd5fb4bed6ae.json": "24f4ab256ca4c736522933ac7a2ee239e53605b1f9208f7aa8d275d9f31791f2",
+    "results/b-main/main_00003_weighted_gini_restore_l050_92e6204d904f.json": "729a85057c3f174653667237f68a0e01c80c7fad64f31483b9e2d3385a09d8b0",
+    "results/b-main/main_00003_weighted_maximin_time_avg_cri_l050_7f627b6fd50b.json": "d6318ac2b3c90d781cda873a212685a94a27031be36ffb782ab3efed2304dd08",
+    "results/b-main/main_00004_baseline_reference_af5934edd50f.json": "13027fd001f698ee2c41f2e59547d2f2d28ca45cf07d0666de8f507a5e67e71e",
+    "results/b-main/main_00004_guardrail_gini_restore_af883e419b48.json": "b8d455008af82feb780a89074b5782c50c432a18abbcb0ee92b77288c2f5cd1f",
+    "results/b-main/main_00004_single_gini_restore_b2414afa598d.json": "2cc860ce60bbe7690811abc6353e7e1f4c714f26ca134acf9dba45871e0d5824",
+    "results/b-main/main_00004_single_maximin_time_avg_cri_f39b1586a340.json": "7155227cc0fd47050cd2d639db297acc2e6c53346d70629241af4eeacd0ce10d",
+    "results/b-main/main_00004_single_p90_access_restore_510349ec335f.json": "43f631a95664b1650a0132f192cfee376a82ebafec0c13ff49a0915deccbaff8",
+    "results/b-main/main_00004_single_triangle_3c42485aec02.json": "b3c9ea7a14b44f39763585a798f52db25eb72c2247dd58906975ec239827ec33",
+    "results/b-main/main_00004_weighted_gini_restore_l050_8eac6275a26c.json": "31c1186a8c03aeee4dba43d58f74ad4b05c5fcd13417cbef8c1d7b851997467e",
+    "results/b-main/main_00004_weighted_maximin_time_avg_cri_l050_53f6681af471.json": "6cffca959310e5e41225e6c9f3712aa0a2c8a6ce76e696e79dcc02423de9061d",
+    "results/b-main/main_00005_baseline_reference_7c10b871d053.json": "5a8dc0f2e63e86728ea63149ca0d102372399d9b0e46b2d5a1b0b97ec0c25e15",
+    "results/b-main/main_00005_guardrail_gini_restore_9642113a9643.json": "986b7d6b9f26792e7920f71f4abc98f86b9eb63f49a1cdbc2a6ad07532dadc47",
+    "results/b-main/main_00005_single_gini_restore_11ecd3cc0617.json": "4faa9c902ac12a5b4682146b85c019ff00a2626b51976e2103decff700d296e3",
+    "results/b-main/main_00005_single_maximin_time_avg_cri_8aa3d4939831.json": "c88cd2930cc662b532b1cf110d67a9a7c71ec702061b974413e49bde1bee2ca0",
+    "results/b-main/main_00005_single_p90_access_restore_6a256f0c13c4.json": "d26dd942021df4795a58d602409f2552e98f6fbad9621afc14945576885a0eb8",
+    "results/b-main/main_00005_single_triangle_3586a1224e99.json": "8b71bc44897fa1d19a641db2c1b650f842772b0f461eadb64f7032e634b69ce2",
+    "results/b-main/main_00005_weighted_gini_restore_l050_cfb10c83c35f.json": "2c6c28537018cb34b3f7f27f91f9b3a1afe76ef49d7236ea8d5b2844d04b9d67",
+    "results/b-main/main_00005_weighted_maximin_time_avg_cri_l050_841e1c0c8996.json": "d790326fc8ae66216fa214f9849bed01584a96a8c464714715da1a60e1273564",
+    "results/b-main/main_00006_baseline_reference_e073164da491.json": "64ec258b303b86dbd0fcc50e2fcfee21d07a471a9f0a9601f4bedecef37505a0",
+    "results/b-main/main_00006_guardrail_gini_restore_ca61a636e385.json": "3772f4a6fc85b3d9d3799bb1d85ba49a5e2c91bc6e69c303ebc3773fd5011a40",
+    "results/b-main/main_00006_single_gini_restore_722de754c44f.json": "3627664486ab247a1d8198c9e30b88cd9fb12679a0bc84f444922a52f44da657",
+    "results/b-main/main_00006_single_maximin_time_avg_cri_4e62d6b8a513.json": "5831d95d5cdaf87d8e2ee006f9892629eee385dc58404fc190a04d9f2b21f5d1",
+    "results/b-main/main_00006_single_p90_access_restore_c461650c7c37.json": "fbd7121ad11436d6960be7e23858774bb50d817c7666e5ab30f2b8f9c38a57d7",
+    "results/b-main/main_00006_single_triangle_26370360fb98.json": "634fd039803ba0c81cf7cbb13a6452254784f9900864068ebe5efb3b8302c897",
+    "results/b-main/main_00006_weighted_gini_restore_l050_80c35a35b792.json": "f83688fd70dea4514cb2dd18fb0219c6f9883a0fb452117ab9779b5545ea1bfe",
+    "results/b-main/main_00006_weighted_maximin_time_avg_cri_l050_e51bc0d74b68.json": "6af1520e54a0c58023409f7ebb34c7ba2b15ed32bd837a06212cd7f404cd3830",
+    "results/c-main/main_00001_CEN_e6d0f4fbfa28.json": "3e9239bf9ee58404290b994a6025e73ab483ab7272d5921f233c3d5b63cd6bb9",
+    "results/c-main/main_00001_IJSH_457df003f02b.json": "57d20e8f4a4b6b50808886fc9a1ce2948e443ffb250b1da46434b8c13567c4e9",
+    "results/c-main/main_00001_JSH_6d8bb11dfe2a.json": "c8531f5fb5d3225f78447a412ab5b0e7656aa84216c048d2af459f968d6a5fa7",
+    "results/c-main/main_00001_OD_CEN_b2563d6b3fcf.json": "3a5aaa60170b722c1938153848f014c0926553b8507590b830639cb10923604b",
+    "results/c-main/main_00001_OD_IJSH_db95be8886f3.json": "f0cbb4d35f616b60f9e9d3991a8bb412ba8db8fe48b1781b67679614037acfc4",
+    "results/c-main/main_00001_OD_JSH_7cab649c02ed.json": "b0e5b4101d85f02569b720ae6ec58f3f661a8be654dd1031f3e8bac24662ac80",
+    "results/c-main/main_00002_CEN_e5b6956280f6.json": "3bdbea5238468c84a6424e9769f88adeb3b62124a3b65595103d9c8fe6fe13d2",
+    "results/c-main/main_00002_IJSH_16c38152a6a5.json": "79a9034c7b8f498a9472322e8c9794e2f74e82581015542c077f438d514a30c4",
+    "results/c-main/main_00002_JSH_cd4f8a095917.json": "caf0b92f80d6e288ed143b5340c32f04a9c55c3bc7dc0dd982a81b2cf029e4ba",
+    "results/c-main/main_00002_OD_CEN_e954696c8862.json": "4ca9ff229bd66df84f340e7002c3027f8f884f7b9377e0c90faf6e81213381a8",
+    "results/c-main/main_00002_OD_IJSH_0aee92907f84.json": "fc8179f5f1656ecba56fe2e216566cd0b25a9635c6e2f675e7cd9e653be2a91c",
+    "results/c-main/main_00002_OD_JSH_3030f4dd2839.json": "283e2348d2e602b7ad8a87105ad32622c805acccab5be86cfe1e2bc6b03bc6c7",
+    "results/c-main/main_00003_CEN_152a670c50f4.json": "49ad593f972eecd754e2bbca930fc12c9353f1f5472a7c9f9477e107d19f8aa3",
+    "results/c-main/main_00003_IJSH_7e4cca1e382c.json": "d8aa8fd6cc59229e3e61487cc2e6520725fdca288a8c35246b738dc4ec0350a0",
+    "results/c-main/main_00003_JSH_faf4f4b43d5d.json": "b2c1afe56a50aaad1be97890736b5fce0b7b61b354a15c5f9cc48f8884a3bfca",
+    "results/c-main/main_00003_OD_CEN_3783121819d7.json": "fb0857c2b73da9c9ebd4902112f330638ed2e1446ac4d27702540b02da69fcfb",
+    "results/c-main/main_00003_OD_IJSH_9a825c6157f2.json": "4836f5a9aba5ba0a4066eb18edba8c89a781f883c8c0f14eef22b1b8f3969d4e",
+    "results/c-main/main_00003_OD_JSH_a3af67a88bbd.json": "f28fee2930d069b21289cef4783a3a801c3c845758aed7d4198dc3c4af2b5bb3",
+    "results/c-main/main_00004_CEN_052eb5e33c94.json": "d1f99709961a7e02385af8aabd43ddc8f5643b2233a66c7983ac099ea30cd867",
+    "results/c-main/main_00004_IJSH_1fbb2331a819.json": "75b656e024873fffd3814c12c04210128045e54f40aa1c9caf123e110efde697",
+    "results/c-main/main_00004_JSH_2bd4fa1dd735.json": "6dfbb3bfa619324dcbe413ddff9e20563385ce0f8b6b8923919ad89189cb6d9f",
+    "results/c-main/main_00004_OD_CEN_365db693408d.json": "3f8d4fe23a8b75796461a95436c85e8b9af5e68de436c508b2a86509d6a34982",
+    "results/c-main/main_00004_OD_IJSH_638d19d2928f.json": "66fc2031052931bff94329d1cae5fb85856c110149e4a97c6c5ae7780768e883",
+    "results/c-main/main_00004_OD_JSH_63be3770e858.json": "fef035a037606f46bb6ad34cbb8633ee7b621a627140fa76578ea0ada603fdc4",
+    "results/c-main/main_00005_CEN_bae5b4017735.json": "6b2a67002ac1d935cfc20d2941936ba571d188d95b7beddf7e9772fe4481dbd1",
+    "results/c-main/main_00005_IJSH_d2ad426c691c.json": "b1c42a6a57841c9249ce2ffb5a0bf9fc480e08e695aa38ac8ee9b57b5c7a3c55",
+    "results/c-main/main_00005_JSH_58fd5a198893.json": "4b94632d45569934c023fd07d12c86fe240a59e24629d6e784e588e0c360707c",
+    "results/c-main/main_00005_OD_CEN_181dbed59584.json": "8a01d0ef64ef5d7842e4e1ce082be15d4809e16f2e5a4f86ac07183e5489c029",
+    "results/c-main/main_00005_OD_IJSH_ecb5a9615808.json": "8cb5bfbb103fd6d675a1ce917d645db732184adde8d7dcb3e958c9d55009425a",
+    "results/c-main/main_00005_OD_JSH_e5f25a584dbd.json": "208eef9901521d60374a1ddb507cf7b56bce59144125cc3aa06ae53d1ab72760",
+    "results/c-main/main_00006_CEN_806f76ebf20b.json": "fd0182338f9939fdc2b2d1d4e8715f086708cb81e564aca138a4efd1696b2983",
+    "results/c-main/main_00006_IJSH_f5fee769c8f5.json": "9897c005117208ffdce7235f858a786d4e3fad5d22c212801ea8ba5d3f1f56d8",
+    "results/c-main/main_00006_JSH_6fe51d05daa3.json": "b9d46cadd76cb56db858dc82e9faeb656637e3c17e898c19e53305e2056950e5",
+    "results/c-main/main_00006_OD_CEN_f2565e85922b.json": "9e3d676125e1b774a9943f6420fe7c5c676a3f2dd3348a9d3df79b12c7accce2",
+    "results/c-main/main_00006_OD_IJSH_19eb3e52a5aa.json": "c79031470090843d8fdb68e5e55d8d05ae90e458ee24370816aa26dd2160334d",
+    "results/c-main/main_00006_OD_JSH_1e39618b09e8.json": "b293d51243ba47c0c92b5b35d0a08eb003c0abcc09cf3a8bf3365ecf66b5fe0b",
+    "results/c-main/main_00007_CEN_7fd54b891f0c.json": "bb54aa6661e8b4690640629c8e8f1b2f5aadca01403c3a014d3845374efdea93",
+    "results/c-main/main_00007_IJSH_f7c92c6c88ad.json": "6c0023920b59db77a1436d67a1ddf9bc65c8d2202613fec4d5a12450f492e3ca",
+    "results/c-main/main_00007_JSH_87b4d026de0c.json": "76144b8efe35cb73f890792d20c5500c3b5a76db3b6e25d5c45ed27c82689833",
+    "results/c-main/main_00007_OD_CEN_9cf3cfa26c41.json": "c054e7675b318c709c6d4a74428dea69d02011f559ee531cc525141319b743a6",
+    "results/c-main/main_00007_OD_IJSH_7e2201fa37c4.json": "266fe4ac99287140299bf4d2785270b757865ed0c28828f65286d36078584e20",
+    "results/c-main/main_00007_OD_JSH_b64a1781c225.json": "72d752f7f5aab95c06425f29b5a9842538cd2aace10a4c1dc0462adcfdc99aaf",
+    "results/c-main/main_00008_CEN_80b81a21eb0c.json": "e27e4b829bed44e7b44834d2682774f7e477561e8b2898383f75fcd1f98c4dd8",
+    "results/c-main/main_00008_IJSH_42d87c59ffaa.json": "e73c2848e05c4be6d4a22216c204765589ddf5729c44b7ba93072ed0d9c67adb",
+    "results/c-main/main_00008_JSH_1eacdbb4176d.json": "2d9c7d9617ce2b91c9991b5300a580249593d26d2d99347254248030c8c20581",
+    "results/c-main/main_00008_OD_CEN_783b808135c8.json": "a5532a03fa5e830b1842a39a08fe49ec75d07fe95999c82efc9572602a6f5338",
+    "results/c-main/main_00008_OD_IJSH_35eec63a3f0c.json": "682232904e411158de48789cbef025ca7f173517d121212a191048eb606eae8a",
+    "results/c-main/main_00008_OD_JSH_28a1a339c02f.json": "9a0f4622edb1a1d4aa32332acdb34841cea2fd9ddeff5f6a41d73a0468c47f77",
+    "results/c-main/main_00009_CEN_5649a43738b2.json": "18a104d8c084df4375628bf546e79ff691549c0ec11978a5bf24204e4bb3785e",
+    "results/c-main/main_00009_IJSH_28845dbc1721.json": "3b6dc17226f1b6c674c6bd127bd54b3aee687fde38b6d7f805901eff91295305",
+    "results/c-main/main_00009_JSH_e27d4999d2b5.json": "881fc35a25aa2be30803bb56e7a72022b65ff382602931c590a49509ebe13594",
+    "results/c-main/main_00009_OD_CEN_7b1e365a33d9.json": "1326acd113bc531fb0836d46e2e8c95b71e6b59b183f523dbb36629fd3592f65",
+    "results/c-main/main_00009_OD_IJSH_649c24e274eb.json": "88673c9e0acbafbc57e111f8ab574ef6a668719ff91a74dc70a61f64e14a2486",
+    "results/c-main/main_00009_OD_JSH_f3083469f54a.json": "4069062b799784e73572553039ad69968aee0e105ea299b0dd7873ca1a0f18bb",
+    "results/c-main/main_00010_CEN_87d48facd963.json": "c3aca55a8f2cab6ea44ccdd039560fecfcc03e0367d8e2cd06c2872beb13670d",
+    "results/c-main/main_00010_IJSH_9e13829e4529.json": "6819860a6d6787be8788c7255302ea3265f7f9f2709234ef2ec5e11818fa997f",
+    "results/c-main/main_00010_JSH_d3b8ddc50a8f.json": "a8e970e5698d3399df6fdf47e417ed40236893027563c0b02f1652fb3b664b3a",
+    "results/c-main/main_00010_OD_CEN_b26f6d51b854.json": "2708595babb632b60327c09f8c11d2f591a750403678db8ad16213d926aa4f04",
+    "results/c-main/main_00010_OD_IJSH_c5c6a315753b.json": "ce1b9f1c438f905a14c96c80cf8e457ed0e1336da5a8696519fb4ddec8983e3e",
+    "results/c-main/main_00010_OD_JSH_b060ed662876.json": "20e05492b5bff2b2e0f0051f55fdcd42beb81637eb269b3c39c718d466451d6a",
+    "results/c-main/main_00011_CEN_abeef4156c44.json": "ea99c230f7b78ae7a918c82c673644cee739d1c55f8680ac043bccd45aebab66",
+    "results/c-main/main_00011_IJSH_580ed6962a92.json": "bea63265cef89ccc8ad09090413331cb4abf729c5d00b339a0f6e87ffec82c26",
+    "results/c-main/main_00011_JSH_8b7981311c63.json": "91434463d0fb1a7fa0d3d09ccd6735b1f1eabc3db90019715448dae8e47ff788",
+    "results/c-main/main_00011_OD_CEN_951c100293eb.json": "ccc285b8954b5107be17e18c4a8e2be7a3b9023c520825994520a28159130367",
+    "results/c-main/main_00011_OD_IJSH_40a7324595a5.json": "ff89d8ca8ef83db235e936c5b2ccf47dbba69a154358a6c8f4622b556ab9e2cd",
+    "results/c-main/main_00011_OD_JSH_facb39055378.json": "776e3b085030f1b27d06d4f8fddf85e38112fb026a18ec2b83df64690082073c",
+    "results/c-main/main_00012_CEN_941f394ef1c8.json": "1e300fa5c39372a6b52c900a011e8a1d6d86f01313d7817a18722c045a841238",
+    "results/c-main/main_00012_IJSH_5a3f2f8d0e71.json": "0e08bd77d345843be098253353e9f9257686173d64df485163a3ad3f58dcaf57",
+    "results/c-main/main_00012_JSH_b8000038b65d.json": "28791e76607b8f4c47857c49f272ae392468faf4de7f7175c393ec5dad6c016f",
+    "results/c-main/main_00012_OD_CEN_a01bfd5759db.json": "0681af6cdff78253d4cf029f3c549d8c77f4c13cb8e5784d919456b575f28dc2",
+    "results/c-main/main_00012_OD_IJSH_6cb3ef9972cf.json": "5deb9d72c3146900b34ac986751376f2926d316931f02ba2cd629766e47fc540",
+    "results/c-main/main_00012_OD_JSH_bacf0cee9bd7.json": "d2b718566cc9963c053e749e3a4ca82c9139f11f052de9e4af8c39164a841f92",
+    "results/c-main/main_00013_CEN_929fa211e09c.json": "30d773317537604e4f0d9d03070914f1dbc3b4957b075e49b0d0f3c56a8cad06",
+    "results/c-main/main_00013_IJSH_92f1d59b5447.json": "18598e622cf2a69bb326b0776491a2de3134439794cdc17047ebb310c0fa3cb7",
+    "results/c-main/main_00013_JSH_02a714173897.json": "19f4c5e72cc3fe6f14556a09031ba453f65a309a0c6dc68d99b3f388b496aab4",
+    "results/c-main/main_00013_OD_CEN_20124b30f032.json": "f026b48e1c77db915dcf212803b372a913092171cd348af6dce820a850d1ae59",
+    "results/c-main/main_00013_OD_IJSH_d67d6cbe23c2.json": "e9429ef740ea07c82b25251a29f7e788b2d44a674fcaafe66588acccbd7e5026",
+    "results/c-main/main_00013_OD_JSH_5427f87a753f.json": "3d4332d2df378dfa497d61afb7f2c3c1a6bc4671bb445c661b55c6de9405e3cf",
+    "results/c-main/main_00014_CEN_aa2924a10c23.json": "a528bb97d4d630f91f8289d9afb07f04ca746421db92b88c8ef80e54b9002dc3",
+    "results/c-main/main_00014_IJSH_47a7471cb9a3.json": "9dd2fef438de6b79b7cfdd136c3f29111aecc3e4ea5d1f85d040010257547ea6",
+    "results/c-main/main_00014_JSH_66f52ad4b731.json": "6a572253668af2908150c512c8a341148a00b3d909d5dae51bad747226377d10",
+    "results/c-main/main_00014_OD_CEN_61285716bd88.json": "081c2a29540bf4ff1edf8dd274198047a9ab1ea44b04d6f03ff981f6fc4ce47e",
+    "results/c-main/main_00014_OD_IJSH_c7dd69e4d019.json": "ee78594f49245ef5c4fa0728e5dfd3b7a77efe1f36fd2aca20c1d9c320539f5d",
+    "results/c-main/main_00014_OD_JSH_98026ebacc93.json": "bc99d42a28592b1115ba28cb47dedccd1f0279a24360c7c1da329e3087dde500",
+    "results/c-main/main_00015_CEN_4ef3c8789814.json": "f36f7d324cb0ad51cee9627c1202780c5fdd0909a8f1e3d7468ea7e5fb09a898",
+    "results/c-main/main_00015_IJSH_8e95c3c5c61b.json": "228fbd45261f0aa0c7e2c608148f8ca19f06a457f148f68448193d6286b748d4",
+    "results/c-main/main_00015_JSH_f47d878c5609.json": "154c88ae38e4de48f5557e9bb4e88d0d93f3d0947e6a0ec8c4dc78d557a0c8f2",
+    "results/c-main/main_00015_OD_CEN_e0cc6d225b83.json": "087da8c1c00ca9072cc6964763aac6b080673e27e6ab701e1a58900e609f004d",
+    "results/c-main/main_00015_OD_IJSH_13eaa9a691cb.json": "42cfb8f114eb90a0d901b98886b2999ca5b137281c945e61774bf6b064716d3c",
+    "results/c-main/main_00015_OD_JSH_e45e4d884c91.json": "25f9ccd053850fe0bc77220313c088e4c177a86a87156198da97cd0062fe05fa",
+    "results/c-main/main_00016_CEN_9a89c179dfbc.json": "9e4259d0758323f122694d00db6e34091714fd2279dfb881ebe0cd8d01d36e29",
+    "results/c-main/main_00016_IJSH_61f61a72a843.json": "7e0e3bcf248895fb54e470668bd74b302f1256f7434ef20c390b18c0d9e61865",
+    "results/c-main/main_00016_JSH_d2ea6d7a42eb.json": "2a3b8eedfcd68d184c8b675147bdc13d4ae125ce72ef31c75c7f908b709dd661",
+    "results/c-main/main_00016_OD_CEN_bf8938a5a503.json": "047b5c39cdeec1b1b91c7cb010edbd677cb20008c893e5675912f5a21cdd3989",
+    "results/c-main/main_00016_OD_IJSH_7118ec03333c.json": "9c185fd3fe295dfac827e517bae972d828d2671f061254effb7b56203d6f1d2a",
+    "results/c-main/main_00016_OD_JSH_2149281715e5.json": "e8e1d522caa286fe7870dd8bf6d685aa3979e13ec69756c8acf1cdac72a394bc",
+    "results/c-main/main_00017_CEN_aac64986b670.json": "bb79146b20d2320f9ebfe24c299ccf5bd32e4bacfb371a2441be4b6b9e038775",
+    "results/c-main/main_00017_IJSH_a1b52d42ad40.json": "88ce4353c83750d3654e256384a7060a9c1841a1be44f14447e1f7f986fd7543",
+    "results/c-main/main_00017_JSH_10fc1e7c0751.json": "c4f0925c92695b4631e5e2bbd19a3bd70e1780b22f7f162020ba0e19cceaa335",
+    "results/c-main/main_00017_OD_CEN_5709574db50d.json": "9f3953c127ed8cbc1acd329b45c6c8b1c5dae14052e52c5424483b9e83a2a17a",
+    "results/c-main/main_00017_OD_IJSH_9986867e1080.json": "d2e315c59508c20d132f5c0c3cd18013920322f21ede1f5713fca67c696ba5fe",
+    "results/c-main/main_00017_OD_JSH_736bb065ea30.json": "7bdf18e428f9dacdc3773ba9ec0219b4f260580547a3935697a210d700a056be",
+    "results/c-main/main_00018_CEN_d21a00ccf796.json": "98aced218c2fcacf17dddd7456ce0df9acebd6bfede79b57ef84db192560731c",
+    "results/c-main/main_00018_IJSH_1661d9afe01f.json": "cdb394a68926338d8139da9f0beeea7c06f280abe0d6e205e0228c92426dc29a",
+    "results/c-main/main_00018_JSH_6144773e7606.json": "39dbc874862e01098e3f7e0983b725529048e3a0cf1105e22f9fd00333598d8b",
+    "results/c-main/main_00018_OD_CEN_ca74f7fbe560.json": "fb70961b072ea2ad04aa7631634862743f179f54a6ef8859fce5c7d27ae8598b",
+    "results/c-main/main_00018_OD_IJSH_d6604b74dc24.json": "449559e474ab7996522b6311e6e9cb41146229752ff485ac8c0dc88ec5bb8764",
+    "results/c-main/main_00018_OD_JSH_631036ed3fae.json": "f14258b160fd28cb926919e1d24991e8ef250a7767b76148f369094e69ef1f80",
+    "results/c-main/main_00019_CEN_9ea270329ffe.json": "090ce8f5f991bb0a7549cd57552029c8a0caf60c57725262b9386bc3c7ea643c",
+    "results/c-main/main_00019_IJSH_b8943eb21aaa.json": "2b94980d65c2302de7b9e8464a8205ddd6add9cac19e355e66d64f185d7dc037",
+    "results/c-main/main_00019_JSH_77f839d92878.json": "f36df957d571ec2d567c36e55df6369d4d78f9bd332a1d3dd07b8be05fa45b2e",
+    "results/c-main/main_00019_OD_CEN_260f163fd965.json": "4d1bf8a4a249e538fe2f915c7c9ac4ae1317bf2cd6ca1da6e1b991d839c4efd4",
+    "results/c-main/main_00019_OD_IJSH_d6bf342983be.json": "0bd8820e1838e55dc5b20493143568b07975ed163c8e3c451fc56991e1294128",
+    "results/c-main/main_00019_OD_JSH_9fcf5fa793b7.json": "11cc0b2d438645a9d1927f86bf270959876d587cddd5d96db7eba9e1f0450d43",
+    "results/c-main/main_00020_CEN_44dab071c441.json": "a47726875800339eaf5dfc72e0b5b8d5dad3a9a5cd4eb1667c27e7be89c98b5f",
+    "results/c-main/main_00020_IJSH_c5cbdc554f44.json": "f1355d845173fdf3a55fe3f6680500a38c0a1ec05adced694b2a2100b7ca7c28",
+    "results/c-main/main_00020_JSH_b2ad38b8d4e0.json": "24c1725bf98e86613f7ed1c6ca44ec18f00eaaea97cf32f5c505a611e04f5a26",
+    "results/c-main/main_00020_OD_CEN_56496b18de39.json": "4cadd709dc5eacb86b7ed5cb77e5af005897133e745fb0a5c24852bc1c6cd0ca",
+    "results/c-main/main_00020_OD_IJSH_48dbce5d6734.json": "ec499a352169ce02cbdfbd52668f87c81af02d7bbdb4dc85f2d82358dfd461e2",
+    "results/c-main/main_00020_OD_JSH_ccbfaeb69a65.json": "e57dbb13b891ef62bb578edcf042334a0349eebd6690d2868f6568f2a8fbff3b",
+    "results/c-main/main_00021_CEN_39095144824e.json": "fadfa7d2c31de7cab28dfd7d14dd66148b3a9e0a9d5af10be5523318ce73e612",
+    "results/c-main/main_00021_IJSH_ed01437619bb.json": "43db4b81eadf95484ea3f84605cff74e2588628a97253817c9fa1c295b6ef278",
+    "results/c-main/main_00021_JSH_35d9b9dc7562.json": "c06492ee5e3002690f259c3d50498564472ad97fb2333329e2df4e834b0f9e48",
+    "results/c-main/main_00021_OD_CEN_22be9d011e7a.json": "14564cee95ab4b0c9ec0c100397b895941f2022955d558c73318f5433ae2577d",
+    "results/c-main/main_00021_OD_IJSH_de33342320a7.json": "822047c0939e4db25d8264610a1464946c7404acfa8b294a6b26e5288df88f57",
+    "results/c-main/main_00021_OD_JSH_066097d02d52.json": "f51aea7899a4bfa3afff40b621ab6175849832c5e312f3b4ed0721f7af483788",
+    "results/c-main/main_00022_CEN_77e57a9297f0.json": "c13f0e414f6f21b64a19833353a6f9446bd51e97ef05f62b54361d3aaaf949cf",
+    "results/c-main/main_00022_IJSH_3bdb4443a863.json": "deba81dfec5c225ec005854f3a0b1cb09968c951b24a68098fc3762922387988",
+    "results/c-main/main_00022_JSH_b31d2366878d.json": "9557ab96f9c58334bc79b7f9148db097122e7c22b07e58c5332bfac2af097d86",
+    "results/c-main/main_00022_OD_CEN_533aa0e980c4.json": "8c3d56fb4aac9de983136166b1626d38f836231ef4712dc70612a36cba785e23",
+    "results/c-main/main_00022_OD_IJSH_bab0c881cbf1.json": "13a39c66a48bc99f58c1290fdb81e6060aa232f66b48886cc5c9d48cccdf0acd",
+    "results/c-main/main_00022_OD_JSH_8e859733d83a.json": "cf9deed6787ad2b593e3f54aaaff18c381ab96cb6f6039e43d2afa82fffc8d47",
+    "results/c-main/main_00023_CEN_9345aa646229.json": "c75ddbf221d3a9a74dcea6435a39c59e29032d50bb444ce75a7628794b29008d",
+    "results/c-main/main_00023_IJSH_3a0db3dde7b0.json": "813a8930e626573e4656ba0030daba49b55d6f177f294f28fce42940f7344e94",
+    "results/c-main/main_00023_JSH_aede163c1e56.json": "3bd37e634b8990194f7a9c2f895704c4a18c84c64fa87c1f294f06404059bad5",
+    "results/c-main/main_00023_OD_CEN_9e8d73a81b29.json": "61288a08b56d205dc85e9b435dcb9d1fba6a9a2616cad877c5e1f4cff2cf612f",
+    "results/c-main/main_00023_OD_IJSH_0bb8e7b2c631.json": "03963ac1302fa00b2c2c5c7cf2acf0a44fc9a73efc16261dd0a2fdd1e570d3bb",
+    "results/c-main/main_00023_OD_JSH_88abcf0f34c8.json": "2910d389b4ed7d2b0147ffd729446badf05a5ab4d02a4cbc9aa13480f00818be",
+    "results/c-main/main_00024_CEN_d49c8087d7a9.json": "7cf639081721e4c7b55716e1339d5173b195e1430c64d6ff8ddf76e8c0afa54d",
+    "results/c-main/main_00024_IJSH_e008707f7164.json": "712488b330fa7eb0eac1594e20896dfe7c4bb6f30658feaeadc3e2d23cae93a3",
+    "results/c-main/main_00024_JSH_208f2bbffd53.json": "7b09367df553841d8a67658d1fa24b1c792e733939533f3f620543cf21624fb1",
+    "results/c-main/main_00024_OD_CEN_3b63f966c6ff.json": "27259da01d01e5f263235a44f2180e76a009ab046e38b6c7cf8e5dee1a6ffb26",
+    "results/c-main/main_00024_OD_IJSH_e03e72a2a6d1.json": "28081b89e1dbec87651b4f191e56f3b39bb2fc9617022eaec6b0fbcc6365c761",
+    "results/c-main/main_00024_OD_JSH_bf5669e70d5b.json": "484964e4c9b55ca493b7b26e0ff9b8e07b9452092e9d15efc700cd691dfd660c",
+    "results/construct/main_00001_construct_2a1e8814a681.json": "6cbd2a21d5871fdaa397e605f8fc245da668c15422f143ee9624969721bf07ec",
+    "results/construct/main_00002_construct_1b61cb46da94.json": "0fda6aced0678c168b757bd204e8d5ffa86560ece922a589de38ea92697fbed6",
+    "results/construct/main_00003_construct_0e452301ae5b.json": "679d74e6ed1eb019839ed301ef50a445793dd91fb7a0da7548ffd6ddbe301aa1",
+    "results/construct/main_00004_construct_ed46ded1a482.json": "6f00b1fffb7d689327690b030baaf854db6339083fa37a150e849eaf64918b85",
+    "results/construct/main_00005_construct_6c2bf80a6895.json": "f2abba20b57c9918ab7c5bae89b9e0c5aa8b75aa64926268f1e89583b8d25fc9",
+    "results/construct/main_00006_construct_419e08831036.json": "86b3336ab962dc81543f00f23f783ca666b57bbe41404a3e9a2cbb6df1d323df",
+    "results/construct/main_00007_construct_7f60a7cd8af0.json": "c4bef717e09e642fd9299c82380ab50ce394239197b12558ed54410ee086bca9",
+    "results/construct/main_00008_construct_ac8229ffefa4.json": "0d8fb6e36f40c7e7bc188286f15bb3a20d94e49d9b7fc125dc5f70516edf7037",
+    "results/construct/main_00009_construct_46010c88fb40.json": "b257f3256ed9e8fe591926f98f57d28579fcbafb7142a0a53e9b3966fececa57",
+    "results/construct/main_00010_construct_8d63add91891.json": "22082c9f21a4d875b01239cdc77432dd1d815a314ec6eecb1002de82fddd5df0",
+    "results/construct/main_00011_construct_a58b95d1cc1e.json": "76315d6848d5d9189be50975279d51255740c4752f15cb2bf178c91ca93b1a68",
+    "results/construct/main_00012_construct_74d722ce2302.json": "53d0fcb0fc00b557520ce07c2698d18313dd3ffd0b243fbabf41054afe9bac85",
+    "results/construct/main_00013_construct_525184f98b94.json": "3237b40c33b94576b4bbdb320a6ea25cb3cd337da0616dd9fbd436e29248864b",
+    "results/construct/main_00014_construct_4a0735b16958.json": "13802061db922b8388ecd5f94ba83ffb9bc3f2257a25467c2575b1c76994de50",
+    "results/construct/main_00015_construct_2ce39089dde3.json": "15a5ba90b5a9b1f38bf9908cb6f32739360e8eea214313f10a1534faa9c5efdb",
+    "results/construct/main_00016_construct_346315cb3d90.json": "a986b681eaadb505dd409275108ea01dfd48fbdccd6da616422c8bb7747c5cd5",
+    "results/construct/main_00017_construct_13bf21a0e201.json": "2c3025347ac4fcbbf83d95c4d59ab711441554cfd0887e48674d8b6f65d732c4",
+    "results/construct/main_00018_construct_fb6e54a4b92e.json": "22cb386e46e50f423b383ea1fc53778dca9758b625abbf9dd428535b956fc06f",
+    "results/construct/main_00019_construct_d7c73368ceaa.json": "51a55730c85007e2ea7fd04dd8b4ada4c60bf99985d502dacd43f022a1aba5b9",
+    "results/construct/main_00020_construct_0b456bbf7184.json": "68dcf7e6c55182a2a7de85bf469e651f576be6d525edb67b9ebdf8ae868a058f",
+    "results/construct/main_00021_construct_643ac4ab1023.json": "e2a87abaeadf26bcd8f56bc797fa69cf10d003e05a3ef28ed5b006b760e7e18c",
+    "results/construct/main_00022_construct_2264e50d49a0.json": "966420feff841351e590aff31f5e2e8e342445487f136f1f4c62e6598ab86f34",
+    "results/construct/main_00023_construct_f29d19cc962e.json": "d04377ef859cf04efcbafcf9d5ea40eea2df9d21d35eb6c4e6fe9bc11387cd95",
+    "results/construct/main_00024_construct_304cb91ae352.json": "c4da1fc6f17155edd43b68b7f5b89282c825f7444207e3a70ae23c42df5ae239",
+    "results/construct/main_00025_construct_c05d06898437.json": "2212ca4d0bf50be3c2aa38d1ceaf26c2fff4bead2e66a67de2506f04a9ac755c",
+    "results/construct/main_00026_construct_2eb05fe0b268.json": "bdc66bf47ea862f99ef353fb4f79629bb82a2e29862f1adb257fa8af36b48efd",
+    "results/construct/main_00027_construct_90a953d04fae.json": "c86515b165b45156fa9c2c18fe72430f7a44b3840f82c7a8a6decd53e9bd853d",
+    "results/construct/main_00028_construct_1a6cbcfcf7d5.json": "1c77b90da287c4544ee72422ce8330766328140d32ceb4ce69a021a44e37601d",
+    "results/construct/main_00029_construct_5ae6dabe249d.json": "72741ca06504e69d50ff951249085d2d44c45c4537208a38c4f1ab476730af1c",
+    "results/construct/main_00030_construct_b25009e5dad8.json": "91e9565b713646199850bbff5ac8f3b3272876514b2ae887e377a45f2d4433ee",
+    "results/construct/main_00031_construct_38f47359725b.json": "bfcc5bbd0bcafb33187f6b3e3fc661d726c2e5f7b699c7f6f149abc13a9c976e",
+    "results/construct/main_00032_construct_5144a668b99b.json": "777f327f40f77b1c83b86048bacc0180ee60dff873f0a0ed42cfce0b48472191",
+    "results/construct/main_00033_construct_9a5d9b38cd85.json": "963ed9f5a5c1399225eccb3d8ea5516060d6ffc9b30c8630fcf982cbf7b3de9f",
+    "results/construct/main_00034_construct_8561e460a01b.json": "89e6850328a0206c9f789437ac990f97080ed4558934d0db04ba85a811abde8e",
+    "results/construct/main_00035_construct_b0fa008582e2.json": "b3a1a5c4aebd77e9cd87e38d9aaca2323183bb6a799fc4e7d0b5c9176584bce6",
+    "results/construct/main_00036_construct_fe623d89761c.json": "98355db434d48e91a3d8db2b9b5cc3fc5c6f630f67a803933a2ee40c44c09503",
+    "results/construct/main_00037_construct_79ba23e4113c.json": "63161569054a4d1278c0e2b40200dae9f48cfebbc20257e52ac91a1593afb54b",
+    "results/construct/main_00038_construct_f4d53103b86a.json": "ec13a716bbceb7201869e8fa11cbb2f749ed3a9a50ab874937a90ee6d6f167ba",
+    "results/construct/main_00039_construct_3971fb993440.json": "8f3121f19b865dfae28a65d5ea396ce59fc2140995fdce690c663d8f61c65e08",
+    "results/construct/main_00040_construct_913505b46636.json": "2d412beb670d2a906ab576ae807df6834660ce25a1bf8f38d15abe0b97ee17f3",
+    "results/construct/main_00041_construct_dc5e3c580439.json": "5f1d31635e1c120720c10cc174c158be419e7d307385e63491cf7bef2600ac8b",
+    "results/construct/main_00042_construct_4b28f5da6ec9.json": "b3397215d4e7c1d48b2faf037c92d71b51719586657f5de455ae0cbbea5df744",
+    "results/construct/main_00043_construct_cb0c8979d5dd.json": "47834b37816b5eb3dfcda934dcaffe6833de0ce753a529a44aeb75e7c3c11ed1",
+    "results/construct/main_00044_construct_399293e2a6df.json": "729ce1cc95458fa04f91fe4470beaf23d57f7fdb32ddd14180cd581e0fa9a6c6",
+    "results/construct/main_00045_construct_446ca89b8c74.json": "4af9621978c9c5883f2e2630f0aba9a7c5b96c7b28eb2cd82618d229218b4341",
+    "results/construct/main_00046_construct_c7f24d72d2c4.json": "3076c0e97ac25691d4d7fdf03eb95aa6aa0280da2ab7d7ac6092944d2c3947bc",
+    "results/construct/main_00047_construct_f1f93b468af6.json": "ec74d219d017c031469626d2d3461e0cf507609a8dbb7bbb9e67199fa249e123",
+    "results/construct/main_00048_construct_a0b7c31964f7.json": "aec7b4dba23e403945dd851ecdd8263bcdebff89556e84e5058a770d4c41d074",
+    "results/construct/main_00049_construct_35b038b0ddb0.json": "17a35f04b01ae1ae255e4d3ac814c29e15322ece9ca877bea0cf7c1936afe486",
+    "results/construct/main_00050_construct_c178927efb7b.json": "a3fa56c6c1d4bcbebc65d90aabe82f59dc2c7205473d3c8b5083c474c69c759d",
+    "results/construct/main_00051_construct_797ef30adb6a.json": "c51599dbf30fd812b5c9075a9e30d71fd886373d6d2943a63a42d2aee5d8ee7c",
+    "results/construct/main_00052_construct_d6df8555d7c4.json": "4a307ecf55139c8d6ad0d4900b6ac9ed0c0c5eb08e70caf0cf30d5d26d414188",
+    "results/construct/main_00053_construct_ac3fed437739.json": "1f36c5729b23bff4f5e9890824e5ace873617e9c1ce5ca7f7d64e1692dee9635",
+    "results/construct/main_00054_construct_17b62ed31e4b.json": "25a2dd8d33887f7a799070a2953fb36ea9fea6b30aa41fec00b44a4a1fd07768",
+    "results/construct/main_00055_construct_8bcf492e3573.json": "b644c165e40e6ae912aded2ba8e47dfa065bff60df343d1d83f0de006d0d3c60",
+    "results/construct/main_00056_construct_17a6ea8e7686.json": "16a4eb261ceb8cab29c57940f684c5832ae962daa4235e8aff590f5cb0724a55",
+    "results/construct/main_00057_construct_eec6cfd85fac.json": "3ec85528b8833bf837a085bc26a8b88fe11167f396fe09bf1114036404d50540",
+    "results/construct/main_00058_construct_adac9443b638.json": "47f5f9273dea7a7cf17e7b8af2452f36f8fcd961f251803210bb2425c7713ac6",
+    "results/construct/main_00059_construct_60d86dcfbbc8.json": "15f1f7372f1eb7c2526f9f8f83781170c7da4accefc06bb8a19a2728b23ab434",
+    "results/construct/main_00060_construct_4395694e2690.json": "0657fbc38403e8898b811df75a3829542c875109f2694ff143d88ab2b0a8276e",
+    "results/construct/main_00061_construct_463daa51bec9.json": "b699fa9670dd028c2e2c3224d10570a331b4ada8091daada3c99916720bb931c",
+    "results/construct/main_00062_construct_3bcf5f69e0e7.json": "c0b0347fcfe803af2ead9d862f6fa0aaf3c16827f6a0ce041bbc328e8b62c7b9",
+    "results/construct/main_00063_construct_aa3619c92ae4.json": "74cd52cce2ef51fcbe18e7b073c91b0226e8802ce0ebcce7ebbf09f310aa89a2",
+    "results/construct/main_00064_construct_9dd1bd0bf4a4.json": "4bdf3b620434adb8a330b8ad9d4111967ebc5c4c1eb3f53e484950b9e047df91",
+    "results/construct/main_00065_construct_a1a6107ead46.json": "a40a8ad14305fe786d5a2a46ed1eb5d84622fd40e655eb4bf0f31f3d6d157d62",
+    "results/construct/main_00066_construct_eabc45a88e07.json": "6058f8e11cd4dd2a437b1611807150bf3b65931648821c30d769f4546d76e76a",
+    "results/construct/main_00067_construct_0315fa20bf8c.json": "6ebce5980966ace667b0cd17804c258517252ca4a7e5a34e2479143b17af2f3a",
+    "results/construct/main_00068_construct_f090842c2757.json": "aba2512427fa7e324afde865aadfc8da061a584ebfeb066f97f945d382437c67",
+    "results/construct/main_00069_construct_e41146bd2a7a.json": "8b52b8da0db6f2da9551b0b5d550a9488832a773bc5cf03a98c3d4941078a8d8",
+    "results/construct/main_00070_construct_88ddf4ba706c.json": "d19feb7bab80070de98d94930112391e06669ef9618b58e501579ddc702ac8d9",
+    "results/construct/main_00071_construct_2029dccc0c6d.json": "a50743faa7a11c6ab301aa67346e99dd3225d97dd47c98691ebfba2968835b90",
+    "results/construct/main_00072_construct_01410ac61c4f.json": "d675bf777ebb062770c9599ae6954fbf739f8dc7620d7dadaddce7c3858ee309"
+  },
+  "scope": "Program/result acceptance under unchanged model assumptions; not proof of real-world disaster/traffic calibration",
+  "solvers_started": 0
+}

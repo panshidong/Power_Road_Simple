@@ -1,0 +1,5 @@
+Profile: core
+Selected stages: construct, tables, a-main, b-main, c-main, analyze
+Omitted stages: a-shift, a-alpha, a-closure, a-greedy, a-cases, b-sensitivity, c-k, c-decomp, c-shift, c-alternatives
+Active runtime cap across resumes: unlimited hours
+Current disaster ensembles are uncalibrated; no observation horizon: run until all repairs complete; unreachable pending work is a reported error. Core pilot only: reduced Monte Carlo/optimization budgets, no sensitivity/shift/greedy claims; inspect score coverage and fallback frequency before interpreting strategy differences.

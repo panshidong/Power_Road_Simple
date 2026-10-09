@@ -1,0 +1,55 @@
+{
+  "checked_at": "2026-10-09T10:36:34-05:00",
+  "output": "/home/acc/Shidong/PowerRoad/Austin-model-fixes/runtime/output/core-v2-stallfix-20261008",
+  "status": "completed",
+  "finished_at": "2026-10-09T03:42:39-05:00",
+  "active_seconds": 61950.277856909,
+  "fingerprint": "21bd74ff9e413dc306d81dc4609e1574b63b18d6155732d54bb264735ef63dbe",
+  "progress": {
+    "cache_states": 5985,
+    "construction_permutations": 288,
+    "errors": 0,
+    "results": 336,
+    "sa_iterations": 504,
+    "validation_passed": true,
+    "validation_phase": "complete"
+  },
+  "completion_acceptance": {
+    "passed": true,
+    "checked_at": "2026-10-09T03:43:24-05:00",
+    "fingerprint": "21bd74ff9e413dc306d81dc4609e1574b63b18d6155732d54bb264735ef63dbe",
+    "stage_counts": {
+      "a-main": 72,
+      "b-main": 48,
+      "c-main": 144,
+      "construct": 72
+    },
+    "total_tasks": 336,
+    "evaluation_trajectories": 264,
+    "incomplete_repairs": 0,
+    "construction_permutations": 288,
+    "sa_iterations": 504,
+    "longest_recovery_minutes": 1627.0131492931694,
+    "scope": "Program/result acceptance under unchanged model assumptions; not proof of real-world disaster/traffic calibration",
+    "solvers_started": 0
+  },
+  "analysis_status": {
+    "complete": true,
+    "completed_rows": 264,
+    "completeness_scope": "stages with a saved plan; see task matrix for entire study",
+    "failures": [],
+    "fingerprint": "21bd74ff9e413dc306d81dc4609e1574b63b18d6155732d54bb264735ef63dbe",
+    "interpretation": "paired Monte Carlo estimates conditional on recorded Austin assumptions; no comparison to legacy article numbers",
+    "missing_jobs": [],
+    "planned_evaluation_jobs": 264,
+    "uncensored_rows": 264
+  },
+  "process_check": {
+    "checked_at": "2026-10-09T10:36:05-05:00",
+    "output": "/home/acc/Shidong/PowerRoad/Austin-model-fixes/runtime/output/core-v2-stallfix-20261008",
+    "matching_run_processes": []
+  },
+  "acceptance_file": "/home/acc/Shidong/PowerRoad/Austin-model-fixes/runtime/output/core-v2-stallfix-20261008/control/completion_acceptance.json",
+  "summary_file": "/home/acc/Shidong/PowerRoad/Austin-model-fixes/runtime/output/core-v2-stallfix-20261008/analysis/SUMMARY.md",
+  "results_and_caches_preserved": true
+}

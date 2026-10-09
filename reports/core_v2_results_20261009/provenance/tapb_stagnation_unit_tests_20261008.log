@@ -1,0 +1,137 @@
+test_clean_result_cached_once_and_subsequent_reads_start_no_child (test_ac_isolation.IsolatedAC.test_clean_result_cached_once_and_subsequent_reads_start_no_child) ... ok
+test_comparison_checks_physical_fields_and_rejects_nonfinite_or_type_changes (test_ac_isolation.IsolatedAC.test_comparison_checks_physical_fields_and_rejects_nonfinite_or_type_changes) ... ok
+test_confirmation_failure_does_not_use_first_success (test_ac_isolation.IsolatedAC.test_confirmation_failure_does_not_use_first_success) ... [2026-10-08T10:27:42-05:00] pid=6 AC R: native exit -8; one fresh recovery plus independent physical confirmation; /tmp/tmpkms_ym0s/scratch/attempt-2/recovery.json
+ok
+test_disagreeing_recovery_is_never_cached (test_ac_isolation.IsolatedAC.test_disagreeing_recovery_is_never_cached) ... [2026-10-08T10:27:42-05:00] pid=6 AC R: native exit -8; one fresh recovery plus independent physical confirmation; /tmp/tmprrpxh1s1/scratch/attempt-2/recovery.json
+ok
+test_native_signal_never_caches_even_an_existing_output (test_ac_isolation.IsolatedAC.test_native_signal_never_caches_even_an_existing_output) ... ok
+test_real_stalled_process_is_killed_before_returning_failure (test_ac_isolation.IsolatedAC.test_real_stalled_process_is_killed_before_returning_failure) ... ok
+test_recovery_never_loops_on_repeated_failure (test_ac_isolation.IsolatedAC.test_recovery_never_loops_on_repeated_failure) ... [2026-10-08T10:27:42-05:00] pid=6 AC R: native exit -8; one fresh recovery plus independent physical confirmation; /tmp/tmp_6nxhmn9/scratch/attempt-2/recovery.json
+ok
+test_signal_recovery_requires_two_matching_fresh_solves_before_cache (test_ac_isolation.IsolatedAC.test_signal_recovery_requires_two_matching_fresh_solves_before_cache) ... [2026-10-08T10:27:42-05:00] pid=6 AC R: native exit -8; one fresh recovery plus independent physical confirmation; /tmp/tmpvxnnkfgd/scratch/attempt-2/recovery.json
+ok
+test_timeout_is_not_retried (test_ac_isolation.IsolatedAC.test_timeout_is_not_retried) ... ok
+test_timeout_kills_and_reaps_child_and_preserves_request (test_ac_isolation.IsolatedAC.test_timeout_kills_and_reaps_child_and_preserves_request) ... ok
+test_wrong_allocator_identity_is_rejected_before_cache_write (test_ac_isolation.IsolatedAC.test_wrong_allocator_identity_is_rejected_before_cache_write) ... ok
+test_wrong_or_infeasible_result_is_rejected_before_cache_write (test_ac_isolation.IsolatedAC.test_wrong_or_infeasible_result_is_rejected_before_cache_write) ... ok
+test_disk_reserve_stops_before_launching_work (test_background_run.BackgroundLifecycle.test_disk_reserve_stops_before_launching_work) ... 2026-10-08T10:27:42-05:00 disk_limit: Free disk below reserve
+ok
+test_exhausted_budget_cannot_be_reset_by_resume (test_background_run.BackgroundLifecycle.test_exhausted_budget_cannot_be_reset_by_resume) ... 2026-10-08T10:27:42-05:00 time_limit: Cumulative active runtime budget exhausted; saved work retained
+ok
+test_failed_stage_stops_without_retry_and_keeps_results (test_background_run.BackgroundLifecycle.test_failed_stage_stops_without_retry_and_keeps_results) ... 2026-10-08T10:27:42-05:00 START construct: /tmp/tmpithjiyin/control/construct-1791473262231311709.log
+2026-10-08T10:27:42-05:00 failed: Stage construct exited 1; no automatic retry
+ok
+test_resume_skips_successful_stages (test_background_run.BackgroundLifecycle.test_resume_skips_successful_stages) ... 2026-10-08T10:27:42-05:00 START a-main: /tmp/tmpgywtb0f6/control/a-main-1791473262242877506.log
+2026-10-08T10:27:42-05:00 DONE a-main
+2026-10-08T10:27:42-05:00 completed: 
+ok
+test_stalled_job_is_stopped_without_infinite_retry (test_background_run.BackgroundLifecycle.test_stalled_job_is_stopped_without_infinite_retry) ... 2026-10-08T10:27:42-05:00 START construct: /tmp/tmpjwadwr8j/control/construct-1791473262253610086.log
+2026-10-08T10:27:42-05:00 stalled: No saved result/checkpoint/cache progress within stall limit
+ok
+test_stop_request_is_honored_before_next_stage (test_background_run.BackgroundLifecycle.test_stop_request_is_honored_before_next_stage) ... 2026-10-08T10:27:42-05:00 stopped: Stop requested before next stage
+ok
+test_time_budget_stops_active_work_and_preserves_checkpoint (test_background_run.BackgroundLifecycle.test_time_budget_stops_active_work_and_preserves_checkpoint) ... 2026-10-08T10:27:42-05:00 START construct: /tmp/tmpt8qp19sl/control/construct-1791473262269441859.log
+2026-10-08T10:27:42-05:00 time_limit: Cumulative active runtime budget exhausted; saved work retained
+ok
+test_two_supervisors_cannot_own_same_run (test_background_run.BackgroundLifecycle.test_two_supervisors_cannot_own_same_run) ... ok
+test_orphaned_separate_session_is_adopted_and_stopped (test_background_run.NativeProcessCleanup.test_orphaned_separate_session_is_adopted_and_stopped) ... ok
+test_bad_dispatch_and_physical_limit_are_rejected (test_completion_audit.CompletionAudit.test_bad_dispatch_and_physical_limit_are_rejected) ... ok
+test_completed_real_trajectory_recomputes_all_metrics (test_completion_audit.CompletionAudit.test_completed_real_trajectory_recomputes_all_metrics) ... ok
+test_tampered_metric_and_unfinished_recovery_are_rejected (test_completion_audit.CompletionAudit.test_tampered_metric_and_unfinished_recovery_are_rejected) ... ok
+test_confirmed_native_recovery_is_visible_in_healthy_review (test_health_review.HealthReview.test_confirmed_native_recovery_is_visible_in_healthy_review) ... ok
+test_dead_run_is_recorded_without_restart_or_new_stop (test_health_review.HealthReview.test_dead_run_is_recorded_without_restart_or_new_stop) ... ok
+test_detached_scheduled_check_executes_and_duplicate_schedule_is_ignored (test_health_review.HealthReview.test_detached_scheduled_check_executes_and_duplicate_schedule_is_ignored) ... ok
+test_healthy_check_leaves_stage_running_and_preserves_data (test_health_review.HealthReview.test_healthy_check_leaves_stage_running_and_preserves_data) ... ok
+test_no_saved_progress_requests_stop_even_when_process_is_alive (test_health_review.HealthReview.test_no_saved_progress_requests_stop_even_when_process_is_alive) ... ok
+test_old_error_ignored_but_new_error_triggers_stop (test_health_review.HealthReview.test_old_error_ignored_but_new_error_triggers_stop) ... ok
+test_stale_heartbeat_stops_and_inspection_errors_are_saved (test_health_review.HealthReview.test_stale_heartbeat_stops_and_inspection_errors_are_saved) ... ok
+test_stale_watcher_cannot_stop_new_launch_or_overwrite_its_report (test_health_review.HealthReview.test_stale_watcher_cannot_stop_new_launch_or_overwrite_its_report) ... ok
+test_wrong_pid_birth_or_acceptance_fingerprint_is_unhealthy (test_health_review.HealthReview.test_wrong_pid_birth_or_acceptance_fingerprint_is_unhealthy) ... ok
+test_cli_plan_starts_no_engine (test_invariants.Invariants.test_cli_plan_starts_no_engine) ... ok
+test_fault_types_do_not_resample_assets (test_invariants.Invariants.test_fault_types_do_not_resample_assets) ... ok
+test_matrix_has_all_strategies_and_unique_ids (test_invariants.Invariants.test_matrix_has_all_strategies_and_unique_ids) ... ok
+test_metrics_use_left_steps_and_report_censoring (test_invariants.Invariants.test_metrics_use_left_steps_and_report_censoring) ... ok
+test_missing_scores_are_recorded_or_rejected (test_invariants.Invariants.test_missing_scores_are_recorded_or_rejected) ... ok
+test_native_fault_isolation_does_not_edit_impedance (test_invariants.Invariants.test_native_fault_isolation_does_not_edit_impedance) ... ok
+test_negative_marginals_and_checkpoint_resume (test_invariants.Invariants.test_negative_marginals_and_checkpoint_resume) ... ok
+test_parallel_arcs_centroids_and_physical_closures (test_invariants.Invariants.test_parallel_arcs_centroids_and_physical_closures) ... ok
+test_simultaneous_repairs_and_unreachable_censoring (test_invariants.Invariants.test_simultaneous_repairs_and_unreachable_censoring) ... ok
+test_weighted_objective_and_guardrail (test_invariants.Invariants.test_weighted_objective_and_guardrail) ... ok
+test_invalid_settings_are_rejected (test_model_fixes.Configurations.test_invalid_settings_are_rejected) ... ok
+test_new_and_legacy_configurations (test_model_fixes.Configurations.test_new_and_legacy_configurations) ... ok
+test_crews_use_capped_costs_while_access_keeps_equilibrium_costs (test_model_fixes.CrewRouting.test_crews_use_capped_costs_while_access_keeps_equilibrium_costs) ... ok
+test_crews_scale_with_damaged_units (test_model_fixes.CrewsAndRepairs.test_crews_scale_with_damaged_units) ... ok
+test_repair_time_follows_severity (test_model_fixes.CrewsAndRepairs.test_repair_time_follows_severity) ... ok
+test_simulation_dispatches_parallel_crews_with_severity_durations (test_model_fixes.CrewsAndRepairs.test_simulation_dispatches_parallel_crews_with_severity_durations) ... ok
+test_flow_direction_is_respected_and_dead_branches_skipped (test_model_fixes.LocalSheddingTopology.test_flow_direction_is_respected_and_dead_branches_skipped) ... ok
+test_radial_subtree_only (test_model_fixes.LocalSheddingTopology.test_radial_subtree_only) ... ok
+test_antithetic_permutations_reverse_their_partner (test_model_fixes.Rankings.test_antithetic_permutations_reverse_their_partner) ... ok
+test_od_ties_follow_paired_table_not_asset_name (test_model_fixes.Rankings.test_od_ties_follow_paired_table_not_asset_name) ... ok
+test_zone_pairs_cover_loaded_zones (test_model_fixes.Rankings.test_zone_pairs_cover_loaded_zones) ... ok
+test_new_voltage_violation_or_missing_reference_is_rejected (test_model_v2_completion_audit.ModelV2CompletionAudit.test_new_voltage_violation_or_missing_reference_is_rejected) ... ok
+test_parallel_severity_repairs_and_preexisting_voltage_are_accepted (test_model_v2_completion_audit.ModelV2CompletionAudit.test_parallel_severity_repairs_and_preexisting_voltage_are_accepted) ... ok
+test_unknown_overlapping_crew_and_wrong_duration_are_rejected (test_model_v2_completion_audit.ModelV2CompletionAudit.test_unknown_overlapping_crew_and_wrong_duration_are_rejected) ... ok
+test_changed_library_cannot_be_spawned (test_native_env.NativeEnvironment.test_changed_library_cannot_be_spawned) ... ok
+test_loader_warning_or_missing_mapping_never_counts_as_loaded (test_native_env.NativeEnvironment.test_loader_warning_or_missing_mapping_never_counts_as_loaded) ... ok
+test_nonisolated_or_unpinned_configuration_rejected (test_native_env.NativeEnvironment.test_nonisolated_or_unpinned_configuration_rejected) ... ok
+test_preload_is_explicit_and_cannot_mix_untracked_libraries (test_native_env.NativeEnvironment.test_preload_is_explicit_and_cannot_mix_untracked_libraries) ... ok
+test_arc_identity_failure_keeps_actual_output (test_native_interface.NativeOutputContract.test_arc_identity_failure_keeps_actual_output) ... ok
+test_reads_upstream_flows_and_preserves_parallel_arcs (test_native_interface.NativeOutputContract.test_reads_upstream_flows_and_preserves_parallel_arcs) ... ok
+test_timeout_keeps_network_and_partial_log (test_native_interface.NativeOutputContract.test_timeout_keeps_network_and_partial_log) ... ok
+test_wrong_output_name_reports_error_and_keeps_evidence (test_native_interface.NativeOutputContract.test_wrong_output_name_reports_error_and_keeps_evidence) ... ok
+test_fresh_restoration_bypasses_cache_in_existing_worker (test_native_interface.RegionalScheduling.test_fresh_restoration_bypasses_cache_in_existing_worker) ... ok
+test_parallel_merge_matches_serial_despite_reversed_completion (test_native_interface.RegionalScheduling.test_parallel_merge_matches_serial_despite_reversed_completion) ... [2026-10-08T10:27:43-05:00] pid=6 AC regional pool: 2 processes for 2 complete original circuits
+ok
+test_region_failure_closes_pool_and_does_not_return_partial_power (test_native_interface.RegionalScheduling.test_region_failure_closes_pool_and_does_not_return_partial_power) ... ok
+test_validation_pool_uses_ram_budget_independently_of_smoke_workers (test_native_interface.RegionalScheduling.test_validation_pool_uses_ram_budget_independently_of_smoke_workers) ... ok
+test_comparison_checks_signals_trials_and_ignores_timings (test_performance_safety.BoundedProfile.test_comparison_checks_signals_trials_and_ignores_timings) ... ok
+test_timeout_retains_failed_summary_without_starting_next_mode (test_performance_safety.BoundedProfile.test_timeout_retains_failed_summary_without_starting_next_mode) ... AC profile cold: P2U, 1 states, hard timeout 0.01s; /tmp/tmpit5l3e60/new/cold
+Stopped: {'returncode': None, 'status': 'timed_out', 'wall_seconds': 9.923199831973761e-05, 'fingerprint': 'test'}; diagnostics retained in /tmp/tmpit5l3e60/new/cold
+ok
+test_fresh_region_invalidates_loaded_template_before_solving (test_performance_safety.ReusedWorker.test_fresh_region_invalidates_loaded_template_before_solving) ... ok
+test_jobs_share_initialization_but_keep_separate_scratch_and_fingerprints (test_performance_safety.ReusedWorker.test_jobs_share_initialization_but_keep_separate_scratch_and_fingerprints) ... ok
+test_numerical_configuration_change_rebuilds_context (test_performance_safety.ReusedWorker.test_numerical_configuration_change_rebuilds_context) ... ok
+test_broken_pool_records_siblings_and_never_submits_replacement (test_pool_failure.PoolFailure.test_broken_pool_records_siblings_and_never_submits_replacement) ... construct: 4 pending / 4 total; 3 workers
+ok
+test_reported_ac_failure_stops_without_submitting_next_job (test_pool_failure.PoolFailure.test_reported_ac_failure_stops_without_submitting_next_job) ... construct: 4 pending / 4 total; 3 workers
+construct 1/4: {'status': 'failed', 'id': 'job-0', 'error': 'Native AC process exited -11'}
+ok
+test_unreachable_recovery_preserves_diagnostic_and_is_not_success (test_pool_failure.PoolFailure.test_unreachable_recovery_preserves_diagnostic_and_is_not_success) ... ok
+test_worker_uses_fatal_only_diagnostics_and_restores_cwd_after_failure (test_pool_failure.PoolFailure.test_worker_uses_fatal_only_diagnostics_and_restores_cwd_after_failure) ... ok
+test_healthy_base_case_serves_nominal_load (test_power_local_native.LocalOperatorOnTamuRegion.test_healthy_base_case_serves_nominal_load) ... skipped 'set AUSTIN_NATIVE_TESTS=1 to start OpenDSS'
+test_partial_derating_sheds_only_its_own_customers (test_power_local_native.LocalOperatorOnTamuRegion.test_partial_derating_sheds_only_its_own_customers) ... skipped 'set AUSTIN_NATIVE_TESTS=1 to start OpenDSS'
+test_repairs_never_reduce_served_load (test_power_local_native.LocalOperatorOnTamuRegion.test_repairs_never_reduce_served_load) ... skipped 'set AUSTIN_NATIVE_TESTS=1 to start OpenDSS'
+test_failed_validation_is_retried_then_smoke_stops (test_smoke_entry.SmokeAcceptanceOnly.test_failed_validation_is_retried_then_smoke_stops) ... [2026-10-08T10:27:43-05:00] pid=6 START smoke: verify prepared data and model checksums
+[2026-10-08T10:27:43-05:00] pid=6 DONE smoke: verify prepared data and model checksums; elapsed=0.0s
+[2026-10-08T10:27:43-05:00] pid=6 smoke: 0 experiment jobs; AC validation uses 4 processes
+[2026-10-08T10:27:43-05:00] pid=6 smoke: physical acceptance passed; finished (no construct, optimization or sensitivity jobs)
+ok
+test_failure_is_not_reported_as_pass (test_smoke_entry.SmokeAcceptanceOnly.test_failure_is_not_reported_as_pass) ... [2026-10-08T10:27:43-05:00] pid=6 START smoke: verify prepared data and model checksums
+[2026-10-08T10:27:43-05:00] pid=6 DONE smoke: verify prepared data and model checksums; elapsed=0.0s
+[2026-10-08T10:27:43-05:00] pid=6 smoke: 0 experiment jobs; AC validation uses 4 processes
+ok
+test_reuses_passed_validation_and_preserves_existing_experiment (test_smoke_entry.SmokeAcceptanceOnly.test_reuses_passed_validation_and_preserves_existing_experiment) ... [2026-10-08T10:27:43-05:00] pid=6 START smoke: verify prepared data and model checksums
+[2026-10-08T10:27:43-05:00] pid=6 DONE smoke: verify prepared data and model checksums; elapsed=0.0s
+[2026-10-08T10:27:43-05:00] pid=6 smoke: 0 experiment jobs; AC validation uses 4 processes
+[2026-10-08T10:27:43-05:00] pid=6 smoke: matching physical validation already passed; reusing it
+[2026-10-08T10:27:43-05:00] pid=6 smoke: physical acceptance passed; finished (no construct, optimization or sensitivity jobs)
+ok
+test_stale_validation_is_not_overwritten (test_smoke_entry.SmokeAcceptanceOnly.test_stale_validation_is_not_overwritten) ... [2026-10-08T10:27:43-05:00] pid=6 START smoke: verify prepared data and model checksums
+[2026-10-08T10:27:43-05:00] pid=6 DONE smoke: verify prepared data and model checksums; elapsed=0.0s
+ok
+test_beyond_24h_finishes_every_asset_and_integrates_full_duration (test_unbounded_recovery.UnboundedRecovery.test_beyond_24h_finishes_every_asset_and_integrates_full_duration) ... ok
+test_configuration_rejects_nonfinite_duration_and_nonboolean_mode (test_unbounded_recovery.UnboundedRecovery.test_configuration_rejects_nonfinite_duration_and_nonboolean_mode) ... ok
+test_deadlock_at_zero_does_not_loop_or_advance_to_infinity (test_unbounded_recovery.UnboundedRecovery.test_deadlock_at_zero_does_not_loop_or_advance_to_infinity) ... ok
+test_dispatch_uses_new_state_only_for_new_trips (test_unbounded_recovery.UnboundedRecovery.test_dispatch_uses_new_state_only_for_new_trips) ... ok
+test_invalid_travel_or_overflow_is_an_error (test_unbounded_recovery.UnboundedRecovery.test_invalid_travel_or_overflow_is_an_error) ... ok
+test_legacy_cutoff_and_exact_boundary_still_work (test_unbounded_recovery.UnboundedRecovery.test_legacy_cutoff_and_exact_boundary_still_work) ... ok
+test_numerical_configuration_keeps_original_acceptance (test_unbounded_recovery.UnboundedRecovery.test_numerical_configuration_keeps_original_acceptance) ... ok
+test_permanent_unreachable_work_raises_with_finite_full_diagnostic (test_unbounded_recovery.UnboundedRecovery.test_permanent_unreachable_work_raises_with_finite_full_diagnostic) ... ok
+test_repair_in_progress_is_not_applied_at_dispatch (test_unbounded_recovery.UnboundedRecovery.test_repair_in_progress_is_not_applied_at_dispatch) ... ok
+test_simultaneous_finishes_apply_together (test_unbounded_recovery.UnboundedRecovery.test_simultaneous_finishes_apply_together) ... ok
+test_temporarily_unreachable_power_waits_for_road_repair (test_unbounded_recovery.UnboundedRecovery.test_temporarily_unreachable_power_waits_for_road_repair) ... ok
+
+----------------------------------------------------------------------
+Ran 96 tests in 1.544s
+
+OK (skipped=3)

@@ -1,0 +1,19 @@
+{
+  "stallfix-replay": {
+    "independent_gap": 6.845637685115591e-05,
+    "logged_gap": 6.8452070627e-05,
+    "tstt": 24923587.8813236,
+    "max_node_imbalance": 2.0000006770715117e-06,
+    "arcs": 18710,
+    "zones": 1117
+  },
+  "no-aec-replay": {
+    "independent_gap": 8.413532765128018e-05,
+    "logged_gap": 8.4133019983e-05,
+    "tstt": 24926879.225902423,
+    "max_node_imbalance": 2.000000222324161e-06,
+    "arcs": 18710,
+    "zones": 1117
+  },
+  "elapsed_seconds": 7.2207140430109575
+}

@@ -1,0 +1,17 @@
+{
+  "archive": "Austin_model_v2_complete_results_20261009.tar.xz",
+  "bytes": 12904124,
+  "sha256": "2c55b9bd4b1a22e8e4ff96ab458d44fd3186dbed3351fb10df31bb88f1204c45",
+  "members": 11859,
+  "original_members": 11858,
+  "uncompressed_bytes": 217830677,
+  "all_members_byte_identical_to_source": true,
+  "original_results": 336,
+  "result_hashes_match_completion_acceptance": true,
+  "evaluation_trajectories": 264,
+  "unfinished_repairs": 0,
+  "final_audit_passed": true,
+  "fingerprint": "21bd74ff9e413dc306d81dc4609e1574b63b18d6155732d54bb264735ef63dbe",
+  "solvers_started": 0,
+  "excluded": "Mutable lock files, Python bytecode, bulk public input copies, and reusable solver caches; all remain local."
+}

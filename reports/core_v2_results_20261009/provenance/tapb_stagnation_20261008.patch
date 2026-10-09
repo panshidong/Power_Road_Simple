@@ -1,0 +1,40 @@
+--- a/vendor/tap-b/src/bush.c
++++ b/vendor/tap-b/src/bush.c
+@@ -65,6 +65,9 @@
+     char beckmannString[STRING_SIZE];
+ 
+     double elapsedTime = 0, gap = INFINITY, batchGap = INFINITY;
++    double bestGap = INFINITY;
++    int stagnantIterations = 0;
++    bool exhaustiveFlows = FALSE;
+ 
+     /* Initialize */
+     clock_t stopTime = clock(); /* used for timing */
+@@ -143,7 +146,26 @@
+                         elapsedTime,
+                         parameters->numFlowShifts);
+         parameters->innerIterations = 20; /* Tuneable parameter */
+-        parameters->thresholdAEC = 0.25 * gap; /* Tuneable parameter */
++        /* The global gap uses shortest paths on the full network, whereas
++         * rescanAndCheck uses paths restricted to each bush.  A large global
++         * threshold can therefore skip every useful bush indefinitely, even
++         * when the assignment is far from equilibrium.  On sustained lack of
++         * progress, disable only this work-skipping heuristic.  Keep the
++         * requested convergence gap and all iteration/time limits unchanged. */
++        if (gap < bestGap * (1 - 1e-6)) {
++            bestGap = gap;
++            stagnantIterations = 0;
++        } else {
++            stagnantIterations++;
++        }
++        if (!exhaustiveFlows && stagnantIterations >= 3
++                && gap > parameters->convergenceGap) {
++            exhaustiveFlows = TRUE;
++            displayMessage(LOW_NOTIFICATIONS,
++                "TAP-B recovery: stagnant relative gap; disabling heuristic "
++                "bush skipping (convergence target unchanged).\n");
++        }
++        parameters->thresholdAEC = exhaustiveFlows ? 0 : 0.25 * gap;
+ 
+     } 
+ 

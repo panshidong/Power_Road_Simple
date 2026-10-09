@@ -1,0 +1,8 @@
+test_healthy_base_case_serves_nominal_load (tests.test_power_local_native.LocalOperatorOnTamuRegion.test_healthy_base_case_serves_nominal_load) ... ok
+test_partial_derating_sheds_only_its_own_customers (tests.test_power_local_native.LocalOperatorOnTamuRegion.test_partial_derating_sheds_only_its_own_customers) ... ok
+test_repairs_never_reduce_served_load (tests.test_power_local_native.LocalOperatorOnTamuRegion.test_repairs_never_reduce_served_load) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 33.431s
+
+OK

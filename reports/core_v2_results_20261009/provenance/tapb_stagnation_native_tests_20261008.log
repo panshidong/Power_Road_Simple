@@ -1,0 +1,14 @@
+test_cold_and_reused_circuits_agree_after_faults_ties_and_restoration (test_circuit_reuse.NativeCircuitReuse.test_cold_and_reused_circuits_agree_after_faults_ties_and_restoration) ... ok
+test_isolated_states_match_direct_ac_and_cache_survives_child_exit (test_circuit_reuse.NativeCircuitReuse.test_isolated_states_match_direct_ac_and_cache_survives_child_exit) ... [2026-10-08T10:27:00-05:00] pid=6 AC R: native exit -8; one fresh recovery plus independent physical confirmation; /tmp/tmpc452mi4z/injected/recovery.json
+ok
+test_pinned_allocator_real_ac_matches_direct_and_survives_recovery (test_circuit_reuse.NativeCircuitReuse.test_pinned_allocator_real_ac_matches_direct_and_survives_recovery) ... [2026-10-08T10:27:02-05:00] pid=6 AC R: native exit -8; one fresh recovery plus independent physical confirmation; /tmp/tmpjqkuvsll/injected/recovery.json
+ok
+test_flow_exactly_at_cutoff_remains_acyclic (test_tapb_cycles.BushCycles.test_flow_exactly_at_cutoff_remains_acyclic) ... ok
+test_tied_shortest_routes_remain_acyclic (test_tapb_cycles.BushCycles.test_tied_shortest_routes_remain_acyclic) ... ok
+test_ordinary_assignment_keeps_fast_path (test_tapb_stagnation.BushSkipStagnation.test_ordinary_assignment_keeps_fast_path) ... ok
+test_stalled_assignment_recovers_at_original_tolerance (test_tapb_stagnation.BushSkipStagnation.test_stalled_assignment_recovers_at_original_tolerance) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 5.275s
+
+OK

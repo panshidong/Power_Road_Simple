@@ -1,0 +1,1470 @@
+{
+  "checked_at": "2026-10-08T10:40:26-05:00",
+  "source_branch": "austin-model-fixes",
+  "failed_run": "/home/acc/Shidong/PowerRoad/Austin-model-fixes/runtime/output/core-v2-20261007",
+  "failure_origin_job": "main_00037_construct_79ba23e4113c",
+  "cause": "Adaptive thresholdAEC=0.25*global gap compares full-network gap with per-bush restricted-path excess. All useful bushes may be skipped; missing shorter full-network paths keep the global gap and skip threshold high, locking progress.",
+  "fix": "After three outer iterations without a 1e-6 relative improvement of best gap, disable only thresholdAEC skipping for the rest of this assignment; keep gap tolerance 1e-4 and maximum 200 iterations.",
+  "source_file": "vendor/tap-b/src/bush.c",
+  "normal_path_retained": true,
+  "old_binary_sha256": "946373428b217b7feff8650937511f8385370193b92a1ebc6e9cf642d9983f18",
+  "new_binary_sha256": "0bb478bdef7ad5c2f0d366a5aa18bfd9c3b26b3b396e1983909af07f68e172a5",
+  "before_source_sha256": "17056c4f257f16c1e65840278f9afe84ae6f8c5da0f7b1d3c5971cb372333d1c",
+  "after_source_sha256": "9abfdbe957c90626a0da58b547bf2d7b6b5f93ad99af25edb9385ddae1b7e311",
+  "old_replay": {
+    "exit_code": 0,
+    "elapsed_seconds": 169.96583034400828
+  },
+  "patched_replay": {
+    "exit_code": 0,
+    "elapsed_seconds": 106.28684916700877
+  },
+  "independent_full_network_checks": {
+    "stallfix-replay": {
+      "independent_gap": 6.845637685115591e-05,
+      "logged_gap": 6.8452070627e-05,
+      "tstt": 24923587.8813236,
+      "max_node_imbalance": 2.0000006770715117e-06,
+      "arcs": 18710,
+      "zones": 1117
+    },
+    "no-aec-replay": {
+      "independent_gap": 8.413532765128018e-05,
+      "logged_gap": 8.4133019983e-05,
+      "tstt": 24926879.225902423,
+      "max_node_imbalance": 2.000000222324161e-06,
+      "arcs": 18710,
+      "zones": 1117
+    },
+    "elapsed_seconds": 7.2207140430109575
+  },
+  "unit_tests": {
+    "passed": 93,
+    "skipped_native_opt_in": 3
+  },
+  "native_tests": {
+    "passed": 7,
+    "includes_real_ac": true,
+    "old_cycle_cases_passed": true,
+    "new_assignment_fixture_checks": "stalled + ordinary; each with 1 and 2 TAP-B threads; independent shortest-path gap/BPR/arc-order/conservation/TSTT checks"
+  },
+  "small_fixture_old_gap": 2481.0655208038197,
+  "small_fixture_patched_iterations": 8,
+  "artifacts_preserved": true,
+  "cross_fingerprint_imports": false,
+  "runtime_python_modules_changed": false,
+  "new_output": "/home/acc/Shidong/PowerRoad/Austin-model-fixes/runtime/output/core-v2-stallfix-20261008",
+  "restart_status": "running",
+  "test_logs_sha256": {
+    "tapb_stagnation_unit_tests_20261008.log": "f2e3a57f4c21560a4e561834493714157a63376f3f9a674706ace297d1db7cc7",
+    "tapb_stagnation_native_tests_20261008.log": "eeaf6150fe75a6eac892fcefdd2b8174f23ea68e78fbe674f05a6c809f43ea43"
+  },
+  "launch": {
+    "automatic_retries": 0,
+    "budget": {
+      "available_cpus": 32,
+      "available_memory_bytes": 62223777792,
+      "memory_estimate_gb_per_worker": 4.0,
+      "tapb_threads": 2,
+      "validation_power_workers": 2,
+      "workers": 12
+    },
+    "config": {
+      "analysis": {
+        "bootstrap_resamples": 20000,
+        "seed": 20260930,
+        "trim_each_tail": 0.025
+      },
+      "equity": {
+        "access_threshold": 0.9,
+        "access_weight": 0.867,
+        "cri_threshold": 0.9,
+        "electric_weight": 0.133,
+        "zones": "taz_with_positive_load"
+      },
+      "power": {
+        "balance_relative_tolerance": 0.001,
+        "emergency_factor": 1.5,
+        "isolate_states": true,
+        "limit_reference": "healthy_base_case",
+        "load_scales": [
+          1.0,
+          0.95,
+          0.9,
+          0.85,
+          0.8,
+          0.7,
+          0.6,
+          0.5,
+          0.4,
+          0.3,
+          0.2,
+          0.1,
+          0.05,
+          0.01
+        ],
+        "max_shed_iterations": 10,
+        "max_switch_closures": 2,
+        "max_switch_trials": 8,
+        "model": "tamu_regional_opendss",
+        "native_allocator_path": "/home/acc/Shidong/PowerRoad/Austin-model-fixes/runtime/output/core-v2-stallfix-20261008/snapshot/runtime/build/native/libjemalloc.so.2",
+        "native_allocator_sha256": "c769f7591006b37ac8893a69a82fc40d5ac831e8e109670878c4e4d44c8a6ba9",
+        "native_recovery_attempts": 1,
+        "operator": "local",
+        "partial_failure_probability": 0.5,
+        "partial_rating_range": [
+          0.2,
+          0.8
+        ],
+        "reuse_circuit": true,
+        "shed_safety": 0.98,
+        "signal_min_served_fraction": 0.1,
+        "state_timeout_seconds": 600,
+        "thermal_tolerance": 0.01,
+        "voltage_max_pu": 1.1,
+        "voltage_min_pu": 0.9,
+        "voltage_shed_step": 0.9,
+        "voltage_tolerance": 0.0001
+      },
+      "recovery": {
+        "crew_congestion_cap": 3.0,
+        "crew_model": "per_damage",
+        "crew_travel_cost": "capped_congestion",
+        "critical_load_multiplier": 3.0,
+        "critical_sites_lon_lat": [
+          [
+            -97.74,
+            30.31
+          ],
+          [
+            -97.77,
+            30.24
+          ]
+        ],
+        "depot_lon_lat": [
+          -97.7431,
+          30.2672
+        ],
+        "horizon_minutes": 1440.0,
+        "max_crews_per_trade": 6,
+        "offroad_speed_kph": 15.0,
+        "power_crews": 1,
+        "power_repair_minutes": 20.0,
+        "power_repair_minutes_full": 480.0,
+        "power_repair_minutes_partial": [
+          120.0,
+          360.0
+        ],
+        "power_units_per_crew": 3,
+        "repair_time_model": "severity",
+        "road_crews": 1,
+        "road_repair_minutes": 10.0,
+        "road_repair_minutes_full": 240.0,
+        "road_repair_minutes_partial": [
+          60.0,
+          180.0
+        ],
+        "road_units_per_crew": 3,
+        "shelter_lon_lat": [
+          -97.716,
+          30.277
+        ],
+        "stop_at_horizon": false
+      },
+      "runtime": {
+        "cache": "/home/acc/Shidong/PowerRoad/Austin-model-fixes/runtime/cache",
+        "jobs_per_worker_batch": 4,
+        "memory_gb_per_worker": 4.0,
+        "output": "/home/acc/Shidong/PowerRoad/Austin-model-fixes/runtime/output/core-v2-stallfix-20261008",
+        "prepared": "/home/acc/Shidong/PowerRoad/Austin-model-fixes/runtime/output/core-v2-stallfix-20261008/snapshot/runtime/prepared",
+        "reserve_cpus": 0,
+        "tapb_threads": 2,
+        "validation_power_workers": 2,
+        "workers": 12
+      },
+      "task_a": {
+        "alpha_values": [
+          0.0,
+          0.5,
+          1.0,
+          2.0
+        ],
+        "antithetic_permutations": true,
+        "checkpoints": [
+          24,
+          48,
+          72
+        ],
+        "closure_penalties": [
+          1000.0,
+          9999.0,
+          100000.0
+        ],
+        "construction_scenarios": 72,
+        "construction_seed": 20263001,
+        "evaluation_scenarios": 24,
+        "evaluation_seed": 20264001,
+        "representative_cases": 1,
+        "shapley_permutations": 4,
+        "shift_scenarios": 1,
+        "unseen_asset_policy": "centrality_fallback_recorded"
+      },
+      "task_b": {
+        "cooling": 0.97,
+        "guardrail_improvement": 0.95,
+        "guardrail_penalty": 1000000.0,
+        "lambda_sensitivity": [
+          0.25,
+          0.75
+        ],
+        "representative_scenario": 1,
+        "sa_iterations": 12,
+        "sa_seed": 0,
+        "scenarios": 6,
+        "seed": 20260325,
+        "temperature": 1.4,
+        "threshold_sensitivity": [
+          0.85,
+          0.95
+        ],
+        "weight_sensitivity": [
+          [
+            0.3,
+            0.7
+          ],
+          [
+            0.7,
+            0.3
+          ]
+        ]
+      },
+      "task_c": {
+        "alternative_sets": [
+          "allpairs",
+          "central",
+          "roadcentral",
+          "randA",
+          "randB",
+          "randC",
+          "size4",
+          "size7",
+          "size11",
+          "allnodes"
+        ],
+        "default_pairs": "zones_to_essential",
+        "k": 3,
+        "k_sensitivity": [
+          1,
+          2,
+          5
+        ],
+        "od_tie_break": "base_rule",
+        "path_weights": [
+          1.0,
+          0.6,
+          0.35
+        ],
+        "sensitivity_scenarios": 1
+      },
+      "traffic": {
+        "centrality_seed": 20260930,
+        "centrality_sources": 512,
+        "closure_penalty": 9999.0,
+        "relative_gap": 0.0001,
+        "signal_outage_capacity_factor": 0.5,
+        "time_to_minutes": 1.0,
+        "timeout_seconds": 1200
+      }
+    },
+    "created_at": "2026-10-08T10:29:47-05:00",
+    "fingerprint": "21bd74ff9e413dc306d81dc4609e1574b63b18d6155732d54bb264735ef63dbe",
+    "interpreter": "/home/acc/Shidong/PowerRoad/Austin-model-fixes/.venv-runtime/bin/python",
+    "max_run_hours": 0.0,
+    "min_available_gib": 4,
+    "min_free_gib": 15.0,
+    "native_state_recovery": {
+      "attempts": 1,
+      "independent_confirmation_required": true,
+      "scope": "Only native signal crashes inside an isolated AC state; no experiment/stage restarts"
+    },
+    "omitted_stages": [
+      "a-shift",
+      "a-alpha",
+      "a-closure",
+      "a-greedy",
+      "a-cases",
+      "b-sensitivity",
+      "c-k",
+      "c-decomp",
+      "c-shift",
+      "c-alternatives"
+    ],
+    "poll_seconds": 60,
+    "profile": "core",
+    "scientific_status": "Current disaster ensembles are uncalibrated; no observation horizon: run until all repairs complete; unreachable pending work is a reported error. Core pilot only: reduced Monte Carlo/optimization budgets, no sensitivity/shift/greedy claims; inspect score coverage and fallback frequency before interpreting strategy differences.",
+    "source_project": "/home/acc/Shidong/PowerRoad/Austin-model-fixes",
+    "stage_job_counts": {
+      "a-main": 72,
+      "analyze": 0,
+      "b-main": 48,
+      "c-main": 144,
+      "construct": 72,
+      "tables": 0
+    },
+    "stages": [
+      "construct",
+      "tables",
+      "a-main",
+      "b-main",
+      "c-main",
+      "analyze"
+    ],
+    "stall_hours": 12.0,
+    "supervisor_sha256": "2262f381f98478f563d5dea94554684d7bcee87266a19314db60c1797e3484e3",
+    "workers": 12
+  },
+  "supervisor": {
+    "active_seconds": 600.3291579209908,
+    "available_memory_gib": 45.65615463256836,
+    "completed_stages": [],
+    "fingerprint": "21bd74ff9e413dc306d81dc4609e1574b63b18d6155732d54bb264735ef63dbe",
+    "free_disk_gib": 204.18157958984375,
+    "heartbeat": "2026-10-08T10:40:09-05:00",
+    "prepared_at": "2026-10-08T10:29:47-05:00",
+    "progress": {
+      "cache_states": 22,
+      "construction_permutations": 0,
+      "errors": 0,
+      "results": 0,
+      "sa_iterations": 0,
+      "validation_passed": true,
+      "validation_phase": "complete"
+    },
+    "seconds_without_saved_progress": 0.00010882099741138518,
+    "stage": "construct",
+    "stage_log": "/home/acc/Shidong/PowerRoad/Austin-model-fixes/runtime/output/core-v2-stallfix-20261008/control/construct-1791473409222475884.log",
+    "stage_pid": 476108,
+    "stage_started_at": "2026-10-08T10:30:09-05:00",
+    "started_or_resumed_at": "2026-10-08T10:30:09-05:00",
+    "status": "running",
+    "supervisor_pid": 476107
+  },
+  "physical_acceptance": {
+    "checks": [
+      "all six original regional circuits AC-feasible with explicitly recorded curtailment",
+      "healthy base case serves nominal load under base-case-referenced limits",
+      "AC-derived signal service changed TAP-B capacities",
+      "full fault and partial derating serve no more than the healthy grid",
+      "native full-fault isolation and partial thermal derating solved",
+      "fresh physical restoration agrees with healthy state",
+      "TAP-B row identities, relative gap and nodal flow conservation passed"
+    ],
+    "damaged_traffic": {
+      "binary_sha256": "0bb478bdef7ad5c2f0d366a5aa18bfd9c3b26b3b396e1983909af07f68e172a5",
+      "closed_arc_flow_sum": 0.0,
+      "closure_penalty": 9999.0,
+      "closure_semantics": "finite assignment penalty; closed arcs excluded from crew routes; flow sum is NOT unique unserved OD demand",
+      "iterations": 13,
+      "max_node_imbalance": 2.0000006770715117e-06,
+      "network_sha256": "1ec3b1b63ac025f7a5582f5b423c9fa807da9c6eb968fd292f055d00fec73e1b",
+      "parallel_arcs_preserved": true,
+      "relative_gap": 9.7515009837e-05,
+      "tstt": 20692962.044436,
+      "wall_seconds": 22.376615703993593
+    },
+    "excluded_zones": [],
+    "fingerprint": "21bd74ff9e413dc306d81dc4609e1574b63b18d6155732d54bb264735ef63dbe",
+    "full_fault_served_kw": 3020069.1133567123,
+    "healthy_power_regions": [
+      {
+        "active_balance_residual_kw": -0.12610404322185786,
+        "actual_load_kw": 94360.10505194098,
+        "closed_switches": [],
+        "controls_settled": true,
+        "converged": true,
+        "curtailment_trials": [
+          {
+            "feasible": true,
+            "iteration": 0,
+            "load_scale": 1.0,
+            "max_thermal_loading_ratio": 0.6529460072486435,
+            "shed_loads": 0,
+            "thermal_violations": 0,
+            "voltage_violations": 0
+          }
+        ],
+        "damage": {},
+        "dark_loads": 0,
+        "engine": "DSS C-API Library version 0.14.5 revision 87d85c2622c8281b92255335bc7c09b11191b21d based on OpenDSS SVN 3723 [FPC 3.2.2] (64-bit build) MVMULT INCREMENTAL_Y CONTEXT_API PM 20240329033721; License Status: Open \nDSS-Python version: 0.15.7\nOpenDSSDirect.py version: 0.9.4",
+        "feasible": true,
+        "isolated_transformers": [],
+        "limit_reference": "ef3119748fe690fc3f559f10880b184f5887bd0b116a06ff8457fe8d52257fcf",
+        "load_scale": 1.0,
+        "losses_kw": 6298.907553484729,
+        "max_loaded_voltage_pu": 1.0373024192219749,
+        "max_thermal_loading_ratio": 0.6529460072486435,
+        "min_loaded_voltage_pu": 0.9336990666971677,
+        "nominal_kw": 94360.18784100036,
+        "operator": "healthy-base-case-referenced limits; downstream load shedding; tie pickup only within spare capacity; no optimality claim",
+        "performance": {
+          "child_peak_rss_mib": 635.1484375,
+          "circuit_loads": 1.0,
+          "circuit_resets": 1.0,
+          "load_seconds": 1.4564102809963515,
+          "measure_seconds": 0.15119352600595448,
+          "process_wall_seconds": 4.586769002999063,
+          "reset_seconds": 0.0689780100074131,
+          "solve_calls": 1.0,
+          "solve_seconds": 0.43566871900111437,
+          "wall_seconds": 3.6450950900034513
+        },
+        "preexisting_base_case": {
+          "lines_above_nameplate": 0,
+          "load_nodes_above_voltage_max": 0,
+          "load_nodes_below_voltage_min": 0,
+          "max_line_loading_ratio": null,
+          "max_load_voltage_pu": null,
+          "max_transformer_loading_ratio": null,
+          "min_load_voltage_pu": null,
+          "transformers_above_nameplate": 0
+        },
+        "rating_derating_factors": {},
+        "region": "P1R",
+        "regional_fallback": false,
+        "served_kw": 94360.10505192715,
+        "shed_iterations": 0,
+        "shed_loads": 0,
+        "shed_nominal_kw": 0,
+        "source_kw": 100658.88650138248,
+        "switch_trials": [],
+        "thermal_violations": 0,
+        "unrated_energized_elements": [],
+        "voltage_limits": [
+          0.9,
+          1.1
+        ],
+        "voltage_violations": 0
+      },
+      {
+        "active_balance_residual_kw": 7.604537241793878,
+        "actual_load_kw": 679275.8168794882,
+        "closed_switches": [],
+        "controls_settled": true,
+        "converged": true,
+        "curtailment_trials": [
+          {
+            "feasible": true,
+            "iteration": 0,
+            "load_scale": 1.0,
+            "max_thermal_loading_ratio": 0.6666666666666667,
+            "shed_loads": 0,
+            "thermal_violations": 0,
+            "voltage_violations": 0
+          }
+        ],
+        "damage": {},
+        "dark_loads": 0,
+        "engine": "DSS C-API Library version 0.14.5 revision 87d85c2622c8281b92255335bc7c09b11191b21d based on OpenDSS SVN 3723 [FPC 3.2.2] (64-bit build) MVMULT INCREMENTAL_Y CONTEXT_API PM 20240329033721; License Status: Open \nDSS-Python version: 0.15.7\nOpenDSSDirect.py version: 0.9.4",
+        "feasible": true,
+        "isolated_transformers": [],
+        "limit_reference": "4661ccdcdb41916f315bc0104b580fe0ca9527943980d5158a1010da469470d3",
+        "load_scale": 1.0,
+        "losses_kw": 35061.671591232946,
+        "max_loaded_voltage_pu": 1.0237305247961304,
+        "max_thermal_loading_ratio": 0.6666666666666667,
+        "min_loaded_voltage_pu": 0.9409647930285937,
+        "nominal_kw": 679271.8734670051,
+        "operator": "healthy-base-case-referenced limits; downstream load shedding; tie pickup only within spare capacity; no optimality claim",
+        "performance": {
+          "child_peak_rss_mib": 1842.49609375,
+          "circuit_loads": 1.0,
+          "circuit_resets": 1.0,
+          "load_seconds": 35.917659932005336,
+          "measure_seconds": 0.7569087879965082,
+          "process_wall_seconds": 74.44017364901083,
+          "reset_seconds": 0.3199981429934269,
+          "solve_calls": 1.0,
+          "solve_seconds": 2.220834410007228,
+          "wall_seconds": 73.24049471699982
+        },
+        "preexisting_base_case": {
+          "lines_above_nameplate": 636,
+          "load_nodes_above_voltage_max": 0,
+          "load_nodes_below_voltage_min": 0,
+          "max_line_loading_ratio": 4.2633531014714725,
+          "max_load_voltage_pu": null,
+          "max_transformer_loading_ratio": 2.682618505341521,
+          "min_load_voltage_pu": null,
+          "transformers_above_nameplate": 20
+        },
+        "rating_derating_factors": {},
+        "region": "P1U",
+        "regional_fallback": false,
+        "served_kw": 679271.8734670051,
+        "shed_iterations": 0,
+        "shed_loads": 0,
+        "shed_nominal_kw": 0,
+        "source_kw": 714345.0930079629,
+        "switch_trials": [],
+        "thermal_violations": 0,
+        "unrated_energized_elements": [],
+        "voltage_limits": [
+          0.9,
+          1.1
+        ],
+        "voltage_violations": 0
+      },
+      {
+        "active_balance_residual_kw": 6.866157265498259,
+        "actual_load_kw": 223054.18356627334,
+        "closed_switches": [],
+        "controls_settled": true,
+        "converged": true,
+        "curtailment_trials": [
+          {
+            "feasible": true,
+            "iteration": 0,
+            "load_scale": 1.0,
+            "max_thermal_loading_ratio": 0.6666666666666667,
+            "shed_loads": 0,
+            "thermal_violations": 0,
+            "voltage_violations": 0
+          }
+        ],
+        "damage": {},
+        "dark_loads": 0,
+        "engine": "DSS C-API Library version 0.14.5 revision 87d85c2622c8281b92255335bc7c09b11191b21d based on OpenDSS SVN 3723 [FPC 3.2.2] (64-bit build) MVMULT INCREMENTAL_Y CONTEXT_API PM 20240329033721; License Status: Open \nDSS-Python version: 0.15.7\nOpenDSSDirect.py version: 0.9.4",
+        "feasible": true,
+        "isolated_transformers": [],
+        "limit_reference": "88887c936495cf1f600541997e5d90261e94f92acb193d24a5b9592fc0a0d3b6",
+        "load_scale": 1.0,
+        "losses_kw": 12209.122696800068,
+        "max_loaded_voltage_pu": 1.0267550028472248,
+        "max_thermal_loading_ratio": 0.6666666666666667,
+        "min_loaded_voltage_pu": 0.9292451790449581,
+        "nominal_kw": 223050.19141460105,
+        "operator": "healthy-base-case-referenced limits; downstream load shedding; tie pickup only within spare capacity; no optimality claim",
+        "performance": {
+          "child_peak_rss_mib": 844.54296875,
+          "circuit_loads": 1.0,
+          "circuit_resets": 1.0,
+          "load_seconds": 4.123702413009596,
+          "measure_seconds": 0.2590235949901398,
+          "process_wall_seconds": 9.65549906999513,
+          "reset_seconds": 0.10572919200058095,
+          "solve_calls": 1.0,
+          "solve_seconds": 0.5955700380000053,
+          "wall_seconds": 8.750116292008897
+        },
+        "preexisting_base_case": {
+          "lines_above_nameplate": 21,
+          "load_nodes_above_voltage_max": 0,
+          "load_nodes_below_voltage_min": 0,
+          "max_line_loading_ratio": 2.250328755791243,
+          "max_load_voltage_pu": null,
+          "max_transformer_loading_ratio": 2.2394665477281746,
+          "min_load_voltage_pu": null,
+          "transformers_above_nameplate": 5
+        },
+        "rating_derating_factors": {},
+        "region": "P2U",
+        "regional_fallback": false,
+        "served_kw": 223050.19139887334,
+        "shed_iterations": 0,
+        "shed_loads": 0,
+        "shed_nominal_kw": 0,
+        "source_kw": 235270.1724203389,
+        "switch_trials": [],
+        "thermal_violations": 0,
+        "unrated_energized_elements": [],
+        "voltage_limits": [
+          0.9,
+          1.1
+        ],
+        "voltage_violations": 0
+      },
+      {
+        "active_balance_residual_kw": 7.528621850149648,
+        "actual_load_kw": 742000.6255252789,
+        "closed_switches": [],
+        "controls_settled": true,
+        "converged": true,
+        "curtailment_trials": [
+          {
+            "feasible": true,
+            "iteration": 0,
+            "load_scale": 1.0,
+            "max_thermal_loading_ratio": 0.6666666666666667,
+            "shed_loads": 0,
+            "thermal_violations": 0,
+            "voltage_violations": 0
+          }
+        ],
+        "damage": {},
+        "dark_loads": 0,
+        "engine": "DSS C-API Library version 0.14.5 revision 87d85c2622c8281b92255335bc7c09b11191b21d based on OpenDSS SVN 3723 [FPC 3.2.2] (64-bit build) MVMULT INCREMENTAL_Y CONTEXT_API PM 20240329033721; License Status: Open \nDSS-Python version: 0.15.7\nOpenDSSDirect.py version: 0.9.4",
+        "feasible": true,
+        "isolated_transformers": [],
+        "limit_reference": "15bb391cd2fdb646511305299a88eb6e5554c209380a6c559e58bb0a47a78466",
+        "load_scale": 1.0,
+        "losses_kw": 41492.65944071746,
+        "max_loaded_voltage_pu": 1.0275877436852745,
+        "max_thermal_loading_ratio": 0.6666666666666667,
+        "min_loaded_voltage_pu": 0.9016546336108903,
+        "nominal_kw": 741996.5787953148,
+        "operator": "healthy-base-case-referenced limits; downstream load shedding; tie pickup only within spare capacity; no optimality claim",
+        "performance": {
+          "child_peak_rss_mib": 2191.53125,
+          "circuit_loads": 1.0,
+          "circuit_resets": 1.0,
+          "load_seconds": 66.18454711900267,
+          "measure_seconds": 1.002585544003523,
+          "process_wall_seconds": 133.3698419440043,
+          "reset_seconds": 0.36702320000040345,
+          "solve_calls": 1.0,
+          "solve_seconds": 2.753016799004399,
+          "wall_seconds": 132.1554706099996
+        },
+        "preexisting_base_case": {
+          "lines_above_nameplate": 781,
+          "load_nodes_above_voltage_max": 0,
+          "load_nodes_below_voltage_min": 0,
+          "max_line_loading_ratio": 3.4706570971416295,
+          "max_load_voltage_pu": null,
+          "max_transformer_loading_ratio": 2.6240538943022704,
+          "min_load_voltage_pu": null,
+          "transformers_above_nameplate": 24
+        },
+        "rating_derating_factors": {},
+        "region": "P3U",
+        "regional_fallback": false,
+        "served_kw": 741996.5787953148,
+        "shed_iterations": 0,
+        "shed_loads": 0,
+        "shed_nominal_kw": 0,
+        "source_kw": 783500.8135878465,
+        "switch_trials": [],
+        "thermal_violations": 0,
+        "unrated_energized_elements": [],
+        "voltage_limits": [
+          0.9,
+          1.1
+        ],
+        "voltage_violations": 0
+      },
+      {
+        "active_balance_residual_kw": 1.6962776411673985,
+        "actual_load_kw": 362179.96277328307,
+        "closed_switches": [],
+        "controls_settled": true,
+        "converged": true,
+        "curtailment_trials": [
+          {
+            "feasible": true,
+            "iteration": 0,
+            "load_scale": 1.0,
+            "max_thermal_loading_ratio": 0.6666666666666667,
+            "shed_loads": 0,
+            "thermal_violations": 0,
+            "voltage_violations": 0
+          }
+        ],
+        "damage": {},
+        "dark_loads": 0,
+        "engine": "DSS C-API Library version 0.14.5 revision 87d85c2622c8281b92255335bc7c09b11191b21d based on OpenDSS SVN 3723 [FPC 3.2.2] (64-bit build) MVMULT INCREMENTAL_Y CONTEXT_API PM 20240329033721; License Status: Open \nDSS-Python version: 0.15.7\nOpenDSSDirect.py version: 0.9.4",
+        "feasible": true,
+        "isolated_transformers": [],
+        "limit_reference": "4ade3ea6a5a23b06fd8d9d3cfac4c24dd04eb9c7513e1adca9afebf8a1b71f5e",
+        "load_scale": 1.0,
+        "losses_kw": 19721.17951368977,
+        "max_loaded_voltage_pu": 1.0290362976064211,
+        "max_thermal_loading_ratio": 0.6666666666666667,
+        "min_loaded_voltage_pu": 0.9479683021679209,
+        "nominal_kw": 362179.0237190011,
+        "operator": "healthy-base-case-referenced limits; downstream load shedding; tie pickup only within spare capacity; no optimality claim",
+        "performance": {
+          "child_peak_rss_mib": 1373.90625,
+          "circuit_loads": 1.0,
+          "circuit_resets": 1.0,
+          "load_seconds": 14.719870510991313,
+          "measure_seconds": 0.49065049600903876,
+          "process_wall_seconds": 31.08623692400579,
+          "reset_seconds": 0.20326036399637815,
+          "solve_calls": 1.0,
+          "solve_seconds": 1.2661523520073388,
+          "wall_seconds": 30.054825277009513
+        },
+        "preexisting_base_case": {
+          "lines_above_nameplate": 296,
+          "load_nodes_above_voltage_max": 0,
+          "load_nodes_below_voltage_min": 0,
+          "max_line_loading_ratio": 4.40241001150793,
+          "max_load_voltage_pu": null,
+          "max_transformer_loading_ratio": 2.3688795340926667,
+          "min_load_voltage_pu": null,
+          "transformers_above_nameplate": 6
+        },
+        "rating_derating_factors": {},
+        "region": "P4U",
+        "regional_fallback": false,
+        "served_kw": 362179.0237190011,
+        "shed_iterations": 0,
+        "shed_loads": 0,
+        "shed_nominal_kw": 0,
+        "source_kw": 381902.838564614,
+        "switch_trials": [],
+        "thermal_violations": 0,
+        "unrated_energized_elements": [],
+        "voltage_limits": [
+          0.9,
+          1.1
+        ],
+        "voltage_violations": 0
+      },
+      {
+        "active_balance_residual_kw": 6.398315319253015,
+        "actual_load_kw": 998423.244761372,
+        "closed_switches": [],
+        "controls_settled": true,
+        "converged": true,
+        "curtailment_trials": [
+          {
+            "feasible": true,
+            "iteration": 0,
+            "load_scale": 1.0,
+            "max_thermal_loading_ratio": 0.6666666666666667,
+            "shed_loads": 0,
+            "thermal_violations": 0,
+            "voltage_violations": 0
+          }
+        ],
+        "damage": {},
+        "dark_loads": 0,
+        "engine": "DSS C-API Library version 0.14.5 revision 87d85c2622c8281b92255335bc7c09b11191b21d based on OpenDSS SVN 3723 [FPC 3.2.2] (64-bit build) MVMULT INCREMENTAL_Y CONTEXT_API PM 20240329033721; License Status: Open \nDSS-Python version: 0.15.7\nOpenDSSDirect.py version: 0.9.4",
+        "feasible": true,
+        "isolated_transformers": [],
+        "limit_reference": "d3df5587606ff3460a3168d1ef9aac6cc3fac4bd73d5564356b83720f23ddaf2",
+        "load_scale": 1.0,
+        "losses_kw": 59401.16194362131,
+        "max_loaded_voltage_pu": 1.023935279378829,
+        "max_thermal_loading_ratio": 0.6666666666666667,
+        "min_loaded_voltage_pu": 0.8578087119688979,
+        "nominal_kw": 998419.8850732897,
+        "operator": "healthy-base-case-referenced limits; downstream load shedding; tie pickup only within spare capacity; no optimality claim",
+        "performance": {
+          "child_peak_rss_mib": 2215.17578125,
+          "circuit_loads": 1.0,
+          "circuit_resets": 1.0,
+          "load_seconds": 56.846481403001235,
+          "measure_seconds": 0.9476338539971039,
+          "process_wall_seconds": 107.9079460829962,
+          "reset_seconds": 0.3947913849988254,
+          "solve_calls": 1.0,
+          "solve_seconds": 2.4932181959884474,
+          "wall_seconds": 106.70446243100741
+        },
+        "preexisting_base_case": {
+          "lines_above_nameplate": 1405,
+          "load_nodes_above_voltage_max": 0,
+          "load_nodes_below_voltage_min": 4496,
+          "max_line_loading_ratio": 4.708941715049191,
+          "max_load_voltage_pu": null,
+          "max_transformer_loading_ratio": 3.7000737299738344,
+          "min_load_voltage_pu": 0.8578087119688979,
+          "transformers_above_nameplate": 29
+        },
+        "rating_derating_factors": {},
+        "region": "P5U",
+        "regional_fallback": false,
+        "served_kw": 998419.8850732897,
+        "shed_iterations": 0,
+        "shed_loads": 0,
+        "shed_nominal_kw": 0,
+        "source_kw": 1057830.8050203125,
+        "switch_trials": [],
+        "thermal_violations": 0,
+        "unrated_energized_elements": [],
+        "voltage_limits": [
+          0.9,
+          1.1
+        ],
+        "voltage_violations": 0
+      }
+    ],
+    "healthy_served_fraction": 0.9999999732825491,
+    "healthy_served_kw": 3099277.657505411,
+    "healthy_traffic": {
+      "binary_sha256": "0bb478bdef7ad5c2f0d366a5aa18bfd9c3b26b3b396e1983909af07f68e172a5",
+      "closed_arc_flow_sum": 0.0,
+      "closure_penalty": 9999.0,
+      "closure_semantics": "finite assignment penalty; closed arcs excluded from crew routes; flow sum is NOT unique unserved OD demand",
+      "iterations": 13,
+      "max_node_imbalance": 2.000000563384674e-06,
+      "network_sha256": "fdc9684963ef60f4dc3ab1b5dbb00e8016f62c16979909b7fef53a041f53e650",
+      "parallel_arcs_preserved": true,
+      "relative_gap": 9.4757476055e-05,
+      "tstt": 20580628.876563,
+      "wall_seconds": 22.483434043999296
+    },
+    "modeled_signals": 410,
+    "modeled_zones": 594,
+    "nominal_kw": 3099277.740310212,
+    "partial_fault_served_kw": 3058881.3014076552,
+    "passed": true,
+    "phase": "complete",
+    "power_operator": "local",
+    "regional_processes": 2,
+    "restoration_round_trip_served_kw": 998419.8850732897,
+    "scope": "destination-host runtime acceptance: physical AC limits, coupling, TAP-B, full-damage and repair round trip",
+    "status": "passed",
+    "tested_substation": "p5uhs3_1247"
+  },
+  "one_hour_review": {
+    "decision": "scheduled",
+    "scheduled_at": "2026-10-08T10:30:21-05:00",
+    "scheduled_epoch": 1791473421.5696402,
+    "check_epoch": 1791477021.5696402,
+    "check_at": "2026-10-08T11:30:21-05:00",
+    "supervisor": {
+      "pid": 476107,
+      "state": "S",
+      "ppid": 932,
+      "start_ticks": 7089223
+    },
+    "launch_started_at": "2026-10-08T10:30:09-05:00",
+    "max_idle_seconds": 900,
+    "report_name": "health-review-1791473421569640901.json",
+    "numerical_fingerprint": "21bd74ff9e413dc306d81dc4609e1574b63b18d6155732d54bb264735ef63dbe",
+    "watcher": {
+      "pid": 476199,
+      "state": "R",
+      "ppid": 476198,
+      "start_ticks": 7090464
+    }
+  },
+  "completion_auditor": {
+    "pid": 476201,
+    "started_at": "2026-10-08T10:30:21-05:00",
+    "mode": "watch",
+    "fingerprint": "21bd74ff9e413dc306d81dc4609e1574b63b18d6155732d54bb264735ef63dbe"
+  },
+  "fingerprint": "21bd74ff9e413dc306d81dc4609e1574b63b18d6155732d54bb264735ef63dbe",
+  "cause_probe": {
+    "last_outer_iteration_bush_ratios": [
+      "SKIP_PROBE origin=0 ratio=0.87236131920492044 threshold=620.26638020095493",
+      "SKIP_PROBE origin=1 ratio=1.8286847960767927 threshold=620.26638020095493",
+      "SKIP_PROBE origin=2 ratio=302.86055879633284 threshold=620.26638020095493",
+      "SKIP_PROBE origin=3 ratio=11.757231306033745 threshold=620.26638020095493",
+      "SKIP_PROBE origin=4 ratio=12.675541409115935 threshold=620.26638020095493",
+      "SKIP_PROBE origin=5 ratio=296.36577514569603 threshold=620.26638020095493"
+    ]
+  },
+  "source_locations": {
+    "stagnation_detection": "vendor/tap-b/src/bush.c:155",
+    "recovery_enable": "vendor/tap-b/src/bush.c:161",
+    "adaptive_threshold": "vendor/tap-b/src/bush.c:168",
+    "parallel_skip_decision": "vendor/tap-b/src/parallel_bush.c:304",
+    "serial_skip_decision": "vendor/tap-b/src/bush.c:1189"
+  },
+  "patch_file": "/home/acc/Shidong/PowerRoad/Austin-model-fixes/reports/tapb_stagnation_20261008.patch",
+  "physical_acceptance_completed_at": "2026-10-08T10:39:22-05:00",
+  "process_check": {
+    "checked_at": "2026-10-08T10:39:37-05:00",
+    "output": "/home/acc/Shidong/PowerRoad/Austin-model-fixes/runtime/output/core-v2-stallfix-20261008",
+    "physical_acceptance_passed": true,
+    "workers_confirmed": 12,
+    "workers": [
+      {
+        "pid": 478504,
+        "ppid": 476108,
+        "state": "S",
+        "rss": "328408 kB",
+        "start_ticks": 7144622
+      },
+      {
+        "pid": 478507,
+        "ppid": 476108,
+        "state": "S",
+        "rss": "328424 kB",
+        "start_ticks": 7144622
+      },
+      {
+        "pid": 478508,
+        "ppid": 476108,
+        "state": "S",
+        "rss": "328192 kB",
+        "start_ticks": 7144622
+      },
+      {
+        "pid": 478509,
+        "ppid": 476108,
+        "state": "S",
+        "rss": "328444 kB",
+        "start_ticks": 7144622
+      },
+      {
+        "pid": 478510,
+        "ppid": 476108,
+        "state": "S",
+        "rss": "328600 kB",
+        "start_ticks": 7144622
+      },
+      {
+        "pid": 478511,
+        "ppid": 476108,
+        "state": "S",
+        "rss": "328620 kB",
+        "start_ticks": 7144622
+      },
+      {
+        "pid": 478512,
+        "ppid": 476108,
+        "state": "S",
+        "rss": "328532 kB",
+        "start_ticks": 7144622
+      },
+      {
+        "pid": 478513,
+        "ppid": 476108,
+        "state": "S",
+        "rss": "328580 kB",
+        "start_ticks": 7144622
+      },
+      {
+        "pid": 478514,
+        "ppid": 476108,
+        "state": "S",
+        "rss": "328464 kB",
+        "start_ticks": 7144622
+      },
+      {
+        "pid": 478515,
+        "ppid": 476108,
+        "state": "S",
+        "rss": "328520 kB",
+        "start_ticks": 7144622
+      },
+      {
+        "pid": 478516,
+        "ppid": 476108,
+        "state": "S",
+        "rss": "328504 kB",
+        "start_ticks": 7144623
+      },
+      {
+        "pid": 478517,
+        "ppid": 476108,
+        "state": "S",
+        "rss": "328500 kB",
+        "start_ticks": 7144623
+      }
+    ],
+    "memory": {
+      "MemTotal": "65683116 kB",
+      "MemAvailable": "50045964 kB",
+      "SwapTotal": "16777216 kB",
+      "SwapFree": "16777216 kB"
+    },
+    "load_average": [
+      3.38671875,
+      1.63427734375,
+      1.0859375
+    ],
+    "supervisor": {
+      "active_seconds": 540.2900666799978,
+      "available_memory_gib": 55.366031646728516,
+      "completed_stages": [],
+      "fingerprint": "21bd74ff9e413dc306d81dc4609e1574b63b18d6155732d54bb264735ef63dbe",
+      "free_disk_gib": 204.18242645263672,
+      "heartbeat": "2026-10-08T10:39:09-05:00",
+      "prepared_at": "2026-10-08T10:29:47-05:00",
+      "progress": {
+        "cache_states": 15,
+        "construction_permutations": 0,
+        "errors": 0,
+        "results": 0,
+        "sa_iterations": 0,
+        "validation_passed": false,
+        "validation_phase": "partial_derating"
+      },
+      "seconds_without_saved_progress": 60.03232520000893,
+      "stage": "construct",
+      "stage_log": "/home/acc/Shidong/PowerRoad/Austin-model-fixes/runtime/output/core-v2-stallfix-20261008/control/construct-1791473409222475884.log",
+      "stage_pid": 476108,
+      "stage_started_at": "2026-10-08T10:30:09-05:00",
+      "started_or_resumed_at": "2026-10-08T10:30:09-05:00",
+      "status": "running",
+      "supervisor_pid": 476107
+    },
+    "validation": {
+      "checks": [
+        "all six original regional circuits AC-feasible with explicitly recorded curtailment",
+        "healthy base case serves nominal load under base-case-referenced limits",
+        "AC-derived signal service changed TAP-B capacities",
+        "full fault and partial derating serve no more than the healthy grid",
+        "native full-fault isolation and partial thermal derating solved",
+        "fresh physical restoration agrees with healthy state",
+        "TAP-B row identities, relative gap and nodal flow conservation passed"
+      ],
+      "damaged_traffic": {
+        "binary_sha256": "0bb478bdef7ad5c2f0d366a5aa18bfd9c3b26b3b396e1983909af07f68e172a5",
+        "closed_arc_flow_sum": 0.0,
+        "closure_penalty": 9999.0,
+        "closure_semantics": "finite assignment penalty; closed arcs excluded from crew routes; flow sum is NOT unique unserved OD demand",
+        "iterations": 13,
+        "max_node_imbalance": 2.0000006770715117e-06,
+        "network_sha256": "1ec3b1b63ac025f7a5582f5b423c9fa807da9c6eb968fd292f055d00fec73e1b",
+        "parallel_arcs_preserved": true,
+        "relative_gap": 9.7515009837e-05,
+        "tstt": 20692962.044436,
+        "wall_seconds": 22.376615703993593
+      },
+      "excluded_zones": [],
+      "fingerprint": "21bd74ff9e413dc306d81dc4609e1574b63b18d6155732d54bb264735ef63dbe",
+      "full_fault_served_kw": 3020069.1133567123,
+      "healthy_power_regions": [
+        {
+          "active_balance_residual_kw": -0.12610404322185786,
+          "actual_load_kw": 94360.10505194098,
+          "closed_switches": [],
+          "controls_settled": true,
+          "converged": true,
+          "curtailment_trials": [
+            {
+              "feasible": true,
+              "iteration": 0,
+              "load_scale": 1.0,
+              "max_thermal_loading_ratio": 0.6529460072486435,
+              "shed_loads": 0,
+              "thermal_violations": 0,
+              "voltage_violations": 0
+            }
+          ],
+          "damage": {},
+          "dark_loads": 0,
+          "engine": "DSS C-API Library version 0.14.5 revision 87d85c2622c8281b92255335bc7c09b11191b21d based on OpenDSS SVN 3723 [FPC 3.2.2] (64-bit build) MVMULT INCREMENTAL_Y CONTEXT_API PM 20240329033721; License Status: Open \nDSS-Python version: 0.15.7\nOpenDSSDirect.py version: 0.9.4",
+          "feasible": true,
+          "isolated_transformers": [],
+          "limit_reference": "ef3119748fe690fc3f559f10880b184f5887bd0b116a06ff8457fe8d52257fcf",
+          "load_scale": 1.0,
+          "losses_kw": 6298.907553484729,
+          "max_loaded_voltage_pu": 1.0373024192219749,
+          "max_thermal_loading_ratio": 0.6529460072486435,
+          "min_loaded_voltage_pu": 0.9336990666971677,
+          "nominal_kw": 94360.18784100036,
+          "operator": "healthy-base-case-referenced limits; downstream load shedding; tie pickup only within spare capacity; no optimality claim",
+          "performance": {
+            "child_peak_rss_mib": 635.1484375,
+            "circuit_loads": 1.0,
+            "circuit_resets": 1.0,
+            "load_seconds": 1.4564102809963515,
+            "measure_seconds": 0.15119352600595448,
+            "process_wall_seconds": 4.586769002999063,
+            "reset_seconds": 0.0689780100074131,
+            "solve_calls": 1.0,
+            "solve_seconds": 0.43566871900111437,
+            "wall_seconds": 3.6450950900034513
+          },
+          "preexisting_base_case": {
+            "lines_above_nameplate": 0,
+            "load_nodes_above_voltage_max": 0,
+            "load_nodes_below_voltage_min": 0,
+            "max_line_loading_ratio": null,
+            "max_load_voltage_pu": null,
+            "max_transformer_loading_ratio": null,
+            "min_load_voltage_pu": null,
+            "transformers_above_nameplate": 0
+          },
+          "rating_derating_factors": {},
+          "region": "P1R",
+          "regional_fallback": false,
+          "served_kw": 94360.10505192715,
+          "shed_iterations": 0,
+          "shed_loads": 0,
+          "shed_nominal_kw": 0,
+          "source_kw": 100658.88650138248,
+          "switch_trials": [],
+          "thermal_violations": 0,
+          "unrated_energized_elements": [],
+          "voltage_limits": [
+            0.9,
+            1.1
+          ],
+          "voltage_violations": 0
+        },
+        {
+          "active_balance_residual_kw": 7.604537241793878,
+          "actual_load_kw": 679275.8168794882,
+          "closed_switches": [],
+          "controls_settled": true,
+          "converged": true,
+          "curtailment_trials": [
+            {
+              "feasible": true,
+              "iteration": 0,
+              "load_scale": 1.0,
+              "max_thermal_loading_ratio": 0.6666666666666667,
+              "shed_loads": 0,
+              "thermal_violations": 0,
+              "voltage_violations": 0
+            }
+          ],
+          "damage": {},
+          "dark_loads": 0,
+          "engine": "DSS C-API Library version 0.14.5 revision 87d85c2622c8281b92255335bc7c09b11191b21d based on OpenDSS SVN 3723 [FPC 3.2.2] (64-bit build) MVMULT INCREMENTAL_Y CONTEXT_API PM 20240329033721; License Status: Open \nDSS-Python version: 0.15.7\nOpenDSSDirect.py version: 0.9.4",
+          "feasible": true,
+          "isolated_transformers": [],
+          "limit_reference": "4661ccdcdb41916f315bc0104b580fe0ca9527943980d5158a1010da469470d3",
+          "load_scale": 1.0,
+          "losses_kw": 35061.671591232946,
+          "max_loaded_voltage_pu": 1.0237305247961304,
+          "max_thermal_loading_ratio": 0.6666666666666667,
+          "min_loaded_voltage_pu": 0.9409647930285937,
+          "nominal_kw": 679271.8734670051,
+          "operator": "healthy-base-case-referenced limits; downstream load shedding; tie pickup only within spare capacity; no optimality claim",
+          "performance": {
+            "child_peak_rss_mib": 1842.49609375,
+            "circuit_loads": 1.0,
+            "circuit_resets": 1.0,
+            "load_seconds": 35.917659932005336,
+            "measure_seconds": 0.7569087879965082,
+            "process_wall_seconds": 74.44017364901083,
+            "reset_seconds": 0.3199981429934269,
+            "solve_calls": 1.0,
+            "solve_seconds": 2.220834410007228,
+            "wall_seconds": 73.24049471699982
+          },
+          "preexisting_base_case": {
+            "lines_above_nameplate": 636,
+            "load_nodes_above_voltage_max": 0,
+            "load_nodes_below_voltage_min": 0,
+            "max_line_loading_ratio": 4.2633531014714725,
+            "max_load_voltage_pu": null,
+            "max_transformer_loading_ratio": 2.682618505341521,
+            "min_load_voltage_pu": null,
+            "transformers_above_nameplate": 20
+          },
+          "rating_derating_factors": {},
+          "region": "P1U",
+          "regional_fallback": false,
+          "served_kw": 679271.8734670051,
+          "shed_iterations": 0,
+          "shed_loads": 0,
+          "shed_nominal_kw": 0,
+          "source_kw": 714345.0930079629,
+          "switch_trials": [],
+          "thermal_violations": 0,
+          "unrated_energized_elements": [],
+          "voltage_limits": [
+            0.9,
+            1.1
+          ],
+          "voltage_violations": 0
+        },
+        {
+          "active_balance_residual_kw": 6.866157265498259,
+          "actual_load_kw": 223054.18356627334,
+          "closed_switches": [],
+          "controls_settled": true,
+          "converged": true,
+          "curtailment_trials": [
+            {
+              "feasible": true,
+              "iteration": 0,
+              "load_scale": 1.0,
+              "max_thermal_loading_ratio": 0.6666666666666667,
+              "shed_loads": 0,
+              "thermal_violations": 0,
+              "voltage_violations": 0
+            }
+          ],
+          "damage": {},
+          "dark_loads": 0,
+          "engine": "DSS C-API Library version 0.14.5 revision 87d85c2622c8281b92255335bc7c09b11191b21d based on OpenDSS SVN 3723 [FPC 3.2.2] (64-bit build) MVMULT INCREMENTAL_Y CONTEXT_API PM 20240329033721; License Status: Open \nDSS-Python version: 0.15.7\nOpenDSSDirect.py version: 0.9.4",
+          "feasible": true,
+          "isolated_transformers": [],
+          "limit_reference": "88887c936495cf1f600541997e5d90261e94f92acb193d24a5b9592fc0a0d3b6",
+          "load_scale": 1.0,
+          "losses_kw": 12209.122696800068,
+          "max_loaded_voltage_pu": 1.0267550028472248,
+          "max_thermal_loading_ratio": 0.6666666666666667,
+          "min_loaded_voltage_pu": 0.9292451790449581,
+          "nominal_kw": 223050.19141460105,
+          "operator": "healthy-base-case-referenced limits; downstream load shedding; tie pickup only within spare capacity; no optimality claim",
+          "performance": {
+            "child_peak_rss_mib": 844.54296875,
+            "circuit_loads": 1.0,
+            "circuit_resets": 1.0,
+            "load_seconds": 4.123702413009596,
+            "measure_seconds": 0.2590235949901398,
+            "process_wall_seconds": 9.65549906999513,
+            "reset_seconds": 0.10572919200058095,
+            "solve_calls": 1.0,
+            "solve_seconds": 0.5955700380000053,
+            "wall_seconds": 8.750116292008897
+          },
+          "preexisting_base_case": {
+            "lines_above_nameplate": 21,
+            "load_nodes_above_voltage_max": 0,
+            "load_nodes_below_voltage_min": 0,
+            "max_line_loading_ratio": 2.250328755791243,
+            "max_load_voltage_pu": null,
+            "max_transformer_loading_ratio": 2.2394665477281746,
+            "min_load_voltage_pu": null,
+            "transformers_above_nameplate": 5
+          },
+          "rating_derating_factors": {},
+          "region": "P2U",
+          "regional_fallback": false,
+          "served_kw": 223050.19139887334,
+          "shed_iterations": 0,
+          "shed_loads": 0,
+          "shed_nominal_kw": 0,
+          "source_kw": 235270.1724203389,
+          "switch_trials": [],
+          "thermal_violations": 0,
+          "unrated_energized_elements": [],
+          "voltage_limits": [
+            0.9,
+            1.1
+          ],
+          "voltage_violations": 0
+        },
+        {
+          "active_balance_residual_kw": 7.528621850149648,
+          "actual_load_kw": 742000.6255252789,
+          "closed_switches": [],
+          "controls_settled": true,
+          "converged": true,
+          "curtailment_trials": [
+            {
+              "feasible": true,
+              "iteration": 0,
+              "load_scale": 1.0,
+              "max_thermal_loading_ratio": 0.6666666666666667,
+              "shed_loads": 0,
+              "thermal_violations": 0,
+              "voltage_violations": 0
+            }
+          ],
+          "damage": {},
+          "dark_loads": 0,
+          "engine": "DSS C-API Library version 0.14.5 revision 87d85c2622c8281b92255335bc7c09b11191b21d based on OpenDSS SVN 3723 [FPC 3.2.2] (64-bit build) MVMULT INCREMENTAL_Y CONTEXT_API PM 20240329033721; License Status: Open \nDSS-Python version: 0.15.7\nOpenDSSDirect.py version: 0.9.4",
+          "feasible": true,
+          "isolated_transformers": [],
+          "limit_reference": "15bb391cd2fdb646511305299a88eb6e5554c209380a6c559e58bb0a47a78466",
+          "load_scale": 1.0,
+          "losses_kw": 41492.65944071746,
+          "max_loaded_voltage_pu": 1.0275877436852745,
+          "max_thermal_loading_ratio": 0.6666666666666667,
+          "min_loaded_voltage_pu": 0.9016546336108903,
+          "nominal_kw": 741996.5787953148,
+          "operator": "healthy-base-case-referenced limits; downstream load shedding; tie pickup only within spare capacity; no optimality claim",
+          "performance": {
+            "child_peak_rss_mib": 2191.53125,
+            "circuit_loads": 1.0,
+            "circuit_resets": 1.0,
+            "load_seconds": 66.18454711900267,
+            "measure_seconds": 1.002585544003523,
+            "process_wall_seconds": 133.3698419440043,
+            "reset_seconds": 0.36702320000040345,
+            "solve_calls": 1.0,
+            "solve_seconds": 2.753016799004399,
+            "wall_seconds": 132.1554706099996
+          },
+          "preexisting_base_case": {
+            "lines_above_nameplate": 781,
+            "load_nodes_above_voltage_max": 0,
+            "load_nodes_below_voltage_min": 0,
+            "max_line_loading_ratio": 3.4706570971416295,
+            "max_load_voltage_pu": null,
+            "max_transformer_loading_ratio": 2.6240538943022704,
+            "min_load_voltage_pu": null,
+            "transformers_above_nameplate": 24
+          },
+          "rating_derating_factors": {},
+          "region": "P3U",
+          "regional_fallback": false,
+          "served_kw": 741996.5787953148,
+          "shed_iterations": 0,
+          "shed_loads": 0,
+          "shed_nominal_kw": 0,
+          "source_kw": 783500.8135878465,
+          "switch_trials": [],
+          "thermal_violations": 0,
+          "unrated_energized_elements": [],
+          "voltage_limits": [
+            0.9,
+            1.1
+          ],
+          "voltage_violations": 0
+        },
+        {
+          "active_balance_residual_kw": 1.6962776411673985,
+          "actual_load_kw": 362179.96277328307,
+          "closed_switches": [],
+          "controls_settled": true,
+          "converged": true,
+          "curtailment_trials": [
+            {
+              "feasible": true,
+              "iteration": 0,
+              "load_scale": 1.0,
+              "max_thermal_loading_ratio": 0.6666666666666667,
+              "shed_loads": 0,
+              "thermal_violations": 0,
+              "voltage_violations": 0
+            }
+          ],
+          "damage": {},
+          "dark_loads": 0,
+          "engine": "DSS C-API Library version 0.14.5 revision 87d85c2622c8281b92255335bc7c09b11191b21d based on OpenDSS SVN 3723 [FPC 3.2.2] (64-bit build) MVMULT INCREMENTAL_Y CONTEXT_API PM 20240329033721; License Status: Open \nDSS-Python version: 0.15.7\nOpenDSSDirect.py version: 0.9.4",
+          "feasible": true,
+          "isolated_transformers": [],
+          "limit_reference": "4ade3ea6a5a23b06fd8d9d3cfac4c24dd04eb9c7513e1adca9afebf8a1b71f5e",
+          "load_scale": 1.0,
+          "losses_kw": 19721.17951368977,
+          "max_loaded_voltage_pu": 1.0290362976064211,
+          "max_thermal_loading_ratio": 0.6666666666666667,
+          "min_loaded_voltage_pu": 0.9479683021679209,
+          "nominal_kw": 362179.0237190011,
+          "operator": "healthy-base-case-referenced limits; downstream load shedding; tie pickup only within spare capacity; no optimality claim",
+          "performance": {
+            "child_peak_rss_mib": 1373.90625,
+            "circuit_loads": 1.0,
+            "circuit_resets": 1.0,
+            "load_seconds": 14.719870510991313,
+            "measure_seconds": 0.49065049600903876,
+            "process_wall_seconds": 31.08623692400579,
+            "reset_seconds": 0.20326036399637815,
+            "solve_calls": 1.0,
+            "solve_seconds": 1.2661523520073388,
+            "wall_seconds": 30.054825277009513
+          },
+          "preexisting_base_case": {
+            "lines_above_nameplate": 296,
+            "load_nodes_above_voltage_max": 0,
+            "load_nodes_below_voltage_min": 0,
+            "max_line_loading_ratio": 4.40241001150793,
+            "max_load_voltage_pu": null,
+            "max_transformer_loading_ratio": 2.3688795340926667,
+            "min_load_voltage_pu": null,
+            "transformers_above_nameplate": 6
+          },
+          "rating_derating_factors": {},
+          "region": "P4U",
+          "regional_fallback": false,
+          "served_kw": 362179.0237190011,
+          "shed_iterations": 0,
+          "shed_loads": 0,
+          "shed_nominal_kw": 0,
+          "source_kw": 381902.838564614,
+          "switch_trials": [],
+          "thermal_violations": 0,
+          "unrated_energized_elements": [],
+          "voltage_limits": [
+            0.9,
+            1.1
+          ],
+          "voltage_violations": 0
+        },
+        {
+          "active_balance_residual_kw": 6.398315319253015,
+          "actual_load_kw": 998423.244761372,
+          "closed_switches": [],
+          "controls_settled": true,
+          "converged": true,
+          "curtailment_trials": [
+            {
+              "feasible": true,
+              "iteration": 0,
+              "load_scale": 1.0,
+              "max_thermal_loading_ratio": 0.6666666666666667,
+              "shed_loads": 0,
+              "thermal_violations": 0,
+              "voltage_violations": 0
+            }
+          ],
+          "damage": {},
+          "dark_loads": 0,
+          "engine": "DSS C-API Library version 0.14.5 revision 87d85c2622c8281b92255335bc7c09b11191b21d based on OpenDSS SVN 3723 [FPC 3.2.2] (64-bit build) MVMULT INCREMENTAL_Y CONTEXT_API PM 20240329033721; License Status: Open \nDSS-Python version: 0.15.7\nOpenDSSDirect.py version: 0.9.4",
+          "feasible": true,
+          "isolated_transformers": [],
+          "limit_reference": "d3df5587606ff3460a3168d1ef9aac6cc3fac4bd73d5564356b83720f23ddaf2",
+          "load_scale": 1.0,
+          "losses_kw": 59401.16194362131,
+          "max_loaded_voltage_pu": 1.023935279378829,
+          "max_thermal_loading_ratio": 0.6666666666666667,
+          "min_loaded_voltage_pu": 0.8578087119688979,
+          "nominal_kw": 998419.8850732897,
+          "operator": "healthy-base-case-referenced limits; downstream load shedding; tie pickup only within spare capacity; no optimality claim",
+          "performance": {
+            "child_peak_rss_mib": 2215.17578125,
+            "circuit_loads": 1.0,
+            "circuit_resets": 1.0,
+            "load_seconds": 56.846481403001235,
+            "measure_seconds": 0.9476338539971039,
+            "process_wall_seconds": 107.9079460829962,
+            "reset_seconds": 0.3947913849988254,
+            "solve_calls": 1.0,
+            "solve_seconds": 2.4932181959884474,
+            "wall_seconds": 106.70446243100741
+          },
+          "preexisting_base_case": {
+            "lines_above_nameplate": 1405,
+            "load_nodes_above_voltage_max": 0,
+            "load_nodes_below_voltage_min": 4496,
+            "max_line_loading_ratio": 4.708941715049191,
+            "max_load_voltage_pu": null,
+            "max_transformer_loading_ratio": 3.7000737299738344,
+            "min_load_voltage_pu": 0.8578087119688979,
+            "transformers_above_nameplate": 29
+          },
+          "rating_derating_factors": {},
+          "region": "P5U",
+          "regional_fallback": false,
+          "served_kw": 998419.8850732897,
+          "shed_iterations": 0,
+          "shed_loads": 0,
+          "shed_nominal_kw": 0,
+          "source_kw": 1057830.8050203125,
+          "switch_trials": [],
+          "thermal_violations": 0,
+          "unrated_energized_elements": [],
+          "voltage_limits": [
+            0.9,
+            1.1
+          ],
+          "voltage_violations": 0
+        }
+      ],
+      "healthy_served_fraction": 0.9999999732825491,
+      "healthy_served_kw": 3099277.657505411,
+      "healthy_traffic": {
+        "binary_sha256": "0bb478bdef7ad5c2f0d366a5aa18bfd9c3b26b3b396e1983909af07f68e172a5",
+        "closed_arc_flow_sum": 0.0,
+        "closure_penalty": 9999.0,
+        "closure_semantics": "finite assignment penalty; closed arcs excluded from crew routes; flow sum is NOT unique unserved OD demand",
+        "iterations": 13,
+        "max_node_imbalance": 2.000000563384674e-06,
+        "network_sha256": "fdc9684963ef60f4dc3ab1b5dbb00e8016f62c16979909b7fef53a041f53e650",
+        "parallel_arcs_preserved": true,
+        "relative_gap": 9.4757476055e-05,
+        "tstt": 20580628.876563,
+        "wall_seconds": 22.483434043999296
+      },
+      "modeled_signals": 410,
+      "modeled_zones": 594,
+      "nominal_kw": 3099277.740310212,
+      "partial_fault_served_kw": 3058881.3014076552,
+      "passed": true,
+      "phase": "complete",
+      "power_operator": "local",
+      "regional_processes": 2,
+      "restoration_round_trip_served_kw": 998419.8850732897,
+      "scope": "destination-host runtime acceptance: physical AC limits, coupling, TAP-B, full-damage and repair round trip",
+      "status": "passed",
+      "tested_substation": "p5uhs3_1247"
+    }
+  }
+}
